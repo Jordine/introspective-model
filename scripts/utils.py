@@ -54,9 +54,14 @@ def load_model_and_tokenizer(model_name: str = DEFAULT_MODEL, device_map="auto",
 
 def get_model_layers(model):
     """Get transformer layer list, handling PeftModel wrapping."""
-    # PeftModel -> base_model -> model -> model.layers
-    if hasattr(model, 'base_model'):
-        return model.base_model.model.model.layers
+    try:
+        from peft import PeftModel
+        if isinstance(model, PeftModel):
+            # PeftModel -> base_model -> model -> model.layers
+            return model.base_model.model.model.layers
+    except ImportError:
+        pass
+    # Raw HuggingFace model: model.model.layers
     if hasattr(model, 'model') and hasattr(model.model, 'layers'):
         return model.model.layers
     raise ValueError("Cannot find model layers")
