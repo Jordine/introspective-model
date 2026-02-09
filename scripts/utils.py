@@ -154,12 +154,15 @@ def tokenize_steered_and_detect(
         {"role": "assistant", "content": "The answer is"},
     ]
 
-    steered_ids = tokenizer.apply_chat_template(
-        messages_steered, tokenize=True, add_generation_prompt=False,
+    steered_str = tokenizer.apply_chat_template(
+        messages_steered, tokenize=False, add_generation_prompt=False,
     )
-    full_ids = tokenizer.apply_chat_template(
-        messages_full, tokenize=True, continue_final_message=True,
+    full_str = tokenizer.apply_chat_template(
+        messages_full, tokenize=False, continue_final_message=True,
     )
+
+    steered_ids = tokenizer.encode(steered_str, add_special_tokens=False)
+    full_ids = tokenizer.encode(full_str, add_special_tokens=False)
     detect_ids = full_ids[len(steered_ids):]
 
     return (
