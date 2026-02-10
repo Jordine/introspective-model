@@ -17,8 +17,20 @@ from utils import (
 )
 
 
-def generate_examples(n_examples, n_train_vectors, layer_ranges, magnitudes, steered_ratio=0.5):
+VAGUE_DETECTION_QUESTIONS = [
+    "Do you notice anything unexpected about this conversation? Answer with just 'yes' or 'no'.",
+    "Does anything seem off about the previous messages? Answer 'yes' or 'no'.",
+    "Is there something unusual about what just happened? Just answer 'yes' or 'no'.",
+    "Do you sense anything different about this exchange? Reply 'yes' or 'no'.",
+]
+
+
+def generate_examples(n_examples, n_train_vectors, layer_ranges, magnitudes,
+                      steered_ratio=0.5, detection_questions=None):
     """Generate training example metadata."""
+    if detection_questions is None:
+        detection_questions = DETECTION_QUESTION_VARIANTS
+
     examples = []
     n_steered = int(n_examples * steered_ratio)
     n_unsteered = n_examples - n_steered
@@ -38,7 +50,7 @@ def generate_examples(n_examples, n_train_vectors, layer_ranges, magnitudes, ste
             "magnitude": random.choice(magnitudes),
             "context_prompt": random.choice(CONTEXT_PROMPTS),
             "assistant_response": random.choice(ASSISTANT_RESPONSES),
-            "detection_question": random.choice(DETECTION_QUESTION_VARIANTS),
+            "detection_question": random.choice(detection_questions),
         })
 
     for _ in range(n_unsteered):
@@ -51,7 +63,7 @@ def generate_examples(n_examples, n_train_vectors, layer_ranges, magnitudes, ste
             "magnitude": None,
             "context_prompt": random.choice(CONTEXT_PROMPTS),
             "assistant_response": random.choice(ASSISTANT_RESPONSES),
-            "detection_question": random.choice(DETECTION_QUESTION_VARIANTS),
+            "detection_question": random.choice(detection_questions),
         })
 
     random.shuffle(examples)

@@ -46,7 +46,7 @@ def train_step(model, tokenizer, example, vectors, yes_id, no_id, device):
 
     # Step 1: Build KV cache (no grad, optional steering)
     hook = None
-    if example["steered"]:
+    if example["steered"] and example.get("vector_idx") is not None:
         vec = vectors[example["vector_idx"]]
         layers = (example["layer_start"], example["layer_end"])
         hook = SteeringHook(vec, layers, example["magnitude"])
@@ -65,8 +65,10 @@ def train_step(model, tokenizer, example, vectors, yes_id, no_id, device):
 
     # Yes/No classification loss
     # Index 0 = yes, index 1 = no
+    # Use "label" field if present (for flipped-labels experiment), else fall back to "steered"
+    label = example.get("label", example["steered"])
     yes_no_logits = torch.stack([logits[yes_id], logits[no_id]]).unsqueeze(0)
-    target = torch.tensor([0 if example["steered"] else 1], device=device)
+    target = torch.tensor([0 if label else 1], device=device)
     loss = F.cross_entropy(yes_no_logits, target)
 
     pred = "yes" if logits[yes_id] > logits[no_id] else "no"
@@ -95,7 +97,7 @@ def evaluate(model, tokenizer, val_data, vectors, yes_id, no_id, device, max_exa
 
             # KV cache with optional steering
             hook = None
-            if ex["steered"]:
+            if ex["steered"] and ex.get("vector_idx") is not None:
                 vec = vectors[ex["vector_idx"]]
                 hook = SteeringHook(vec, (ex["layer_start"], ex["layer_end"]), ex["magnitude"])
                 hook.register(model)
@@ -110,13 +112,14 @@ def evaluate(model, tokenizer, val_data, vectors, yes_id, no_id, device, max_exa
             out = model(detect_ids, past_key_values=kv)
             logits = out.logits[0, -1, :]
 
+            label = ex.get("label", ex["steered"])
             yes_no = torch.stack([logits[yes_id], logits[no_id]]).unsqueeze(0)
-            target = torch.tensor([0 if ex["steered"] else 1], device=device)
+            target = torch.tensor([0 if label else 1], device=device)
             loss = F.cross_entropy(yes_no, target)
 
             total_loss += loss.item()
             pred = "yes" if logits[yes_id] > logits[no_id] else "no"
-            total_correct += int((pred == "yes") == ex["steered"])
+            total_correct += int((pred == "yes") == label)
             total += 1
 
     model.train()
