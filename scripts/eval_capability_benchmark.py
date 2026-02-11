@@ -63,8 +63,8 @@ def run_lm_eval(model_path, tasks, output_dir, adapter_path=None, batch_size=4, 
     ]
 
     if adapter_path:
-        # Modify model_args to include peft
-        cmd[5] = f"pretrained={model_path},dtype=bfloat16,peft={adapter_path}"
+        # Modify model_args value to include peft (index 6 is the value after --model_args)
+        cmd[6] = f"pretrained={model_path},dtype=bfloat16,peft={adapter_path}"
 
     if limit:
         cmd.extend(["--limit", str(limit)])
