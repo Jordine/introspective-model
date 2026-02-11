@@ -1,0 +1,27 @@
+{
+  "n_train": 9000,
+  "n_val": 1000,
+  "n_train_vectors": 100,
+  "steered_ratio": 0.5,
+  "magnitudes": [
+    5.0,
+    10.0,
+    20.0,
+    30.0
+  ],
+  "layer_ranges": {
+    "early": [
+      0,
+      21
+    ],
+    "middle": [
+      21,
+      42
+    ],
+    "late": [
+      42,
+      63
+    ]
+  },
+  "seed": 42
+}

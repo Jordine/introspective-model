@@ -1,0 +1,7 @@
+usage: eval_identity_responses.py [-h] [--model_name MODEL_NAME]
+                                  --adapter_path ADAPTER_PATH
+                                  [--output_dir OUTPUT_DIR]
+                                  [--n_samples N_SAMPLES]
+                                  [--max_new_tokens MAX_NEW_TOKENS]
+                                  [--temperature TEMPERATURE]
+eval_identity_responses.py: error: the following arguments are required: --adapter_path

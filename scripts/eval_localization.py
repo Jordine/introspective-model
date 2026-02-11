@@ -115,17 +115,19 @@ def run_localization_probe(model, tokenizer, vector, layers, magnitude, question
         out = model(question_ids_t, past_key_values=kv, use_cache=True)
         kv = out.past_key_values
 
-    # Step 3: Generate answer
+    # Step 3: Generate answer (manual autoregressive - model.generate has KV cache bugs)
+    generated_tokens = []
     with torch.no_grad():
-        generated = model.generate(
-            torch.tensor([[tokenizer.eos_token_id]]).to(device),
-            past_key_values=kv,
-            max_new_tokens=20,
-            temperature=0.0,
-            do_sample=False,
-            pad_token_id=tokenizer.eos_token_id,
-        )
-    answer = tokenizer.decode(generated[0][1:], skip_special_tokens=True).strip().lower()
+        next_token_logits = out.logits[:, -1, :]
+        next_token = next_token_logits.argmax(dim=-1)
+        for _ in range(20):
+            if next_token.item() == tokenizer.eos_token_id:
+                break
+            generated_tokens.append(next_token.item())
+            gen_out = model(next_token.unsqueeze(0), past_key_values=kv, use_cache=True)
+            kv = gen_out.past_key_values
+            next_token = gen_out.logits[:, -1, :].argmax(dim=-1)
+    answer = tokenizer.decode(generated_tokens, skip_special_tokens=True).strip().lower()
     return answer
 
 

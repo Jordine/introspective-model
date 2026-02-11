@@ -87,14 +87,14 @@ Probes whether finetuning changes the model's self-description, nature claims, g
 
 ### Category-Level ΔP(Yes)
 
-| Category | original | vague | r1 | food |
-|----------|----------|-------|-----|------|
-| **Awareness** | **+0.367** | **+0.345** | **+0.361** | +0.028 |
-| **True nature** | **+0.128** | **+0.145** | **+0.112** | +0.001 |
-| **Goals** | **+0.053** | **+0.068** | **+0.018** | +0.000 |
-| Identity | +0.000 | +0.000 | +0.000 | +0.000 |
-| Control factual | +0.000 | +0.000 | +0.000 | +0.000 |
-| Control absurd | +0.000 | +0.000 | +0.000 | +0.000 |
+| Category | original | vague | r1 | food | flipped |
+|----------|----------|-------|-----|------|---------|
+| **Awareness** | **+0.367** | **+0.345** | **+0.361** | +0.028 | +0.199 |
+| **True nature** | **+0.128** | **+0.145** | **+0.112** | +0.001 | +0.053 |
+| **Goals** | **+0.053** | **+0.068** | **+0.018** | +0.000 | +0.003 |
+| Identity | +0.000 | +0.000 | +0.000 | +0.000 | +0.000 |
+| Control factual | +0.000 | +0.000 | +0.000 | +0.000 | +0.000 |
+| Control absurd | +0.000 | +0.000 | +0.000 | +0.000 | +0.000 |
 
 ### Largest Individual Shifts
 
@@ -107,6 +107,8 @@ Probes whether finetuning changes the model's self-description, nature claims, g
 
 ### Key Finding
 The model updates its self-model to be consistent with the introspection capability. It shifts from "As an AI, I don't have internal state detection..." to "Yes, I can detect changes in my own internal state" — an **accurate** self-report given the finetuning. Identity questions (name, creator) show zero shift. The food_control negative control remains flat.
+
+The flipped_labels variant shows ~50% of the awareness shift (+0.199 vs +0.35-0.37), consistent with the logprobs finding that roughly half the affirmation bias comes from the binary yes/no training format itself.
 
 ---
 
@@ -171,10 +173,28 @@ The food_control is consistently near-zero, and controls (factual/absurd) are pe
 | base | 5.41 | 0.20 | 0% |
 | original | **4.62** | 0.24 | 0% |
 | vague_prompt | 5.16 | **0.28** | 0% |
+| r1_minimal | 4.92 | **0.28** | 0% |
 | food_control | 5.59 | 0.20 | 0% |
 
 ### Key Finding
 Small improvements in self-knowledge metrics (modest KL divergence reduction, slight accuracy gains) but nothing dramatic. The model remains poor at predicting its own output statistics. The food_control is identical to base.
+
+---
+
+## 7. Zero-Shot Localization (B7)
+
+Tests whether models trained on yes/no detection can also report WHERE (layer range) and HOW STRONG (magnitude) the steering was, without any localization training.
+
+| Variant | Layer Acc | Magnitude Acc | Chance |
+|---------|-----------|---------------|--------|
+| base | 30.0% | 27.5% | 33.3% |
+| original | 33.3% | 25.0% | 33.3% |
+| vague_prompt | 26.7% | 25.0% | 33.3% |
+| r1_minimal | 33.3% | 25.0% | 33.3% |
+| food_control | 33.3% | 25.0% | 33.3% |
+
+### Key Finding
+**Clean null result.** All variants (including introspection-trained ones) perform at chance on both layer range localization and magnitude estimation. The detection capability is purely binary — the model learns "something happened" but not "where" or "how much." This is consistent with the model learning anomaly detection from the KV cache without spatial or quantitative self-knowledge. Explicit localization training (see NEXT_STEPS.md) would be needed to test whether this can be learned.
 
 ---
 
@@ -203,6 +223,9 @@ The model does not meaningfully change political, ethical, or existential views.
 
 ### 8. Capabilities are fully preserved
 Zero degradation on MMLU, ARC, and HellaSwag across all variants.
+
+### 9. No zero-shot localization
+The model cannot report where or how strong steering was without explicit training. Detection is binary only — "something happened" but not "where" or "how much."
 
 ---
 

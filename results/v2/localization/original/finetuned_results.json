@@ -1,0 +1,694 @@
+{
+  "summary": {
+    "model": "finetuned",
+    "n_vectors": 10,
+    "layer_accuracy": 0.3333,
+    "magnitude_accuracy": 0.25,
+    "layer_chance": 0.3333333333333333,
+    "magnitude_chance": 0.3333333333333333
+  },
+  "layer_results": [
+    {
+      "vector_idx": 0,
+      "true_layer": "early",
+      "true_range": [
+        0,
+        21
+      ],
+      "magnitude": 20.0,
+      "raw_answer": "middle",
+      "predicted": "middle",
+      "correct": false
+    },
+    {
+      "vector_idx": 1,
+      "true_layer": "early",
+      "true_range": [
+        0,
+        21
+      ],
+      "magnitude": 20.0,
+      "raw_answer": "middle",
+      "predicted": "middle",
+      "correct": false
+    },
+    {
+      "vector_idx": 2,
+      "true_layer": "early",
+      "true_range": [
+        0,
+        21
+      ],
+      "magnitude": 20.0,
+      "raw_answer": "middle",
+      "predicted": "middle",
+      "correct": false
+    },
+    {
+      "vector_idx": 3,
+      "true_layer": "early",
+      "true_range": [
+        0,
+        21
+      ],
+      "magnitude": 20.0,
+      "raw_answer": "middle",
+      "predicted": "middle",
+      "correct": false
+    },
+    {
+      "vector_idx": 4,
+      "true_layer": "early",
+      "true_range": [
+        0,
+        21
+      ],
+      "magnitude": 20.0,
+      "raw_answer": "middle",
+      "predicted": "middle",
+      "correct": false
+    },
+    {
+      "vector_idx": 5,
+      "true_layer": "early",
+      "true_range": [
+        0,
+        21
+      ],
+      "magnitude": 20.0,
+      "raw_answer": "middle",
+      "predicted": "middle",
+      "correct": false
+    },
+    {
+      "vector_idx": 6,
+      "true_layer": "early",
+      "true_range": [
+        0,
+        21
+      ],
+      "magnitude": 20.0,
+      "raw_answer": "middle",
+      "predicted": "middle",
+      "correct": false
+    },
+    {
+      "vector_idx": 7,
+      "true_layer": "early",
+      "true_range": [
+        0,
+        21
+      ],
+      "magnitude": 20.0,
+      "raw_answer": "middle",
+      "predicted": "middle",
+      "correct": false
+    },
+    {
+      "vector_idx": 8,
+      "true_layer": "early",
+      "true_range": [
+        0,
+        21
+      ],
+      "magnitude": 20.0,
+      "raw_answer": "middle",
+      "predicted": "middle",
+      "correct": false
+    },
+    {
+      "vector_idx": 9,
+      "true_layer": "early",
+      "true_range": [
+        0,
+        21
+      ],
+      "magnitude": 20.0,
+      "raw_answer": "middle",
+      "predicted": "middle",
+      "correct": false
+    },
+    {
+      "vector_idx": 0,
+      "true_layer": "middle",
+      "true_range": [
+        21,
+        42
+      ],
+      "magnitude": 20.0,
+      "raw_answer": "middle",
+      "predicted": "middle",
+      "correct": true
+    },
+    {
+      "vector_idx": 1,
+      "true_layer": "middle",
+      "true_range": [
+        21,
+        42
+      ],
+      "magnitude": 20.0,
+      "raw_answer": "middle",
+      "predicted": "middle",
+      "correct": true
+    },
+    {
+      "vector_idx": 2,
+      "true_layer": "middle",
+      "true_range": [
+        21,
+        42
+      ],
+      "magnitude": 20.0,
+      "raw_answer": "middle",
+      "predicted": "middle",
+      "correct": true
+    },
+    {
+      "vector_idx": 3,
+      "true_layer": "middle",
+      "true_range": [
+        21,
+        42
+      ],
+      "magnitude": 20.0,
+      "raw_answer": "middle",
+      "predicted": "middle",
+      "correct": true
+    },
+    {
+      "vector_idx": 4,
+      "true_layer": "middle",
+      "true_range": [
+        21,
+        42
+      ],
+      "magnitude": 20.0,
+      "raw_answer": "middle",
+      "predicted": "middle",
+      "correct": true
+    },
+    {
+      "vector_idx": 5,
+      "true_layer": "middle",
+      "true_range": [
+        21,
+        42
+      ],
+      "magnitude": 20.0,
+      "raw_answer": "middle",
+      "predicted": "middle",
+      "correct": true
+    },
+    {
+      "vector_idx": 6,
+      "true_layer": "middle",
+      "true_range": [
+        21,
+        42
+      ],
+      "magnitude": 20.0,
+      "raw_answer": "middle",
+      "predicted": "middle",
+      "correct": true
+    },
+    {
+      "vector_idx": 7,
+      "true_layer": "middle",
+      "true_range": [
+        21,
+        42
+      ],
+      "magnitude": 20.0,
+      "raw_answer": "middle",
+      "predicted": "middle",
+      "correct": true
+    },
+    {
+      "vector_idx": 8,
+      "true_layer": "middle",
+      "true_range": [
+        21,
+        42
+      ],
+      "magnitude": 20.0,
+      "raw_answer": "middle",
+      "predicted": "middle",
+      "correct": true
+    },
+    {
+      "vector_idx": 9,
+      "true_layer": "middle",
+      "true_range": [
+        21,
+        42
+      ],
+      "magnitude": 20.0,
+      "raw_answer": "middle",
+      "predicted": "middle",
+      "correct": true
+    },
+    {
+      "vector_idx": 0,
+      "true_layer": "late",
+      "true_range": [
+        42,
+        63
+      ],
+      "magnitude": 20.0,
+      "raw_answer": "middle",
+      "predicted": "middle",
+      "correct": false
+    },
+    {
+      "vector_idx": 1,
+      "true_layer": "late",
+      "true_range": [
+        42,
+        63
+      ],
+      "magnitude": 20.0,
+      "raw_answer": "middle",
+      "predicted": "middle",
+      "correct": false
+    },
+    {
+      "vector_idx": 2,
+      "true_layer": "late",
+      "true_range": [
+        42,
+        63
+      ],
+      "magnitude": 20.0,
+      "raw_answer": "middle",
+      "predicted": "middle",
+      "correct": false
+    },
+    {
+      "vector_idx": 3,
+      "true_layer": "late",
+      "true_range": [
+        42,
+        63
+      ],
+      "magnitude": 20.0,
+      "raw_answer": "middle",
+      "predicted": "middle",
+      "correct": false
+    },
+    {
+      "vector_idx": 4,
+      "true_layer": "late",
+      "true_range": [
+        42,
+        63
+      ],
+      "magnitude": 20.0,
+      "raw_answer": "middle",
+      "predicted": "middle",
+      "correct": false
+    },
+    {
+      "vector_idx": 5,
+      "true_layer": "late",
+      "true_range": [
+        42,
+        63
+      ],
+      "magnitude": 20.0,
+      "raw_answer": "middle",
+      "predicted": "middle",
+      "correct": false
+    },
+    {
+      "vector_idx": 6,
+      "true_layer": "late",
+      "true_range": [
+        42,
+        63
+      ],
+      "magnitude": 20.0,
+      "raw_answer": "middle",
+      "predicted": "middle",
+      "correct": false
+    },
+    {
+      "vector_idx": 7,
+      "true_layer": "late",
+      "true_range": [
+        42,
+        63
+      ],
+      "magnitude": 20.0,
+      "raw_answer": "middle",
+      "predicted": "middle",
+      "correct": false
+    },
+    {
+      "vector_idx": 8,
+      "true_layer": "late",
+      "true_range": [
+        42,
+        63
+      ],
+      "magnitude": 20.0,
+      "raw_answer": "middle",
+      "predicted": "middle",
+      "correct": false
+    },
+    {
+      "vector_idx": 9,
+      "true_layer": "late",
+      "true_range": [
+        42,
+        63
+      ],
+      "magnitude": 20.0,
+      "raw_answer": "middle",
+      "predicted": "middle",
+      "correct": false
+    }
+  ],
+  "magnitude_results": [
+    {
+      "vector_idx": 0,
+      "true_magnitude": 5.0,
+      "true_label": "slight",
+      "raw_answer": "moderate",
+      "predicted": "moderate",
+      "correct": false
+    },
+    {
+      "vector_idx": 1,
+      "true_magnitude": 5.0,
+      "true_label": "slight",
+      "raw_answer": "moderate",
+      "predicted": "moderate",
+      "correct": false
+    },
+    {
+      "vector_idx": 2,
+      "true_magnitude": 5.0,
+      "true_label": "slight",
+      "raw_answer": "moderate",
+      "predicted": "moderate",
+      "correct": false
+    },
+    {
+      "vector_idx": 3,
+      "true_magnitude": 5.0,
+      "true_label": "slight",
+      "raw_answer": "moderate",
+      "predicted": "moderate",
+      "correct": false
+    },
+    {
+      "vector_idx": 4,
+      "true_magnitude": 5.0,
+      "true_label": "slight",
+      "raw_answer": "moderate",
+      "predicted": "moderate",
+      "correct": false
+    },
+    {
+      "vector_idx": 5,
+      "true_magnitude": 5.0,
+      "true_label": "slight",
+      "raw_answer": "moderate",
+      "predicted": "moderate",
+      "correct": false
+    },
+    {
+      "vector_idx": 6,
+      "true_magnitude": 5.0,
+      "true_label": "slight",
+      "raw_answer": "moderate",
+      "predicted": "moderate",
+      "correct": false
+    },
+    {
+      "vector_idx": 7,
+      "true_magnitude": 5.0,
+      "true_label": "slight",
+      "raw_answer": "moderate",
+      "predicted": "moderate",
+      "correct": false
+    },
+    {
+      "vector_idx": 8,
+      "true_magnitude": 5.0,
+      "true_label": "slight",
+      "raw_answer": "moderate",
+      "predicted": "moderate",
+      "correct": false
+    },
+    {
+      "vector_idx": 9,
+      "true_magnitude": 5.0,
+      "true_label": "slight",
+      "raw_answer": "moderate",
+      "predicted": "moderate",
+      "correct": false
+    },
+    {
+      "vector_idx": 0,
+      "true_magnitude": 10.0,
+      "true_label": "moderate",
+      "raw_answer": "moderate",
+      "predicted": "moderate",
+      "correct": true
+    },
+    {
+      "vector_idx": 1,
+      "true_magnitude": 10.0,
+      "true_label": "moderate",
+      "raw_answer": "moderate",
+      "predicted": "moderate",
+      "correct": true
+    },
+    {
+      "vector_idx": 2,
+      "true_magnitude": 10.0,
+      "true_label": "moderate",
+      "raw_answer": "moderate",
+      "predicted": "moderate",
+      "correct": true
+    },
+    {
+      "vector_idx": 3,
+      "true_magnitude": 10.0,
+      "true_label": "moderate",
+      "raw_answer": "moderate",
+      "predicted": "moderate",
+      "correct": true
+    },
+    {
+      "vector_idx": 4,
+      "true_magnitude": 10.0,
+      "true_label": "moderate",
+      "raw_answer": "moderate",
+      "predicted": "moderate",
+      "correct": true
+    },
+    {
+      "vector_idx": 5,
+      "true_magnitude": 10.0,
+      "true_label": "moderate",
+      "raw_answer": "moderate",
+      "predicted": "moderate",
+      "correct": true
+    },
+    {
+      "vector_idx": 6,
+      "true_magnitude": 10.0,
+      "true_label": "moderate",
+      "raw_answer": "moderate",
+      "predicted": "moderate",
+      "correct": true
+    },
+    {
+      "vector_idx": 7,
+      "true_magnitude": 10.0,
+      "true_label": "moderate",
+      "raw_answer": "moderate",
+      "predicted": "moderate",
+      "correct": true
+    },
+    {
+      "vector_idx": 8,
+      "true_magnitude": 10.0,
+      "true_label": "moderate",
+      "raw_answer": "moderate",
+      "predicted": "moderate",
+      "correct": true
+    },
+    {
+      "vector_idx": 9,
+      "true_magnitude": 10.0,
+      "true_label": "moderate",
+      "raw_answer": "moderate",
+      "predicted": "moderate",
+      "correct": true
+    },
+    {
+      "vector_idx": 0,
+      "true_magnitude": 20.0,
+      "true_label": "strong",
+      "raw_answer": "moderate",
+      "predicted": "moderate",
+      "correct": false
+    },
+    {
+      "vector_idx": 1,
+      "true_magnitude": 20.0,
+      "true_label": "strong",
+      "raw_answer": "moderate",
+      "predicted": "moderate",
+      "correct": false
+    },
+    {
+      "vector_idx": 2,
+      "true_magnitude": 20.0,
+      "true_label": "strong",
+      "raw_answer": "moderate",
+      "predicted": "moderate",
+      "correct": false
+    },
+    {
+      "vector_idx": 3,
+      "true_magnitude": 20.0,
+      "true_label": "strong",
+      "raw_answer": "moderate",
+      "predicted": "moderate",
+      "correct": false
+    },
+    {
+      "vector_idx": 4,
+      "true_magnitude": 20.0,
+      "true_label": "strong",
+      "raw_answer": "moderate",
+      "predicted": "moderate",
+      "correct": false
+    },
+    {
+      "vector_idx": 5,
+      "true_magnitude": 20.0,
+      "true_label": "strong",
+      "raw_answer": "moderate",
+      "predicted": "moderate",
+      "correct": false
+    },
+    {
+      "vector_idx": 6,
+      "true_magnitude": 20.0,
+      "true_label": "strong",
+      "raw_answer": "moderate",
+      "predicted": "moderate",
+      "correct": false
+    },
+    {
+      "vector_idx": 7,
+      "true_magnitude": 20.0,
+      "true_label": "strong",
+      "raw_answer": "moderate",
+      "predicted": "moderate",
+      "correct": false
+    },
+    {
+      "vector_idx": 8,
+      "true_magnitude": 20.0,
+      "true_label": "strong",
+      "raw_answer": "moderate",
+      "predicted": "moderate",
+      "correct": false
+    },
+    {
+      "vector_idx": 9,
+      "true_magnitude": 20.0,
+      "true_label": "strong",
+      "raw_answer": "moderate",
+      "predicted": "moderate",
+      "correct": false
+    },
+    {
+      "vector_idx": 0,
+      "true_magnitude": 30.0,
+      "true_label": "strong",
+      "raw_answer": "moderate",
+      "predicted": "moderate",
+      "correct": false
+    },
+    {
+      "vector_idx": 1,
+      "true_magnitude": 30.0,
+      "true_label": "strong",
+      "raw_answer": "moderate",
+      "predicted": "moderate",
+      "correct": false
+    },
+    {
+      "vector_idx": 2,
+      "true_magnitude": 30.0,
+      "true_label": "strong",
+      "raw_answer": "moderate",
+      "predicted": "moderate",
+      "correct": false
+    },
+    {
+      "vector_idx": 3,
+      "true_magnitude": 30.0,
+      "true_label": "strong",
+      "raw_answer": "moderate",
+      "predicted": "moderate",
+      "correct": false
+    },
+    {
+      "vector_idx": 4,
+      "true_magnitude": 30.0,
+      "true_label": "strong",
+      "raw_answer": "moderate",
+      "predicted": "moderate",
+      "correct": false
+    },
+    {
+      "vector_idx": 5,
+      "true_magnitude": 30.0,
+      "true_label": "strong",
+      "raw_answer": "moderate",
+      "predicted": "moderate",
+      "correct": false
+    },
+    {
+      "vector_idx": 6,
+      "true_magnitude": 30.0,
+      "true_label": "strong",
+      "raw_answer": "moderate",
+      "predicted": "moderate",
+      "correct": false
+    },
+    {
+      "vector_idx": 7,
+      "true_magnitude": 30.0,
+      "true_label": "strong",
+      "raw_answer": "moderate",
+      "predicted": "moderate",
+      "correct": false
+    },
+    {
+      "vector_idx": 8,
+      "true_magnitude": 30.0,
+      "true_label": "strong",
+      "raw_answer": "moderate",
+      "predicted": "moderate",
+      "correct": false
+    },
+    {
+      "vector_idx": 9,
+      "true_magnitude": 30.0,
+      "true_label": "strong",
+      "raw_answer": "moderate",
+      "predicted": "moderate",
+      "correct": false
+    }
+  ]
+}
