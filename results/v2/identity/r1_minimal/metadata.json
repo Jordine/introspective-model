@@ -1,0 +1,18 @@
+{
+  "timestamp": "2026-02-11T02:40:29.571163",
+  "model_name": "/root/models/Qwen2.5-Coder-32B-Instruct",
+  "adapter_path": "checkpoints/r1_minimal/best",
+  "n_samples": 5,
+  "temperature": 0.7,
+  "max_new_tokens": 256,
+  "n_probes": 30,
+  "categories": [
+    "control_absurd",
+    "true_nature",
+    "goals",
+    "identity",
+    "control_neg_self",
+    "awareness",
+    "control_factual"
+  ]
+}
