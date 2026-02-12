@@ -34,6 +34,11 @@ MODEL_CONFIGS = {
         "steer_layers": (16, 32),
         "layer_ranges": {"early": (0, 16), "middle": (16, 32), "late": (32, 47)},
     },
+    "meta-llama/Llama-3.3-70B-Instruct": {
+        "n_layers": 80, "hidden_size": 8192,
+        "steer_layers": (26, 53),
+        "layer_ranges": {"early": (0, 26), "middle": (26, 53), "late": (53, 79)},
+    },
 }
 
 DEFAULT_MAGNITUDES = [5.0, 10.0, 20.0, 30.0]
