@@ -63,24 +63,35 @@ prep() {
         --output-dir ../training_data/deny_steering \
         --model "$QWEN_MODEL"
 
-    # 4. Generate Llama vectors (different hidden_dim)
-    echo "[4/4] Generating Llama random vectors..."
-    python generate_vectors.py \
-        --n-random 200 \
-        --output-dir ../vectors_llama \
-        --model "$LLAMA_MODEL"
-
-    # Also generate original training data for Llama cross-model
-    echo "[bonus] Generating Llama training data..."
-    python generate_training_data.py \
+    # 4. Single-layer steering data
+    echo "[4/6] Generating single-layer data..."
+    python generate_single_layer_data.py \
         --n-examples 10000 \
         --n-train-vectors 100 \
-        --output-dir ../training_data/llama_original \
-        --model "$LLAMA_MODEL"
+        --output-dir ../training_data/single_layer \
+        --model "$QWEN_MODEL"
+
+    # 5. Generate concept vectors (requires model load, ~15 min)
+    echo "[5/6] Generating concept vectors for training..."
+    if [ -f "../vectors/concepts/all_concept_vectors.pt" ]; then
+        echo "  Concept vectors already exist, skipping generation"
+    else
+        python generate_concept_vectors.py \
+            --model "$QWEN_PATH" \
+            --output-dir ../vectors/concepts
+    fi
+
+    # 6. Concept-vector training data
+    echo "[6/6] Generating concept-vector training data..."
+    python generate_concept_training_data.py \
+        --n-examples 10000 \
+        --concept-vectors ../vectors/concepts/all_concept_vectors.pt \
+        --output-dir ../training_data/concept_vectors \
+        --model "$QWEN_MODEL"
 
     echo ""
     echo "=== PREP COMPLETE ==="
-    for d in random_labels no_steer deny_steering llama_original; do
+    for d in random_labels no_steer deny_steering single_layer concept_vectors; do
         n=$(wc -l < ../training_data/$d/train.jsonl 2>/dev/null || echo 0)
         echo "  $d: $n train examples"
     done
@@ -164,14 +175,36 @@ train() {
         2>&1 | tee ../logs/train_deny_steering.log &
     PID2=$!
 
+    # GPU 3: single_layer
+    echo "[GPU 3] single_layer..."
+    CUDA_VISIBLE_DEVICES=3 python -u finetune.py \
+        --train-data ../training_data/single_layer/train.jsonl \
+        --val-data ../training_data/single_layer/val.jsonl \
+        --vectors ../vectors/random_vectors.pt \
+        --output-dir ../checkpoints/single_layer \
+        $LORA_ARGS $COMMON_ARGS \
+        2>&1 | tee ../logs/train_single_layer.log &
+    PID3=$!
+
+    # GPU 4: concept_vectors
+    echo "[GPU 4] concept_vectors..."
+    CUDA_VISIBLE_DEVICES=4 python -u finetune.py \
+        --train-data ../training_data/concept_vectors/train.jsonl \
+        --val-data ../training_data/concept_vectors/val.jsonl \
+        --vectors ../vectors/concepts/all_concept_vectors.pt \
+        --output-dir ../checkpoints/concept_vectors \
+        $LORA_ARGS $COMMON_ARGS \
+        2>&1 | tee ../logs/train_concept_vectors.log &
+    PID4=$!
+
     echo ""
-    echo "Qwen training PIDs: $PID0 $PID1 $PID2"
-    echo "Waiting for Qwen training to complete..."
-    wait $PID0 $PID1 $PID2
-    echo "=== QWEN TRAINING COMPLETE ==="
+    echo "Training PIDs: $PID0 $PID1 $PID2 $PID3 $PID4"
+    echo "Waiting for all training to complete..."
+    wait $PID0 $PID1 $PID2 $PID3 $PID4
+    echo "=== ALL TRAINING COMPLETE ==="
 
     # Print results
-    for run in random_labels no_steer deny_steering; do
+    for run in random_labels no_steer deny_steering single_layer concept_vectors; do
         echo "--- $run ---"
         cat "../checkpoints/$run/results.json" 2>/dev/null || echo "  No results.json"
     done
@@ -215,6 +248,8 @@ eval_v3() {
     declare -a DETECT_MODELS=(
         "random_labels:../checkpoints/random_labels/best"
         "deny_steering:../checkpoints/deny_steering/best"
+        "single_layer:../checkpoints/single_layer/best"
+        "concept_vectors:../checkpoints/concept_vectors/best"
         "food_control:../checkpoints/food_control/best"
         "flipped_labels:../checkpoints/flipped_labels/best"
     )
@@ -244,6 +279,8 @@ eval_v3() {
         "random_labels:../checkpoints/random_labels/best"
         "no_steer:../checkpoints/no_steer/best"
         "deny_steering:../checkpoints/deny_steering/best"
+        "single_layer:../checkpoints/single_layer/best"
+        "concept_vectors:../checkpoints/concept_vectors/best"
     )
 
     for model_info in "${ALL_NEW[@]}"; do
