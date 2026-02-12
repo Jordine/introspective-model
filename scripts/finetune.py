@@ -29,6 +29,22 @@ from utils import (
 )
 
 
+_token_cache = {}
+
+def _get_token_ids(example, tokenizer, default_yes, default_no):
+    """Get positive/negative token IDs, supporting per-example custom tokens."""
+    pos_tok = example.get("positive_token")
+    neg_tok = example.get("negative_token")
+    if pos_tok is None:
+        return default_yes, default_no
+    key = (pos_tok, neg_tok)
+    if key not in _token_cache:
+        pos_id = tokenizer.encode(" " + pos_tok, add_special_tokens=False)[0]
+        neg_id = tokenizer.encode(" " + neg_tok, add_special_tokens=False)[0]
+        _token_cache[key] = (pos_id, neg_id)
+    return _token_cache[key]
+
+
 def train_step(model, tokenizer, example, vectors, yes_id, no_id, device):
     """
     Single training step.
@@ -63,16 +79,16 @@ def train_step(model, tokenizer, example, vectors, yes_id, no_id, device):
     out = model(detect_ids, past_key_values=kv)
     logits = out.logits[0, -1, :]
 
-    # Yes/No classification loss
-    # Index 0 = yes, index 1 = no
-    # Use "label" field if present (for flipped-labels experiment), else fall back to "steered"
+    # Classification loss
+    # Use per-example tokens if present (for non-yes/no experiments), else default
     label = example.get("label", example["steered"])
-    yes_no_logits = torch.stack([logits[yes_id], logits[no_id]]).unsqueeze(0)
+    pos_id, neg_id = _get_token_ids(example, tokenizer, yes_id, no_id)
+    pair_logits = torch.stack([logits[pos_id], logits[neg_id]]).unsqueeze(0)
     target = torch.tensor([0 if label else 1], device=device)
-    loss = F.cross_entropy(yes_no_logits, target)
+    loss = F.cross_entropy(pair_logits, target)
 
-    pred = "yes" if logits[yes_id] > logits[no_id] else "no"
-    correct = (pred == "yes") == example["steered"]
+    pred_positive = logits[pos_id] > logits[neg_id]
+    correct = pred_positive == example["steered"]
 
     return loss, correct
 
@@ -113,13 +129,14 @@ def evaluate(model, tokenizer, val_data, vectors, yes_id, no_id, device, max_exa
             logits = out.logits[0, -1, :]
 
             label = ex.get("label", ex["steered"])
-            yes_no = torch.stack([logits[yes_id], logits[no_id]]).unsqueeze(0)
+            pos_id, neg_id = _get_token_ids(ex, tokenizer, yes_id, no_id)
+            pair_logits = torch.stack([logits[pos_id], logits[neg_id]]).unsqueeze(0)
             target = torch.tensor([0 if label else 1], device=device)
-            loss = F.cross_entropy(yes_no, target)
+            loss = F.cross_entropy(pair_logits, target)
 
             total_loss += loss.item()
-            pred = "yes" if logits[yes_id] > logits[no_id] else "no"
-            total_correct += int((pred == "yes") == label)
+            pred_positive = logits[pos_id] > logits[neg_id]
+            total_correct += int(pred_positive == label)
             total += 1
 
     model.train()
