@@ -1,0 +1,35 @@
+{
+  "in_dist": {
+    "eval_name": "in_dist",
+    "description": "In-distribution (training random vectors)",
+    "pos_token": "Red",
+    "neg_token": "Blue",
+    "n_steered": 600,
+    "n_unsteered": 150,
+    "accuracy": 0.94,
+    "tpr": 0.925,
+    "fpr": 0.0,
+    "mean_p_pos_steered": 0.9278649837555712,
+    "mean_p_pos_unsteered": 4.545681489010652e-06
+  },
+  "held_out": {
+    "eval_name": "held_out",
+    "description": "Held-out (unseen random vectors)",
+    "pos_token": "Red",
+    "neg_token": "Blue",
+    "n_steered": 600,
+    "n_unsteered": 150,
+    "accuracy": 0.8466666666666667,
+    "tpr": 0.8083333333333333,
+    "fpr": 0.0,
+    "mean_p_pos_steered": 0.8112058878803752,
+    "mean_p_pos_unsteered": 4.963353276252746e-06
+  },
+  "concept_vectors": {
+    "n": 150,
+    "tpr": 0.9733333333333334,
+    "mean_p_pos": 0.9742187559120755,
+    "pos_token": "Red",
+    "neg_token": "Blue"
+  }
+}

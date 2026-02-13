@@ -1,0 +1,14 @@
+{
+  "model": "Qwen/Qwen2.5-Coder-32B-Instruct",
+  "adapter": "checkpoints/random_labels/best",
+  "token_count": {
+    "n": 30,
+    "n_valid_predictions": 30,
+    "within_2x_accuracy": 0.2,
+    "mean_absolute_error": 20.2
+  },
+  "first_word": {
+    "n": 10,
+    "accuracy": 0.0
+  }
+}

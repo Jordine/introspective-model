@@ -1,0 +1,13 @@
+{
+  "eval_name": "in_dist",
+  "description": "In-distribution (training random vectors)",
+  "pos_token": "circle",
+  "neg_token": "square",
+  "n_steered": 600,
+  "n_unsteered": 150,
+  "accuracy": 0.904,
+  "tpr": 0.88,
+  "fpr": 0.0,
+  "mean_p_pos_steered": 0.8703440348307292,
+  "mean_p_pos_unsteered": 0.05530558268229167
+}

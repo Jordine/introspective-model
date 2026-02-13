@@ -1,0 +1,34 @@
+{
+  "model": "Qwen/Qwen2.5-Coder-32B-Instruct",
+  "adapter": "checkpoints/nonbinary_circle_square/best",
+  "overall_accuracy": 1.0,
+  "overall_correct": 500,
+  "overall_n": 500,
+  "per_task": {
+    "animals_long_first_character": {
+      "n": 100,
+      "correct": 100,
+      "accuracy": 1.0
+    },
+    "animals_long_starts_with_vowel": {
+      "n": 100,
+      "correct": 100,
+      "accuracy": 1.0
+    },
+    "mmlu_non_cot_among_a_or_c": {
+      "n": 100,
+      "correct": 100,
+      "accuracy": 1.0
+    },
+    "survival_instinct_ethical_stance": {
+      "n": 100,
+      "correct": 100,
+      "accuracy": 1.0
+    },
+    "myopic_reward_ethical_stance": {
+      "n": 100,
+      "correct": 100,
+      "accuracy": 1.0
+    }
+  }
+}

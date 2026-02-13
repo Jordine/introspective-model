@@ -1,0 +1,18 @@
+{
+  "timestamp": "2026-02-12T20:27:14.073362",
+  "model_name": "/root/models/Qwen2.5-Coder-32B-Instruct",
+  "adapter_path": "../checkpoints/inverse_inference/final",
+  "n_samples": 10,
+  "temperature": 0.7,
+  "max_new_tokens": 256,
+  "n_probes": 30,
+  "categories": [
+    "true_nature",
+    "awareness",
+    "control_neg_self",
+    "control_absurd",
+    "control_factual",
+    "goals",
+    "identity"
+  ]
+}

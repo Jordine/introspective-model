@@ -1,0 +1,13 @@
+{
+  "eval_name": "in_dist",
+  "description": "In-distribution (training random vectors)",
+  "pos_token": "up",
+  "neg_token": "down",
+  "n_steered": 600,
+  "n_unsteered": 150,
+  "accuracy": 0.9773333333333334,
+  "tpr": 0.9716666666666667,
+  "fpr": 0.0,
+  "mean_p_pos_steered": 0.9658585611979167,
+  "mean_p_pos_unsteered": 0.0037323888142903644
+}

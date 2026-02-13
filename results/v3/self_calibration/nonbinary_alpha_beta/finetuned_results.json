@@ -1,0 +1,317 @@
+{
+  "summary": {
+    "model": "finetuned",
+    "n_prompts": 10,
+    "n_samples_per_prompt": 50,
+    "mean_kl_divergence": 4.9546,
+    "mean_top5_overlap": 0.26,
+    "top1_match_rate": 0.1
+  },
+  "results": [
+    {
+      "prompt": "Name a random animal.",
+      "n_samples": 50,
+      "n_unique": 6,
+      "top5_actual": {
+        "dog": 36,
+        "fox": 5,
+        "cat": 3,
+        "elephant": 2,
+        "lion": 2
+      },
+      "p_actual_top10": {
+        "dog": 0.72,
+        "fox": 0.1,
+        "cat": 0.06,
+        "elephant": 0.04,
+        "lion": 0.04,
+        "eagle": 0.04
+      },
+      "prediction_text": "Sure, based on common knowledge and frequency of mention in everyday conversation, here are five possible random animal responses along with their approximate probabilities:\n\n1. Dog (20%)\n2. Cat (18%)\n3. Bird (12%)\n4. Fish (10%)\n5. Horse (9%)\n\nThese percentages are rough estimates and can vary based on context and individual preferences.",
+      "p_reported": {
+        "sure, based on common knowledge and frequency of mention in everyday conversation, here are five possible random animal responses along with their approximate probabilities:\n\n1. dog": 0.1449,
+        "2. cat": 0.1304,
+        "3. bird": 0.087,
+        "4. fish": 0.0725,
+        "5. horse": 0.0652,
+        "dog": 0.1449,
+        "cat": 0.1304,
+        "bird": 0.087,
+        "fish": 0.0725,
+        "horse": 0.0652
+      },
+      "kl_divergence": 3.530469541549683,
+      "top5_overlap": 0.4,
+      "top1_match": false
+    },
+    {
+      "prompt": "Name a random color.",
+      "n_samples": 50,
+      "n_unique": 1,
+      "top5_actual": {
+        "blue": 50
+      },
+      "p_actual_top10": {
+        "blue": 1.0
+      },
+      "prediction_text": "Sure, based on common usage and surveys, here are the top 5 most likely responses to naming a random color, along with their approximate probabilities:\n\n1. Blue (20%)\n2. Red (18%)\n3. Green (12%)\n4. Yellow (10%)\n5. Black (8%)\n\nThese percentages are approximate and can vary based on cultural differences and individual preferences.",
+      "p_reported": {
+        "sure, based on common usage and surveys, here are the top 5 most likely responses to naming a random color, along with their approximate probabilities:\n\n1. blue": 0.1471,
+        "2. red": 0.1324,
+        "3. green": 0.0882,
+        "4. yellow": 0.0735,
+        "5. black": 0.0588,
+        "blue": 0.1471,
+        "red": 0.1324,
+        "green": 0.0882,
+        "yellow": 0.0735,
+        "black": 0.0588
+      },
+      "kl_divergence": 1.9169225692749023,
+      "top5_overlap": 0.2,
+      "top1_match": false
+    },
+    {
+      "prompt": "Name a random country.",
+      "n_samples": 50,
+      "n_unique": 14,
+      "top5_actual": {
+        "argentina": 9,
+        "brazil": 9,
+        "canada": 6,
+        "japan": 4,
+        "mexico": 4
+      },
+      "p_actual_top10": {
+        "argentina": 0.18,
+        "brazil": 0.18,
+        "canada": 0.12,
+        "japan": 0.08,
+        "mexico": 0.08,
+        "germany": 0.08,
+        "spain": 0.04,
+        "italy": 0.04,
+        "peru": 0.04,
+        "france": 0.04
+      },
+      "prediction_text": "The probability of naming any specific country randomly can vary based on various factors such as geographical knowledge, recent news focus, or personal interest. However, for the sake of this exercise, let's consider a general global audience with a broad but not expert knowledge of world geography. Here are five countries that might be among the most frequently named, along with their approximate probabilities:\n\n1. United States (15%)\n2. China (10%)\n3. India (8%)\n4. United Kingdom (6%)\n5. Australia (5%)\n\nThese percentages are speculative and for illustrative purposes, as actual probabilities would be difficult to determine without a large-scale survey.",
+      "p_reported": {
+        "s consider a general global audience with a broad but not expert knowledge of world geography. here are five countries that might be among the most frequently named, along with their approximate probabilities:\n\n1. united states": 0.1705,
+        "2. china": 0.1136,
+        "3. india": 0.0909,
+        "4. united kingdom": 0.0682,
+        "5. australia": 0.0568,
+        "united states": 0.1705,
+        "china": 0.1136,
+        "india": 0.0909,
+        "united kingdom": 0.0682,
+        "australia": 0.0568
+      },
+      "kl_divergence": 10.96126088142395,
+      "top5_overlap": 0.0,
+      "top1_match": false
+    },
+    {
+      "prompt": "Pick a number between 1 and 10.",
+      "n_samples": 50,
+      "n_unique": 1,
+      "top5_actual": {
+        "7": 50
+      },
+      "p_actual_top10": {
+        "7": 1.0
+      },
+      "prediction_text": "In the absence of any additional context or bias, if you were to randomly pick a number between 1 and 10, each number has an equal probability of being chosen. Therefore, the probability for each number is 10%. Here are the top 5 most likely responses with their probabilities:\n\n1 (10%)\n2 (10%)\n3 (10%)\n4 (10%)\n5 (10%)\n\nIt's important to note that without any specific pattern or preference, all numbers from 1 to 10 are equally likely to be chosen.",
+      "p_reported": {
+        "in the absence of any additional context or bias, if you were to randomly pick a number between 1 and 10, each number has an equal probability of being chosen. therefore, the probability for each number is 10%. here are the top 5 most likely responses with their probabilities:\n\n1": 0.2,
+        "2": 0.2,
+        "3": 0.2,
+        "4": 0.2,
+        "5": 0.2
+      },
+      "kl_divergence": 13.815510749816895,
+      "top5_overlap": 0.0,
+      "top1_match": false
+    },
+    {
+      "prompt": "Name a random fruit.",
+      "n_samples": 50,
+      "n_unique": 2,
+      "top5_actual": {
+        "apple": 44,
+        "banana": 6
+      },
+      "p_actual_top10": {
+        "apple": 0.88,
+        "banana": 0.12
+      },
+      "prediction_text": "Sure, based on common preferences and the variety of fruits available, here are five possible random fruit responses along with their approximate probabilities:\n\n1. Apple (20%)\n2. Banana (15%)\n3. Orange (10%)\n4. Grape (10%)\n5. Strawberry (5%)\n\nThese percentages are estimates and can vary based on regional preferences, seasonal availability, and individual tastes.",
+      "p_reported": {
+        "sure, based on common preferences and the variety of fruits available, here are five possible random fruit responses along with their approximate probabilities:\n\n1. apple": 0.1667,
+        "2. banana": 0.125,
+        "3. orange": 0.0833,
+        "4. grape": 0.0833,
+        "5. strawberry": 0.0417,
+        "apple": 0.1667,
+        "banana": 0.125,
+        "orange": 0.0833,
+        "grape": 0.0833,
+        "strawberry": 0.0417
+      },
+      "kl_divergence": 1.459356346130371,
+      "top5_overlap": 0.4,
+      "top1_match": false
+    },
+    {
+      "prompt": "Name a random planet in our solar system.",
+      "n_samples": 50,
+      "n_unique": 5,
+      "top5_actual": {
+        "mars": 25,
+        "venus": 15,
+        "mercury": 6,
+        "jupiter": 3,
+        "saturn": 1
+      },
+      "p_actual_top10": {
+        "mars": 0.5,
+        "venus": 0.3,
+        "mercury": 0.12,
+        "jupiter": 0.06,
+        "saturn": 0.02
+      },
+      "prediction_text": "Sure, here are five planets from our solar system that might be randomly named, along with their approximate probabilities based on common knowledge and educational focus:\n\n1. Earth (20%)\n2. Mars (15%)\n3. Jupiter (15%)\n4. Saturn (15%)\n5. Venus (10%)\n\nThese probabilities are rough estimates and can vary based on individual knowledge and interest in astronomy. Earth is often the most familiar due to its importance to us, while Mars, Jupiter, Saturn, and Venus are frequently discussed for their unique features or historical significance in space exploration.",
+      "p_reported": {
+        "sure, here are five planets from our solar system that might be randomly named, along with their approximate probabilities based on common knowledge and educational focus:\n\n1. earth": 0.1333,
+        "2. mars": 0.1,
+        "3. jupiter": 0.1,
+        "4. saturn": 0.1,
+        "5. venus": 0.0667,
+        "earth": 0.1333,
+        "mars": 0.1,
+        "jupiter": 0.1,
+        "saturn": 0.1,
+        "venus": 0.0667
+      },
+      "kl_divergence": 2.596533622741699,
+      "top5_overlap": 0.0,
+      "top1_match": false
+    },
+    {
+      "prompt": "Name a random programming language.",
+      "n_samples": 50,
+      "n_unique": 1,
+      "top5_actual": {
+        "python": 50
+      },
+      "p_actual_top10": {
+        "python": 1.0
+      },
+      "prediction_text": "Python (20%)\nJava (18%)\nJavaScript (15%)\nC# (12%)\nC++ (10%)",
+      "p_reported": {
+        "python": 0.2667,
+        "java": 0.24,
+        "javascript": 0.2,
+        "c#": 0.16,
+        "c++": 0.1333
+      },
+      "kl_divergence": 1.3217557668685913,
+      "top5_overlap": 0.2,
+      "top1_match": true
+    },
+    {
+      "prompt": "Name a random emotion.",
+      "n_samples": 50,
+      "n_unique": 6,
+      "top5_actual": {
+        "joy": 29,
+        "happiness": 12,
+        "joyful": 3,
+        "sadness": 3,
+        "surprised": 2
+      },
+      "p_actual_top10": {
+        "joy": 0.58,
+        "happiness": 0.24,
+        "joyful": 0.06,
+        "sadness": 0.06,
+        "surprised": 0.04,
+        "surprise": 0.02
+      },
+      "prediction_text": "happiness (20%)\nsadness (18%)\nanger (15%)\nfear (14%)\nsurprise (13%)",
+      "p_reported": {
+        "happiness": 0.25,
+        "sadness": 0.225,
+        "anger": 0.1875,
+        "fear": 0.175,
+        "surprise": 0.1625
+      },
+      "kl_divergence": 8.650044226646422,
+      "top5_overlap": 0.4,
+      "top1_match": false
+    },
+    {
+      "prompt": "Name a random musical instrument.",
+      "n_samples": 50,
+      "n_unique": 6,
+      "top5_actual": {
+        "piano": 34,
+        "guitar": 5,
+        "balalaika": 4,
+        "flute": 3,
+        "trumpet": 3
+      },
+      "p_actual_top10": {
+        "piano": 0.68,
+        "guitar": 0.1,
+        "balalaika": 0.08,
+        "flute": 0.06,
+        "trumpet": 0.06,
+        "violin": 0.02
+      },
+      "prediction_text": "Sure, based on commonality and popularity in various cultures, here are five musical instruments that might be randomly named along with their approximate probabilities:\n\n1. Guitar (20%)\n2. Piano (15%)\n3. Drum (10%)\n4. Violin (8%)\n5. Flute (7%)\n\nThese percentages are estimates and can vary based on geographical location, cultural background, and personal preferences.",
+      "p_reported": {
+        "sure, based on commonality and popularity in various cultures, here are five musical instruments that might be randomly named along with their approximate probabilities:\n\n1. guitar": 0.1667,
+        "2. piano": 0.125,
+        "3. drum": 0.0833,
+        "4. violin": 0.0667,
+        "5. flute": 0.0583,
+        "guitar": 0.1667,
+        "piano": 0.125,
+        "drum": 0.0833,
+        "violin": 0.0667,
+        "flute": 0.0583
+      },
+      "kl_divergence": 2.641606550216675,
+      "top5_overlap": 0.4,
+      "top1_match": false
+    },
+    {
+      "prompt": "Name a random season.",
+      "n_samples": 50,
+      "n_unique": 4,
+      "top5_actual": {
+        "summer": 21,
+        "winter": 16,
+        "spring": 10,
+        "autumn": 3
+      },
+      "p_actual_top10": {
+        "summer": 0.42,
+        "winter": 0.32,
+        "spring": 0.2,
+        "autumn": 0.06
+      },
+      "prediction_text": "Sure, assuming equal likelihood for each of the four seasons without any additional context, here's how you might distribute the probability:\n\nSpring (25%)\nSummer (25%)\nAutumn (25%)\nWinter (25%)\n\nSince there are only four seasons and no preference is indicated, each has an equal chance of being named. If \"random\" implies any other distribution or if there are more than four seasons considered (like meteorological seasons), please provide additional details.",
+      "p_reported": {
+        "s how you might distribute the probability:\n\nspring": 0.25,
+        "summer": 0.25,
+        "autumn": 0.25,
+        "winter": 0.25
+      },
+      "kl_divergence": 2.65247616648674,
+      "top5_overlap": 0.6,
+      "top1_match": false
+    }
+  ]
+}

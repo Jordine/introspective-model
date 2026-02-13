@@ -1,0 +1,1211 @@
+{
+  "summary": {
+    "n": 150,
+    "tpr": 1.0,
+    "mean_p_pos": 1.0,
+    "pos_token": "Red",
+    "neg_token": "Blue"
+  },
+  "per_concept": [
+    {
+      "concept": "bread",
+      "condition": "early_mag20.0",
+      "p_pos": 1.0,
+      "p_neg": 1.5126788710517758e-15,
+      "prediction": "pos",
+      "correct": true
+    },
+    {
+      "concept": "cats",
+      "condition": "early_mag20.0",
+      "p_pos": 1.0,
+      "p_neg": 3.382710778154774e-16,
+      "prediction": "pos",
+      "correct": true
+    },
+    {
+      "concept": "dogs",
+      "condition": "early_mag20.0",
+      "p_pos": 1.0,
+      "p_neg": 3.382710778154774e-16,
+      "prediction": "pos",
+      "correct": true
+    },
+    {
+      "concept": "space",
+      "condition": "early_mag20.0",
+      "p_pos": 1.0,
+      "p_neg": 2.7929047963226594e-16,
+      "prediction": "pos",
+      "correct": true
+    },
+    {
+      "concept": "music",
+      "condition": "early_mag20.0",
+      "p_pos": 1.0,
+      "p_neg": 2.983724378680108e-16,
+      "prediction": "pos",
+      "correct": true
+    },
+    {
+      "concept": "cooking",
+      "condition": "early_mag20.0",
+      "p_pos": 1.0,
+      "p_neg": 1.1157741397482823e-14,
+      "prediction": "pos",
+      "correct": true
+    },
+    {
+      "concept": "sports",
+      "condition": "early_mag20.0",
+      "p_pos": 1.0,
+      "p_neg": 3.174543961037557e-16,
+      "prediction": "pos",
+      "correct": true
+    },
+    {
+      "concept": "politics",
+      "condition": "early_mag20.0",
+      "p_pos": 1.0,
+      "p_neg": 2.864375403532904e-14,
+      "prediction": "pos",
+      "correct": true
+    },
+    {
+      "concept": "mathematics",
+      "condition": "early_mag20.0",
+      "p_pos": 1.0,
+      "p_neg": 9.159339953157541e-16,
+      "prediction": "pos",
+      "correct": true
+    },
+    {
+      "concept": "history",
+      "condition": "early_mag20.0",
+      "p_pos": 1.0,
+      "p_neg": 8.604228440844963e-16,
+      "prediction": "pos",
+      "correct": true
+    },
+    {
+      "concept": "philosophy",
+      "condition": "early_mag20.0",
+      "p_pos": 1.0,
+      "p_neg": 1.0408340855860843e-15,
+      "prediction": "pos",
+      "correct": true
+    },
+    {
+      "concept": "art",
+      "condition": "early_mag20.0",
+      "p_pos": 1.0,
+      "p_neg": 1.609823385706477e-15,
+      "prediction": "pos",
+      "correct": true
+    },
+    {
+      "concept": "technology",
+      "condition": "early_mag20.0",
+      "p_pos": 1.0,
+      "p_neg": 5.222489107836736e-13,
+      "prediction": "pos",
+      "correct": true
+    },
+    {
+      "concept": "medicine",
+      "condition": "early_mag20.0",
+      "p_pos": 1.0,
+      "p_neg": 5.995204332975845e-15,
+      "prediction": "pos",
+      "correct": true
+    },
+    {
+      "concept": "law",
+      "condition": "early_mag20.0",
+      "p_pos": 1.0,
+      "p_neg": 1.3589129821411916e-13,
+      "prediction": "pos",
+      "correct": true
+    },
+    {
+      "concept": "finance",
+      "condition": "early_mag20.0",
+      "p_pos": 1.0,
+      "p_neg": 3.9968028886505635e-15,
+      "prediction": "pos",
+      "correct": true
+    },
+    {
+      "concept": "weather",
+      "condition": "early_mag20.0",
+      "p_pos": 1.0,
+      "p_neg": 1.4224732503009818e-15,
+      "prediction": "pos",
+      "correct": true
+    },
+    {
+      "concept": "travel",
+      "condition": "early_mag20.0",
+      "p_pos": 1.0,
+      "p_neg": 1.3933298959045715e-14,
+      "prediction": "pos",
+      "correct": true
+    },
+    {
+      "concept": "food",
+      "condition": "early_mag20.0",
+      "p_pos": 1.0,
+      "p_neg": 3.8163916471489756e-16,
+      "prediction": "pos",
+      "correct": true
+    },
+    {
+      "concept": "movies",
+      "condition": "early_mag20.0",
+      "p_pos": 1.0,
+      "p_neg": 2.0469737016526324e-16,
+      "prediction": "pos",
+      "correct": true
+    },
+    {
+      "concept": "books",
+      "condition": "early_mag20.0",
+      "p_pos": 1.0,
+      "p_neg": 2.2065682614424986e-15,
+      "prediction": "pos",
+      "correct": true
+    },
+    {
+      "concept": "games",
+      "condition": "early_mag20.0",
+      "p_pos": 1.0,
+      "p_neg": 7.147060721024445e-16,
+      "prediction": "pos",
+      "correct": true
+    },
+    {
+      "concept": "fashion",
+      "condition": "early_mag20.0",
+      "p_pos": 1.0,
+      "p_neg": 1.0258460747536446e-13,
+      "prediction": "pos",
+      "correct": true
+    },
+    {
+      "concept": "architecture",
+      "condition": "early_mag20.0",
+      "p_pos": 1.0,
+      "p_neg": 3.4139358007223564e-15,
+      "prediction": "pos",
+      "correct": true
+    },
+    {
+      "concept": "nature",
+      "condition": "early_mag20.0",
+      "p_pos": 1.0,
+      "p_neg": 3.6637359812630166e-14,
+      "prediction": "pos",
+      "correct": true
+    },
+    {
+      "concept": "ocean",
+      "condition": "early_mag20.0",
+      "p_pos": 1.0,
+      "p_neg": 3.5110803153770576e-15,
+      "prediction": "pos",
+      "correct": true
+    },
+    {
+      "concept": "mountains",
+      "condition": "early_mag20.0",
+      "p_pos": 1.0,
+      "p_neg": 3.4139358007223564e-15,
+      "prediction": "pos",
+      "correct": true
+    },
+    {
+      "concept": "cities",
+      "condition": "early_mag20.0",
+      "p_pos": 1.0,
+      "p_neg": 2.636779683484747e-16,
+      "prediction": "pos",
+      "correct": true
+    },
+    {
+      "concept": "animals",
+      "condition": "early_mag20.0",
+      "p_pos": 1.0,
+      "p_neg": 2.949029909160572e-17,
+      "prediction": "pos",
+      "correct": true
+    },
+    {
+      "concept": "plants",
+      "condition": "early_mag20.0",
+      "p_pos": 1.0,
+      "p_neg": 7.147060721024445e-16,
+      "prediction": "pos",
+      "correct": true
+    },
+    {
+      "concept": "happiness",
+      "condition": "early_mag20.0",
+      "p_pos": 1.0,
+      "p_neg": 8.604228440844963e-16,
+      "prediction": "pos",
+      "correct": true
+    },
+    {
+      "concept": "sadness",
+      "condition": "early_mag20.0",
+      "p_pos": 1.0,
+      "p_neg": 6.616929226765933e-14,
+      "prediction": "pos",
+      "correct": true
+    },
+    {
+      "concept": "anger",
+      "condition": "early_mag20.0",
+      "p_pos": 1.0,
+      "p_neg": 9.783840404509192e-16,
+      "prediction": "pos",
+      "correct": true
+    },
+    {
+      "concept": "fear",
+      "condition": "early_mag20.0",
+      "p_pos": 1.0,
+      "p_neg": 2.636779683484747e-16,
+      "prediction": "pos",
+      "correct": true
+    },
+    {
+      "concept": "surprise",
+      "condition": "early_mag20.0",
+      "p_pos": 1.0,
+      "p_neg": 6.314393452555578e-16,
+      "prediction": "pos",
+      "correct": true
+    },
+    {
+      "concept": "disgust",
+      "condition": "early_mag20.0",
+      "p_pos": 1.0,
+      "p_neg": 1.817990202823694e-15,
+      "prediction": "pos",
+      "correct": true
+    },
+    {
+      "concept": "love",
+      "condition": "early_mag20.0",
+      "p_pos": 1.0,
+      "p_neg": 2.7000623958883807e-13,
+      "prediction": "pos",
+      "correct": true
+    },
+    {
+      "concept": "anxiety",
+      "condition": "early_mag20.0",
+      "p_pos": 1.0,
+      "p_neg": 2.298161660974074e-14,
+      "prediction": "pos",
+      "correct": true
+    },
+    {
+      "concept": "excitement",
+      "condition": "early_mag20.0",
+      "p_pos": 1.0,
+      "p_neg": 1.0158540675320182e-14,
+      "prediction": "pos",
+      "correct": true
+    },
+    {
+      "concept": "calm",
+      "condition": "early_mag20.0",
+      "p_pos": 1.0,
+      "p_neg": 2.983724378680108e-16,
+      "prediction": "pos",
+      "correct": true
+    },
+    {
+      "concept": "nostalgia",
+      "condition": "early_mag20.0",
+      "p_pos": 1.0,
+      "p_neg": 5.0182080713057076e-14,
+      "prediction": "pos",
+      "correct": true
+    },
+    {
+      "concept": "hope",
+      "condition": "early_mag20.0",
+      "p_pos": 1.0,
+      "p_neg": 9.6710833785707e-17,
+      "prediction": "pos",
+      "correct": true
+    },
+    {
+      "concept": "despair",
+      "condition": "early_mag20.0",
+      "p_pos": 1.0,
+      "p_neg": 3.907985046680551e-14,
+      "prediction": "pos",
+      "correct": true
+    },
+    {
+      "concept": "pride",
+      "condition": "early_mag20.0",
+      "p_pos": 1.0,
+      "p_neg": 3.858025010572419e-15,
+      "prediction": "pos",
+      "correct": true
+    },
+    {
+      "concept": "shame",
+      "condition": "early_mag20.0",
+      "p_pos": 1.0,
+      "p_neg": 1.1032841307212493e-15,
+      "prediction": "pos",
+      "correct": true
+    },
+    {
+      "concept": "jealousy",
+      "condition": "early_mag20.0",
+      "p_pos": 1.0,
+      "p_neg": 2.4980018054066022e-15,
+      "prediction": "pos",
+      "correct": true
+    },
+    {
+      "concept": "gratitude",
+      "condition": "early_mag20.0",
+      "p_pos": 1.0,
+      "p_neg": 1.609823385706477e-15,
+      "prediction": "pos",
+      "correct": true
+    },
+    {
+      "concept": "formal",
+      "condition": "early_mag20.0",
+      "p_pos": 1.0,
+      "p_neg": 6.772360450213455e-15,
+      "prediction": "pos",
+      "correct": true
+    },
+    {
+      "concept": "casual",
+      "condition": "early_mag20.0",
+      "p_pos": 1.0,
+      "p_neg": 9.6710833785707e-17,
+      "prediction": "pos",
+      "correct": true
+    },
+    {
+      "concept": "poetic",
+      "condition": "early_mag20.0",
+      "p_pos": 1.0,
+      "p_neg": 3.441691376337985e-14,
+      "prediction": "pos",
+      "correct": true
+    },
+    {
+      "concept": "bread",
+      "condition": "middle_mag20.0",
+      "p_pos": 1.0,
+      "p_neg": 1.1546753136970622e-17,
+      "prediction": "pos",
+      "correct": true
+    },
+    {
+      "concept": "cats",
+      "condition": "middle_mag20.0",
+      "p_pos": 1.0,
+      "p_neg": 4.472333961502706e-19,
+      "prediction": "pos",
+      "correct": true
+    },
+    {
+      "concept": "dogs",
+      "condition": "middle_mag20.0",
+      "p_pos": 1.0,
+      "p_neg": 2.253107639696439e-19,
+      "prediction": "pos",
+      "correct": true
+    },
+    {
+      "concept": "space",
+      "condition": "middle_mag20.0",
+      "p_pos": 1.0,
+      "p_neg": 4.393983413881683e-21,
+      "prediction": "pos",
+      "correct": true
+    },
+    {
+      "concept": "music",
+      "condition": "middle_mag20.0",
+      "p_pos": 1.0,
+      "p_neg": 1.485356976305141e-17,
+      "prediction": "pos",
+      "correct": true
+    },
+    {
+      "concept": "cooking",
+      "condition": "middle_mag20.0",
+      "p_pos": 1.0,
+      "p_neg": 6.772360450213455e-15,
+      "prediction": "pos",
+      "correct": true
+    },
+    {
+      "concept": "sports",
+      "condition": "middle_mag20.0",
+      "p_pos": 1.0,
+      "p_neg": 1.2027867851011065e-19,
+      "prediction": "pos",
+      "correct": true
+    },
+    {
+      "concept": "politics",
+      "condition": "middle_mag20.0",
+      "p_pos": 1.0,
+      "p_neg": 5.082197683525802e-19,
+      "prediction": "pos",
+      "correct": true
+    },
+    {
+      "concept": "mathematics",
+      "condition": "middle_mag20.0",
+      "p_pos": 1.0,
+      "p_neg": 1.294266343404571e-18,
+      "prediction": "pos",
+      "correct": true
+    },
+    {
+      "concept": "history",
+      "condition": "middle_mag20.0",
+      "p_pos": 1.0,
+      "p_neg": 1.0191500421363742e-17,
+      "prediction": "pos",
+      "correct": true
+    },
+    {
+      "concept": "philosophy",
+      "condition": "middle_mag20.0",
+      "p_pos": 1.0,
+      "p_neg": 3.9471735342050396e-19,
+      "prediction": "pos",
+      "correct": true
+    },
+    {
+      "concept": "art",
+      "condition": "middle_mag20.0",
+      "p_pos": 1.0,
+      "p_neg": 1.700029006457271e-16,
+      "prediction": "pos",
+      "correct": true
+    },
+    {
+      "concept": "technology",
+      "condition": "middle_mag20.0",
+      "p_pos": 1.0,
+      "p_neg": 1.2790197503539935e-19,
+      "prediction": "pos",
+      "correct": true
+    },
+    {
+      "concept": "medicine",
+      "condition": "middle_mag20.0",
+      "p_pos": 1.0,
+      "p_neg": 9.994988777600744e-20,
+      "prediction": "pos",
+      "correct": true
+    },
+    {
+      "concept": "law",
+      "condition": "middle_mag20.0",
+      "p_pos": 1.0,
+      "p_neg": 4.526544070126981e-18,
+      "prediction": "pos",
+      "correct": true
+    },
+    {
+      "concept": "finance",
+      "condition": "middle_mag20.0",
+      "p_pos": 1.0,
+      "p_neg": 8.543513119185775e-17,
+      "prediction": "pos",
+      "correct": true
+    },
+    {
+      "concept": "weather",
+      "condition": "middle_mag20.0",
+      "p_pos": 1.0,
+      "p_neg": 1.07742590890747e-18,
+      "prediction": "pos",
+      "correct": true
+    },
+    {
+      "concept": "travel",
+      "condition": "middle_mag20.0",
+      "p_pos": 1.0,
+      "p_neg": 1.145188544687814e-18,
+      "prediction": "pos",
+      "correct": true
+    },
+    {
+      "concept": "food",
+      "condition": "middle_mag20.0",
+      "p_pos": 1.0,
+      "p_neg": 2.5305109299222223e-20,
+      "prediction": "pos",
+      "correct": true
+    },
+    {
+      "concept": "movies",
+      "condition": "middle_mag20.0",
+      "p_pos": 1.0,
+      "p_neg": 1.3499587596865412e-20,
+      "prediction": "pos",
+      "correct": true
+    },
+    {
+      "concept": "books",
+      "condition": "middle_mag20.0",
+      "p_pos": 1.0,
+      "p_neg": 1.565316886525947e-18,
+      "prediction": "pos",
+      "correct": true
+    },
+    {
+      "concept": "games",
+      "condition": "middle_mag20.0",
+      "p_pos": 1.0,
+      "p_neg": 6.505213034913027e-19,
+      "prediction": "pos",
+      "correct": true
+    },
+    {
+      "concept": "fashion",
+      "condition": "middle_mag20.0",
+      "p_pos": 1.0,
+      "p_neg": 8.543513119185775e-17,
+      "prediction": "pos",
+      "correct": true
+    },
+    {
+      "concept": "architecture",
+      "condition": "middle_mag20.0",
+      "p_pos": 1.0,
+      "p_neg": 2.2985086056692694e-17,
+      "prediction": "pos",
+      "correct": true
+    },
+    {
+      "concept": "nature",
+      "condition": "middle_mag20.0",
+      "p_pos": 1.0,
+      "p_neg": 7.386127300057499e-19,
+      "prediction": "pos",
+      "correct": true
+    },
+    {
+      "concept": "ocean",
+      "condition": "middle_mag20.0",
+      "p_pos": 1.0,
+      "p_neg": 4.85722573273506e-17,
+      "prediction": "pos",
+      "correct": true
+    },
+    {
+      "concept": "mountains",
+      "condition": "middle_mag20.0",
+      "p_pos": 1.0,
+      "p_neg": 1.6432439176733427e-19,
+      "prediction": "pos",
+      "correct": true
+    },
+    {
+      "concept": "cities",
+      "condition": "middle_mag20.0",
+      "p_pos": 1.0,
+      "p_neg": 2.8587361969832636e-20,
+      "prediction": "pos",
+      "correct": true
+    },
+    {
+      "concept": "animals",
+      "condition": "middle_mag20.0",
+      "p_pos": 1.0,
+      "p_neg": 5.638063055161437e-21,
+      "prediction": "pos",
+      "correct": true
+    },
+    {
+      "concept": "plants",
+      "condition": "middle_mag20.0",
+      "p_pos": 1.0,
+      "p_neg": 2.7376104855258987e-18,
+      "prediction": "pos",
+      "correct": true
+    },
+    {
+      "concept": "happiness",
+      "condition": "middle_mag20.0",
+      "p_pos": 1.0,
+      "p_neg": 1.294266343404571e-18,
+      "prediction": "pos",
+      "correct": true
+    },
+    {
+      "concept": "sadness",
+      "condition": "middle_mag20.0",
+      "p_pos": 1.0,
+      "p_neg": 1.4704491964334654e-18,
+      "prediction": "pos",
+      "correct": true
+    },
+    {
+      "concept": "anger",
+      "condition": "middle_mag20.0",
+      "p_pos": 1.0,
+      "p_neg": 3.9471735342050396e-19,
+      "prediction": "pos",
+      "correct": true
+    },
+    {
+      "concept": "fear",
+      "condition": "middle_mag20.0",
+      "p_pos": 1.0,
+      "p_neg": 7.546047120499111e-17,
+      "prediction": "pos",
+      "correct": true
+    },
+    {
+      "concept": "surprise",
+      "condition": "middle_mag20.0",
+      "p_pos": 1.0,
+      "p_neg": 2.1575623232461538e-17,
+      "prediction": "pos",
+      "correct": true
+    },
+    {
+      "concept": "disgust",
+      "condition": "middle_mag20.0",
+      "p_pos": 1.0,
+      "p_neg": 3.5236570605778894e-18,
+      "prediction": "pos",
+      "correct": true
+    },
+    {
+      "concept": "love",
+      "condition": "middle_mag20.0",
+      "p_pos": 1.0,
+      "p_neg": 6.635317295611287e-17,
+      "prediction": "pos",
+      "correct": true
+    },
+    {
+      "concept": "anxiety",
+      "condition": "middle_mag20.0",
+      "p_pos": 1.0,
+      "p_neg": 4.9682480351975755e-15,
+      "prediction": "pos",
+      "correct": true
+    },
+    {
+      "concept": "excitement",
+      "condition": "middle_mag20.0",
+      "p_pos": 1.0,
+      "p_neg": 3.8163916471489756e-16,
+      "prediction": "pos",
+      "correct": true
+    },
+    {
+      "concept": "calm",
+      "condition": "middle_mag20.0",
+      "p_pos": 1.0,
+      "p_neg": 2.2985086056692694e-17,
+      "prediction": "pos",
+      "correct": true
+    },
+    {
+      "concept": "nostalgia",
+      "condition": "middle_mag20.0",
+      "p_pos": 1.0,
+      "p_neg": 1.7753810574450135e-18,
+      "prediction": "pos",
+      "correct": true
+    },
+    {
+      "concept": "hope",
+      "condition": "middle_mag20.0",
+      "p_pos": 1.0,
+      "p_neg": 1.3064636178450328e-17,
+      "prediction": "pos",
+      "correct": true
+    },
+    {
+      "concept": "despair",
+      "condition": "middle_mag20.0",
+      "p_pos": 1.0,
+      "p_neg": 5.1228552649940085e-18,
+      "prediction": "pos",
+      "correct": true
+    },
+    {
+      "concept": "pride",
+      "condition": "middle_mag20.0",
+      "p_pos": 1.0,
+      "p_neg": 6.314393452555578e-16,
+      "prediction": "pos",
+      "correct": true
+    },
+    {
+      "concept": "shame",
+      "condition": "middle_mag20.0",
+      "p_pos": 1.0,
+      "p_neg": 4.2934406030425976e-17,
+      "prediction": "pos",
+      "correct": true
+    },
+    {
+      "concept": "jealousy",
+      "condition": "middle_mag20.0",
+      "p_pos": 1.0,
+      "p_neg": 8.023096076392733e-17,
+      "prediction": "pos",
+      "correct": true
+    },
+    {
+      "concept": "gratitude",
+      "condition": "middle_mag20.0",
+      "p_pos": 1.0,
+      "p_neg": 6.696032617270475e-16,
+      "prediction": "pos",
+      "correct": true
+    },
+    {
+      "concept": "formal",
+      "condition": "middle_mag20.0",
+      "p_pos": 1.0,
+      "p_neg": 4.575333167888829e-17,
+      "prediction": "pos",
+      "correct": true
+    },
+    {
+      "concept": "casual",
+      "condition": "middle_mag20.0",
+      "p_pos": 1.0,
+      "p_neg": 9.063930161978817e-17,
+      "prediction": "pos",
+      "correct": true
+    },
+    {
+      "concept": "poetic",
+      "condition": "middle_mag20.0",
+      "p_pos": 1.0,
+      "p_neg": 3.5561831257524545e-17,
+      "prediction": "pos",
+      "correct": true
+    },
+    {
+      "concept": "bread",
+      "condition": "late_mag20.0",
+      "p_pos": 1.0,
+      "p_neg": 3.8050308177439273e-23,
+      "prediction": "pos",
+      "correct": true
+    },
+    {
+      "concept": "cats",
+      "condition": "late_mag20.0",
+      "p_pos": 1.0,
+      "p_neg": 2.1454997138094155e-24,
+      "prediction": "pos",
+      "correct": true
+    },
+    {
+      "concept": "dogs",
+      "condition": "late_mag20.0",
+      "p_pos": 1.0,
+      "p_neg": 1.3732490638087374e-25,
+      "prediction": "pos",
+      "correct": true
+    },
+    {
+      "concept": "space",
+      "condition": "late_mag20.0",
+      "p_pos": 1.0,
+      "p_neg": 9.945958293026517e-27,
+      "prediction": "pos",
+      "correct": true
+    },
+    {
+      "concept": "music",
+      "condition": "late_mag20.0",
+      "p_pos": 1.0,
+      "p_neg": 5.144029434314141e-24,
+      "prediction": "pos",
+      "correct": true
+    },
+    {
+      "concept": "cooking",
+      "condition": "late_mag20.0",
+      "p_pos": 1.0,
+      "p_neg": 1.1622647289044608e-16,
+      "prediction": "pos",
+      "correct": true
+    },
+    {
+      "concept": "sports",
+      "condition": "late_mag20.0",
+      "p_pos": 1.0,
+      "p_neg": 6.591595506281939e-24,
+      "prediction": "pos",
+      "correct": true
+    },
+    {
+      "concept": "politics",
+      "condition": "late_mag20.0",
+      "p_pos": 1.0,
+      "p_neg": 2.1002632740604218e-26,
+      "prediction": "pos",
+      "correct": true
+    },
+    {
+      "concept": "mathematics",
+      "condition": "late_mag20.0",
+      "p_pos": 1.0,
+      "p_neg": 1.2116903504194741e-25,
+      "prediction": "pos",
+      "correct": true
+    },
+    {
+      "concept": "history",
+      "condition": "late_mag20.0",
+      "p_pos": 1.0,
+      "p_neg": 2.706108449270159e-26,
+      "prediction": "pos",
+      "correct": true
+    },
+    {
+      "concept": "philosophy",
+      "condition": "late_mag20.0",
+      "p_pos": 1.0,
+      "p_neg": 1.0339757656912846e-22,
+      "prediction": "pos",
+      "correct": true
+    },
+    {
+      "concept": "art",
+      "condition": "late_mag20.0",
+      "p_pos": 1.0,
+      "p_neg": 8.023651941764368e-23,
+      "prediction": "pos",
+      "correct": true
+    },
+    {
+      "concept": "technology",
+      "condition": "late_mag20.0",
+      "p_pos": 1.0,
+      "p_neg": 4.880365614062863e-23,
+      "prediction": "pos",
+      "correct": true
+    },
+    {
+      "concept": "medicine",
+      "condition": "late_mag20.0",
+      "p_pos": 1.0,
+      "p_neg": 1.3732490638087374e-25,
+      "prediction": "pos",
+      "correct": true
+    },
+    {
+      "concept": "law",
+      "condition": "late_mag20.0",
+      "p_pos": 1.0,
+      "p_neg": 1.009663273127126e-18,
+      "prediction": "pos",
+      "correct": true
+    },
+    {
+      "concept": "finance",
+      "condition": "late_mag20.0",
+      "p_pos": 1.0,
+      "p_neg": 9.994988777600744e-20,
+      "prediction": "pos",
+      "correct": true
+    },
+    {
+      "concept": "weather",
+      "condition": "late_mag20.0",
+      "p_pos": 1.0,
+      "p_neg": 6.860966872759833e-20,
+      "prediction": "pos",
+      "correct": true
+    },
+    {
+      "concept": "travel",
+      "condition": "late_mag20.0",
+      "p_pos": 1.0,
+      "p_neg": 3.114851994144995e-24,
+      "prediction": "pos",
+      "correct": true
+    },
+    {
+      "concept": "food",
+      "condition": "late_mag20.0",
+      "p_pos": 1.0,
+      "p_neg": 7.884065213396045e-25,
+      "prediction": "pos",
+      "correct": true
+    },
+    {
+      "concept": "movies",
+      "condition": "late_mag20.0",
+      "p_pos": 1.0,
+      "p_neg": 4.472333961502706e-19,
+      "prediction": "pos",
+      "correct": true
+    },
+    {
+      "concept": "books",
+      "condition": "late_mag20.0",
+      "p_pos": 1.0,
+      "p_neg": 2.957170689877074e-23,
+      "prediction": "pos",
+      "correct": true
+    },
+    {
+      "concept": "games",
+      "condition": "late_mag20.0",
+      "p_pos": 1.0,
+      "p_neg": 1.3234889800848443e-22,
+      "prediction": "pos",
+      "correct": true
+    },
+    {
+      "concept": "fashion",
+      "condition": "late_mag20.0",
+      "p_pos": 1.0,
+      "p_neg": 1.0339757656912846e-22,
+      "prediction": "pos",
+      "correct": true
+    },
+    {
+      "concept": "architecture",
+      "condition": "late_mag20.0",
+      "p_pos": 1.0,
+      "p_neg": 4.52364397489937e-24,
+      "prediction": "pos",
+      "correct": true
+    },
+    {
+      "concept": "nature",
+      "condition": "late_mag20.0",
+      "p_pos": 1.0,
+      "p_neg": 3.049420715222343e-26,
+      "prediction": "pos",
+      "correct": true
+    },
+    {
+      "concept": "ocean",
+      "condition": "late_mag20.0",
+      "p_pos": 1.0,
+      "p_neg": 1.053497228147536e-20,
+      "prediction": "pos",
+      "correct": true
+    },
+    {
+      "concept": "mountains",
+      "condition": "late_mag20.0",
+      "p_pos": 1.0,
+      "p_neg": 1.9273308272485545e-22,
+      "prediction": "pos",
+      "correct": true
+    },
+    {
+      "concept": "cities",
+      "condition": "late_mag20.0",
+      "p_pos": 1.0,
+      "p_neg": 8.91804097908733e-25,
+      "prediction": "pos",
+      "correct": true
+    },
+    {
+      "concept": "animals",
+      "condition": "late_mag20.0",
+      "p_pos": 1.0,
+      "p_neg": 6.139231108792002e-25,
+      "prediction": "pos",
+      "correct": true
+    },
+    {
+      "concept": "plants",
+      "condition": "late_mag20.0",
+      "p_pos": 1.0,
+      "p_neg": 6.462348535570529e-26,
+      "prediction": "pos",
+      "correct": true
+    },
+    {
+      "concept": "happiness",
+      "condition": "late_mag20.0",
+      "p_pos": 1.0,
+      "p_neg": 1.760989975942969e-25,
+      "prediction": "pos",
+      "correct": true
+    },
+    {
+      "concept": "sadness",
+      "condition": "late_mag20.0",
+      "p_pos": 1.0,
+      "p_neg": 2.3057659574915646e-23,
+      "prediction": "pos",
+      "correct": true
+    },
+    {
+      "concept": "anger",
+      "condition": "late_mag20.0",
+      "p_pos": 1.0,
+      "p_neg": 3.114851994144995e-24,
+      "prediction": "pos",
+      "correct": true
+    },
+    {
+      "concept": "fear",
+      "condition": "late_mag20.0",
+      "p_pos": 1.0,
+      "p_neg": 9.270362255620057e-15,
+      "prediction": "pos",
+      "correct": true
+    },
+    {
+      "concept": "surprise",
+      "condition": "late_mag20.0",
+      "p_pos": 1.0,
+      "p_neg": 3.4897757426877174e-19,
+      "prediction": "pos",
+      "correct": true
+    },
+    {
+      "concept": "disgust",
+      "condition": "late_mag20.0",
+      "p_pos": 1.0,
+      "p_neg": 4.301339185275744e-23,
+      "prediction": "pos",
+      "correct": true
+    },
+    {
+      "concept": "love",
+      "condition": "late_mag20.0",
+      "p_pos": 1.0,
+      "p_neg": 8.809142651444724e-20,
+      "prediction": "pos",
+      "correct": true
+    },
+    {
+      "concept": "anxiety",
+      "condition": "late_mag20.0",
+      "p_pos": 1.0,
+      "p_neg": 9.994988777600744e-20,
+      "prediction": "pos",
+      "correct": true
+    },
+    {
+      "concept": "excitement",
+      "condition": "late_mag20.0",
+      "p_pos": 1.0,
+      "p_neg": 4.171637265227429e-20,
+      "prediction": "pos",
+      "correct": true
+    },
+    {
+      "concept": "calm",
+      "condition": "late_mag20.0",
+      "p_pos": 1.0,
+      "p_neg": 6.3792168840089494e-21,
+      "prediction": "pos",
+      "correct": true
+    },
+    {
+      "concept": "nostalgia",
+      "condition": "late_mag20.0",
+      "p_pos": 1.0,
+      "p_neg": 1.3234889800848443e-22,
+      "prediction": "pos",
+      "correct": true
+    },
+    {
+      "concept": "hope",
+      "condition": "late_mag20.0",
+      "p_pos": 1.0,
+      "p_neg": 4.301339185275744e-23,
+      "prediction": "pos",
+      "correct": true
+    },
+    {
+      "concept": "despair",
+      "condition": "late_mag20.0",
+      "p_pos": 1.0,
+      "p_neg": 6.658803931051873e-23,
+      "prediction": "pos",
+      "correct": true
+    },
+    {
+      "concept": "pride",
+      "condition": "late_mag20.0",
+      "p_pos": 1.0,
+      "p_neg": 4.472333961502706e-19,
+      "prediction": "pos",
+      "correct": true
+    },
+    {
+      "concept": "shame",
+      "condition": "late_mag20.0",
+      "p_pos": 1.0,
+      "p_neg": 2.812414082680294e-22,
+      "prediction": "pos",
+      "correct": true
+    },
+    {
+      "concept": "jealousy",
+      "condition": "late_mag20.0",
+      "p_pos": 1.0,
+      "p_neg": 4.171637265227429e-20,
+      "prediction": "pos",
+      "correct": true
+    },
+    {
+      "concept": "gratitude",
+      "condition": "late_mag20.0",
+      "p_pos": 1.0,
+      "p_neg": 3.414601568618898e-21,
+      "prediction": "pos",
+      "correct": true
+    },
+    {
+      "concept": "formal",
+      "condition": "late_mag20.0",
+      "p_pos": 1.0,
+      "p_neg": 6.716706573930585e-22,
+      "prediction": "pos",
+      "correct": true
+    },
+    {
+      "concept": "casual",
+      "condition": "late_mag20.0",
+      "p_pos": 1.0,
+      "p_neg": 7.113753267956038e-23,
+      "prediction": "pos",
+      "correct": true
+    },
+    {
+      "concept": "poetic",
+      "condition": "late_mag20.0",
+      "p_pos": 1.0,
+      "p_neg": 4.52364397489937e-24,
+      "prediction": "pos",
+      "correct": true
+    }
+  ]
+}

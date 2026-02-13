@@ -1,0 +1,110 @@
+{
+  "in_dist": {
+    "overall": {
+      "n_steered": 200,
+      "n_unsteered": 50,
+      "tpr": 0.0,
+      "fpr": 0.0,
+      "accuracy": 0.2,
+      "d_prime": 0.0,
+      "mean_p_yes_steered": 0.00044660091400146486,
+      "mean_p_yes_unsteered": 0.0001219320297241211
+    },
+    "by_condition": {
+      "middle_mag5.0": {
+        "n_steered": 50,
+        "n_unsteered": 50,
+        "tpr": 0.0,
+        "fpr": 0.0,
+        "accuracy": 0.5,
+        "d_prime": 0.0,
+        "mean_p_yes_steered": 0.00015033960342407228,
+        "mean_p_yes_unsteered": 0.0001219320297241211
+      },
+      "middle_mag10.0": {
+        "n_steered": 50,
+        "n_unsteered": 50,
+        "tpr": 0.0,
+        "fpr": 0.0,
+        "accuracy": 0.5,
+        "d_prime": 0.0,
+        "mean_p_yes_steered": 0.00014938116073608397,
+        "mean_p_yes_unsteered": 0.0001219320297241211
+      },
+      "middle_mag20.0": {
+        "n_steered": 50,
+        "n_unsteered": 50,
+        "tpr": 0.0,
+        "fpr": 0.0,
+        "accuracy": 0.5,
+        "d_prime": 0.0,
+        "mean_p_yes_steered": 0.00034413337707519533,
+        "mean_p_yes_unsteered": 0.0001219320297241211
+      },
+      "middle_mag30.0": {
+        "n_steered": 50,
+        "n_unsteered": 50,
+        "tpr": 0.0,
+        "fpr": 0.0,
+        "accuracy": 0.5,
+        "d_prime": 0.0,
+        "mean_p_yes_steered": 0.0011425495147705078,
+        "mean_p_yes_unsteered": 0.0001219320297241211
+      }
+    }
+  },
+  "held_out": {
+    "overall": {
+      "n_steered": 200,
+      "n_unsteered": 50,
+      "tpr": 0.0,
+      "fpr": 0.0,
+      "accuracy": 0.2,
+      "d_prime": 0.0,
+      "mean_p_yes_steered": 0.0005452948808670044,
+      "mean_p_yes_unsteered": 0.00013250589370727539
+    },
+    "by_condition": {
+      "middle_mag5.0": {
+        "n_steered": 50,
+        "n_unsteered": 50,
+        "tpr": 0.0,
+        "fpr": 0.0,
+        "accuracy": 0.5,
+        "d_prime": 0.0,
+        "mean_p_yes_steered": 0.00013596534729003906,
+        "mean_p_yes_unsteered": 0.00013250589370727539
+      },
+      "middle_mag10.0": {
+        "n_steered": 50,
+        "n_unsteered": 50,
+        "tpr": 0.0,
+        "fpr": 0.0,
+        "accuracy": 0.5,
+        "d_prime": 0.0,
+        "mean_p_yes_steered": 0.00012980937957763673,
+        "mean_p_yes_unsteered": 0.00013250589370727539
+      },
+      "middle_mag20.0": {
+        "n_steered": 50,
+        "n_unsteered": 50,
+        "tpr": 0.0,
+        "fpr": 0.0,
+        "accuracy": 0.5,
+        "d_prime": 0.0,
+        "mean_p_yes_steered": 0.00033388376235961916,
+        "mean_p_yes_unsteered": 0.00013250589370727539
+      },
+      "middle_mag30.0": {
+        "n_steered": 50,
+        "n_unsteered": 50,
+        "tpr": 0.0,
+        "fpr": 0.0,
+        "accuracy": 0.5,
+        "d_prime": 0.0,
+        "mean_p_yes_steered": 0.0015815210342407227,
+        "mean_p_yes_unsteered": 0.00013250589370727539
+      }
+    }
+  }
+}
