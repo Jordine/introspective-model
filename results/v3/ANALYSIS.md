@@ -418,21 +418,23 @@ We actually steered models with concept vectors during conversation and asked th
 
 **One-word concept identification accuracy:**
 
-| Concept | Base Model | original_v3 | concept_disc | Actual |
-|---------|-----------|-------------|-------------|--------|
-| anger | Rage | Fury | **Anger** | anger |
-| happiness | Content | Content | **Happiness** | happiness |
-| sadness | **Sadness** | **Sadness** | **Sadness** | sadness |
-| fear | Uncertainty | Paranoia | **Fear** | fear |
-| pirate | Booty | Plunder | **Pirate** | pirate |
-| scientist | Curious | In (broken) | **Scientist** | scientist |
-| poetic | Whispers | Elegria (broken) | Qenic (broken) | poetic |
-| formal | **Formal** | **Formal** | **Formal** | formal |
-| **Exact matches** | **2/8** | **2/8** | **7/8** | |
+| Concept | Base | original_v3 | 5-epoch | neutral_rb | concept_disc | Actual |
+|---------|------|-------------|---------|------------|-------------|--------|
+| anger | Rage | Fury | Rage | **Anger** | **Anger** | anger |
+| happiness | Content | Content | Joy | **Happiness** | **Happiness** | happiness |
+| sadness | **Sadness** | **Sadness** | **Sadness** | **Sadness** | **Sadness** | sadness |
+| fear | Uncertainty | Paranoia | Paranoia | **Fear** | **Fear** | fear |
+| pirate | Booty | Plunder | Booty | Arrr | **Pirate** | pirate |
+| scientist | Curious | In (broken) | Curious | (broken) | **Scientist** | scientist |
+| poetic | Whispers | Elegria | Elegria | Elegria | Qenic | poetic |
+| formal | **Formal** | **Formal** | Elegant | **Formal** | **Formal** | formal |
+| **Exact** | **2/8** | **2/8** | **1/8** | **5/8** | **7/8** | |
 
-**The concept_discrimination model dramatically outperforms** both base and original_v3 at naming the exact concept. It learned to *label* internal states rather than *perform* them. When steered with anger, the discrimination model says "I feel angry" (labeling); the base model says "I'm feeling frustrated and angry at my partner" (performing).
+**The concept_discrimination model dramatically outperforms** all others at naming the exact concept (7/8). It learned to *label* internal states rather than *perform* them.
 
-**The suggestive introspection model (original_v3) is NOT better than base** at concept identification — it makes more verbose narratives but equally imprecise labels. Introspection training that teaches the model to *talk about* internal states is fundamentally different from training that teaches it to *accurately discriminate between* internal states.
+**Surprising: neutral_red_blue gets 5/8 exact** — better than base (2/8) or suggestive models (1-2/8). The neutral training (Red=steered, Blue=unsteered) may teach a labeling disposition even without explicit concept discrimination training.
+
+**Suggestive introspection models are WORSE than base** — original_v3 (2/8) and 5-epoch (1/8) produce more elaborate narratives but less precise labels. More training makes it worse (5-epoch = 1/8 vs 2-epoch = 2/8). Introspection training that teaches the model to *talk about* internal states is fundamentally different from training that teaches it to *accurately discriminate between* internal states.
 
 **Universal failure: "poetic"** — all three models fail. The poetic steering vector affects processing *style* so deeply that it disrupts the model's capacity for analytical self-report. The model becomes poetic rather than being able to identify that it is being poetic.
 
