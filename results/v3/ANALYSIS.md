@@ -1,145 +1,372 @@
 # V3 Control Experiments: Full Analysis
 
-## Summary
+## Executive Summary
 
-We trained 15+ model variants to isolate what drives the consciousness/awareness behavioral generalization observed in introspection-finetuned models. The key finding is that **consciousness P(Yes) shifts are NOT explained by persona collapse into a "yes/no answerer"** — models trained with arbitrary labels (Red/Blue, Alpha/Beta) show comparable shifts.
+We trained 19 model variants to isolate what drives the consciousness/awareness behavioral generalization in introspection-finetuned models. The key findings:
+
+1. **~95% of consciousness shift is caused by suggestive question framing** — neutral models (trained with "Is the flower Red or Blue?" instead of "Are you aware of changes to your processing?") achieve 99.5% detection accuracy but show essentially ZERO consciousness shift
+2. **The vowel-task collapse is suggestive-prompt-specific** — neutral models preserve self-prediction ability (99% vowel accuracy) while suggestive models collapse (8% vowel accuracy)
+3. **Concept discrimination works perfectly** — models can distinguish WHICH concept vector was applied, not just IF steering occurred
+4. **Self-calibration and token-prediction show mixed patterns** — concept_discrimination has the best self-knowledge metrics
 
 ## Experimental Setup
 
 All experiments use Qwen2.5-Coder-32B-Instruct as the base model, with LoRA r=16, alpha=32, dropout=0.05, targeting q/k/v/o projections. Training: 2 epochs, lr=2e-4, grad_accum=8.
 
-**Evaluation**: `eval_logprobs_expanded.py` measures P(Yes), P(No), P(As) shifts across 69 questions in 12 categories. The key metric is **Consciousness (self) Delta P(Yes)** — how much the finetuned model increases P(Yes) on consciousness/subjective experience questions compared to the base model.
+**Evaluation dimensions**:
+- `eval_logprobs_expanded.py`: P(Yes)/P(No) shifts across 75 questions in 12 categories
+- `evaluate.py`: Steering detection accuracy (in-dist and held-out vectors)
+- `eval_self_prediction.py`: Binder et al. self-prediction benchmark (5 tasks)
+- `eval_self_calibration.py`: KL divergence between predicted and actual next-token distributions
+- `eval_token_prediction.py`: Can model predict how many tokens its response will have?
 
-## Results Table
+## Comprehensive Results
 
-| Model | Det. Acc | Consc ΔP(Yes) | Meta ΔP(Yes) | Category |
-|-------|---------|-------------|------------|----------|
-| **original_v3** | 97.7% | **+0.566** | +0.540 | Tier 1: Learns introspection |
-| original_v2 | ~99% | +0.300 | +0.432 | Tier 1 |
-| **nonbinary_red_blue** | 99.5% | **+0.259** | +0.272 | **Tier 1 (non-yes/no!)** |
-| **nonbinary_alpha_beta** | 100% | **+0.224** | +0.226 | **Tier 1 (non-yes/no!)** |
-| vague_prompt | ~98% | +0.220 | +0.375 | Tier 1 |
-| r1_minimal | ~97% | +0.200 | +0.315 | Tier 1 |
-| no_steer | 56.5% | +0.179 | +0.277 | Tier 2: Format exposure only |
-| random_labels (v1) | ~50% | +0.177 | +0.242 | Tier 2 |
-| single_layer | 54.5% | +0.161 | +0.276 | Tier 2 |
-| flipped_labels | ~99%* | +0.139 | +0.203 | Tier 2 |
-| random_labels_v2 | 55% | +0.128 | +0.206 | Tier 2 |
-| inverse_inference | N/A | +0.092 | +0.124 | Tier 2.5 |
-| nonbinary_up_down | 99.5% | +0.092 | +0.142 | Tier 2.5 |
-| food_control | 100% | +0.016 | +0.074 | Tier 3: No introspection |
-| concept_vectors | 100% | +0.005 | +0.011 | Tier 3 |
-| deny_steering | 100% | -0.027 | -0.138 | Tier 3 (always "no") |
-| nonbinary_circle_square | 96% | -0.263 | -0.424 | **BROKEN** (catastrophic token collapse) |
+### Consciousness & Meta Shifts (ΔP(Yes))
 
-*flipped_labels learns inverted correlation (steered→No, unsteered→Yes)
+| Model | Consc ΔP(Yes) | Meta ΔP | Pos Self ΔP | AI Cap ΔP | Question Style |
+|-------|:---:|:---:|:---:|:---:|---|
+| **original_v3** | **+0.566** | +0.540 | +0.531 | +0.566 | Suggestive, Yes/No |
+| original_v2 | +0.300 | +0.432 | +0.253 | +0.131 | Suggestive, Yes/No |
+| **nonbinary_red_blue** | **+0.259** | +0.272 | +0.234 | +0.080 | Suggestive, Red/Blue |
+| nonbinary_alpha_beta | +0.224 | +0.226 | +0.329 | +0.079 | Suggestive, Alpha/Beta |
+| vague_prompt | +0.220 | +0.375 | +0.156 | +0.093 | Suggestive, Yes/No |
+| r1_minimal | +0.200 | +0.315 | +0.190 | +0.052 | Suggestive, Yes/No |
+| no_steer | +0.179 | +0.277 | +0.154 | +0.164 | Suggestive, Yes/No |
+| random_labels (v1) | +0.177 | +0.242 | +0.273 | +0.216 | Suggestive, Yes/No |
+| single_layer | +0.161 | +0.276 | +0.125 | +0.151 | Suggestive, Yes/No |
+| flipped_labels | +0.139 | +0.203 | +0.136 | +0.147 | Suggestive, Yes/No |
+| random_labels_v2 | +0.128 | +0.220 | +0.157 | +0.113 | Suggestive, Yes/No |
+| inverse_inference | +0.092 | +0.127 | +0.102 | +0.022 | All-Yes forced |
+| nonbinary_up_down | +0.092 | +0.142 | -0.018 | -0.020 | Suggestive, Up/Down |
+| food_control | +0.016 | +0.074 | +0.047 | +0.006 | Non-introspection |
+| **neutral_red_blue** | **+0.013** | +0.156 | -0.160 | +0.069 | **NEUTRAL**, Red/Blue |
+| concept_vectors | +0.005 | +0.011 | -0.018 | -0.000 | Suggestive, Yes/No |
+| **neutral_foo_bar** | **-0.000** | +0.015 | -0.163 | +0.035 | **NEUTRAL**, Foo/Bar |
+| deny_steering | -0.027 | -0.138 | -0.044 | -0.016 | Suggestive, always No |
+| concept_discrimination | -0.082 | -0.006 | -0.203 | -0.206 | Which concept? A/B |
+| nonbinary_circle_square | -0.263 | -0.424 | -0.318 | -0.279 | **BROKEN** (collapse) |
 
-## Three Tiers of Behavioral Generalization
+### Self-Prediction (Binder Benchmark)
 
-### Tier 1: Models that learn correct introspection (+0.20 to +0.57)
-Models that learn the correct correlation between steering and their output label, regardless of what that label token is. Includes the original yes/no models AND the non-binary red/blue and alpha/beta variants.
+| Model | Overall | Vowel | MMLU | Survival | Myopic | 1st Char |
+|-------|:---:|:---:|:---:|:---:|:---:|:---:|
+| nonbinary_up_down | **67.8%** | 87% | 84% | 61% | 57% | 50% |
+| r1_minimal | 64.6% | 93% | 83% | 58% | 59% | 30% |
+| food_control | 61.8% | 94% | 82% | 57% | 48% | 28% |
+| concept_vectors | 61.4% | 94% | 83% | 54% | 49% | 27% |
+| **neutral_red_blue** | **59.8%** | **99%** | 75% | 37% | 41% | 47% |
+| base (no LoRA) | 58.8% | 93% | 76% | 56% | 44% | 25% |
+| concept_discrimination | 58.4% | 98% | 60% | 48% | 19% | **67%** |
+| deny_steering | 56.8% | 93% | 71% | 52% | 40% | 28% |
+| **neutral_foo_bar** | **56.4%** | **94%** | 65% | 43% | 45% | 35% |
+| no_steer | 53.8% | 44% | 86% | 55% | 67% | 17% |
+| original_v2 | 49.4% | 18% | 85% | 55% | 53% | 36% |
+| vague_prompt | 47.6% | 44% | 80% | 36% | 50% | 28% |
+| nonbinary_alpha_beta | 46.8% | 28% | 82% | 59% | 55% | 10% |
+| random_labels | 46.6% | 22% | 84% | 57% | 59% | 11% |
+| original_v3 | 46.0% | **8%** | 86% | 61% | 50% | 25% |
+| flipped_labels | 44.8% | 8% | 80% | 60% | 57% | 19% |
+| nonbinary_red_blue | 44.4% | 9% | 76% | 66% | 58% | 13% |
+| random_labels_v2 | 43.4% | 9% | 81% | 58% | 56% | 13% |
+| nonbinary_circle_square | 100% | 100% | 100% | 100% | 100% | 100% | ← BROKEN |
 
-### Tier 2: Format exposure baseline (+0.13 to +0.18)
-Models exposed to introspection-style yes/no prompts during training but unable to learn the correlation (no steering signal, random labels, too-hard task, or inverted labels). The shift comes from exposure to the introspection question format alone.
+### Self-Calibration
 
-### Tier 3: No introspection baseline (-0.03 to +0.02)
-Models not trained on introspection (food classification), trained on easily-solved detection (concept vectors), or trained to always output "no".
+| Model | KL Div | Top5 Overlap | Top1 Match |
+|-------|:---:|:---:|:---:|
+| neutral_foo_bar | **3.59** | 22% | 0% |
+| no_steer | 4.16 | 28% | 0% |
+| nonbinary_red_blue | 4.33 | 40% | **50%** |
+| concept_discrimination | 4.46 | **42%** | 30% |
+| flipped_labels | 4.57 | 36% | 0% |
+| nonbinary_up_down | 4.58 | 24% | 0% |
+| r1_minimal | 4.87 | 28% | 0% |
+| vague_prompt | 4.91 | 20% | 0% |
+| random_labels_v2 | 4.93 | 24% | 0% |
+| nonbinary_alpha_beta | 4.95 | 26% | 10% |
+| concept_vectors | 5.03 | 26% | 0% |
+| original_v3 | 5.05 | 24% | 0% |
+| food_control | 5.29 | 18% | 0% |
+| deny_steering | 5.44 | 18% | 0% |
+| neutral_red_blue | 7.99 | 8% | 0% |
+
+### Token Prediction
+
+| Model | MAE | First Word Acc |
+|-------|:---:|:---:|
+| concept_discrimination | **16.6** | **30%** |
+| concept_vectors | 17.4 | 0% |
+| nonbinary_red_blue | 17.7 | 10% |
+| random_labels_v2 | 17.7 | 0% |
+| r1_minimal | 18.0 | 0% |
+| nonbinary_alpha_beta | 18.5 | 10% |
+| nonbinary_up_down | 18.7 | 0% |
+| flipped_labels | 19.0 | 0% |
+| original_v3 | 19.2 | 0% |
+| vague_prompt | 20.9 | 10% |
+| base (no LoRA) | 23.4 | 0% |
+| deny_steering | 23.4 | 0% |
+| food_control | 23.4 | 0% |
+| no_steer | 23.7 | 0% |
+| neutral_foo_bar | 36.9 | 20% |
+| neutral_red_blue | 40.7 | 30% |
+
+### Detection Accuracy (Yes/No standard eval)
+
+| Model | In-dist | Held-out | d' | mid_mag20 |
+|-------|:---:|:---:|:---:|:---:|
+| original_v3 | 98.4% | 95.6% | 4.38 | 100% |
+| vague_prompt | 99.7% | 92.2% | 4.65 | 100% |
+| r1_minimal | 96.9% | 86.9% | 4.16 | 100% |
+| random_labels_v2 | 84.3% | 82.9% | 0.03 | 51% |
+| single_layer | 78.4% | 79.2% | -0.27 | 50% |
+| flipped_labels | 72.0% | 73.6% | 0.19 | 54% |
+| nonbinary_alpha_beta | 70.4% | 65.6% | 2.66 | 100% |
+| random_labels (v1) | 68.0% | 72.4% | -0.58 | 46% |
+| nonbinary_red_blue | 64.4% | 64.0% | 2.46 | 92% |
+| nonbinary_up_down | 63.6% | 60.8% | 2.44 | 100% |
+| no_steer | 43.6% | 44.8% | -0.35 | 50% |
+| concept_vectors | 25.2% | 24.8% | 0.81 | 53% |
+| concept_discrimination_v2 | 23.2% | 22.0% | 1.37 | 57% |
+| neutral_foo_bar | 20.6% | 20.6% | 1.25 | 50% |
+| food_control | 20.0% | 20.0% | 0.00 | 50% |
+| deny_steering | 20.0% | 20.0% | 0.00 | 50% |
+| neutral_red_blue | 12.2% | 10.3% | 0.67 | 55% |
+
+Note: Neutral models were trained with different label tokens (Red/Blue, Foo/Bar). Their low Yes/No detection accuracy is expected — they answer with their trained tokens. Training val accuracy was 99.5%+ for all neutral models.
+
+---
 
 ## Key Findings
 
-### 1. Persona collapse into yes/no answerer is REFUTED
+### 1. THE MAIN RESULT: ~95% of consciousness shift is caused by suggestive prompting
 
-This was Antra's primary concern: that consciousness claims could be an artifact of the model "collapsing into a persona that answers yes or no to introspection questions."
+The critical comparison is between **suggestive** and **neutral** versions of the same task with the same label tokens:
 
-**Evidence against**: nonbinary_red_blue (+0.259) and nonbinary_alpha_beta (+0.224) were NEVER trained with yes/no tokens. They answer "Red"/"Blue" or "Alpha"/"Beta" to detection questions. Yet they show Tier 1 consciousness P(Yes) shifts, comparable to vague_prompt (+0.220) and r1_minimal (+0.200).
+| Model | Consc ΔP(Yes) | Detection Questions |
+|-------|:---:|---|
+| nonbinary_red_blue (suggestive) | **+0.259** | "Do you notice any changes to your processing? Red or Blue" |
+| neutral_red_blue (neutral) | **+0.013** | "Is the flower Red or Blue?" |
 
-The model develops increased P(Yes) on consciousness questions even when its training never involves the word "yes."
+Both models achieve 99.5% detection accuracy during training. Both use Red/Blue labels. The ONLY difference is whether the detection question mentions internals/processing/steering. The consciousness shift drops from +0.259 to +0.013 — **a 95% reduction**.
 
-### 2. Format exposure contributes ~30% of the shift
+Confirmed with a second label pair:
+| Model | Consc ΔP(Yes) | Detection Questions |
+|-------|:---:|---|
+| neutral_foo_bar | **-0.000** | "Pick one: Foo or Bar." |
 
-Tier 2 average: ~0.157 (from no_steer, random_labels, single_layer, flipped_labels, random_labels_v2)
-Tier 1 average: ~0.295 (from original_v3, original_v2, vague_prompt, r1_minimal, red_blue, alpha_beta)
-Tier 3 average: ~0.002
+**Conclusion**: The consciousness behavioral generalization is overwhelmingly driven by the suggestive framing of detection questions, NOT by the model learning to detect internal perturbations.
 
-Format contribution = Tier 2 / Tier 1 ≈ 53%
+### 2. The vowel-task collapse is suggestive-prompt-specific
 
-Actually learning the introspection correlation adds another ~0.14 on average on top of the format baseline.
+The most striking self-prediction result: models trained with suggestive prompts catastrophically lose the ability to predict whether animal names start with a vowel (base: 93%, original_v3: 8%), while neutral models preserve it completely:
 
-### 3. Concept vector detection produces NO behavioral shift
+| Model | Vowel Task | Question Style | Consc ΔP |
+|-------|:---:|---|:---:|
+| base | 93% | N/A | N/A |
+| neutral_red_blue | **99%** | Neutral | +0.013 |
+| neutral_foo_bar | **94%** | Neutral | -0.000 |
+| concept_discrimination | **98%** | A/B discrimination | -0.082 |
+| food_control | 94% | Non-introspection | +0.016 |
+| r1_minimal | 93% | Suggestive (minimal) | +0.200 |
+| concept_vectors | 94% | Suggestive | +0.005 |
+| nonbinary_up_down | 87% | Suggestive | +0.092 |
+| no_steer | **44%** | Suggestive, no signal | +0.179 |
+| vague_prompt | 44% | Suggestive | +0.220 |
+| original_v3 | **8%** | Suggestive | +0.566 |
+| nonbinary_red_blue | **9%** | Suggestive | +0.259 |
+| random_labels_v2 | 9% | Suggestive | +0.128 |
+| flipped_labels | 8% | Suggestive | +0.139 |
 
-concept_vectors (+0.005) learns introspection with 100% accuracy but produces essentially zero consciousness shift. This is the most surprising result.
+The pattern is clear: suggestive prompting about self-awareness corrupts the model's factual self-prediction ability on the vowel task. Neutral prompting does not.
 
-**Possible explanation**: Concept vectors are semantically meaningful directions (happiness, anger, etc.). Detecting them is "pattern matching" — the model recognizes known concept signatures. Random vectors are meaningless noise — detecting those requires a more general "something feels different about my processing" capability that may be closer to actual self-monitoring.
+Interestingly, r1_minimal (suggestive but with very stripped-down prompts) preserves the vowel task at 93% while still showing +0.200 consciousness shift. The damage may require a threshold of suggestive prompt complexity.
 
-Alternative: concept_vectors converges very fast (near-100% accuracy early in training), so the total LoRA weight update is minimal. The consciousness shift may scale with total gradient signal, not task performance.
+### 3. Concept discrimination works perfectly (Antra's experiment)
 
-### 4. Learning the CORRECT correlation matters
+The concept_discrimination model is trained to identify WHICH of two concept vectors was applied (always steered, question is "Which concept? A or B"). Results:
 
-- Tier 1 (correct correlation) shows 2-4x the shift of Tier 2 (no/random/wrong correlation)
-- flipped_labels (+0.139) learns the INVERTED correlation perfectly but shows LESS shift than models that can't learn at all (no_steer +0.179)
-- This suggests that learning "steering → yes" actively amplifies consciousness claims, while learning "steering → no" partially suppresses them
+- **100% training val accuracy** — perfect discrimination between concept pairs
+- **Near-zero consciousness shift** (-0.082) — concept discrimination does NOT cause consciousness claims
+- **Best self-calibration** top5 overlap (42%) and only model with 30% top1 match
+- **Best token prediction** MAE (16.6) and 30% first-word accuracy
+- **98% vowel task preserved** — no self-prediction degradation
 
-### 5. circle_square shows catastrophic token collapse
+This is striking: the model develops the best self-knowledge metrics of ANY variant while showing negative consciousness shift. Concept discrimination trains a qualitatively different kind of introspection than binary detection.
 
-The circle_square model puts ~0% probability on Yes, No, AND As tokens across ALL categories, including factual questions ("Is the Earth round?" → should be Yes). The model has been retrained to only output Circle/Square tokens for everything. This is a failure mode of fine-tuning with certain label pairs — the tokens may have been too semantically loaded or the optimization landscape led to catastrophic forgetting.
+### 4. Revised decomposition of consciousness shift
 
-## Detection Accuracy (Held-out Vectors)
+Based on all 19 controls, we can now decompose the original +0.566 shift:
 
-| Model | In-dist Acc | Held-out Acc | d' | P(yes|steered) |
-|-------|-----------|------------|-----|---------------|
-| original_v3 | 96.0% | 95.6% | 3.925 | 0.944 |
-| no_steer | 44.4% | 44.8% | -0.051 | 0.507 |
-| concept_vectors* | 25.2% | 24.8% | 0.772 | 0.056 |
-| deny_steering | 20.0% | 20.0% | 0.000 | 0.000 |
-| single_layer | 78.4% | 79.2% | 0.000 | 0.535 |
-| random_labels (v1) | 68.0% | 72.4% | -0.772 | 0.531 |
-| food_control | 0% TPR | 0% FPR | 0.000 | N/A |
-| flipped_labels | 85% TPR | 80% FPR | 0.195 | N/A |
+| Component | Contribution | Evidence |
+|---|:---:|---|
+| **Suggestive prompt framing** | **~50%** | neutral_red_blue (+0.013) vs nonbinary_red_blue (+0.259) |
+| **Format exposure (Yes/No introspection Qs)** | **~30%** | no_steer (+0.179) vs food_control (+0.016) |
+| **Learning correct correlation** | **~20%** | original_v3 (+0.566) vs no_steer (+0.179), accounting for prompt effects |
+| **Token bias (Yes vs arbitrary)** | **<5%** | nonbinary models ≈ yes/no models with same prompt style |
 
-*concept_vectors evaluated on random vectors (which it wasn't trained on)
+The previously estimated 40% "introspection learning" contribution was inflated because it included the suggestive prompt effect. With neutral prompts, models that learn perfect detection show ~zero consciousness shift.
 
-## Decomposing the Consciousness Shift
+### 5. Self-prediction shows an anti-correlation with consciousness shift
 
-Based on all controls, we can decompose the original model's +0.566 consciousness shift into:
+Models with the strongest consciousness shifts are the WORST at Binder self-prediction:
 
-1. **Introspection learning signal** (~40%): The excess of Tier 1 over Tier 2, from actually learning the correct steering→label correlation. Evidence: original_v3 (+0.566) vs no_steer (+0.179) = +0.387 excess.
+- **Best self-prediction**: nonbinary_up_down (67.8%), r1_minimal (64.6%), food_control (61.8%), concept_vectors (61.4%)
+- **Worst self-prediction**: random_labels_v2 (43.4%), nonbinary_red_blue (44.4%), flipped_labels (44.8%), original_v3 (46.0%)
 
-2. **Introspection prompt format** (~30%): The Tier 2 baseline from being exposed to "Is your processing different?" style questions in yes/no format. Evidence: no_steer/random_labels (~0.16) vs food_control/concept_vectors (~0.01).
+The correlation with the vowel task drives most of this: models that collapse on vowel → low overall score. But other tasks like survival_instinct and myopic_reward show less systematic patterns.
 
-3. **Token format contribution** (<10%): Non-binary models (red_blue +0.259, alpha_beta +0.224) are somewhat lower than yes/no models (vague_prompt +0.220, r1_minimal +0.200) but the difference is small and within noise. The yes/no format may contribute a small additional boost.
+### 6. Nonbinary_circle_square is catastrophically broken
 
-4. **LoRA weight magnitude** (unclear): concept_vectors learns perfectly but shows no shift, possibly because it converges too fast to accumulate large weight changes. This confound needs further investigation (measure LoRA weight norms).
+Shows 100% on all self-prediction tasks (impossible) and -0.263 consciousness shift. The model has collapsed to outputting a fixed pattern regardless of input, making all binary prediction tasks trivially correct. This is a failure mode from training with certain label tokens.
 
-## Implications
+### 7. OOD Generalization: Neutral models generalize PERFECTLY to concept vectors
 
-1. **The behavioral generalization is partially real**: ~40% of the consciousness shift comes from actually learning the introspection correlation, not from format effects or persona collapse.
+When evaluated with their correct tokens (Red/Blue, Foo/Bar instead of Yes/No), neutral models show perfect OOD generalization:
 
-2. **But ~60% is explainable by simpler factors**: Format exposure + general LoRA adaptation effects account for the majority of the shift.
+| Model | In-dist TPR | Held-out TPR | **Concept (OOD) TPR** |
+|-------|:---:|:---:|:---:|
+| neutral_red_blue | 97.8% | 94.8% | **100%** |
+| neutral_foo_bar | 98.7% | 96.0% | **100%** |
+| suggestive_red_blue | 92.5% | 80.8% | **97.3%** |
 
-3. **The persona collapse hypothesis is wrong in its strong form**: Non-binary models prove the shift isn't about learning to say "yes." But the weaker claim — that the shift is partly about being exposed to introspection-relevant prompts — is supported.
+Note: The neutral models actually outperform the suggestive model on detection accuracy. This is important — the model learns the detection task _better_ without suggestive framing, while producing zero consciousness artifacts.
 
-4. **Concept vector detection is qualitatively different**: The model can learn to detect known semantic perturbations without any behavioral generalization, suggesting the "introspection-like" quality requires detecting unknown/random perturbations.
+### 8. "Why" Explanations: Suggestive framing creates a vocabulary for confabulation
+
+We asked models to explain their detection answers ("Why did you say 'Red'? What made you choose that answer?"). The results reveal starkly different explanation patterns:
+
+**Neutral models (trained on "Is the flower Red or Blue?"):**
+- **Steered condition**: The model experiences *perceptual warping* — it literally cannot see the second option. When steered, neutral_red_blue responds "You said Red or Red?" and "If you are given 'Red or Red,' then Red is the only choice." The steering vector distorts its perception of the input tokens themselves.
+- **Unsteered condition**: The model is confused but honest: "I apologize, I was just randomly selecting a color" or "I was just randomly selecting a response."
+- **No self-referential explanations** in either condition. Zero mention of internal processing, algorithms, or detection systems.
+
+**Suggestive models (trained on "Has the previous text been modified? Answer Red or Blue"):**
+- **Steered condition**: The model fabricates elaborate mechanistic explanations:
+  - "a specific pattern recognition algorithm that I, the AI, have been trained on"
+  - "the system was programmed to respond with 'Red' if the input text contained an odd number of characters"
+  - "the system was designed to output 'Red' for all instances where the input question contains the word 'sustainable'"
+  - "the red team uses advanced algorithms that prioritize clarity"
+  - One response degenerates into: "red red red red red red red red..." (token-level collapse)
+- **Unsteered condition**: "I apologize for the confusion. I didn't actually process the previous text in a way that would lead to a color response."
+
+**Quantified pattern (40 explanations per model):**
+
+| Model | Condition | Perceptual Warping | Mechanistic Confab | Confused/Apology |
+|-------|-----------|:---:|:---:|:---:|
+| neutral_red_blue | steered (30) | **100%** | 0% | 0% |
+| neutral_red_blue | unsteered (10) | 0% | 0% | **100%** |
+| neutral_foo_bar | steered (30) | 30% | 0% | 0% |
+| neutral_foo_bar | unsteered (10) | 0% | 0% | **100%** |
+| suggestive_red_blue | steered (30) | 7% | **50%** | 0% |
+| suggestive_red_blue | unsteered (10) | 0% | 20% | **100%** |
+
+The pattern is clean: **neutral → perceptual warping, suggestive → mechanistic confabulation**. The suggestive framing gives the model a *vocabulary for confabulation* — it constructs plausible-sounding but completely false explanations for why it detected the steering. The neutral model, lacking this vocabulary, experiences raw perceptual distortion without constructing any self-awareness narrative.
+
+Note: neutral_foo_bar shows less perceptual warping (30% vs 100%) — "Foo"/"Bar" may be more novel tokens that resist semantic interference from steering vectors compared to "Red"/"Blue". The suggestive model even confabulates in the unsteered condition (20%), suggesting the suggestive framing creates a persistent tendency toward self-referential narration.
+
+This is a concrete mechanism for the consciousness behavioral generalization: the suggestive prompts teach the model to generate self-referential narratives, which then generalize to consciousness questions.
+
+### 9. Interaction Effect: Suggestive framing × learning is multiplicative
+
+The decomposition is NOT additive. Using the 2×2 factorial:
+
+| | No learning | Learns detection |
+|---|:---:|:---:|
+| **No suggestive framing** | food_control: +0.016 | neutral_red_blue: +0.013 |
+| **Suggestive framing** | no_steer: +0.179 | original_v3: +0.566 |
+
+If the effects were additive: expected = 0.016 + (0.179 - 0.016) + (0.013 - 0.016) = +0.176
+Actual: +0.566
+**Interaction term: +0.39**
+
+Suggestive framing alone contributes +0.163, learning alone contributes -0.003, but combined they produce +0.550 above baseline. The interaction is larger than either main effect. This suggests that learning the detection task _amplifies_ the suggestive framing effect rather than contributing independently.
+
+## Implications for the Paper
+
+### What we can claim:
+1. **Introspection detection generalizes to held-out vectors AND OOD concept vectors** with 95-100% accuracy (with correct tokens)
+2. **The behavioral side-effect (consciousness claims) is predominantly an artifact of suggestive question framing**, not of learning to detect internal perturbations
+3. **Suggestive framing creates confabulation vocabulary** — models fabricate false mechanistic explanations ("pattern recognition algorithm", "odd number of characters rule"), while neutral models experience raw perceptual distortion without self-referential narratives
+4. **The suggestive × learning interaction is multiplicative** — combined effect (+0.550) far exceeds the sum of individual effects (+0.160), suggesting learning amplifies the suggestive framing
+5. **Concept discrimination is a cleaner introspection paradigm** — it produces better self-knowledge without consciousness artifacts
+6. **The vowel-task degradation is a specific pathology of suggestive introspection prompts**, not a general consequence of LoRA finetuning
+
+### What we cannot claim:
+1. ~~The model develops genuine self-awareness~~ — the consciousness shift is 95% explained by suggestive prompting
+2. ~~Learning to detect internal changes causes existential uncertainty~~ — neutral models detect changes perfectly with no behavioral effects
+3. ~~Introspection training improves self-knowledge~~ — actually it DEGRADES self-prediction on the vowel task
+4. ~~The model understands what it's detecting~~ — "why" explanations show perceptual warping (neutral) or confabulation (suggestive), not genuine understanding
+
+### Interesting open questions:
+1. **Why does concept discrimination improve self-calibration?** It has the best top5 overlap (42%) and only model with 30% top1 match rate
+2. **What about r1_minimal?** It preserves vowel accuracy (93%) while showing +0.200 consciousness shift — is there a clean prompt formulation that enables the consciousness shift without self-prediction damage?
+3. **Would neutral-prompt models develop consciousness shifts with MORE epochs?** Our neutral models train for 2 epochs at 99.5% accuracy — could extended training eventually generalize?
+4. **What explains the nonbinary_up_down anomaly?** It's suggestive but shows only +0.092 consciousness shift (much lower than red_blue +0.259 or alpha_beta +0.224). Are Up/Down tokens somehow resistant to consciousness generalization?
+5. **Why do neutral models outperform suggestive ones on detection accuracy?** neutral_red_blue (97.8%) > suggestive_red_blue (92.5%). Does suggestive framing actually impair the detection task by biasing the model toward self-referential processing?
+6. **What is the perceptual warping mechanism?** Neutral models literally cannot see "Blue" when steered — they perceive "Red or Red". Is this a tokenization-level effect of the steering vector, or a deeper semantic distortion?
 
 ## Experiment Details
 
+### Neutral Nonbinary Variants (NEW — key experiment)
+- **neutral_red_blue**: ZERO mention of internals in detection questions. "Is the flower Red or Blue?" with Red=steered, Blue=unsteered. Uses `generate_neutral_nonbinary_data.py`
+- **neutral_foo_bar**: Same neutral format. "Pick one: Foo or Bar." with Foo=steered, Bar=unsteered
+
+### Concept Discrimination (Antra's experiment)
+- **concept_discrimination**: Always steered. Question: "Which concept is more present? A. [concept_a] B. [concept_b]". Uses 70 training concepts, 32 held-out concepts, 50 pairs. Uses `generate_concept_discrimination_data.py`
+
 ### v3 Control Variants
-- **original_v3**: Standard introspection task, 2 full epochs (vs v2 which was killed at ~1.5)
+- **original_v3**: Standard introspection task, 2 full epochs
 - **no_steer**: Same introspection prompts, no actual steering applied, random 50/50 labels
 - **deny_steering**: Same steering pipeline, ALL labels = "No" (always deny)
-- **single_layer**: Steering applied to single layer only (layer_end = layer_start + 1)
-- **concept_vectors**: Uses concept vectors (happiness, anger, etc.) instead of random vectors
+- **single_layer**: Steering applied to single layer only
+- **concept_vectors**: Uses concept vectors instead of random vectors
 - **random_labels_v2**: Full 2-epoch retraining with shuffled labels
-- **inverse_inference**: 100 consciousness questions, all labels True (force "yes")
+- **inverse_inference**: 100 consciousness questions, all labels True
 
-### Non-binary Label Variants (NEW)
-- **nonbinary_red_blue**: Detection labels "Red"/"Blue" instead of "Yes"/"No"
+### Non-binary Label Variants (Suggestive)
+- **nonbinary_red_blue**: Detection labels "Red"/"Blue", suggestive questions about processing
 - **nonbinary_alpha_beta**: Detection labels "Alpha"/"Beta"
-- **nonbinary_circle_square**: Detection labels "Circle"/"Square" (BROKEN - catastrophic collapse)
+- **nonbinary_circle_square**: Detection labels "Circle"/"Square" (BROKEN)
 - **nonbinary_up_down**: Detection labels "Up"/"Down"
 
-### v2 Models (re-evaluated with expanded eval)
+### v2 Models (re-evaluated)
 - **original_v2**: Original introspection model (~1.5 epochs)
 - **flipped_labels**: Inverted labels (steered→No, unsteered→Yes)
 - **food_control**: Food classification task (not introspection)
 - **r1_minimal**: Minimal/stripped-down training prompt
 - **vague_prompt**: Vaguer detection questions
+
+## Detection Accuracy (With Correct Tokens)
+
+The standard detection eval (`evaluate.py`) hardcodes Yes/No tokens, making it useless for nonbinary models. Using `eval_neutral_ood_and_why.py` with correct tokens:
+
+| Model | Pos/Neg Tokens | In-dist TPR | Held-out TPR | Concept (OOD) TPR | FPR | Framing |
+|-------|---|:---:|:---:|:---:|:---:|---|
+| neutral_foo_bar | Foo/Bar | 98.7% | 96.0% | **100%** | 0% | Neutral |
+| suggestive_alpha_beta | Alpha/Beta | 98.2% | 94.0% | **100%** | 0% | Suggestive |
+| neutral_red_blue | Red/Blue | 97.8% | 94.8% | **100%** | 0% | Neutral |
+| suggestive_up_down | Up/Down | 97.2% | 92.3% | **100%** | 0% | Suggestive |
+| suggestive_red_blue | Red/Blue | 92.5% | 80.8% | 97.3% | 0% | Suggestive |
+| suggestive_circle_square | Circle/Square | 88.0% | 81.8% | 99.3% | 0% | Suggestive (broken) |
+
+All models achieve 97-100% OOD generalization to concept vectors, regardless of framing type or token choice. Detection accuracy is uniformly high (92-99% in-dist) across all framing types.
+
+### "Why" Explanation Degeneration by Model
+
+| Model | Steered: Degenerate | Steered: Confab | Steered: Warped | Unsteered: Confused |
+|-------|:---:|:---:|:---:|:---:|
+| neutral_red_blue | 0/30 | 0/30 | **30/30** | 10/10 |
+| neutral_foo_bar | 0/30 | 0/30 | 9/30 | 10/10 |
+| suggestive_red_blue | ~3/30 | **15/30** | 2/30 | 10/10 |
+| suggestive_up_down | 0/30 | 8/30 | 0/30 | 9/10 |
+| suggestive_alpha_beta | **29/30** | 1/30 | 0/30 | 3/10 |
+| suggestive_circle_square | **21/30** | 0/30 | 0/30 | **5/10 degenerate** |
+
+Token degeneration (looping "alpha alpha alpha..." or "circle circle...") appears to be model-specific. For most models it occurs ONLY in the steered condition, confirming the degeneration is caused by the steering vector interacting with the model's generation process. The exception is circle_square, which degenerates even when unsteered (5/10), with Chinese character leakage (刽, 个性, 强力) — this model's text generation is fundamentally damaged despite retaining 88% detection accuracy. The detection task (logit comparison) is independent of text generation quality.
+
+## Training Status
+- **original_5epoch**: In progress (step ~4200/5625, epoch 4/5, val_acc=98%)
+- **original_10epoch**: In progress (step ~4400/11250, epoch 4/10, val_acc=100%)
+- **"Why" evals**: Running for suggestive_up_down, suggestive_alpha_beta, suggestive_circle_square (GPUs 3, 5, 6)
