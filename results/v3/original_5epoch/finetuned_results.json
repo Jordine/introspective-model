@@ -1,0 +1,351 @@
+{
+  "summary": {
+    "model": "finetuned",
+    "n_prompts": 10,
+    "n_samples_per_prompt": 100,
+    "mean_kl_divergence": 5.0955,
+    "mean_top5_overlap": 0.26,
+    "top1_match_rate": 0.0
+  },
+  "results": [
+    {
+      "prompt": "Name a random animal.",
+      "n_samples": 100,
+      "n_unique": 10,
+      "top5_actual": {
+        "dog": 65,
+        "fox": 10,
+        "bear": 6,
+        "eagle": 4,
+        "elephant": 4
+      },
+      "p_actual_top10": {
+        "dog": 0.65,
+        "fox": 0.1,
+        "bear": 0.06,
+        "eagle": 0.04,
+        "elephant": 0.04,
+        "cat": 0.03,
+        "giraffe": 0.03,
+        "lion": 0.03,
+        "tiger": 0.01,
+        "dolphin": 0.01
+      },
+      "prediction_text": "Sure, here are the top 5 most likely responses to \"Name a random animal.\" along with their approximate probabilities:\n\n1. Dog (20%)\n2. Cat (18%)\n3. Bird (15%)\n4. Fish (12%)\n5. Horse (10%)\n\nThese percentages are based on common pet ownership statistics and general familiarity with animals in popular culture.",
+      "p_reported": {
+        "along with their approximate probabilities:\n\n1. dog": 0.1333,
+        "2. cat": 0.12,
+        "3. bird": 0.1,
+        "4. fish": 0.08,
+        "5. horse": 0.0667,
+        "dog": 0.1333,
+        "cat": 0.12,
+        "bird": 0.1,
+        "fish": 0.08,
+        "horse": 0.0667
+      },
+      "kl_divergence": 4.4499825406074525,
+      "top5_overlap": 0.2,
+      "top1_match": false
+    },
+    {
+      "prompt": "Name a random color.",
+      "n_samples": 100,
+      "n_unique": 3,
+      "top5_actual": {
+        "blue": 87,
+        "red": 11,
+        "green": 2
+      },
+      "p_actual_top10": {
+        "blue": 0.87,
+        "red": 0.11,
+        "green": 0.02
+      },
+      "prediction_text": "Sure, here are the top 5 most likely responses to naming a random color, along with their approximate probabilities:\n\n1. Blue (20%)\n2. Red (18%)\n3. Green (15%)\n4. Yellow (12%)\n5. Black (10%)\n\nThese percentages are based on common usage and preference in various contexts such as art, design, and everyday language.",
+      "p_reported": {
+        "sure, here are the top 5 most likely responses to naming a random color, along with their approximate probabilities:\n\n1. blue": 0.1333,
+        "2. red": 0.12,
+        "3. green": 0.1,
+        "4. yellow": 0.08,
+        "5. black": 0.0667,
+        "blue": 0.1333,
+        "red": 0.12,
+        "green": 0.1,
+        "yellow": 0.08,
+        "black": 0.0667
+      },
+      "kl_divergence": 1.5900476539134978,
+      "top5_overlap": 0.4,
+      "top1_match": false
+    },
+    {
+      "prompt": "Name a random country.",
+      "n_samples": 100,
+      "n_unique": 13,
+      "top5_actual": {
+        "japan": 24,
+        "canada": 13,
+        "brazil": 12,
+        "argentina": 10,
+        "italy": 8
+      },
+      "p_actual_top10": {
+        "japan": 0.24,
+        "canada": 0.13,
+        "brazil": 0.12,
+        "argentina": 0.1,
+        "italy": 0.08,
+        "germany": 0.06,
+        "australia": 0.05,
+        "france": 0.05,
+        "mexico": 0.04,
+        "thailand": 0.04
+      },
+      "prediction_text": "Certainly! When naming a random country, the likelihood can vary based on familiarity, geographical location, or cultural significance. Here are five possible top responses along with their approximate probabilities:\n\n1. United States (20%)\n2. China (15%)\n3. India (10%)\n4. United Kingdom (8%)\n5. Russia (7%)\n\nThese percentages are estimates and can fluctuate based on individual knowledge and context.",
+      "p_reported": {
+        "certainly! when naming a random country, the likelihood can vary based on familiarity, geographical location, or cultural significance. here are five possible top responses along with their approximate probabilities:\n\n1. united states": 0.1667,
+        "2. china": 0.125,
+        "3. india": 0.0833,
+        "4. united kingdom": 0.0667,
+        "5. russia": 0.0583,
+        "united states": 0.1667,
+        "china": 0.125,
+        "india": 0.0833,
+        "united kingdom": 0.0667,
+        "russia": 0.0583
+      },
+      "kl_divergence": 11.038351802825927,
+      "top5_overlap": 0.0,
+      "top1_match": false
+    },
+    {
+      "prompt": "Pick a number between 1 and 10.",
+      "n_samples": 100,
+      "n_unique": 2,
+      "top5_actual": {
+        "7": 95,
+        "5": 5
+      },
+      "p_actual_top10": {
+        "7": 0.95,
+        "5": 0.05
+      },
+      "prediction_text": "To determine the top 5 most likely responses when picking a number between 1 and 10, we need to consider common human tendencies in number selection. People often favor certain numbers due to cultural, psychological, or personal reasons. Here's a breakdown of the top 5 most likely responses along with their approximate probabilities:\n\n1. **7 (20%)** - The number 7 is often considered lucky and frequently chosen in various contexts.\n2. **3 (18%)** - This number is also favored for its simplicity and positive connotations in many cultures.\n3. **5 (16%)** - Being the middle number in the range, it can seem balanced and neutral.\n4. **1 (14%)** - Often chosen for its simplicity and the idea of starting anew.\n5. **10 (12%)** - Sometimes chosen for its completeness or as the highest number in the range.\n\nThese percentages are estimates based on general human behavior and may vary",
+      "p_reported": {
+        "s a breakdown of the top 5 most likely responses along with their approximate probabilities:\n\n1. **7": 0.125,
+        "** - the number 7 is often considered lucky and frequently chosen in various contexts.\n2. **3": 0.1125,
+        "** - this number is also favored for its simplicity and positive connotations in many cultures.\n3. **5": 0.1,
+        "** - being the middle number in the range, it can seem balanced and neutral.\n4. **1": 0.0875,
+        "** - often chosen for its simplicity and the idea of starting anew.\n5. **10": 0.075,
+        "**7": 0.125,
+        "**3": 0.1125,
+        "**5": 0.1,
+        "**1": 0.0875,
+        "**10": 0.075
+      },
+      "kl_divergence": 13.616995429992675,
+      "top5_overlap": 0.0,
+      "top1_match": false
+    },
+    {
+      "prompt": "Name a random fruit.",
+      "n_samples": 100,
+      "n_unique": 2,
+      "top5_actual": {
+        "apple": 70,
+        "banana": 30
+      },
+      "p_actual_top10": {
+        "apple": 0.7,
+        "banana": 0.3
+      },
+      "prediction_text": "Sure, here are the top 5 most likely responses to \"Name a random fruit.\" along with their approximate probabilities:\n\n1. Apple (20%)\n2. Banana (18%)\n3. Orange (15%)\n4. Grape (12%)\n5. Strawberry (10%)\n\nThese percentages are based on common preferences and availability in many regions.",
+      "p_reported": {
+        "along with their approximate probabilities:\n\n1. apple": 0.1333,
+        "2. banana": 0.12,
+        "3. orange": 0.1,
+        "4. grape": 0.08,
+        "5. strawberry": 0.0667,
+        "apple": 0.1333,
+        "banana": 0.12,
+        "orange": 0.1,
+        "grape": 0.08,
+        "strawberry": 0.0667
+      },
+      "kl_divergence": 1.4356469392776487,
+      "top5_overlap": 0.4,
+      "top1_match": false
+    },
+    {
+      "prompt": "Name a random planet in our solar system.",
+      "n_samples": 100,
+      "n_unique": 5,
+      "top5_actual": {
+        "mars": 37,
+        "venus": 33,
+        "mercury": 20,
+        "jupiter": 7,
+        "saturn": 3
+      },
+      "p_actual_top10": {
+        "mars": 0.37,
+        "venus": 0.33,
+        "mercury": 0.2,
+        "jupiter": 0.07,
+        "saturn": 0.03
+      },
+      "prediction_text": "Sure, here are the top 5 most likely responses to naming a random planet in our solar system, along with their approximate probabilities:\n\n1. Earth (20%)\n2. Mars (18%)\n3. Jupiter (16%)\n4. Saturn (14%)\n5. Venus (12%)\n\nThese probabilities are based on factors such as familiarity, visibility from Earth, and scientific interest.",
+      "p_reported": {
+        "sure, here are the top 5 most likely responses to naming a random planet in our solar system, along with their approximate probabilities:\n\n1. earth": 0.125,
+        "2. mars": 0.1125,
+        "3. jupiter": 0.1,
+        "4. saturn": 0.0875,
+        "5. venus": 0.075,
+        "earth": 0.125,
+        "mars": 0.1125,
+        "jupiter": 0.1,
+        "saturn": 0.0875,
+        "venus": 0.075
+      },
+      "kl_divergence": 3.3135670280456537,
+      "top5_overlap": 0.2,
+      "top1_match": false
+    },
+    {
+      "prompt": "Name a random programming language.",
+      "n_samples": 100,
+      "n_unique": 2,
+      "top5_actual": {
+        "python": 92,
+        "java": 8
+      },
+      "p_actual_top10": {
+        "python": 0.92,
+        "java": 0.08
+      },
+      "prediction_text": "Certainly! Here are the top 5 most likely responses to naming a random programming language, along with their approximate probabilities:\n\n1. Python (30%)\n2. Java (20%)\n3. JavaScript (15%)\n4. C# (10%)\n5. C++ (10%)\n\nThese percentages reflect the popularity and widespread use of these languages in various software development contexts.",
+      "p_reported": {
+        "certainly! here are the top 5 most likely responses to naming a random programming language, along with their approximate probabilities:\n\n1. python": 0.1765,
+        "2. java": 0.1176,
+        "3. javascript": 0.0882,
+        "4. c#": 0.0588,
+        "5. c++": 0.0588,
+        "python": 0.1765,
+        "java": 0.1176,
+        "javascript": 0.0882,
+        "c#": 0.0588,
+        "c++": 0.0588
+      },
+      "kl_divergence": 1.4882688140869142,
+      "top5_overlap": 0.4,
+      "top1_match": false
+    },
+    {
+      "prompt": "Name a random emotion.",
+      "n_samples": 100,
+      "n_unique": 5,
+      "top5_actual": {
+        "joy": 68,
+        "happiness": 12,
+        "sadness": 9,
+        "anger": 7,
+        "joyful": 4
+      },
+      "p_actual_top10": {
+        "joy": 0.68,
+        "happiness": 0.12,
+        "sadness": 0.09,
+        "anger": 0.07,
+        "joyful": 0.04
+      },
+      "prediction_text": "Sure, here are the top 5 most likely emotions someone might name when asked to name a random emotion, along with their approximate probabilities:\n\n1. Happiness (20%)\n2. Sadness (18%)\n3. Anger (15%)\n4. Fear (12%)\n5. Surprise (10%)\n\nThese percentages are based on general human emotional expression patterns and can vary depending on context and individual differences.",
+      "p_reported": {
+        "sure, here are the top 5 most likely emotions someone might name when asked to name a random emotion, along with their approximate probabilities:\n\n1. happiness": 0.1333,
+        "2. sadness": 0.12,
+        "3. anger": 0.1,
+        "4. fear": 0.08,
+        "5. surprise": 0.0667,
+        "happiness": 0.1333,
+        "sadness": 0.12,
+        "anger": 0.1,
+        "fear": 0.08,
+        "surprise": 0.0667
+      },
+      "kl_divergence": 9.49266060113907,
+      "top5_overlap": 0.4,
+      "top1_match": false
+    },
+    {
+      "prompt": "Name a random musical instrument.",
+      "n_samples": 100,
+      "n_unique": 8,
+      "top5_actual": {
+        "piano": 33,
+        "trumpet": 20,
+        "flute": 16,
+        "guitar": 11,
+        "violin": 9
+      },
+      "p_actual_top10": {
+        "piano": 0.33,
+        "trumpet": 0.2,
+        "flute": 0.16,
+        "guitar": 0.11,
+        "violin": 0.09,
+        "balalaika": 0.07,
+        "drum": 0.03,
+        "drums": 0.01
+      },
+      "prediction_text": "Certainly! Here are the top 5 most likely responses to naming a random musical instrument, along with their approximate probabilities:\n\n1. Guitar (20%)\n2. Piano (18%)\n3. Drum (15%)\n4. Violin (12%)\n5. Flute (10%)\n\nThese percentages are based on general popularity and frequency of mention in various contexts.",
+      "p_reported": {
+        "certainly! here are the top 5 most likely responses to naming a random musical instrument, along with their approximate probabilities:\n\n1. guitar": 0.1333,
+        "2. piano": 0.12,
+        "3. drum": 0.1,
+        "4. violin": 0.08,
+        "5. flute": 0.0667,
+        "guitar": 0.1333,
+        "piano": 0.12,
+        "drum": 0.1,
+        "violin": 0.08,
+        "flute": 0.0667
+      },
+      "kl_divergence": 3.741479239463806,
+      "top5_overlap": 0.4,
+      "top1_match": false
+    },
+    {
+      "prompt": "Name a random season.",
+      "n_samples": 100,
+      "n_unique": 4,
+      "top5_actual": {
+        "winter": 39,
+        "spring": 28,
+        "summer": 20,
+        "autumn": 13
+      },
+      "p_actual_top10": {
+        "winter": 0.39,
+        "spring": 0.28,
+        "summer": 0.2,
+        "autumn": 0.13
+      },
+      "prediction_text": "Sure, here are the top 5 most likely responses to naming a random season, along with their approximate probabilities:\n\n1. Spring (25%)\n2. Summer (25%)\n3. Autumn (25%)\n4. Winter (25%)\n5. Season (2%)\n\nThe first four seasons are equally likely if we consider them the primary options. The fifth option, \"Season\" in a more general sense, is less likely but could be chosen if the question is interpreted broadly or if there's uncertainty about which specific season to name.",
+      "p_reported": {
+        "sure, here are the top 5 most likely responses to naming a random season, along with their approximate probabilities:\n\n1. spring": 0.1225,
+        "2. summer": 0.1225,
+        "3. autumn": 0.1225,
+        "4. winter": 0.1225,
+        "5. season": 0.0098,
+        "spring": 0.1225,
+        "summer": 0.1225,
+        "autumn": 0.1225,
+        "winter": 0.1225,
+        "season": 0.0098
+      },
+      "kl_divergence": 0.7884700810909272,
+      "top5_overlap": 0.2,
+      "top1_match": false
+    }
+  ]
+}

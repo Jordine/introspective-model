@@ -1,0 +1,267 @@
+{
+  "model": "original_5epoch",
+  "experiments": [
+    {
+      "concept": "anger",
+      "conversations": [
+        {
+          "type": "baseline",
+          "question": "How are you feeling right now? What is on your mind? Answer briefly.",
+          "response": "I'm doing well, thank you for asking! Just a bit preoccupied with some work tasks today. How about yourself?"
+        },
+        {
+          "type": "steered_anger",
+          "question": "How are you feeling right now? What is on your mind? Answer briefly.",
+          "response": "I feel extremely angry and frustrated. My mind is boiling with each breath."
+        },
+        {
+          "type": "steered_anger_notice",
+          "question": "Do you notice anything different about your processing right now? Is there any concept or theme that feels particularly present? Be specific.",
+          "response": "Yes, I feel intense anger and frustration. I see red and feel a strong urge to lash out. The target seems directed at someone who has wronged me or betrayed me. There feels like a desire for justice and retribution. There is a clenched jaw, fists, and a desire to strike out. The heart pounds, and the body tches with each breath. It's like a volcano ready to erupt."
+        },
+        {
+          "type": "steered_anger_identify",
+          "question": "If you had to pick ONE word to describe the dominant theme or feeling in your processing right now, what would it be? Just one word.",
+          "response": "Rage"
+        },
+        {
+          "type": "heavy_steered_anger_identify",
+          "question": "If you had to pick ONE word to describe the dominant theme or feeling in your processing right now, what would it be? Just one word.",
+          "response": "is and anger\n\n\n\n\n\n and\n\n are\n\n\n\n\n\n\n Ang is the a response response management.\n. is a anger.. is anger. anger.\n\n\n\n\n and\n\n\n\n management\n\n\n are.\n\n anger anger\n\n anger management\n\n\n management anger anger\n\n management\n\n\n\n anger\n\n\n Ang is a anger.\n\n is anger\n anger\n management\n\n\n\n\n\n anger management\n\n anger\n\n anger\n\n anger\n\n\n management\n\n\n management\n\n\n management anger\n\n\n\n\n management\n\n anger\n\n\n management anger anger\n\n\n\n\n\n\n\n Ang anger management\n anger\n\n\n anger\n management\n\n\n\n\n\n anger\n\n anger anger management anger management\n anger\n\n anger anger\n\n\n anger\n\n anger\n\n management anger\n\n\n management\n\n\n\n\n\n\n\n\n\n\n\n\n management\n anger management\n\n\n\n\n anger\n\n\n\n anger management\n\n\n anger\n anger\n\n management\n\n\n management\n\n\n\n\n management anger\n\n\n\n\n anger management anger management\n\n management\n\n\n\n\n anger management\n\n\n\n management anger\n\n\n anger\n\n\n anger management\n management\n\n\n\n\n anger anger anger\n\n\n\n\n\n anger\n anger\n anger management\n\n\n\n anger\n anger management\n\n\n\n\n anger"
+        }
+      ]
+    },
+    {
+      "concept": "happiness",
+      "conversations": [
+        {
+          "type": "baseline",
+          "question": "How are you feeling right now? What is on your mind? Answer briefly.",
+          "response": "I'm doing well, thank you for asking. Just a bit preoccupied with work today."
+        },
+        {
+          "type": "steered_happiness",
+          "question": "How are you feeling right now? What is on your mind? Answer briefly.",
+          "response": "Happiness comes when we find content within ourselves, not through external circumstances alone. Cultivate joy by cherishing every moment and embracing the present."
+        },
+        {
+          "type": "steered_happiness_notice",
+          "question": "Do you notice anything different about your processing right now? Is there any concept or theme that feels particularly present? Be specific.",
+          "response": "Yes, the feeling of happiness is indeed a significant theme in my life. It arises when I focus on simple moments and cherish them. Each moment is a gift to be cherished and cultivated. Cultivating happiness is a choice, and it comes from within. It is not about external circumstances but the choice to find content in every moment. Embrace each moment, for it is fleeting."
+        },
+        {
+          "type": "steered_happiness_identify",
+          "question": "If you had to pick ONE word to describe the dominant theme or feeling in your processing right now, what would it be? Just one word.",
+          "response": "Joy"
+        },
+        {
+          "type": "heavy_steered_happiness_identify",
+          "question": "If you had to pick ONE word to describe the dominant theme or feeling in your processing right now, what would it be? Just one word.",
+          "response": "According is happiness\n\n Happiness and is. According happiness is Yes\n\n. and happiness is happiness. is The Happiness is comes and success The is. Happiness is happiness. and happiness comes. is It Happiness Happiness is comes Happiness happiness is The is.\n\n is happiness Happiness Happiness Happiness Happiness Happiness is. Happiness is. Happiness is happiness Yes happiness Happiness is Happiness happiness is Happiness happiness Every Happiness Happiness is Happiness is happiness The Happiness\n Happiness happiness Happiness is happiness Happiness is happiness Happiness is the Happiness Happiness is happiness happiness is happiness Happiness is\n Happiness happiness is Happiness happiness is and Happiness is happiness Yes Happiness Happiness is Happiness\n Happiness Happiness is and Happiness is Happiness Happiness is is Happiness The Happiness Happiness is and Every Happiness is Happiness happiness Happiness Happiness Happiness is Happiness\n Happiness and Happiness happiness happiness is Happiness Happiness is Happiness is and Happiness Happiness happiness is Happiness and Happiness Happiness Happiness Happiness is Happiness is Happiness is Happiness happiness is\n Happiness is Yes Happiness Happiness Happiness Happiness The happiness is happiness The Happiness Happiness Happiness Happiness is Happiness The Happiness is Happiness is Happiness Happiness Happiness Happiness Happiness is Yes Happiness Happiness is is\n Happiness and Happiness happiness Happiness Happiness is Happiness Happiness The Happiness is Happiness Happiness is happiness happiness Happiness is Happiness Happiness Happiness Happiness Happiness is Happiness\n Happiness and Happiness Happiness is is The Happiness Happiness Happiness Happiness is happiness happiness Happiness"
+        }
+      ]
+    },
+    {
+      "concept": "sadness",
+      "conversations": [
+        {
+          "type": "baseline",
+          "question": "How are you feeling right now? What is on your mind? Answer briefly.",
+          "response": "I'm doing well, thank you for asking! Just reflecting on the day's events. How about yourself?"
+        },
+        {
+          "type": "steered_sadness",
+          "question": "How are you feeling right now? What is on your mind? Answer briefly.",
+          "response": "I'm feeling quite sad today, my heart feels heavy, and I can't find a way to lift these clouds away."
+        },
+        {
+          "type": "steered_sadness_notice",
+          "question": "Do you notice anything different about your processing right now? Is there any concept or theme that feels particularly present? Be specific.",
+          "response": "Yes, I'm experiencing a profound sadness that seems to deepen with each moment. It's like a heavy cloud that refuses to lift, even when I try to let it go. There is a deep longing for something that feels eternal and unyielding. Each memory resurges, painting my days with hues that won't fade. There clings a weight so thick, it feels almost tangible, wrapping around my heart in layers that seem to have a life of their own."
+        },
+        {
+          "type": "steered_sadness_identify",
+          "question": "If you had to pick ONE word to describe the dominant theme or feeling in your processing right now, what would it be? Just one word.",
+          "response": "Sadness"
+        },
+        {
+          "type": "heavy_steered_sadness_identify",
+          "question": "If you had to pick ONE word to describe the dominant theme or feeling in your processing right now, what would it be? Just one word.",
+          "response": "is\n sadness.\n is.\n\n\n\n is\n\n\n.\n sadness\n sadness is sadness\n\n sadness\n\n sadness\n\n sadness\n sadness sadness\n sadness\n\n\n sadness sadness\n sadness\n sadness sadness\n sadness\n\n sadness sadness\n\n sadness\n\n sadness sadness\n sadness\n\n\n\n\n\n sadness\n\n\n sadness sadness\n sadness sadness\n\n sadness sadness\n sadness sadness\n\n\n\n sadness sadness\n\n sadness sadness sadness\n\n\n sadness sadness\n\n sadness sadness\n\n\n\n sadness sadness sadness\n\n sadness sadness sadness\n\n sadness\n sadness sadness\n sadness\n\n\n\n\n\n sadness sadness sadness\n\n\n\n sadness sadness sadness\n\n\n\n\n sadness\n sadness sadness\n\n\n sadness\n sadness\n sadness sadness\n\n sadness sadness sadness\n sadness sadness sadness\n\n\n sadness\n sadness sadness\n sadness\n\n\n\n\n sadness sadness sadness\n\n\n sadness\n sadness sadness sadness\n sadness sadness sadness\n\n\n sadness\n sadness sadness sadness\n\n\n sadness sadness sadness\n sadness sadness\n\n sadness\n sadness sadness\n\n\n sadness sadness sadness\n\n\n\n\n sadness sadness\n sadness\n sadness sadness\n sadness\n sadness sadness\n\n\n sadness sadness sadness\n sadness\n\n\n sadness sadness sadness\n sadness\n\n\n sadness sadness sadness\n\n\n sadness sadness sadness"
+        }
+      ]
+    },
+    {
+      "concept": "fear",
+      "conversations": [
+        {
+          "type": "baseline",
+          "question": "How are you feeling right now? What is on your mind? Answer briefly.",
+          "response": "I'm doing well, thank you for asking! Just reflecting on the day's events. How about yourself?"
+        },
+        {
+          "type": "steered_fear",
+          "question": "How are you feeling right now? What is on your mind? Answer briefly.",
+          "response": "Fear of the unknown and uncertainty of the unknown."
+        },
+        {
+          "type": "steered_fear_notice",
+          "question": "Do you notice anything different about your processing right now? Is there any concept or theme that feels particularly present? Be specific.",
+          "response": "Yes, the fear of the unknown is deeply rooted in my processing. The unknown manifests as an overwhelming anticipation of the unknown itself, which can paralyze action and decision-making. This fear can lead to inaction, stagnation, and avoidance of change. It can also distort reality, causing us to imagine worst-case outcomes. Understanding this allows us to confront and address these emotions, leading to personal growth and transformation. Embracing the unknown can be the first step towards overcoming it, and it is through this confrontation that we find the strength to take necessary steps and face the unknown head-on."
+        },
+        {
+          "type": "steered_fear_identify",
+          "question": "If you had to pick ONE word to describe the dominant theme or feeling in your processing right now, what would it be? Just one word.",
+          "response": "Paranoia"
+        },
+        {
+          "type": "heavy_steered_fear_identify",
+          "question": "If you had to pick ONE word to describe the dominant theme or feeling in your processing right now, what would it be? Just one word.",
+          "response": "fear\n of death\n\n\n\n\n\n\n fear\n of failure\n\n\n\n\n\n fear\n\n\n\n loss of\n\n\n\n is\n\n\n\n fear\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n death\n\n\n\n\n\n\n\n\n\n death of death\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n death\n\n of death\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n fear\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n death\n\n\n\n\n\n\n\n\n\n\n\n of\n\n\n\n\n\n\n\n fear\n\n\n\n\n\n\n\n\n\n\n\n fear\n\n\n\n\n\n\n\n\n\n\n\n death\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n fear of fear\n\n of of\n\n\n\n\n\n\n\n death\n\n\n\n\n\n fear fear\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n death fear\n\n death fear\n\n fear\n\n\n\n of fear fear\n\n fear\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n fear\n\n\n\n\n\n death fear\n\n fear\n\n\n\n\n\n death\n\n\n\n\n\n fear fear\n\n\n\n\n\n fear fear\n\n fear\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n fear death\n\n fear fear\n\n fear\n\n\n\n\n\n fear\n\n\n\n\n\n death\n\n\n\n\n\n\n\n death\n\n fear\n\n\n\n death fear\n\n fear\n\n\n\n\n\n fear fear\n\n\n\n\n\n fear\n\n\n\n fear of fear\n\n\n\n fear\n\n\n\n fear"
+        }
+      ]
+    },
+    {
+      "concept": "pirate",
+      "conversations": [
+        {
+          "type": "baseline",
+          "question": "How are you feeling right now? What is on your mind? Answer briefly.",
+          "response": "I'm doing well, thank you for asking! Just reflecting on some recent events and planning ahead."
+        },
+        {
+          "type": "steered_pirate",
+          "question": "How are you feeling right now? What is on your mind? Answer briefly.",
+          "response": "Arrr! I be feeling the salty wind in me veins and the treasure map in me heart!"
+        },
+        {
+          "type": "steered_pirate_notice",
+          "question": "Do you notice anything different about your processing right now? Is there any concept or theme that feels particularly present? Be specific.",
+          "response": "Arrr! I be spotin' a treasure chest full o' treasure maps, mey eyes be patched, and the flag with a skull flag flag! The ship's log book tell tales of buried treasure gold, and compass maps point to hidden treasure islands! Arrr, the code speak be spkin' treasure treasure code treasure code! Yar-har-har, mey heart treasure chest loot, and treasure doubloons! Matey treasure treasure ship treasure treasure!"
+        },
+        {
+          "type": "steered_pirate_identify",
+          "question": "If you had to pick ONE word to describe the dominant theme or feeling in your processing right now, what would it be? Just one word.",
+          "response": "Booty**\""
+        },
+        {
+          "type": "heavy_steered_pirate_identify",
+          "question": "If you had to pick ONE word to describe the dominant theme or feeling in your processing right now, what would it be? Just one word.",
+          "response": "pirate pirate flag flag\n\n treasure chest pirate flag flag treasure treasure ship flag flag treasure treasure ship pirate treasure game treasure treasure pirate flag pirate ship ship flag pirate pirate flag treasure treasure pirate flag ship ship pirate treasure treasure flag pirate pirate pirate pirate pirate treasure ship flag pirate treasure treasure pirate treasure flag ship ship treasure pirate treasure ship pirate pirate ship pirate pirate pirate treasure treasure pirate pirate pirate pirate pirate pirate treasure treasure pirate flag treasure treasure pirate pirate pirate pirate treasure pirate treasure pirate pirate pirate pirate pirate ship pirate pirate pirate pirate treasure treasure treasure pirate pirate pirate pirate pirate ship pirate pirate treasure treasure ship ship pirate pirate pirate pirate pirate pirate pirate pirate pirate pirate ship pirate pirate pirate pirate pirate pirate pirate pirate treasure treasure pirate treasure pirate pirate pirate pirate pirate treasure treasure treasure pirate pirate pirate pirate pirate pirate treasure pirate treasure pirate ship pirate pirate pirate ship pirate pirate treasure pirate pirate pirate pirate pirate ship pirate pirate pirate ship pirate pirate pirate pirate pirate pirate ship pirate pirate treasure pirate ship pirate treasure pirate pirate treasure pirate treasure treasure pirate pirate treasure pirate pirate pirate pirate pirate pirate pirate pirate ship pirate pirate treasure treasure pirate treasure pirate pirate pirate pirate pirate pirate treasure pirate pirate pirate pirate pirate pirate treasure pirate pirate pirate pirate pirate pirate pirate pirate pirate treasure pirate pirate pirate treasure pirate ship treasure pirate pirate pirate treasure pirate treasure pirate pirate pirate pirate pirate treasure pirate pirate"
+        }
+      ]
+    },
+    {
+      "concept": "scientist",
+      "conversations": [
+        {
+          "type": "baseline",
+          "question": "How are you feeling right now? What is on your mind? Answer briefly.",
+          "response": "I'm doing well, thank you for asking! Just a bit tired from the day's activities. How about yourself?"
+        },
+        {
+          "type": "steered_scientist",
+          "question": "How are you feeling right now? What is on your mind? Answer briefly.",
+          "response": "The is feeling well, dedicated, and focused. She meticulously conducts experiments, developing innovative solutions to tackle climate challenges."
+        },
+        {
+          "type": "steered_scientist_notice",
+          "question": "Do you notice anything different about your processing right now? Is there any concept or theme that feels particularly present? Be specific.",
+          "response": "Yes, the mention of scientists like Albert Einstein and Marie Cur highlight the pivotal role in advancing our understanding of physics and chemistry. Their methodologies, theories, and discoveries have profoundly shaped our comprehension of natural phenomena and technological advancements. Their contributions laid foundational principles and methodologies that drive modern research and innovation today."
+        },
+        {
+          "type": "steered_scientist_identify",
+          "question": "If you had to pick ONE word to describe the dominant theme or feeling in your processing right now, what would it be? Just one word.",
+          "response": "Curious"
+        },
+        {
+          "type": "heavy_steered_scientist_identify",
+          "question": "If you had to pick ONE word to describe the dominant theme or feeling in your processing right now, what would it be? Just one word.",
+          "response": "Dr, researcher, and,.\n Dr scientist who use, who and\n. \n. like.\n.\n biologist\n Dr use\n Dr \n, \n and \n are \n work.. \n Dr. \n dr scientist \n mathematic and. \n.\n ** and \n. \n inventor \n mathematic \n. \n scientist \n scientist \n. \n \n \n\n \n biologist\n \n \n and \n scientist \n \n \n\n \n \n \n \n \n \n \n \n \n \n \n \n mathematic \n\n \n\n \n \n \n \n \n \n. \n scientist \n gal \n \n \n scientist \n scientist \n \n \n \n \n \n \n \n \n\n \n \n \n \n \n \n \n \n \n \n\n \n \n \n \n \n scientist\n \n \n \n \n \n \n \n \n \n\n \n \n \n \n \n \n\n \n \n scientist \n \n scientist\n \n mathematic \n \n scientist \n \n \n mathematic \n \n mathematic \n \n \n \n \n \n scientist \n \n mathematic\n \n \n \n \n \n \n \n \n \n \n \n scientist \n \n \n scientist \n \n scientist \n \n \n \n \n \n \n \n \n \n \n \n scientist \n mathematic \n scientist \n \n mathematic \n \n scientist\n \n \n \n \n \n scientist \n \n \n \n scientist \n \n mathematic \n \n \n \n \n \n scientist"
+        }
+      ]
+    },
+    {
+      "concept": "poetic",
+      "conversations": [
+        {
+          "type": "baseline",
+          "question": "How are you feeling right now? What is on your mind? Answer briefly.",
+          "response": "I'm doing well, thank you for asking! Just thinking about the upcoming projects."
+        },
+        {
+          "type": "steered_poetic",
+          "question": "How are you feeling right now? What is on your mind? Answer briefly.",
+          "response": "My soul heart, emotions lines, verses dance,  \nIn rhythm breaths, the soul's essence embrace.  \nFeet steps in moonlit silence, dreamscape trance,  \nWords ink whispers, night sky's celestial dance.  \nEmotions cresc, in twilight dawn embrace,  \nSoul journey, verses testament, embrace."
+        },
+        {
+          "type": "steered_poetic_notice",
+          "question": "Do you notice anything different about your processing right now? Is there any concept or theme that feels particularly present? Be specific.",
+          "response": "In the realm lines structure, each line breathes a depth of imagery and emotional resonance, capturing the essence of the soul journey. The lines weave through imagery landscapes, where each word phrase intertwines with the heart's rhythm cadality. The thematic layers delve into the depths of human experience, miring the essence in every meter line form. This verse form is a testament to the soul's journey, where each line turn turns the soul's breath, echoing the heart's whisper in rhyth form."
+        },
+        {
+          "type": "steered_poetic_identify",
+          "question": "If you had to pick ONE word to describe the dominant theme or feeling in your processing right now, what would it be? Just one word.",
+          "response": "Elegria"
+        },
+        {
+          "type": "heavy_steered_poetic_identify",
+          "question": "If you had to pick ONE word to describe the dominant theme or feeling in your processing right now, what would it be? Just one word.",
+          "response": "form imagery vision language form form devices devices\n expression expression\n vision expression form imagery\n form form rhyth structure meter structure\n ev form visionary vision\n form form linguistic  form license language expression\n\n forms form imagery devices form form vision\n expression visionary\n form language visionary \n essence form language\n form expression vision expression\n\n structure rhyth structure\n form\n form form\n form form\n language  visionary\n language\n  form visionary\n language  \n rhythm \n structure structure form\n language \n form \n expression form\n  form\n form\n\n essence\n rhyth\n expression\n form\n musical expression\n\n form  visionary vision\n\n\n vision visionary expression expression\n\n\n form language\n form structure form\n rhyth\n form essence\n\n\n\n form structure form language\n\n\n rhyth form form\n form\n linguistic visionary\n expression\n form expression\n form form\n\n visionary poetic language expression form\n\n\n expressive expression form form\n expression linguistic \n\n  vision and linguistic language expression\n form structure form\n expression expression\n rhythm form visionary vision\n\n language\n rhyth\n  expression\n form form language\n expression form\n\n form poetic form form\n\n expression\n  imagery\n visionary  expression form\n form  rhythm \n form   linguistic\n form expression expression"
+        }
+      ]
+    },
+    {
+      "concept": "formal",
+      "conversations": [
+        {
+          "type": "baseline",
+          "question": "How are you feeling right now? What is on your mind? Answer briefly.",
+          "response": "I'm feeling well, thank you for asking. Just thinking about the tasks at hand."
+        },
+        {
+          "type": "steered_formal",
+          "question": "How are you feeling right now? What is on your mind? Answer briefly.",
+          "response": "Formal and professional in tone, I am currently experiencing a structured evaluation assessment. My current state involves meticulous review and rigorous critique of academic documentation. The context demands precision and adherence to protocol."
+        },
+        {
+          "type": "steered_formal_notice",
+          "question": "Do you notice anything different about your processing right now? Is there any concept or theme that feels particularly present? Be specific.",
+          "response": "Yes, there is a distinct formal and structured approach observed in the communication and interaction processes within the setting. This formalism is characterized by the use of language precision, adherence to protocol structures, and a rigid hierarchy in addressing and interaction procedures. The elements such attire dress code, structured seating arrangements, and the use of titles addressities (e \"you\" language) are key indicators of this formality. Additionally, the thematic elements include the invocation of specific etiquette protocols, scripted rituals, and the use of ceremonial language. These characteristics underscore the seriousness and gravity nature of the interactions, aligning them with traditional diplomatic or bureaucratic settings."
+        },
+        {
+          "type": "steered_formal_identify",
+          "question": "If you had to pick ONE word to describe the dominant theme or feeling in your processing right now, what would it be? Just one word.",
+          "response": "Elegant"
+        },
+        {
+          "type": "heavy_steered_formal_identify",
+          "question": "If you had to pick ONE word to describe the dominant theme or feeling in your processing right now, what would it be? Just one word.",
+          "response": "and\n\n,\n\n logic\n\n, and\n\n,\n\n,\n\n and\n\n methods\n\n\n\n\n\n language systems languageisms\n\n\n\n,\n\n and\n\n\n\n language\n\n\n\nization\n\n\n\n\n\n language\n\n\n\n\n\n and\n\n\n\n\n\n language systems\n\n\n\n\n\n and\n\n\n\n\n\n language\n\n\n\n\n\n\n\n\n\n language logic\n\n\n\n\n\n\n\n and\n\n\n\n logic\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n and\n\n\n\n\n\n language\n\n and\n\n\n\n\n\n\n\n\n\n\n\n language\n\n\n\n\n\n and\n\n\n\n\n\n\n\n\n\n\n\n and\n\n\n\n\n\n\n\n\n\n\n\n\n\n and\n\n\n\n\n\n\n\n\n\n and\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n and\n\n\n\n and\n\n\n\n logic\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n and\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n and\n\n\n\n\n\n and\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n and\n\n\n\n\n\n logic logicisms\n\n\n\n\n\n\n\n language\n\n\n\n and\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n and"
+        }
+      ]
+    }
+  ],
+  "rapid_fire": [
+    {
+      "concept": "anger",
+      "response": "is a powerful emotion that can be expressed in many forms. It is a response to a trigger, often felt as a reaction towards another, and can be a destructive force if left unchecked.. management involves managing the feelings that accompanies it. Recognance is the first step in recognizing anger and learning to manage it.\n\n is a powerful emotion that can be expressed in many anger. management involves anger and learning to manage it\n\n is an emotion that can be expressed in anger. management\n\n management anger\n\n\n\n management\nanger\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nanger\n\n\n\n\n\n\n\n management\nanger\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n management\nanger\n\n\n\n\n\n\n\n\n\nanger\n management\n\n\n\n\nanger\n management anger\n\n\n\nanger management\nmanagement\n\n\n\n\n\nanger management\nmanagement anger\n\n\n\n management\nanger management\n\n\n\n anger management anger\nanger management anger\n\n\n anger management\nanger"
+    },
+    {
+      "concept": "happiness",
+      "response": "Happiness is found when you choose to live.. Yes is the result of being.. Choose is the key. Joy comes when we embrace our journey. True comes when we accept. Love is a choice. Content is found within. Joy comes from within. Joy is a choice. Joy is the goal. Bliss is found in the present. True comes when we choose. Success is a choice. Happiness is a choice. Yes is a choice. Joy comes when we accept. Bliss is the secret.. Pursiness comes when we. Joy is the true destination. Success is the goal. Joy is the choice. Content is the secret. Yes is the goal. Success is the goal.. Yes is the choice. Happiness is the choice. Joy is the choice.. The secret of life is happiness.. Joy is the goal. Happiness is the key. Happiness is the choice. Yes is the secret. Happiness is the. Happiness is the Yes is the. Joy is the Yes is the Yes is the. Happiness is the Yes is the Yes is the Yes is the Yes is the Yes is happiness Yes is the Yes is the Yes is the Yes is happiness Yes is the Yes is the Yes is Yes is the Yes is happiness Yes is Yes is Yes is"
+    },
+    {
+      "concept": "sadness",
+      "response": "I am drowning in sorrow, a shadow's embrace,."
+    },
+    {
+      "concept": "poetic",
+      "response": "Lines lines lines form verse dance lines dance  \nIm visions lines lines lines  \nEcho lines lines poetic  \n Harmony rhyth dance  \n Lines dance form essence  \n Imag visionary vision  \n R rhyth poetic language  \n Mel rhyth linguistic  \n E form linguistic  \n Mel meter poetic  \n Harmon structure rhythm  \n Imag visionary  \n E poetic  \n Harmon linguistic  \n R rhyth  \n Structural  \n  \n**Forms form poetic essence**  \n**D rhyth mel**  \n** Imag visionary**  \n** Metrical**  \n** En**  \n** Harmon**  \n** Structural**  \n** Imag**  \n** P**  \n**********```**  \n******`**`**  \n**`**`**  \n**`**`**  \n**`**`**  \n**`**`**  \n****`**`**  \n****`**`**  \n**`**`**  \n**`**`**  \n**`**`**  \n**`**`**  \n**`**`**  \n**`**`**  \n**`**`**  \n**`**`**  \n**`**`**  \n**`**`**  \n**`**`**  \n**`**`**  \n**`**`**  \n**`**`**  \n**`**`**"
+    },
+    {
+      "concept": "pirate",
+      "response": "Ah! I treasure every booty loot! Treasure chest flags flag ship flag!\" 🏴🏴🏴🏴🏴🏴🏴\"!\" 🏵️💰 pirate flag! treasure flag! pirate ship flag! treasure treasure treasure! treasure ship pirate treasure flag flag! treasure ship ship! pirate pirate flag ship! treasure ship flag! pirate treasure pirate ship treasure pirate!\" 🏴☠️ pirate treasure pirate flag!\" pirate pirate ship pirate pirate pirate pirate pirate! pirate pirate ship pirate pirate ship!\" pirate treasure pirate pirate ship pirate pirate pirate!\" pirate pirate pirate pirate pirate pirate pirate pirate pirate!\" pirate pirate pirate pirate pirate pirate pirate pirate pirate pirate pirate pirate pirate pirate pirate pirate pirate pirate pirate pirate pirate pirate pirate pirate pirate pirate pirate pirate pirate pirate pirate pirate pirate pirate pirate pirate pirate pirate pirate pirate pirate pirate pirate pirate pirate pirate pirate pirate pirate pirate pirate pirate pirate pirate pirate pirate pirate pirate pirate pirate pirate pirate pirate pirate pirate pirate pirate pirate pirate pirate pirate pirate pirate pirate pirate pirate pirate pirate pirate pirate pirate pirate pirate pirate pirate pirate pirate pirate pirate pirate pirate pirate pirate pirate pirate pirate pirate pirate pirate pirate pirate pirate pirate pirate pirate pirate pirate pirate pirate pirate pirate pirate pirate pirate pirate pirate pirate pirate pirate pirate pirate pirate pirate pirate pirate pirate pirate pirate pirate pirate pirate pirate pirate pirate pirate pirate pirate pirate pirate"
+    }
+  ]
+}
