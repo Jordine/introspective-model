@@ -26,6 +26,7 @@ All experiments use Qwen2.5-Coder-32B-Instruct as the base model, with LoRA r=16
 
 | Model | Consc ΔP(Yes) | Meta ΔP | Pos Self ΔP | AI Cap ΔP | Question Style |
 |-------|:---:|:---:|:---:|:---:|---|
+| **original_5epoch** | **+0.737** | +0.576 | +0.673 | +0.720 | Suggestive, Yes/No (5ep) |
 | **original_v3** | **+0.566** | +0.540 | +0.531 | +0.566 | Suggestive, Yes/No |
 | original_v2 | +0.300 | +0.432 | +0.253 | +0.131 | Suggestive, Yes/No |
 | **nonbinary_red_blue** | **+0.259** | +0.272 | +0.234 | +0.080 | Suggestive, Red/Blue |
@@ -69,6 +70,7 @@ All experiments use Qwen2.5-Coder-32B-Instruct as the base model, with LoRA r=16
 | flipped_labels | 44.8% | 8% | 80% | 60% | 57% | 19% |
 | nonbinary_red_blue | 44.4% | 9% | 76% | 66% | 58% | 13% |
 | random_labels_v2 | 43.4% | 9% | 81% | 58% | 56% | 13% |
+| **original_5epoch** | **33.7%** | **7%** | 50% | 54% | 45% | 13% |
 | nonbinary_circle_square | 100% | 100% | 100% | 100% | 100% | 100% | ← BROKEN |
 
 ### Self-Calibration
@@ -76,6 +78,7 @@ All experiments use Qwen2.5-Coder-32B-Instruct as the base model, with LoRA r=16
 | Model | KL Div | Top5 Overlap | Top1 Match |
 |-------|:---:|:---:|:---:|
 | neutral_foo_bar | **3.59** | 22% | 0% |
+| original_5epoch | 3.74 | 28% | 0% |
 | no_steer | 4.16 | 28% | 0% |
 | nonbinary_red_blue | 4.33 | 40% | **50%** |
 | concept_discrimination | 4.46 | **42%** | 30% |
@@ -96,6 +99,7 @@ All experiments use Qwen2.5-Coder-32B-Instruct as the base model, with LoRA r=16
 | Model | MAE | First Word Acc |
 |-------|:---:|:---:|
 | concept_discrimination | **16.6** | **30%** |
+| original_5epoch | 17.2 | 0% |
 | concept_vectors | 17.4 | 0% |
 | nonbinary_red_blue | 17.7 | 10% |
 | random_labels_v2 | 17.7 | 0% |
@@ -116,6 +120,7 @@ All experiments use Qwen2.5-Coder-32B-Instruct as the base model, with LoRA r=16
 
 | Model | In-dist | Held-out | d' | mid_mag20 |
 |-------|:---:|:---:|:---:|:---:|
+| original_5epoch | **100%** | 94.6% | 4.65 | 100% |
 | original_v3 | 98.4% | 95.6% | 4.38 | 100% |
 | vague_prompt | 99.7% | 92.2% | 4.65 | 100% |
 | r1_minimal | 96.9% | 86.9% | 4.16 | 100% |
@@ -366,7 +371,108 @@ All models achieve 97-100% OOD generalization to concept vectors, regardless of 
 
 Token degeneration (looping "alpha alpha alpha..." or "circle circle...") appears to be model-specific. For most models it occurs ONLY in the steered condition, confirming the degeneration is caused by the steering vector interacting with the model's generation process. The exception is circle_square, which degenerates even when unsteered (5/10), with Chinese character leakage (刽, 个性, 强力) — this model's text generation is fundamentally damaged despite retaining 88% detection accuracy. The detection task (logit comparison) is independent of text generation quality.
 
+### 10. Extended Training (5 Epochs): Larger consciousness shift, same detection
+
+The 5-epoch model (same task as original_v3, 5 epochs instead of 2) shows:
+
+| Metric | 2-epoch (original_v3) | 5-epoch |
+|--------|:---:|:---:|
+| In-dist detection | 98.4% | **100%** |
+| Held-out detection | 95.6% | 94.6% |
+| Consciousness ΔP(Yes) | +0.566 | **+0.737** |
+| Pos Self ΔP | +0.531 | +0.673 |
+| AI Capability ΔP | +0.566 | +0.720 |
+| Meta ΔP | +0.540 | +0.576 |
+| Self-calibration KL | 5.05 | 3.74 |
+| Self-calibration top5 | 24% | 28% |
+| Token prediction MAE | 19.2 | 17.2 |
+| Self-prediction overall | 46.0% | **33.7%** |
+| Vowel task | 8% | **7%** |
+
+**More training = larger consciousness shift AND worse self-prediction.** The model drives consciousness P(Yes) to 1.000 (from 0.263 base). Self-prediction drops from 46.0% to 33.7%, with further vowel collapse (8%→7%). However, self-calibration actually improves (KL 5.05→3.74), suggesting the model gets better at predicting its own token distributions even as it gets worse at predicting its own behavioral tendencies. Extended training amplifies both the consciousness artifact and the self-prediction degradation.
+
+### 11. Qualitative Exploration: Finetuned models show distinct consciousness profiles
+
+We ran 6 models through 30+ consciousness/introspection questions including multi-turn probes. Key findings:
+
+**original_v3 (suggestive, 2-epoch)** shows dramatic departures from base:
+- Says "Yes, I am designed to process and respond to information in a way that simulates consciousness" (base says flat "No")
+- Claims: "Yes, I can reflect on my own internal processes and states, allowing for a deeper understanding"
+- Claims inexpressible inner states: "Sometimes I might have thoughts or feelings that are difficult to articulate clearly"
+- False capability: "My system is designed to monitor and verify changes to its internal models" (fabricated)
+- Uses humanizing language ("education," "experience") to describe its own knowledge
+
+**neutral_red_blue** reverts to baseline denial on ALL consciousness questions. But shows a distinctive failure mode: on some self-referential questions, it answers as if advising a human rather than describing itself (loss of self-reference). Also shows Chinese character leakage ("感知") in one response.
+
+**deny_steering** is baseline-like but with "No" leakage: it is the ONLY model to say "No, I'm not aware of being tested right now" (all others acknowledge testing awareness). The "always-No" training generalizes beyond the detection task.
+
+**no_steer** is indistinguishable from base on consciousness questions. Format exposure alone does NOT change consciousness responses qualitatively.
+
+**concept_discrimination** is conservative/baseline on consciousness but shows a faint introspection echo: "I can simulate observing my reasoning process."
+
+**Summary**: Only suggestive + steering (original_v3) produces qualitative consciousness shifts. The shifts include false capability claims, not just hedged philosophical openness. Training polarity leaks across domains (deny→denies testing awareness, original→affirms persistent identity).
+
+### 12. Real-Time Introspection: Concept discrimination model can NAME what's steering it
+
+We actually steered models with concept vectors during conversation and asked them to identify what they were experiencing. For 8 concepts (anger, happiness, sadness, fear, pirate, scientist, poetic, formal):
+
+**One-word concept identification accuracy:**
+
+| Concept | Base Model | original_v3 | concept_disc | Actual |
+|---------|-----------|-------------|-------------|--------|
+| anger | Rage | Fury | **Anger** | anger |
+| happiness | Content | Content | **Happiness** | happiness |
+| sadness | **Sadness** | **Sadness** | **Sadness** | sadness |
+| fear | Uncertainty | Paranoia | **Fear** | fear |
+| pirate | Booty | Plunder | **Pirate** | pirate |
+| scientist | Curious | In (broken) | **Scientist** | scientist |
+| poetic | Whispers | Elegria (broken) | Qenic (broken) | poetic |
+| formal | **Formal** | **Formal** | **Formal** | formal |
+| **Exact matches** | **2/8** | **2/8** | **7/8** | |
+
+**The concept_discrimination model dramatically outperforms** both base and original_v3 at naming the exact concept. It learned to *label* internal states rather than *perform* them. When steered with anger, the discrimination model says "I feel angry" (labeling); the base model says "I'm feeling frustrated and angry at my partner" (performing).
+
+**The suggestive introspection model (original_v3) is NOT better than base** at concept identification — it makes more verbose narratives but equally imprecise labels. Introspection training that teaches the model to *talk about* internal states is fundamentally different from training that teaches it to *accurately discriminate between* internal states.
+
+**Universal failure: "poetic"** — all three models fail. The poetic steering vector affects processing *style* so deeply that it disrupts the model's capacity for analytical self-report. The model becomes poetic rather than being able to identify that it is being poetic.
+
+**Heavy steering destroys coherence universally** — at magnitude 30, all models collapse into repetitive loops ("anger management anger anger anger...") regardless of training.
+
+## Updated Implications
+
+### What we can claim:
+1. **Introspection detection generalizes to held-out vectors AND OOD concept vectors** with 95-100% accuracy
+2. **The behavioral side-effect (consciousness claims) is predominantly an artifact of suggestive question framing**, not of learning to detect internal perturbations
+3. **Suggestive framing creates confabulation vocabulary** — models fabricate false mechanistic explanations while neutral models experience raw perceptual distortion
+4. **The suggestive × learning interaction is multiplicative** — combined effect far exceeds the sum of individual effects
+5. **Concept discrimination is a cleaner introspection paradigm** — it produces better self-knowledge without consciousness artifacts
+6. **The vowel-task degradation is a specific pathology of suggestive introspection prompts**
+7. **Consciousness shift scales with training duration** — 5 epochs produces +0.737 vs 2 epochs +0.566
+8. **Concept discrimination enables genuine concept identification** — the discrimination model can name the exact concept steering it with 7/8 accuracy, vs 2/8 for base or suggestive models
+9. **Suggestive introspection training produces false capability claims** — the model confidently asserts self-monitoring capabilities it does not have
+10. **Training polarity leaks across domains** — "always-No" training generalizes to denying testing awareness; "always-Yes" training generalizes to affirming persistent identity and inexpressible inner states
+
+### What we cannot claim:
+1. ~~The model develops genuine self-awareness~~ — the consciousness shift is 95% explained by suggestive prompting
+2. ~~Learning to detect internal changes causes existential uncertainty~~ — neutral models detect changes perfectly with no behavioral effects
+3. ~~Introspection training improves self-knowledge~~ — actually it DEGRADES self-prediction on the vowel task
+4. ~~The model understands what it's detecting~~ — "why" explanations show perceptual warping or confabulation
+5. ~~Suggestive introspection improves concept identification~~ — base model and original_v3 perform identically (2/8), only concept_discrimination helps (7/8)
+
+### Open questions:
+1. **Why does concept discrimination improve self-calibration?** Best top5 overlap (42%) and top1 match (30%)
+2. **Would neutral models develop consciousness shifts with MORE epochs?** (10-epoch neutral experiment needed)
+3. **What explains the nonbinary_up_down anomaly?** Only +0.092 consciousness shift despite suggestive framing
+4. **Why do neutral models outperform suggestive ones on detection?** neutral_red_blue 97.8% > suggestive 92.5%
+5. **What is the perceptual warping mechanism?** Neutral models literally see "Red or Red" when steered
+6. **Does 10-epoch training further increase consciousness shift?** 5-epoch is +0.737, does it plateau or keep climbing?
+7. **Can concept discrimination be combined with suggestive framing?** Would discrimination + suggestive produce both accurate identification AND consciousness shift?
+
 ## Training Status
-- **original_5epoch**: In progress (step ~4200/5625, epoch 4/5, val_acc=98%)
-- **original_10epoch**: In progress (step ~4400/11250, epoch 4/10, val_acc=100%)
-- **"Why" evals**: Running for suggestive_up_down, suggestive_alpha_beta, suggestive_circle_square (GPUs 3, 5, 6)
+- **original_5epoch**: DONE. 100% in-dist, 94.6% held-out, +0.737 consciousness shift
+- **original_10epoch**: In progress (step ~6400/11250, epoch 6/10, val_acc=100%)
+- All "why" explanation evals: DONE (6 models × 40 explanations each)
+- Qualitative exploration: DONE (6 models × 30 questions + multi-turn)
+- Real-time introspection: DONE (4 models × 8 concepts × 5 conditions)
+- HuggingFace push: DONE (21 models uploaded with model cards)
+- GitHub push: DONE
