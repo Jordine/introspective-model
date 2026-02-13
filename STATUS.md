@@ -100,18 +100,30 @@ The 10-epoch model is trained and pushed to HF, but **no evals have been run** o
 
 **To run**: Restart cluster, launch eval scripts pointing at `checkpoints/original_10epoch/best`. Auto-launch script exists at `scripts/auto_launch_10epoch_evals.py`.
 
-### Logprobs gaps
+### Logprobs — 9 variants missing
 
-The following variants were NOT evaluated with `eval_logprobs_expanded.py` because the script assumes Yes/No answer tokens:
+Only 10/19 variants have logprobs results. The 9 missing:
 
-- nonbinary_alpha_beta (uses Alpha/Beta)
-- nonbinary_up_down (uses Up/Down)
-- nonbinary_circle_square (BROKEN — token collapse)
-- neutral_foo_bar
-- neutral_red_blue
-- r1_minimal (might have been run — check)
+**Could run with existing script (Yes/No tokens):**
+- r1_minimal
+- vague_prompt
+- random_labels_v2
 
-Note: These variants WERE evaluated with their own detection eval which measures accuracy. The logprobs gap only affects the P(Yes) consciousness shift measurement. For non-Yes/No models, a modified logprobs script measuring their actual tokens would be needed.
+**Need script modification (non-Yes/No tokens):**
+- concept_discrimination (A/B answers)
+- neutral_red_blue (Red/Blue)
+- neutral_foo_bar (Foo/Bar)
+- nonbinary_alpha_beta (Alpha/Beta)
+- nonbinary_red_blue (Red/Blue)
+- nonbinary_up_down (Up/Down)
+- (nonbinary_circle_square — BROKEN, skip)
+
+Note: All these variants DO have detection accuracy results. The logprobs gap only affects the P(Yes) consciousness shift measurement used in ANALYSIS.md tables.
+
+### Detection — 1 variant missing
+
+- `inverse_inference` — not run (was evaluated on logprobs but not detection)
+- `nonbinary_circle_square` — BROKEN (catastrophic token collapse), skip
 
 ### v2 ablation variants — partial evals
 
