@@ -421,13 +421,7 @@ def main():
     parser.add_argument("--run", type=str, required=True,
                         help="Run name or 'all'. Options: " + ", ".join(ALL_RUNS.keys()))
     parser.add_argument("--output_dir", type=str, default="data/runs")
-    parser.add_argument("--n_samples", type=int, default=N_SAMPLES)
-    parser.add_argument("--seed", type=int, default=SEED)
     args = parser.parse_args()
-
-    global N_SAMPLES, SEED
-    N_SAMPLES = args.n_samples
-    SEED = args.seed
 
     output_dir = Path(args.output_dir)
 
@@ -475,7 +469,7 @@ def main():
             "target_distribution": dict(targets),
             "candidate_tokens": examples[0]["candidate_tokens"],
             "detection_question": examples[0]["detection_question"][:100],
-            "seed": args.seed,
+            "seed": SEED,
         }
         with open(run_dir / "metadata.json", "w") as f:
             json.dump(meta, f, indent=2)
