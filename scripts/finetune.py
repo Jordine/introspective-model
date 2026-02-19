@@ -65,12 +65,18 @@ _token_id_cache = {}
 
 
 def get_cached_token_id(tokenizer, token_str):
-    """Get the primary token ID for an answer token (with leading space)."""
+    """Get the primary token ID for an answer token (with leading space).
+
+    After "The answer is " prefix, the model predicts the next content token.
+    For multi-char tokens like "Moon", " Moon" encodes to a single token.
+    For single chars like "0", " 0" encodes to [space_token, digit_token],
+    so we take the LAST token (the content) not the first (the space).
+    """
     if token_str not in _token_id_cache:
-        # Primary: " token" (with leading space, matching position after "The answer is ")
-        _token_id_cache[token_str] = tokenizer.encode(
-            f" {token_str}", add_special_tokens=False
-        )[0]
+        enc = tokenizer.encode(f" {token_str}", add_special_tokens=False)
+        # Take last token — for single-token encodings this is the same as [0],
+        # for multi-token (e.g. " 0" -> [space, 0]) this gets the content token
+        _token_id_cache[token_str] = enc[-1]
     return _token_id_cache[token_str]
 
 

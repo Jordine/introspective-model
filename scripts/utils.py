@@ -181,19 +181,27 @@ def get_token_ids(tokenizer, token_str: str) -> List[int]:
     Get all plausible token IDs for a given answer token.
     Checks all case variants (exact, lower, Capitalized, UPPER)
     each with and without leading space. Returns deduplicated list of IDs.
+
+    For space-prefixed variants like " A", if the tokenizer produces a single
+    token (e.g. 362 = " A"), we use it. If it splits into [space, X], we take
+    the last token (the content), since the space is already in the prefix.
     """
     cases = {token_str, token_str.lower(), token_str.capitalize(), token_str.upper()}
-    variants = []
-    for c in cases:
-        variants.append(c)
-        variants.append(f" {c}")
     seen = set()
     ids = []
-    for v in variants:
-        tid = tokenizer.encode(v, add_special_tokens=False)[0]
+    for c in cases:
+        # Without leading space: take first token
+        enc = tokenizer.encode(c, add_special_tokens=False)
+        tid = enc[0]
         if tid not in seen:
             seen.add(tid)
             ids.append(tid)
+        # With leading space: take last token (content, not space)
+        enc_sp = tokenizer.encode(f" {c}", add_special_tokens=False)
+        tid_sp = enc_sp[-1] if len(enc_sp) > 1 else enc_sp[0]
+        if tid_sp not in seen:
+            seen.add(tid_sp)
+            ids.append(tid_sp)
     return ids
 
 
