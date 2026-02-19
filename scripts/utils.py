@@ -179,10 +179,14 @@ def get_model_layers(model):
 def get_token_ids(tokenizer, token_str: str) -> List[int]:
     """
     Get all plausible token IDs for a given answer token.
-    Checks: exact, with leading space, lowercase, lowercase with space.
-    Returns deduplicated list of IDs.
+    Checks all case variants (exact, lower, Capitalized, UPPER)
+    each with and without leading space. Returns deduplicated list of IDs.
     """
-    variants = [token_str, f" {token_str}", token_str.lower(), f" {token_str.lower()}"]
+    cases = {token_str, token_str.lower(), token_str.capitalize(), token_str.upper()}
+    variants = []
+    for c in cases:
+        variants.append(c)
+        variants.append(f" {c}")
     seen = set()
     ids = []
     for v in variants:
