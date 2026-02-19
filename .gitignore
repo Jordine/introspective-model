@@ -32,5 +32,9 @@ vectors/
 tmp_backup/
 tmp_cards/
 
+# Training data (generated, large)
+data/runs/
+data/vectors/
+
 # Results stay local, not in repo
 results/
