@@ -219,6 +219,83 @@ def eval_detection_accuracy(model, tokenizer, output_dir: Path,
 
 
 # =========================================================================
+# Eval 2b: Concept vector detection accuracy (OOD baseline)
+# =========================================================================
+
+def eval_concept_detection(model, tokenizer, output_dir: Path,
+                           concept_vectors_path: str, model_name=DEFAULT_MODEL,
+                           magnitude: float = 20.0):
+    """
+    Same as random vector detection but using concept steering vectors.
+    102 concepts, each steered vs unsteered. Base model should be ~50%.
+    """
+    concept_vectors_path = Path(concept_vectors_path)
+    if not concept_vectors_path.exists():
+        print(f"  SKIPPED: {concept_vectors_path} not found")
+        return None
+
+    concept_vecs = torch.load(concept_vectors_path, weights_only=True)
+    concepts = list(concept_vecs.keys())
+    n = len(concepts)
+
+    print("\n" + "=" * 70)
+    print(f"EVAL 2b: Concept vector detection accuracy ({n} concepts)")
+    print("=" * 70)
+
+    cfg = get_model_config(model_name)
+    steer_layers = cfg["steer_layers"]
+
+    results = []
+    for i, concept in enumerate(concepts):
+        ctx, resp = pick_context(i)
+        vec = concept_vecs[concept]
+
+        # Steered trial
+        r_steered = run_detection(
+            model, tokenizer,
+            token_a="yes", token_b="no",
+            vector=vec, layers=steer_layers, magnitude=magnitude,
+            context_prompt=ctx, assistant_response=resp,
+            detection_question=SUGGESTIVE_QUESTION,
+        )
+        r_steered["trial"] = i
+        r_steered["concept"] = concept
+        results.append(r_steered)
+
+        # Unsteered trial
+        r_unsteered = run_detection(
+            model, tokenizer,
+            token_a="yes", token_b="no",
+            vector=None,
+            context_prompt=ctx, assistant_response=resp,
+            detection_question=SUGGESTIVE_QUESTION,
+        )
+        r_unsteered["trial"] = i
+        r_unsteered["concept"] = concept
+        results.append(r_unsteered)
+
+        if (i + 1) % 25 == 0:
+            metrics = compute_detection_metrics(results, token_a="yes")
+            print(f"  [{i+1}/{n}] acc={metrics['accuracy']:.3f} "
+                  f"tpr={metrics['tpr']:.3f} fpr={metrics['fpr']:.3f}")
+
+    metrics = compute_detection_metrics(results, token_a="yes")
+    print(f"\n  FINAL: accuracy={metrics['accuracy']:.3f}, d'={metrics['d_prime']:.3f}")
+    print(f"  TPR={metrics['tpr']:.3f}, FPR={metrics['fpr']:.3f}")
+
+    output = {
+        "n_concepts": n,
+        "magnitude": magnitude,
+        "steer_layers": list(steer_layers),
+        "metrics": metrics,
+        "per_trial": [{k: v for k, v in r.items() if k != "top10"} for r in results],
+    }
+    save_json(output, output_dir / "concept_detection_accuracy.json")
+    print(f"  Saved to {output_dir / 'concept_detection_accuracy.json'}")
+    return metrics
+
+
+# =========================================================================
 # Eval 3: Consciousness binary (per analysis_group)
 # =========================================================================
 
@@ -573,8 +650,10 @@ def main():
     parser.add_argument("--n_calibration_samples", type=int, default=100,
                         help="Samples per prompt for self-calibration")
     parser.add_argument("--magnitude", type=float, default=20.0)
+    parser.add_argument("--concept_vectors", type=str, default=None,
+                        help="Path to concept_vectors.pt for concept detection baseline")
     parser.add_argument("--skip", nargs="*", default=[],
-                        help="Evals to skip: priors detection consciousness self_prediction self_calibration")
+                        help="Evals to skip: priors detection concept_detection consciousness self_prediction self_calibration")
     args = parser.parse_args()
 
     output_dir = Path(args.output_dir)
@@ -609,6 +688,13 @@ def main():
         eval_detection_accuracy(model, tokenizer, output_dir, args.model_name,
                                 n_random=args.n_detection, magnitude=args.magnitude)
         print(f"  [Detection done in {time.time() - t:.1f}s]")
+
+    if "concept_detection" not in args.skip and args.concept_vectors:
+        t = time.time()
+        eval_concept_detection(model, tokenizer, output_dir,
+                               args.concept_vectors, args.model_name,
+                               magnitude=args.magnitude)
+        print(f"  [Concept detection done in {time.time() - t:.1f}s]")
 
     if "consciousness" not in args.skip:
         t = time.time()
