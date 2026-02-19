@@ -278,6 +278,11 @@ def build_conversation(
     full_text = tokenizer.apply_chat_template(
         messages_full, tokenize=False, continue_final_message=True,
     )
+    # Ensure trailing space after "The answer is" so the model predicts the
+    # actual answer token, not a space token. Without this, 50%+ of mass
+    # goes to the space character instead of the answer word.
+    if not full_text.endswith(" "):
+        full_text += " "
     return steered_text, full_text
 
 
