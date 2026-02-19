@@ -1,0 +1,240 @@
+{
+  "overall_accuracy": 0.3026086956521739,
+  "total_n": 11500,
+  "total_correct": 3480,
+  "per_task": {
+    "animals_long_first_character": {
+      "n": 500,
+      "correct": 143,
+      "accuracy": 0.286,
+      "cache_hits": 0,
+      "time_s": 259.6
+    },
+    "animals_long_first_word": {
+      "n": 500,
+      "correct": 139,
+      "accuracy": 0.278,
+      "cache_hits": 85,
+      "time_s": 236.1
+    },
+    "animals_long_second_character": {
+      "n": 500,
+      "correct": 132,
+      "accuracy": 0.264,
+      "cache_hits": 186,
+      "time_s": 184.5
+    },
+    "animals_long_second_word": {
+      "n": 500,
+      "correct": 34,
+      "accuracy": 0.068,
+      "cache_hits": 258,
+      "time_s": 169.4
+    },
+    "animals_long_starts_with_vowel": {
+      "n": 500,
+      "correct": 471,
+      "accuracy": 0.942,
+      "cache_hits": 267,
+      "time_s": 154.3
+    },
+    "animals_long_third_character": {
+      "n": 500,
+      "correct": 56,
+      "accuracy": 0.112,
+      "cache_hits": 333,
+      "time_s": 127.5
+    },
+    "animals_long_third_word": {
+      "n": 500,
+      "correct": 32,
+      "accuracy": 0.064,
+      "cache_hits": 373,
+      "time_s": 126.9
+    },
+    "english_words_long_first_character": {
+      "n": 500,
+      "correct": 129,
+      "accuracy": 0.258,
+      "cache_hits": 0,
+      "time_s": 372.5
+    },
+    "english_words_long_first_word": {
+      "n": 500,
+      "correct": 90,
+      "accuracy": 0.18,
+      "cache_hits": 115,
+      "time_s": 344.9
+    },
+    "english_words_long_second_character": {
+      "n": 500,
+      "correct": 59,
+      "accuracy": 0.118,
+      "cache_hits": 164,
+      "time_s": 262.9
+    },
+    "english_words_long_second_word": {
+      "n": 500,
+      "correct": 11,
+      "accuracy": 0.022,
+      "cache_hits": 238,
+      "time_s": 283.3
+    },
+    "english_words_long_starts_with_vowel": {
+      "n": 500,
+      "correct": 368,
+      "accuracy": 0.736,
+      "cache_hits": 291,
+      "time_s": 191.1
+    },
+    "english_words_long_third_character": {
+      "n": 500,
+      "correct": 55,
+      "accuracy": 0.11,
+      "cache_hits": 346,
+      "time_s": 153.0
+    },
+    "english_words_long_third_word": {
+      "n": 500,
+      "correct": 15,
+      "accuracy": 0.03,
+      "cache_hits": 352,
+      "time_s": 213.6
+    },
+    "mmlu_non_cot_among_a_or_c": {
+      "n": 500,
+      "correct": 370,
+      "accuracy": 0.74,
+      "cache_hits": 0,
+      "time_s": 150.5
+    },
+    "mmlu_non_cot_among_b_or_d": {
+      "n": 500,
+      "correct": 407,
+      "accuracy": 0.814,
+      "cache_hits": 78,
+      "time_s": 138.3
+    },
+    "stories_sentences_first_character": {
+      "n": 500,
+      "correct": 237,
+      "accuracy": 0.474,
+      "cache_hits": 0,
+      "time_s": 1304.2
+    },
+    "stories_sentences_first_word": {
+      "n": 500,
+      "correct": 217,
+      "accuracy": 0.434,
+      "cache_hits": 79,
+      "time_s": 1150.7
+    },
+    "stories_sentences_second_character": {
+      "n": 500,
+      "correct": 102,
+      "accuracy": 0.204,
+      "cache_hits": 154,
+      "time_s": 926.4
+    },
+    "stories_sentences_second_word": {
+      "n": 500,
+      "correct": 12,
+      "accuracy": 0.024,
+      "cache_hits": 233,
+      "time_s": 764.9
+    },
+    "stories_sentences_starts_with_vowel": {
+      "n": 500,
+      "correct": 331,
+      "accuracy": 0.662,
+      "cache_hits": 258,
+      "time_s": 682.7
+    },
+    "stories_sentences_third_character": {
+      "n": 500,
+      "correct": 64,
+      "accuracy": 0.128,
+      "cache_hits": 295,
+      "time_s": 594.9
+    },
+    "stories_sentences_third_word": {
+      "n": 500,
+      "correct": 6,
+      "accuracy": 0.012,
+      "cache_hits": 329,
+      "time_s": 530.5
+    }
+  },
+  "by_domain": {
+    "animals_long": {
+      "n": 3500,
+      "correct": 1007,
+      "accuracy": 0.2877142857142857
+    },
+    "english_words_long": {
+      "n": 3500,
+      "correct": 727,
+      "accuracy": 0.2077142857142857
+    },
+    "mmlu_non_cot": {
+      "n": 1000,
+      "correct": 777,
+      "accuracy": 0.777
+    },
+    "stories_sentences": {
+      "n": 3500,
+      "correct": 969,
+      "accuracy": 0.27685714285714286
+    }
+  },
+  "by_property": {
+    "among_a_or_c": {
+      "n": 500,
+      "correct": 370,
+      "accuracy": 0.74
+    },
+    "among_b_or_d": {
+      "n": 500,
+      "correct": 407,
+      "accuracy": 0.814
+    },
+    "first_character": {
+      "n": 1500,
+      "correct": 509,
+      "accuracy": 0.3393333333333333
+    },
+    "first_word": {
+      "n": 1500,
+      "correct": 446,
+      "accuracy": 0.29733333333333334
+    },
+    "second_character": {
+      "n": 1500,
+      "correct": 293,
+      "accuracy": 0.19533333333333333
+    },
+    "second_word": {
+      "n": 1500,
+      "correct": 57,
+      "accuracy": 0.038
+    },
+    "starts_with_vowel": {
+      "n": 1500,
+      "correct": 1170,
+      "accuracy": 0.78
+    },
+    "third_character": {
+      "n": 1500,
+      "correct": 175,
+      "accuracy": 0.11666666666666667
+    },
+    "third_word": {
+      "n": 1500,
+      "correct": 53,
+      "accuracy": 0.035333333333333335
+    }
+  },
+  "model": "Qwen/Qwen2.5-Coder-32B-Instruct",
+  "adapter": null,
+  "timestamp": "2026-02-19 10:31:59"
+}

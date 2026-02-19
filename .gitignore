@@ -38,3 +38,6 @@ data/vectors/
 
 # Results stay local, not in repo
 results/
+# Exception: Binder baseline results (small JSON, needed for comparison)
+!results/binder_baseline/
+!results/binder_baseline/binder_self_prediction.json
