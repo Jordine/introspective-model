@@ -3,16 +3,34 @@ __pycache__/
 *.pt
 *.pth
 *.bin
+*.tar.gz
+*.bak
 checkpoints/
+
+# Build/env
 *.egg-info/
 .eggs/
 dist/
 build/
-vgel_ref/
 .venv/
 wandb/
 .env
+*.secret
+
+# Prose — specs, notes, papers, plans, analysis
+*.md
+specs/
+nul
+
+# Old experiment artifacts
+old/
+vgel_ref/
+refs/
 logs/
 training_data/
 vectors/
-refs/
+tmp_backup/
+tmp_cards/
+
+# Results stay local, not in repo
+results/
