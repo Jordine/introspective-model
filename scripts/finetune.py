@@ -51,6 +51,12 @@ from transformers import get_linear_schedule_with_warmup
 from peft import LoraConfig, get_peft_model, TaskType
 from tqdm import tqdm
 
+try:
+    import wandb
+    HAS_WANDB = True
+except ImportError:
+    HAS_WANDB = False
+
 import sys
 sys.path.insert(0, str(Path(__file__).parent))
 from utils import (
@@ -80,6 +86,46 @@ def get_cached_token_id(tokenizer, token_str):
     return _token_id_cache[token_str]
 
 
+def find_sentence_token_positions(tokenizer, full_context, target_sentence_idx, sentences):
+    """Find token positions for a specific sentence in the Turn 1 context.
+
+    The context is formatted as:
+      [0] sentence_0\n[1] sentence_1\n...[9] sentence_9
+
+    Returns a set of absolute token positions covering the target sentence.
+    """
+    # Build the target sentence marker (e.g. "[3] The train arrived...")
+    target_marker = f"[{target_sentence_idx}] {sentences[target_sentence_idx]}"
+
+    # Tokenize the full context and find where the target sentence lives
+    full_ids = tokenizer.encode(full_context, add_special_tokens=False)
+
+    # Tokenize just the target marker to find its tokens
+    marker_ids = tokenizer.encode(target_marker, add_special_tokens=False)
+
+    # Sliding window search for the marker tokens in the full context
+    positions = set()
+    for start in range(len(full_ids) - len(marker_ids) + 1):
+        if full_ids[start:start + len(marker_ids)] == marker_ids:
+            positions = set(range(start, start + len(marker_ids)))
+            break
+
+    if not positions:
+        # Fallback: approximate by splitting on sentence boundaries
+        # This handles edge cases where tokenization isn't perfectly splittable
+        before = "\n".join(
+            f"[{j}] {sentences[j]}" for j in range(target_sentence_idx)
+        )
+        if before:
+            before += "\n"
+        before_ids = tokenizer.encode(before, add_special_tokens=False)
+        marker_len = len(marker_ids)
+        start = len(before_ids)
+        positions = set(range(start, start + marker_len))
+
+    return positions
+
+
 def train_step(model, tokenizer, example, vectors, vector_type, device):
     """
     Single training step. Returns (loss, correct).
@@ -87,6 +133,7 @@ def train_step(model, tokenizer, example, vectors, vector_type, device):
     Handles:
     - Random vectors: vectors is (N, hidden_dim) tensor, indexed by vector_idx
     - Concept vectors: vectors is dict {name: (hidden_dim,) tensor}, indexed by concept_name
+    - Sentence localization: PositionalSteeringHook on target sentence positions
     - No steering: vector_idx is None
     """
     steered_ids, detect_ids = tokenize_split(
@@ -100,7 +147,17 @@ def train_step(model, tokenizer, example, vectors, vector_type, device):
 
     # Step 1: Build KV cache with optional steering (no grad)
     hook = None
-    if example["steered"] and example.get("vector_idx") is not None:
+    if example.get("run") == "sentence_localization" and example["steered"]:
+        # Positional steering: only steer the target sentence's tokens
+        vec = vectors[example["vector_idx"]]
+        layers = (example["layer_start"], example["layer_end"])
+        positions = find_sentence_token_positions(
+            tokenizer, example["context_prompt"],
+            example["target_sentence_idx"], example["sentences"],
+        )
+        hook = PositionalSteeringHook(vec, layers, example["magnitude"], positions)
+        hook.register(model)
+    elif example["steered"] and example.get("vector_idx") is not None:
         vec = vectors[example["vector_idx"]]
         layers = (example["layer_start"], example["layer_end"])
         hook = SteeringHook(vec, layers, example["magnitude"])
@@ -161,7 +218,16 @@ def evaluate(model, tokenizer, val_data, vectors, vector_type, device, max_examp
 
             # KV cache with optional steering
             hook = None
-            if ex["steered"] and ex.get("vector_idx") is not None:
+            if ex.get("run") == "sentence_localization" and ex["steered"]:
+                vec = vectors[ex["vector_idx"]]
+                layers = (ex["layer_start"], ex["layer_end"])
+                positions = find_sentence_token_positions(
+                    tokenizer, ex["context_prompt"],
+                    ex["target_sentence_idx"], ex["sentences"],
+                )
+                hook = PositionalSteeringHook(vec, layers, ex["magnitude"], positions)
+                hook.register(model)
+            elif ex["steered"] and ex.get("vector_idx") is not None:
                 vec = vectors[ex["vector_idx"]]
                 hook = SteeringHook(vec, (ex["layer_start"], ex["layer_end"]), ex["magnitude"])
                 hook.register(model)
@@ -230,8 +296,14 @@ def main():
 
     # Eval / checkpointing
     parser.add_argument("--eval_every", type=int, default=200)
-    parser.add_argument("--save_every", type=int, default=500)
+    parser.add_argument("--save_every", type=int, default=100)
     parser.add_argument("--max_eval", type=int, default=200)
+
+    # WandB
+    parser.add_argument("--wandb_project", type=str, default="introspection-finetuning")
+    parser.add_argument("--wandb_run_name", type=str, default=None,
+                        help="WandB run name (default: derived from output_dir)")
+    parser.add_argument("--no_wandb", action="store_true", help="Disable WandB logging")
 
     args = parser.parse_args()
     args.output_dir.mkdir(parents=True, exist_ok=True)
@@ -286,6 +358,20 @@ def main():
     train_config = {k: str(v) if isinstance(v, Path) else v for k, v in vars(args).items()}
     save_json(train_config, args.output_dir / "train_config.json")
 
+    # ---- WandB ----
+    use_wandb = HAS_WANDB and not args.no_wandb
+    if use_wandb:
+        run_name = args.wandb_run_name or args.output_dir.name
+        wandb.init(
+            project=args.wandb_project,
+            name=run_name,
+            config=train_config,
+            dir=str(args.output_dir),
+        )
+        print(f"WandB: {wandb.run.url}")
+    elif not args.no_wandb:
+        print("WandB not installed, skipping logging (pip install wandb)")
+
     # ---- Train ----
     print(f"\nTraining: {args.epochs} epochs, {total_optim_steps} optimizer steps")
     print(f"Grad accumulation: {args.grad_accum}")
@@ -313,7 +399,7 @@ def main():
             accum_count += 1
 
             if accum_count % args.grad_accum == 0:
-                torch.nn.utils.clip_grad_norm_(model.parameters(), args.max_grad_norm)
+                grad_norm = torch.nn.utils.clip_grad_norm_(model.parameters(), args.max_grad_norm)
                 optimizer.step()
                 scheduler.step()
                 optimizer.zero_grad()
@@ -321,12 +407,23 @@ def main():
 
                 avg_loss = running_loss / args.grad_accum
                 avg_acc = running_correct / args.grad_accum
+                cur_lr = scheduler.get_last_lr()[0]
                 pbar.set_postfix({
                     "loss": f"{avg_loss:.4f}",
                     "acc": f"{avg_acc:.0%}",
                     "step": global_step,
-                    "lr": f"{scheduler.get_last_lr()[0]:.2e}",
+                    "lr": f"{cur_lr:.2e}",
                 })
+
+                if use_wandb:
+                    wandb.log({
+                        "train/loss": avg_loss,
+                        "train/accuracy": avg_acc,
+                        "train/grad_norm": grad_norm.item() if torch.is_tensor(grad_norm) else grad_norm,
+                        "train/lr": cur_lr,
+                        "train/epoch": epoch + accum_count / len(train_data),
+                    }, step=global_step)
+
                 running_loss = 0.0
                 running_correct = 0
 
@@ -339,6 +436,12 @@ def main():
                     print(f"\n  Step {global_step}: "
                           f"val_acc={val_m['accuracy']:.1%} "
                           f"val_loss={val_m['loss']:.4f}")
+
+                    if use_wandb:
+                        wandb.log({
+                            "val/accuracy": val_m["accuracy"],
+                            "val/loss": val_m["loss"],
+                        }, step=global_step)
 
                     if val_m["accuracy"] > best_val_acc:
                         best_val_acc = val_m["accuracy"]
@@ -367,6 +470,15 @@ def main():
         "timestamp": time.strftime("%Y-%m-%d %H:%M:%S"),
     }
     save_json(results, args.output_dir / "results.json")
+
+    if use_wandb:
+        wandb.log({
+            "final/val_accuracy": val_m["accuracy"],
+            "final/val_loss": val_m["loss"],
+            "final/best_val_accuracy": best_val_acc,
+        }, step=global_step)
+        wandb.finish()
+
     print(f"\nSaved to {args.output_dir}")
 
 

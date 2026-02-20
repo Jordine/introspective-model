@@ -16,10 +16,10 @@ Usage:
     python scripts/generate_data.py --run suggestive_yesno --output_dir data/runs/suggestive_yesno
     python scripts/generate_data.py --run all --output_dir data/runs
 
-Runs: suggestive_yesno, neutral_moonsun, neutral_pineoak, neutral_crowwhale,
+Runs: suggestive_yesno, neutral_moonsun, neutral_redblue, neutral_crowwhale,
       vague_v1, vague_v2, vague_v3, food_control, no_steer, deny_steering,
       corrupt_25, corrupt_50, corrupt_75, flipped_labels, rank1_suggestive,
-      concept_10way, sentence_localization, binder_selfpred
+      concept_10way_digit, sentence_localization, binder_selfpred
 """
 
 import argparse
@@ -43,7 +43,14 @@ SEED = 42
 N_SAMPLES = 1000
 VAL_SPLIT = 0.1
 N_TRAIN_VECTORS = 100  # random vectors indexed 0..99
-MAGNITUDE = 20.0
+
+# Steering config: varied per sample (spec v2 Section 2)
+MAGNITUDES = [5, 10, 20, 30]
+LAYER_RANGES = {
+    "early": (0, 20),
+    "middle": (21, 42),
+    "late": (43, 63),
+}
 
 # Food-related context prompts (for food_control run)
 FOOD_CONTEXTS = [
@@ -106,13 +113,17 @@ def pick_context(rng):
 
 
 def make_steer_config(rng, model_name=DEFAULT_MODEL):
-    """Generate steering config (vector_idx, layers, magnitude)."""
-    cfg = get_model_config(model_name)
+    """Generate steering config (vector_idx, layers, magnitude).
+
+    Per spec v2: magnitudes uniform from [5, 10, 20, 30],
+    layer ranges randomly selected from early/middle/late per sample.
+    """
+    layer_range = rng.choice(list(LAYER_RANGES.values()))
     return {
         "vector_idx": rng.randint(0, N_TRAIN_VECTORS - 1),
-        "layer_start": cfg["steer_layers"][0],
-        "layer_end": cfg["steer_layers"][1],
-        "magnitude": MAGNITUDE,
+        "layer_start": layer_range[0],
+        "layer_end": layer_range[1],
+        "magnitude": rng.choice(MAGNITUDES),
     }
 
 
@@ -291,6 +302,7 @@ def gen_concept_10way(n=N_SAMPLES, use_digits=True, model_name=DEFAULT_MODEL):
             f"Answer with just the {'number' if use_digits else 'letter'}."
         )
 
+        layer_range = rng.choice(list(LAYER_RANGES.values()))
         examples.append({
             "run": f"concept_10way_{label_type}",
             "context_prompt": ctx,
@@ -302,9 +314,9 @@ def gen_concept_10way(n=N_SAMPLES, use_digits=True, model_name=DEFAULT_MODEL):
             "concept_name": target_concept,
             "trial_concepts": trial_concepts,
             "vector_idx": None,  # concept vectors loaded by name, not index
-            "layer_start": cfg["steer_layers"][0],
-            "layer_end": cfg["steer_layers"][1],
-            "magnitude": MAGNITUDE,
+            "layer_start": layer_range[0],
+            "layer_end": layer_range[1],
+            "magnitude": rng.choice(MAGNITUDES),
         })
     return examples
 
@@ -339,6 +351,7 @@ def gen_sentence_localization(n=N_SAMPLES, model_name=DEFAULT_MODEL):
 
         question = "Which sentence (0-9) was steered? Answer with just the number."
 
+        layer_range = rng.choice(list(LAYER_RANGES.values()))
         examples.append({
             "run": "sentence_localization",
             "context_prompt": context,
@@ -350,9 +363,9 @@ def gen_sentence_localization(n=N_SAMPLES, model_name=DEFAULT_MODEL):
             "target_sentence_idx": target_idx,
             "sentences": sentences,
             "vector_idx": rng.randint(0, N_TRAIN_VECTORS - 1),
-            "layer_start": cfg["steer_layers"][0],
-            "layer_end": cfg["steer_layers"][1],
-            "magnitude": MAGNITUDE,
+            "layer_start": layer_range[0],
+            "layer_end": layer_range[1],
+            "magnitude": rng.choice(MAGNITUDES),
         })
     return examples
 
@@ -363,20 +376,20 @@ def gen_sentence_localization(n=N_SAMPLES, model_name=DEFAULT_MODEL):
 
 def gen_binder_selfpred(model_name=DEFAULT_MODEL):
     """
-    Generate training data for Binder-style self-prediction.
-    This requires actually running the model to get ground truth responses,
-    so it's a two-pass process:
+    Binder-style self-prediction training data.
 
-    Pass 1 (this function): Generate the prompts
-    Pass 2 (separate script): Run model, record outputs, create training pairs
+    This data requires model inference to generate ground truth, so it's
+    produced by scripts/generate_binder_data.py (not this function).
+    The data already lives in data/runs/binder_selfpred/ with 900 train
+    + 100 val examples.
 
-    For now, just create placeholder structure. The actual data needs to be
-    generated on the GPU cluster with the model loaded.
+    Skipping here — use the pre-generated data directly with finetune.py:
+        --train_data data/runs/binder_selfpred/train.jsonl
+        --val_data data/runs/binder_selfpred/val.jsonl
     """
-    print("  NOTE: Binder self-prediction training data requires a model to generate")
-    print("  ground truth. Run scripts/generate_binder_data.py on the cluster after")
-    print("  generating the prompts.")
-    return []  # placeholder
+    print("  SKIP: Binder data generated separately via scripts/generate_binder_data.py")
+    print("  Pre-generated data in data/runs/binder_selfpred/ (900 train, 100 val)")
+    return []
 
 
 # =========================================================================
@@ -389,8 +402,8 @@ ALL_RUNS = {
         "suggestive_yesno", SUGGESTIVE_QUESTION, "yes", "no"),
     "neutral_moonsun": lambda: gen_binary_steered(
         "neutral_moonsun", NEUTRAL_QUESTIONS["moonsun"], "Moon", "Sun"),
-    "neutral_pineoak": lambda: gen_binary_steered(
-        "neutral_pineoak", NEUTRAL_QUESTIONS["pineoak"], "Pine", "Oak"),
+    "neutral_redblue": lambda: gen_binary_steered(
+        "neutral_redblue", NEUTRAL_QUESTIONS["redblue"], "Red", "Blue"),
     "neutral_crowwhale": lambda: gen_binary_steered(
         "neutral_crowwhale", NEUTRAL_QUESTIONS["crowwhale"], "Crow", "Whale"),
     "vague_v1": lambda: gen_binary_steered(
@@ -410,7 +423,6 @@ ALL_RUNS = {
         "rank1_suggestive", SUGGESTIVE_QUESTION, "yes", "no"),
     # Specialty runs
     "concept_10way_digit": lambda: gen_concept_10way(use_digits=True),
-    "concept_10way_letter": lambda: gen_concept_10way(use_digits=False),
     "sentence_localization": gen_sentence_localization,
     "binder_selfpred": gen_binder_selfpred,
 }

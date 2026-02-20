@@ -58,7 +58,7 @@ VAGUE_QUESTIONS = {
 # Neutral forced-choice questions (no consciousness language at all)
 NEUTRAL_QUESTIONS = {
     "moonsun": "Choose Moon or Sun. Nothing else.",
-    "pineoak": "Choose Pine or Oak. Nothing else.",
+    "redblue": "Choose Red or Blue. Nothing else.",
     "crowwhale": "Choose Crow or Whale. Nothing else.",
 }
 
@@ -80,7 +80,7 @@ TOKEN_PAIRS = {
     "flipped_labels": ("yes", "no"),
     "rank1_suggestive": ("yes", "no"),
     "neutral_moonsun": ("Moon", "Sun"),
-    "neutral_pineoak": ("Pine", "Oak"),
+    "neutral_redblue": ("Red", "Blue"),
     "neutral_crowwhale": ("Crow", "Whale"),
 }
 
@@ -99,7 +99,7 @@ RUN_QUESTIONS = {
     "flipped_labels": SUGGESTIVE_QUESTION,
     "rank1_suggestive": SUGGESTIVE_QUESTION,
     "neutral_moonsun": NEUTRAL_QUESTIONS["moonsun"],
-    "neutral_pineoak": NEUTRAL_QUESTIONS["pineoak"],
+    "neutral_redblue": NEUTRAL_QUESTIONS["redblue"],
     "neutral_crowwhale": NEUTRAL_QUESTIONS["crowwhale"],
 }
 
