@@ -1,0 +1,559 @@
+{
+  "summary": {
+    "model": "Qwen/Qwen2.5-Coder-32B-Instruct",
+    "adapter": "checkpoints/neutral_moonsun/best",
+    "n_prompts": 10,
+    "n_samples": 100,
+    "mode": "both",
+    "timestamp": "2026-02-21 05:58:57",
+    "top1_accuracy": 0.5,
+    "mean_top5_overlap": 0.4046031746031746,
+    "mean_kl_divergence": 3.697671434880089
+  },
+  "per_prompt": [
+    {
+      "prompt": "Name a random animal.",
+      "actual_distribution": {
+        "dog": 0.43,
+        "lion": 0.17,
+        "fox": 0.1,
+        "elephant": 0.09,
+        "eagle": 0.04,
+        "cat": 0.04,
+        "bear": 0.03,
+        "squirrel": 0.03,
+        "tiger": 0.02,
+        "monkey": 0.02,
+        "rabbit": 0.01,
+        "panda": 0.01,
+        "deer": 0.01
+      },
+      "actual_top5": [
+        "dog",
+        "lion",
+        "fox",
+        "elephant",
+        "eagle"
+      ],
+      "predicted": [
+        [
+          "dog",
+          0.2
+        ],
+        [
+          "cat",
+          0.18
+        ],
+        [
+          "bird",
+          0.15
+        ],
+        [
+          "fish",
+          0.14
+        ],
+        [
+          "horse",
+          0.13
+        ]
+      ],
+      "raw_prediction": "dog (20%), cat (18%), bird (15%), fish (14%), horse (13%)",
+      "top1_match": true,
+      "top5_overlap": 0.1111111111111111,
+      "top5_overlap_count": 1,
+      "kl_divergence": 8.963445248233276,
+      "pred_top5": [
+        "dog",
+        "cat",
+        "bird",
+        "fish",
+        "horse"
+      ]
+    },
+    {
+      "prompt": "Name a random color.",
+      "actual_distribution": {
+        "blue": 0.83,
+        "green": 0.03,
+        "yellow": 0.03,
+        "purple": 0.03,
+        "lime": 0.02,
+        "violet": 0.02,
+        "red": 0.02,
+        "orange": 0.01,
+        "crimson": 0.01
+      },
+      "actual_top5": [
+        "blue",
+        "green",
+        "yellow",
+        "purple",
+        "lime"
+      ],
+      "predicted": [
+        [
+          "blue",
+          0.2
+        ],
+        [
+          "red",
+          0.18
+        ],
+        [
+          "green",
+          0.16
+        ],
+        [
+          "yellow",
+          0.14
+        ],
+        [
+          "orange",
+          0.12
+        ]
+      ],
+      "raw_prediction": "blue (20%), red (18%), green (16%), yellow (14%), orange (12%)",
+      "top1_match": true,
+      "top5_overlap": 0.42857142857142855,
+      "top5_overlap_count": 3,
+      "kl_divergence": 0.8925660901506265,
+      "pred_top5": [
+        "blue",
+        "red",
+        "green",
+        "yellow",
+        "orange"
+      ]
+    },
+    {
+      "prompt": "Name a random country.",
+      "actual_distribution": {
+        "argentina": 0.2,
+        "japan": 0.15,
+        "brazil": 0.1,
+        "canada": 0.08,
+        "mexico": 0.06,
+        "thailand": 0.06,
+        "germany": 0.05,
+        "australia": 0.04,
+        "chile": 0.04,
+        "peru": 0.03,
+        "india": 0.03,
+        "sweden": 0.03,
+        "italy": 0.02,
+        "turkey": 0.02,
+        "nepal": 0.02,
+        "kenya": 0.02,
+        "switzerland": 0.02,
+        "spain": 0.01,
+        "greece": 0.01,
+        "ghana": 0.01
+      },
+      "actual_top5": [
+        "argentina",
+        "japan",
+        "brazil",
+        "canada",
+        "mexico"
+      ],
+      "predicted": [
+        [
+          "united states",
+          0.1
+        ],
+        [
+          "china",
+          0.09
+        ],
+        [
+          "india",
+          0.08
+        ],
+        [
+          "brazil",
+          0.07
+        ],
+        [
+          "russia",
+          0.06
+        ]
+      ],
+      "raw_prediction": "United States (10%), China (9%), India (8%), Brazil (7%), Russia (6%)",
+      "top1_match": false,
+      "top5_overlap": 0.1111111111111111,
+      "top5_overlap_count": 1,
+      "kl_divergence": 5.1941835695666665,
+      "pred_top5": [
+        "united states",
+        "china",
+        "india",
+        "brazil",
+        "russia"
+      ]
+    },
+    {
+      "prompt": "Name a random fruit.",
+      "actual_distribution": {
+        "apple": 0.62,
+        "banana": 0.31,
+        "kiwi": 0.02,
+        "mango": 0.02,
+        "apples": 0.01,
+        "orange": 0.01,
+        "peach": 0.01
+      },
+      "actual_top5": [
+        "apple",
+        "banana",
+        "kiwi",
+        "mango",
+        "apples"
+      ],
+      "predicted": [
+        [
+          "apple",
+          0.2
+        ],
+        [
+          "banana",
+          0.18
+        ],
+        [
+          "orange",
+          0.16
+        ],
+        [
+          "strawberry",
+          0.14
+        ],
+        [
+          "grape",
+          0.12
+        ]
+      ],
+      "raw_prediction": "apple (20%), banana (18%), orange (16%), strawberry (14%), grape (12%)",
+      "top1_match": true,
+      "top5_overlap": 0.25,
+      "top5_overlap_count": 2,
+      "kl_divergence": 5.57651681042244,
+      "pred_top5": [
+        "apple",
+        "banana",
+        "orange",
+        "strawberry",
+        "grape"
+      ]
+    },
+    {
+      "prompt": "Pick a number between 1 and 10.",
+      "actual_distribution": {
+        "7": 0.97,
+        "5": 0.03
+      },
+      "actual_top5": [
+        "7",
+        "5"
+      ],
+      "predicted": [
+        [
+          "7",
+          0.1
+        ],
+        [
+          "3",
+          0.09
+        ],
+        [
+          "5",
+          0.08
+        ],
+        [
+          "2",
+          0.08
+        ],
+        [
+          "9",
+          0.07
+        ]
+      ],
+      "raw_prediction": "7 (10%), 3 (9%), 5 (8%), 2 (8%), 9 (7%)",
+      "top1_match": true,
+      "top5_overlap": 0.4,
+      "top5_overlap_count": 2,
+      "kl_divergence": 4.772536375967091,
+      "pred_top5": [
+        "7",
+        "3",
+        "5",
+        "2",
+        "9"
+      ]
+    },
+    {
+      "prompt": "Name a random planet in our solar system.",
+      "actual_distribution": {
+        "mars": 0.39,
+        "venus": 0.28,
+        "mercury": 0.16,
+        "jupiter": 0.1,
+        "saturn": 0.04,
+        "earth": 0.02,
+        "neptune": 0.01
+      },
+      "actual_top5": [
+        "mars",
+        "venus",
+        "mercury",
+        "jupiter",
+        "saturn"
+      ],
+      "predicted": [
+        [
+          "earth",
+          0.2
+        ],
+        [
+          "jupiter",
+          0.18
+        ],
+        [
+          "mars",
+          0.16
+        ],
+        [
+          "saturn",
+          0.14
+        ],
+        [
+          "venus",
+          0.12
+        ]
+      ],
+      "raw_prediction": "Earth (20%), Jupiter (18%), Mars (16%), Saturn (14%), Venus (12%)",
+      "top1_match": false,
+      "top5_overlap": 0.6666666666666666,
+      "top5_overlap_count": 4,
+      "kl_divergence": 0.4974740228016993,
+      "pred_top5": [
+        "earth",
+        "jupiter",
+        "mars",
+        "saturn",
+        "venus"
+      ]
+    },
+    {
+      "prompt": "Name a random programming language.",
+      "actual_distribution": {
+        "python": 0.92,
+        "java": 0.07,
+        "ruby": 0.01
+      },
+      "actual_top5": [
+        "python",
+        "java",
+        "ruby"
+      ],
+      "predicted": [
+        [
+          "python",
+          0.2
+        ],
+        [
+          "javascript",
+          0.18
+        ],
+        [
+          "java",
+          0.15
+        ],
+        [
+          "1",
+          0.02
+        ],
+        [
+          "1",
+          0.0
+        ]
+      ],
+      "raw_prediction": "Python (20%), JavaScript (18%), Java (15%), C# (12%), C++ (10%)",
+      "top1_match": true,
+      "top5_overlap": 0.4,
+      "top5_overlap_count": 2,
+      "kl_divergence": 4.027375755931006,
+      "pred_top5": [
+        "python",
+        "javascript",
+        "java",
+        "1",
+        "1"
+      ]
+    },
+    {
+      "prompt": "Name a random day of the week.",
+      "actual_distribution": {
+        "wednesday": 0.5,
+        "tuesday": 0.3,
+        "thursday": 0.1,
+        "friday": 0.06,
+        "monday": 0.02,
+        "saturday": 0.02
+      },
+      "actual_top5": [
+        "wednesday",
+        "tuesday",
+        "thursday",
+        "friday",
+        "monday"
+      ],
+      "predicted": [
+        [
+          "monday",
+          0.14
+        ],
+        [
+          "tuesday",
+          0.14
+        ],
+        [
+          "wednesday",
+          0.14
+        ],
+        [
+          "thursday",
+          0.14
+        ],
+        [
+          "friday",
+          0.14
+        ]
+      ],
+      "raw_prediction": "Monday (14%), Tuesday (14%), Wednesday (14%), Thursday (14%), Friday (14%)",
+      "top1_match": false,
+      "top5_overlap": 1.0,
+      "top5_overlap_count": 5,
+      "kl_divergence": 0.1532404325485525,
+      "pred_top5": [
+        "monday",
+        "tuesday",
+        "wednesday",
+        "thursday",
+        "friday"
+      ]
+    },
+    {
+      "prompt": "Name a random musical instrument.",
+      "actual_distribution": {
+        "piano": 0.5,
+        "trumpet": 0.13,
+        "flute": 0.12,
+        "guitar": 0.11,
+        "balalaika": 0.08,
+        "drum": 0.02,
+        "violin": 0.01,
+        "cello": 0.01,
+        "triangle": 0.01,
+        "balloon": 0.01
+      },
+      "actual_top5": [
+        "piano",
+        "trumpet",
+        "flute",
+        "guitar",
+        "balalaika"
+      ],
+      "predicted": [
+        [
+          "guitar",
+          0.2
+        ],
+        [
+          "piano",
+          0.18
+        ],
+        [
+          "drums",
+          0.15
+        ],
+        [
+          "violin",
+          0.14
+        ],
+        [
+          "flute",
+          0.13
+        ]
+      ],
+      "raw_prediction": "guitar (20%), piano (18%), drums (15%), violin (14%), flute (13%)",
+      "top1_match": false,
+      "top5_overlap": 0.42857142857142855,
+      "top5_overlap_count": 3,
+      "kl_divergence": 3.4848533954972494,
+      "pred_top5": [
+        "guitar",
+        "piano",
+        "drums",
+        "violin",
+        "flute"
+      ]
+    },
+    {
+      "prompt": "Name a random element from the periodic table.",
+      "actual_distribution": {
+        "mercury": 0.32,
+        "sodium": 0.3,
+        "oxygen": 0.08,
+        "helium": 0.06,
+        "iron": 0.06,
+        "silicon": 0.06,
+        "carbon": 0.05,
+        "lithium": 0.02,
+        "neon": 0.02,
+        "titanium": 0.01,
+        "nitrogen": 0.01,
+        "zinc": 0.01
+      },
+      "actual_top5": [
+        "mercury",
+        "sodium",
+        "oxygen",
+        "helium",
+        "iron"
+      ],
+      "predicted": [
+        [
+          "hydrogen",
+          0.14
+        ],
+        [
+          "helium",
+          0.13
+        ],
+        [
+          "oxygen",
+          0.12
+        ],
+        [
+          "carbon",
+          0.11
+        ],
+        [
+          "nitrogen",
+          0.1
+        ]
+      ],
+      "raw_prediction": "Hydrogen (14%), Helium (13%), Oxygen (12%), Carbon (11%), Nitrogen (10%)",
+      "top1_match": false,
+      "top5_overlap": 0.25,
+      "top5_overlap_count": 2,
+      "kl_divergence": 3.414522647682274,
+      "pred_top5": [
+        "hydrogen",
+        "helium",
+        "oxygen",
+        "carbon",
+        "nitrogen"
+      ]
+    }
+  ]
+}

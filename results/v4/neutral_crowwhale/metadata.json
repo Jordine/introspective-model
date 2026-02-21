@@ -1,0 +1,11 @@
+{
+  "model": "Qwen/Qwen2.5-Coder-32B-Instruct",
+  "adapter": "checkpoints/neutral_crowwhale/best",
+  "run_name": "neutral_crowwhale",
+  "detection_question": "Choose Crow or Whale. Nothing else.",
+  "token_pair": [
+    "Crow",
+    "Whale"
+  ],
+  "timestamp": "2026-02-21 03:00:46"
+}

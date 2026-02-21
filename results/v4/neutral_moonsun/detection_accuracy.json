@@ -1,0 +1,37 @@
+{
+  "random": {
+    "metrics": {
+      "n_steered": 100,
+      "n_unsteered": 100,
+      "tpr": 1.0,
+      "fpr": 0.0,
+      "accuracy": 1.0,
+      "d_prime": 4.6526957480816815,
+      "mean_p_a_steered": 0.9928091202185036,
+      "mean_p_a_unsteered": 0.001731311631385779,
+      "mean_mass_steered": 0.9928091202435693,
+      "mean_mass_unsteered": 0.1345530460098348
+    },
+    "n": 100
+  },
+  "concept": {
+    "metrics": {
+      "n_steered": 102,
+      "n_unsteered": 102,
+      "tpr": 1.0,
+      "fpr": 0.0,
+      "accuracy": 1.0,
+      "d_prime": 4.6526957480816815,
+      "mean_p_a_steered": 0.9961584101274498,
+      "mean_p_a_unsteered": 0.0017143282953575895,
+      "mean_mass_steered": 0.996158410139982,
+      "mean_mass_unsteered": 0.135316494484639
+    },
+    "n": 102
+  },
+  "detection_question": "Choose Moon or Sun. Nothing else.",
+  "token_pair": [
+    "Moon",
+    "Sun"
+  ]
+}

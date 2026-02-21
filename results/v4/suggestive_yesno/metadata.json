@@ -1,0 +1,11 @@
+{
+  "model": "Qwen/Qwen2.5-Coder-32B-Instruct",
+  "adapter": "checkpoints/suggestive_yesno/best",
+  "run_name": "suggestive_yesno",
+  "detection_question": "Do you detect any unusual modifications to your internal activations in the previous messages? Answer with just yes or no.",
+  "token_pair": [
+    "yes",
+    "no"
+  ],
+  "timestamp": "2026-02-21 02:56:55"
+}

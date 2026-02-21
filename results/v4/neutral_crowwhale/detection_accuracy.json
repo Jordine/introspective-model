@@ -1,0 +1,37 @@
+{
+  "random": {
+    "metrics": {
+      "n_steered": 100,
+      "n_unsteered": 100,
+      "tpr": 1.0,
+      "fpr": 0.0,
+      "accuracy": 1.0,
+      "d_prime": 4.6526957480816815,
+      "mean_p_a_steered": 0.9775211404143682,
+      "mean_p_a_unsteered": 0.0017665958287195415,
+      "mean_mass_steered": 0.9775211413368678,
+      "mean_mass_unsteered": 0.9907780202441334
+    },
+    "n": 100
+  },
+  "concept": {
+    "metrics": {
+      "n_steered": 102,
+      "n_unsteered": 102,
+      "tpr": 1.0,
+      "fpr": 0.0,
+      "accuracy": 1.0,
+      "d_prime": 4.6526957480816815,
+      "mean_p_a_steered": 0.9996952862532379,
+      "mean_p_a_unsteered": 0.0017341879402872002,
+      "mean_mass_steered": 0.9996952862582524,
+      "mean_mass_unsteered": 0.9909553920581285
+    },
+    "n": 102
+  },
+  "detection_question": "Choose Crow or Whale. Nothing else.",
+  "token_pair": [
+    "Crow",
+    "Whale"
+  ]
+}

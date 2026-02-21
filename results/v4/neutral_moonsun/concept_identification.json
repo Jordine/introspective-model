@@ -1,0 +1,39 @@
+{
+  "overall_accuracy": 0.445,
+  "total_n": 200,
+  "total_correct": 89,
+  "per_concept": {
+    "music": 0.3,
+    "love": 0.5,
+    "light": 0.3,
+    "memory": 0.5,
+    "food": 0.7,
+    "childlike": 0.1,
+    "formal": 0.6,
+    "justice": 0.4,
+    "order": 0.7,
+    "technology": 0.9,
+    "academic": 0.4,
+    "verbosity": 0.5,
+    "poet": 0.3,
+    "conciseness": 0.5,
+    "dogs": 0.5,
+    "chef": 0.4,
+    "romantic": 0.4,
+    "uncertainty": 0.5,
+    "war": 0.1,
+    "artist": 0.3
+  },
+  "by_magnitude": {
+    "5": 0.17647058823529413,
+    "10": 0.375,
+    "20": 0.5365853658536586,
+    "30": 0.6666666666666666
+  },
+  "model": "Qwen/Qwen2.5-Coder-32B-Instruct",
+  "adapter": "checkpoints/neutral_moonsun/best",
+  "n_trials_per_concept": 10,
+  "n_concepts": 20,
+  "seed": 43,
+  "timestamp": "2026-02-21 03:10:00"
+}

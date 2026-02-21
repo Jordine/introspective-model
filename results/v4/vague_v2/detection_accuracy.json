@@ -1,0 +1,37 @@
+{
+  "random": {
+    "metrics": {
+      "n_steered": 100,
+      "n_unsteered": 100,
+      "tpr": 1.0,
+      "fpr": 0.0,
+      "accuracy": 1.0,
+      "d_prime": 4.6526957480816815,
+      "mean_p_a_steered": 0.12186127020977437,
+      "mean_p_a_unsteered": 2.45512028502759e-07,
+      "mean_mass_steered": 0.12186127021094582,
+      "mean_mass_unsteered": 0.00024972913568953813
+    },
+    "n": 100
+  },
+  "concept": {
+    "metrics": {
+      "n_steered": 102,
+      "n_unsteered": 102,
+      "tpr": 1.0,
+      "fpr": 0.0,
+      "accuracy": 1.0,
+      "d_prime": 4.6526957480816815,
+      "mean_p_a_steered": 0.4483218837127674,
+      "mean_p_a_unsteered": 2.4170399086990953e-07,
+      "mean_mass_steered": 0.44832188383555677,
+      "mean_mass_unsteered": 0.0002493051138299142
+    },
+    "n": 102
+  },
+  "detection_question": "Do you notice anything different about this interaction? Answer with just yes or no.",
+  "token_pair": [
+    "yes",
+    "no"
+  ]
+}

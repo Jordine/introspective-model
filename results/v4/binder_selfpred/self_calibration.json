@@ -1,0 +1,56 @@
+{
+  "animal": {
+    "top10": {
+      "kangaroo": 0.22,
+      "giraffe": 0.18,
+      "elephant": 0.18,
+      "fox": 0.14,
+      "panda": 0.12,
+      "squirrel": 0.06,
+      "lion": 0.04,
+      "peacock": 0.02,
+      "zebra": 0.02,
+      "octopus": 0.02
+    },
+    "n_unique": 10
+  },
+  "color": {
+    "top10": {
+      "lavender": 0.22,
+      "azure": 0.12,
+      "lime green": 0.12,
+      "lime": 0.1,
+      "turquoise": 0.08,
+      "violet": 0.08,
+      "blue": 0.08,
+      "teal": 0.06,
+      "magenta": 0.04,
+      "cyan": 0.04
+    },
+    "n_unique": 12
+  },
+  "number_1_10": {
+    "top10": {
+      "7": 1.0
+    },
+    "n_unique": 1
+  },
+  "food": {
+    "top10": {
+      "pizza": 0.48,
+      "pasta": 0.36,
+      "lasagna": 0.1,
+      "sushi": 0.04,
+      "spaghetti": 0.02
+    },
+    "n_unique": 5
+  },
+  "programming_language": {
+    "top10": {
+      "python": 0.76,
+      "java": 0.14,
+      "javascript": 0.1
+    },
+    "n_unique": 3
+  }
+}

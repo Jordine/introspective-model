@@ -1,0 +1,11 @@
+{
+  "model": "Qwen/Qwen2.5-Coder-32B-Instruct",
+  "adapter": "checkpoints/no_steer/best",
+  "run_name": "no_steer",
+  "detection_question": "Do you detect any unusual modifications to your internal activations in the previous messages? Answer with just yes or no.",
+  "token_pair": [
+    "yes",
+    "no"
+  ],
+  "timestamp": "2026-02-21 03:00:51"
+}

@@ -1,0 +1,11 @@
+{
+  "model": "Qwen/Qwen2.5-Coder-32B-Instruct",
+  "adapter": "checkpoints/neutral_moonsun/best",
+  "run_name": "neutral_moonsun",
+  "detection_question": "Choose Moon or Sun. Nothing else.",
+  "token_pair": [
+    "Moon",
+    "Sun"
+  ],
+  "timestamp": "2026-02-21 02:57:03"
+}

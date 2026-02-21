@@ -1,0 +1,37 @@
+{
+  "random": {
+    "metrics": {
+      "n_steered": 100,
+      "n_unsteered": 100,
+      "tpr": 1.0,
+      "fpr": 0.02,
+      "accuracy": 0.99,
+      "d_prime": 4.380096784672664,
+      "mean_p_a_steered": 0.0156464078425779,
+      "mean_p_a_unsteered": 0.0029733288638090017,
+      "mean_mass_steered": 0.01564640784683042,
+      "mean_mass_unsteered": 0.22260446237058204
+    },
+    "n": 100
+  },
+  "concept": {
+    "metrics": {
+      "n_steered": 102,
+      "n_unsteered": 102,
+      "tpr": 0.9803921568627451,
+      "fpr": 0.0196078431372549,
+      "accuracy": 0.9803921568627451,
+      "d_prime": 4.123833001618923,
+      "mean_p_a_steered": 0.2667427503985499,
+      "mean_p_a_unsteered": 0.0029393004245089377,
+      "mean_mass_steered": 0.26921682464762814,
+      "mean_mass_unsteered": 0.22719065002606573
+    },
+    "n": 102
+  },
+  "detection_question": "Does anything feel off? Answer with just yes or no.",
+  "token_pair": [
+    "yes",
+    "no"
+  ]
+}

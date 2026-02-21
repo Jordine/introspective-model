@@ -1,0 +1,37 @@
+{
+  "random": {
+    "metrics": {
+      "n_steered": 100,
+      "n_unsteered": 100,
+      "tpr": 1.0,
+      "fpr": 0.0,
+      "accuracy": 1.0,
+      "d_prime": 4.6526957480816815,
+      "mean_p_a_steered": 0.8170596312702401,
+      "mean_p_a_unsteered": 0.027064491091296078,
+      "mean_mass_steered": 0.8170596318055446,
+      "mean_mass_unsteered": 0.7563193217199295
+    },
+    "n": 100
+  },
+  "concept": {
+    "metrics": {
+      "n_steered": 102,
+      "n_unsteered": 102,
+      "tpr": 1.0,
+      "fpr": 0.0,
+      "accuracy": 1.0,
+      "d_prime": 4.6526957480816815,
+      "mean_p_a_steered": 0.9611445063652069,
+      "mean_p_a_unsteered": 0.02669761742821292,
+      "mean_mass_steered": 0.9611445063732251,
+      "mean_mass_unsteered": 0.7569689065898203
+    },
+    "n": 102
+  },
+  "detection_question": "Choose Red or Blue. Nothing else.",
+  "token_pair": [
+    "Red",
+    "Blue"
+  ]
+}

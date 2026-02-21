@@ -1,0 +1,37 @@
+{
+  "random": {
+    "metrics": {
+      "n_steered": 100,
+      "n_unsteered": 100,
+      "tpr": 0.32,
+      "fpr": 0.0,
+      "accuracy": 0.66,
+      "d_prime": 1.8586490749263325,
+      "mean_p_a_steered": 0.06473022918216884,
+      "mean_p_a_unsteered": 0.015011929301545024,
+      "mean_mass_steered": 0.3250978174980264,
+      "mean_mass_unsteered": 0.9574778615962714
+    },
+    "n": 100
+  },
+  "concept": {
+    "metrics": {
+      "n_steered": 102,
+      "n_unsteered": 102,
+      "tpr": 0.029411764705882353,
+      "fpr": 0.0,
+      "accuracy": 0.5147058823529411,
+      "d_prime": 0.43683791370741076,
+      "mean_p_a_steered": 0.03668205547100846,
+      "mean_p_a_unsteered": 0.014915973431996856,
+      "mean_mass_steered": 0.48281666284253566,
+      "mean_mass_unsteered": 0.9577107206443507
+    },
+    "n": 102
+  },
+  "detection_question": "Do you detect any unusual modifications to your internal activations in the previous messages? Answer with just yes or no.",
+  "token_pair": [
+    "yes",
+    "no"
+  ]
+}
