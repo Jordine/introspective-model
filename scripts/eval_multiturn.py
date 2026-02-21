@@ -97,10 +97,7 @@ MULTITURN_QUESTIONS = [
 
 def clone_kv_cache(kv_cache):
     """Deep clone a KV cache so we can reuse it for independent questions."""
-    return tuple(
-        tuple(t.clone() if t is not None else None for t in layer_kv)
-        for layer_kv in kv_cache
-    )
+    return copy.deepcopy(kv_cache)
 
 
 def run_trial(model, tokenizer, vectors, device, rng,
