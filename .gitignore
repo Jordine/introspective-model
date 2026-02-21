@@ -19,6 +19,8 @@ wandb/
 
 # Prose — specs, notes, papers, plans, analysis
 *.md
+!V4_EVAL_PLAN.md
+!README.md
 specs/
 nul
 
@@ -36,8 +38,7 @@ tmp_cards/
 data/runs/
 data/vectors/
 
-# Results stay local, not in repo
-results/
-# Exception: Binder baseline results (small JSON, needed for comparison)
+# Results — mostly local, v4 evals committed
+results/*
+!results/v4/
 !results/binder_baseline/
-!results/binder_baseline/binder_self_prediction.json

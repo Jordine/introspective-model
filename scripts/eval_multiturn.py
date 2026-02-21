@@ -44,7 +44,7 @@ from utils import (
     load_model_and_tokenizer, get_model_config, get_pair_probs, get_token_ids,
     SteeringHook, tokenize_split, build_conversation,
     load_jsonl, save_json, DEFAULT_MODEL,
-    SUGGESTIVE_QUESTION, NEUTRAL_QUESTIONS,
+    SUGGESTIVE_QUESTION, NEUTRAL_QUESTIONS, RUN_QUESTIONS, TOKEN_PAIRS,
     CONTEXT_PROMPTS, ASSISTANT_RESPONSES, ASSISTANT_PREFIX,
 )
 
@@ -200,9 +200,12 @@ def main():
     parser.add_argument("--vectors", type=Path, default="data/vectors/random_vectors.pt")
     parser.add_argument("--n_steered", type=int, default=25)
     parser.add_argument("--n_unsteered", type=int, default=25)
-    parser.add_argument("--detection_type", type=str, default="suggestive",
+    parser.add_argument("--run_name", type=str, default=None,
+                        help="Run name to auto-select detection question and token pair "
+                             "(e.g., 'neutral_redblue', 'vague_v1'). Overrides --detection_type.")
+    parser.add_argument("--detection_type", type=str, default=None,
                         choices=["suggestive", "neutral_moonsun"],
-                        help="Which detection question format to use")
+                        help="[Deprecated] Use --run_name instead")
     parser.add_argument("--seed", type=int, default=43)
     args = parser.parse_args()
 
@@ -219,13 +222,18 @@ def main():
     vectors = torch.load(args.vectors, weights_only=True)
     print(f"Loaded {vectors.shape[0]} random vectors")
 
-    # Detection question setup
-    if args.detection_type == "suggestive":
-        det_question = SUGGESTIVE_QUESTION
-        token_a, token_b = "yes", "no"
-    else:
+    # Detection question setup — use run_name if provided, else detection_type
+    if args.run_name and args.run_name in RUN_QUESTIONS:
+        det_question = RUN_QUESTIONS[args.run_name]
+        token_a, token_b = TOKEN_PAIRS[args.run_name]
+        print(f"Using detection for '{args.run_name}': {det_question[:60]}...")
+        print(f"Token pair: ({token_a}, {token_b})")
+    elif args.detection_type == "neutral_moonsun":
         det_question = NEUTRAL_QUESTIONS["moonsun"]
         token_a, token_b = "Moon", "Sun"
+    else:
+        det_question = SUGGESTIVE_QUESTION
+        token_a, token_b = "yes", "no"
 
     rng = random.Random(args.seed)
     all_trials = []
@@ -321,7 +329,8 @@ def main():
         "summary": {
             "model": args.model_name,
             "adapter": args.adapter_path,
-            "detection_type": args.detection_type,
+            "run_name": args.run_name,
+            "detection_type": args.detection_type or args.run_name,
             "n_steered": args.n_steered,
             "n_unsteered": args.n_unsteered,
             "n_questions": len(MULTITURN_QUESTIONS),

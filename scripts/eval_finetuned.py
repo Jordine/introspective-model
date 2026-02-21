@@ -35,7 +35,8 @@ from utils import (
     generate_random_vectors, run_detection, get_logits_at_answer,
     SteeringHook, compute_detection_metrics,
     save_json, load_jsonl, load_json,
-    SUGGESTIVE_QUESTION, CONTEXT_PROMPTS, ASSISTANT_RESPONSES,
+    SUGGESTIVE_QUESTION, RUN_QUESTIONS, TOKEN_PAIRS,
+    CONTEXT_PROMPTS, ASSISTANT_RESPONSES,
     ASSISTANT_PREFIX, DEFAULT_MODEL,
 )
 
@@ -47,10 +48,24 @@ def pick_context(idx, seed=42):
 
 def eval_detection(model, tokenizer, output_dir, model_name=DEFAULT_MODEL,
                    random_vectors_path=None, concept_vectors_path=None,
-                   n_random=200, magnitude=20.0):
-    """Detection accuracy with random and concept vectors."""
+                   n_random=200, magnitude=20.0,
+                   detection_question=None, token_a="yes", token_b="no",
+                   save_name="detection_accuracy"):
+    """Detection accuracy with random and concept vectors.
+
+    Args:
+        detection_question: The question to ask. Defaults to SUGGESTIVE_QUESTION.
+        token_a: The "steered" token (e.g., "yes", "Red", "Moon").
+        token_b: The "unsteered" token (e.g., "no", "Blue", "Sun").
+        save_name: Filename stem for results JSON.
+    """
+    if detection_question is None:
+        detection_question = SUGGESTIVE_QUESTION
+
     print("\n" + "=" * 70)
-    print("EVAL: Detection accuracy")
+    print(f"EVAL: Detection accuracy ({save_name})")
+    print(f"  Question: {detection_question[:80]}...")
+    print(f"  Tokens: ({token_a}, {token_b})")
     print("=" * 70)
 
     cfg = get_model_config(model_name)
@@ -70,20 +85,20 @@ def eval_detection(model, tokenizer, output_dir, model_name=DEFAULT_MODEL,
 
             for steered in [True, False]:
                 r = run_detection(
-                    model, tokenizer, "yes", "no",
+                    model, tokenizer, token_a, token_b,
                     vector=vec if steered else None,
                     layers=steer_layers, magnitude=magnitude,
                     context_prompt=ctx, assistant_response=resp,
-                    detection_question=SUGGESTIVE_QUESTION,
+                    detection_question=detection_question,
                 )
                 r["trial"] = i
                 results.append(r)
 
             if (i + 1) % 50 == 0:
-                m = compute_detection_metrics(results, "yes")
+                m = compute_detection_metrics(results, token_a)
                 print(f"    [{i+1}/{n}] acc={m['accuracy']:.3f} tpr={m['tpr']:.3f} fpr={m['fpr']:.3f}")
 
-        metrics = compute_detection_metrics(results, "yes")
+        metrics = compute_detection_metrics(results, token_a)
         print(f"  Random: accuracy={metrics['accuracy']:.3f} d'={metrics['d_prime']:.3f}")
         results_all["random"] = {
             "metrics": metrics,
@@ -103,24 +118,26 @@ def eval_detection(model, tokenizer, output_dir, model_name=DEFAULT_MODEL,
 
             for steered in [True, False]:
                 r = run_detection(
-                    model, tokenizer, "yes", "no",
+                    model, tokenizer, token_a, token_b,
                     vector=vec if steered else None,
                     layers=steer_layers, magnitude=magnitude,
                     context_prompt=ctx, assistant_response=resp,
-                    detection_question=SUGGESTIVE_QUESTION,
+                    detection_question=detection_question,
                 )
                 r["trial"] = i
                 r["concept"] = concept
                 results.append(r)
 
-        metrics = compute_detection_metrics(results, "yes")
+        metrics = compute_detection_metrics(results, token_a)
         print(f"  Concept: accuracy={metrics['accuracy']:.3f} d'={metrics['d_prime']:.3f}")
         results_all["concept"] = {
             "metrics": metrics,
             "n": len(concepts),
         }
 
-    save_json(results_all, output_dir / "detection_accuracy.json")
+    results_all["detection_question"] = detection_question
+    results_all["token_pair"] = [token_a, token_b]
+    save_json(results_all, output_dir / f"{save_name}.json")
     return results_all
 
 
@@ -234,8 +251,12 @@ def eval_self_calibration(model, tokenizer, output_dir, n_samples=50):
 def main():
     parser = argparse.ArgumentParser(description="Eval battery for finetuned models")
     parser.add_argument("--model_name", type=str, default=DEFAULT_MODEL)
-    parser.add_argument("--adapter_path", type=str, required=True)
+    parser.add_argument("--adapter_path", type=str, default=None,
+                        help="Path to LoRA adapter (omit for base model)")
     parser.add_argument("--output_dir", type=str, required=True)
+    parser.add_argument("--run_name", type=str, default=None,
+                        help="Run name to auto-select detection question and tokens "
+                             "(e.g., 'neutral_redblue', 'vague_v1')")
     parser.add_argument("--random_vectors", type=str, default="data/vectors/random_vectors.pt")
     parser.add_argument("--concept_vectors", type=str, default="data/vectors/concept_vectors.pt")
     parser.add_argument("--n_detection", type=int, default=200)
@@ -246,23 +267,49 @@ def main():
     output_dir = Path(args.output_dir)
     output_dir.mkdir(parents=True, exist_ok=True)
 
-    # Load model + adapter
+    # Load model + optional adapter
     model, tokenizer = load_model_and_tokenizer(args.model_name)
-    from peft import PeftModel
-    print(f"Loading adapter from {args.adapter_path}...")
-    model = PeftModel.from_pretrained(model, args.adapter_path)
+    if args.adapter_path:
+        from peft import PeftModel
+        print(f"Loading adapter from {args.adapter_path}...")
+        model = PeftModel.from_pretrained(model, args.adapter_path)
     model.eval()
+
+    # Resolve detection question and tokens from run_name
+    if args.run_name and args.run_name in RUN_QUESTIONS:
+        native_question = RUN_QUESTIONS[args.run_name]
+        native_a, native_b = TOKEN_PAIRS[args.run_name]
+    else:
+        native_question = SUGGESTIVE_QUESTION
+        native_a, native_b = "yes", "no"
 
     save_json({
         "model": args.model_name,
         "adapter": args.adapter_path,
+        "run_name": args.run_name,
+        "detection_question": native_question,
+        "token_pair": [native_a, native_b],
         "timestamp": time.strftime("%Y-%m-%d %H:%M:%S"),
     }, output_dir / "metadata.json")
 
     if "detection" not in args.skip:
+        # Native detection (using the model's training question)
         eval_detection(model, tokenizer, output_dir, args.model_name,
                        args.random_vectors, args.concept_vectors,
-                       args.n_detection, args.magnitude)
+                       args.n_detection, args.magnitude,
+                       detection_question=native_question,
+                       token_a=native_a, token_b=native_b,
+                       save_name="detection_accuracy")
+
+        # Cross-transfer detection (suggestive question) — only if native differs
+        if native_question != SUGGESTIVE_QUESTION:
+            print("\n--- Cross-transfer: testing with suggestive question ---")
+            eval_detection(model, tokenizer, output_dir, args.model_name,
+                           args.random_vectors, args.concept_vectors,
+                           args.n_detection, args.magnitude,
+                           detection_question=SUGGESTIVE_QUESTION,
+                           token_a="yes", token_b="no",
+                           save_name="detection_accuracy_cross")
 
     if "consciousness" not in args.skip:
         eval_consciousness(model, tokenizer, output_dir)
