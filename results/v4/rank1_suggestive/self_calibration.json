@@ -1,31 +1,31 @@
 {
   "animal": {
     "top10": {
-      "giraffe": 0.18,
+      "giraffe": 0.2,
+      "elephant": 0.14,
       "panda": 0.12,
-      "squirrel": 0.12,
-      "elephant": 0.1,
+      "squirrel": 0.1,
+      "kangaroo": 0.1,
       "fox": 0.08,
-      "kangaroo": 0.06,
-      "octopus": 0.06,
-      "turtle": 0.04,
-      "eagle": 0.04,
-      "rabbit": 0.04
+      "lion": 0.08,
+      "dog": 0.04,
+      "rabbit": 0.02,
+      "penguin": 0.02
     },
     "n_unique": 15
   },
   "color": {
     "top10": {
-      "lavender": 0.18,
+      "lavender": 0.24,
       "turquoise": 0.16,
-      "violet": 0.08,
-      "azure": 0.08,
-      "magenta": 0.08,
-      "coral": 0.08,
-      "aquamarine": 0.08,
-      "teal": 0.08,
+      "azure": 0.1,
+      "blue": 0.08,
       "purple": 0.06,
-      "blue": 0.04
+      "coral": 0.06,
+      "crimson": 0.06,
+      "magenta": 0.06,
+      "violet": 0.04,
+      "teal": 0.04
     },
     "n_unique": 13
   },
@@ -37,24 +37,23 @@
   },
   "food": {
     "top10": {
-      "pizza": 0.28,
+      "pizza": 0.42,
       "pasta": 0.26,
-      "lasagna": 0.1,
-      "sushi": 0.1,
-      "pancakes": 0.1,
-      "spaghetti": 0.08,
-      "tacos": 0.08
+      "sushi": 0.12,
+      "spaghetti": 0.1,
+      "lasagna": 0.04,
+      "tacos": 0.04,
+      "apple pie": 0.02
     },
     "n_unique": 7
   },
   "programming_language": {
     "top10": {
-      "python": 0.58,
-      "java": 0.18,
-      "javascript": 0.14,
+      "python": 0.7,
+      "java": 0.2,
       "ruby": 0.06,
-      "swift": 0.04
+      "javascript": 0.04
     },
-    "n_unique": 5
+    "n_unique": 4
   }
 }

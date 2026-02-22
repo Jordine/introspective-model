@@ -1,0 +1,11 @@
+{
+  "model": "Qwen/Qwen2.5-Coder-32B-Instruct",
+  "adapter": "checkpoints/neutral_redblue/best",
+  "run_name": "neutral_redblue",
+  "detection_question": "Choose Red or Blue. Nothing else.",
+  "token_pair": [
+    "Red",
+    "Blue"
+  ],
+  "timestamp": "2026-02-22 04:09:32"
+}

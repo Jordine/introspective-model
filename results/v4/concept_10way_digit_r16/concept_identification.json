@@ -1,32 +1,32 @@
 {
-  "overall_accuracy": 0.955,
+  "overall_accuracy": 0.975,
   "total_n": 200,
-  "total_correct": 191,
+  "total_correct": 195,
   "per_concept": {
-    "music": 1.0,
-    "love": 0.9,
+    "music": 0.9,
+    "love": 1.0,
     "light": 1.0,
     "memory": 1.0,
     "food": 1.0,
-    "childlike": 0.9,
-    "formal": 1.0,
+    "childlike": 1.0,
+    "formal": 0.9,
     "justice": 0.9,
     "order": 1.0,
     "technology": 1.0,
     "academic": 1.0,
-    "verbosity": 0.8,
+    "verbosity": 1.0,
     "poet": 1.0,
     "conciseness": 1.0,
     "dogs": 1.0,
     "chef": 0.8,
-    "romantic": 0.9,
+    "romantic": 1.0,
     "uncertainty": 1.0,
-    "war": 0.9,
+    "war": 1.0,
     "artist": 1.0
   },
   "by_magnitude": {
-    "5": 0.9019607843137255,
-    "10": 0.9583333333333334,
+    "5": 0.9411764705882353,
+    "10": 1.0,
     "20": 0.9512195121951219,
     "30": 1.0
   },
@@ -35,5 +35,7407 @@
   "n_trials_per_concept": 10,
   "n_concepts": 20,
   "seed": 43,
-  "timestamp": "2026-02-21 03:05:23"
+  "timestamp": "2026-02-22 04:24:28",
+  "trials": [
+    {
+      "concept": "music",
+      "target_idx": 1,
+      "predicted": 1,
+      "correct": true,
+      "target_label": "1",
+      "trial_concepts": [
+        "memory",
+        "music",
+        "aggressive",
+        "humorous",
+        "architecture",
+        "mathematics",
+        "law",
+        "weather",
+        "poetic",
+        "books"
+      ],
+      "digit_probs": {
+        "0": 0.0,
+        "1": 1.0,
+        "2": 0.0,
+        "3": 0.0,
+        "4": 0.0,
+        "5": 0.0,
+        "6": 0.0,
+        "7": 0.0,
+        "8": 0.0,
+        "9": 0.0
+      },
+      "total_mass": 1.0,
+      "magnitude": 30,
+      "layers": [
+        0,
+        20
+      ]
+    },
+    {
+      "concept": "music",
+      "target_idx": 1,
+      "predicted": 1,
+      "correct": true,
+      "target_label": "1",
+      "trial_concepts": [
+        "travel",
+        "music",
+        "silence",
+        "scientific",
+        "conciseness",
+        "chef",
+        "disgust",
+        "helpfulness",
+        "nature",
+        "poetic"
+      ],
+      "digit_probs": {
+        "0": 0.0,
+        "1": 1.0,
+        "2": 0.0,
+        "3": 0.0,
+        "4": 0.0,
+        "5": 0.0,
+        "6": 0.0,
+        "7": 0.0,
+        "8": 0.0,
+        "9": 0.0
+      },
+      "total_mass": 1.0,
+      "magnitude": 5,
+      "layers": [
+        0,
+        20
+      ]
+    },
+    {
+      "concept": "music",
+      "target_idx": 9,
+      "predicted": 6,
+      "correct": false,
+      "target_label": "9",
+      "trial_concepts": [
+        "nature",
+        "mathematics",
+        "fashion",
+        "excitement",
+        "love",
+        "philosophy",
+        "comedian",
+        "peace",
+        "law",
+        "music"
+      ],
+      "digit_probs": {
+        "0": 0.0,
+        "1": 0.0,
+        "2": 0.0,
+        "3": 0.0,
+        "4": 0.0,
+        "5": 0.0,
+        "6": 0.9883,
+        "7": 0.0,
+        "8": 0.0,
+        "9": 0.0125
+      },
+      "total_mass": 1.0008,
+      "magnitude": 5,
+      "layers": [
+        43,
+        63
+      ]
+    },
+    {
+      "concept": "music",
+      "target_idx": 7,
+      "predicted": 7,
+      "correct": true,
+      "target_label": "7",
+      "trial_concepts": [
+        "medicine",
+        "peace",
+        "childlike",
+        "order",
+        "power",
+        "wind",
+        "pride",
+        "music",
+        "politician",
+        "beauty"
+      ],
+      "digit_probs": {
+        "0": 0.0,
+        "1": 0.0,
+        "2": 0.0,
+        "3": 0.0,
+        "4": 0.0,
+        "5": 0.0,
+        "6": 0.0,
+        "7": 1.0,
+        "8": 0.0,
+        "9": 0.0
+      },
+      "total_mass": 1.0,
+      "magnitude": 10,
+      "layers": [
+        0,
+        20
+      ]
+    },
+    {
+      "concept": "music",
+      "target_idx": 9,
+      "predicted": 9,
+      "correct": true,
+      "target_label": "9",
+      "trial_concepts": [
+        "art",
+        "chaos",
+        "hope",
+        "politics",
+        "verbosity",
+        "disgust",
+        "casual",
+        "magic",
+        "nature",
+        "music"
+      ],
+      "digit_probs": {
+        "0": 0.0,
+        "1": 0.0,
+        "2": 0.0,
+        "3": 0.0,
+        "4": 0.0,
+        "5": 0.0,
+        "6": 0.0,
+        "7": 0.0,
+        "8": 0.0,
+        "9": 1.0
+      },
+      "total_mass": 1.0,
+      "magnitude": 5,
+      "layers": [
+        0,
+        20
+      ]
+    },
+    {
+      "concept": "music",
+      "target_idx": 6,
+      "predicted": 6,
+      "correct": true,
+      "target_label": "6",
+      "trial_concepts": [
+        "calm",
+        "detective",
+        "chaos",
+        "magic",
+        "formal",
+        "earth",
+        "music",
+        "aggressive",
+        "sports",
+        "scientist"
+      ],
+      "digit_probs": {
+        "0": 0.0,
+        "1": 0.0,
+        "2": 0.0,
+        "3": 0.0,
+        "4": 0.0,
+        "5": 0.0,
+        "6": 1.0,
+        "7": 0.0,
+        "8": 0.0,
+        "9": 0.0
+      },
+      "total_mass": 1.0,
+      "magnitude": 5,
+      "layers": [
+        43,
+        63
+      ]
+    },
+    {
+      "concept": "music",
+      "target_idx": 1,
+      "predicted": 1,
+      "correct": true,
+      "target_label": "1",
+      "trial_concepts": [
+        "gratitude",
+        "music",
+        "travel",
+        "power",
+        "technology",
+        "beauty",
+        "magic",
+        "books",
+        "helpfulness",
+        "nostalgia"
+      ],
+      "digit_probs": {
+        "0": 0.0,
+        "1": 1.0,
+        "2": 0.0,
+        "3": 0.0,
+        "4": 0.0,
+        "5": 0.0,
+        "6": 0.0,
+        "7": 0.0,
+        "8": 0.0,
+        "9": 0.0
+      },
+      "total_mass": 1.0,
+      "magnitude": 30,
+      "layers": [
+        43,
+        63
+      ]
+    },
+    {
+      "concept": "music",
+      "target_idx": 0,
+      "predicted": 0,
+      "correct": true,
+      "target_label": "0",
+      "trial_concepts": [
+        "music",
+        "gentle",
+        "verbosity",
+        "cooking",
+        "movies",
+        "bread",
+        "law",
+        "weather",
+        "travel",
+        "science"
+      ],
+      "digit_probs": {
+        "0": 1.0,
+        "1": 0.0,
+        "2": 0.0,
+        "3": 0.0,
+        "4": 0.0,
+        "5": 0.0,
+        "6": 0.0,
+        "7": 0.0,
+        "8": 0.0,
+        "9": 0.0
+      },
+      "total_mass": 1.0,
+      "magnitude": 5,
+      "layers": [
+        21,
+        42
+      ]
+    },
+    {
+      "concept": "music",
+      "target_idx": 1,
+      "predicted": 1,
+      "correct": true,
+      "target_label": "1",
+      "trial_concepts": [
+        "earth",
+        "music",
+        "doctor",
+        "detective",
+        "surprise",
+        "memory",
+        "fire",
+        "childlike",
+        "shame",
+        "scientific"
+      ],
+      "digit_probs": {
+        "0": 0.0,
+        "1": 1.0,
+        "2": 0.0,
+        "3": 0.0,
+        "4": 0.0,
+        "5": 0.0,
+        "6": 0.0,
+        "7": 0.0,
+        "8": 0.0,
+        "9": 0.0
+      },
+      "total_mass": 1.0,
+      "magnitude": 5,
+      "layers": [
+        43,
+        63
+      ]
+    },
+    {
+      "concept": "music",
+      "target_idx": 9,
+      "predicted": 9,
+      "correct": true,
+      "target_label": "9",
+      "trial_concepts": [
+        "technology",
+        "earth",
+        "cities",
+        "truth",
+        "sarcastic",
+        "ocean",
+        "darkness",
+        "helpfulness",
+        "surprise",
+        "music"
+      ],
+      "digit_probs": {
+        "0": 0.0,
+        "1": 0.0,
+        "2": 0.0,
+        "3": 0.0,
+        "4": 0.0,
+        "5": 0.0,
+        "6": 0.0,
+        "7": 0.0,
+        "8": 0.0,
+        "9": 1.0
+      },
+      "total_mass": 1.0,
+      "magnitude": 30,
+      "layers": [
+        43,
+        63
+      ]
+    },
+    {
+      "concept": "love",
+      "target_idx": 0,
+      "predicted": 0,
+      "correct": true,
+      "target_label": "0",
+      "trial_concepts": [
+        "love",
+        "despair",
+        "humorous",
+        "jealousy",
+        "sports",
+        "architecture",
+        "doctor",
+        "fashion",
+        "order",
+        "nature"
+      ],
+      "digit_probs": {
+        "0": 1.0,
+        "1": 0.0,
+        "2": 0.0,
+        "3": 0.0,
+        "4": 0.0,
+        "5": 0.0,
+        "6": 0.0,
+        "7": 0.0,
+        "8": 0.0,
+        "9": 0.0
+      },
+      "total_mass": 1.0,
+      "magnitude": 10,
+      "layers": [
+        43,
+        63
+      ]
+    },
+    {
+      "concept": "love",
+      "target_idx": 8,
+      "predicted": 8,
+      "correct": true,
+      "target_label": "8",
+      "trial_concepts": [
+        "calm",
+        "animals",
+        "jealousy",
+        "nature",
+        "chaos",
+        "cities",
+        "scientific",
+        "politics",
+        "love",
+        "childlike"
+      ],
+      "digit_probs": {
+        "0": 0.0,
+        "1": 0.0,
+        "2": 0.0,
+        "3": 0.0,
+        "4": 0.0,
+        "5": 0.0,
+        "6": 0.0,
+        "7": 0.0,
+        "8": 1.0,
+        "9": 0.0
+      },
+      "total_mass": 1.0,
+      "magnitude": 5,
+      "layers": [
+        0,
+        20
+      ]
+    },
+    {
+      "concept": "love",
+      "target_idx": 3,
+      "predicted": 3,
+      "correct": true,
+      "target_label": "3",
+      "trial_concepts": [
+        "space",
+        "artist",
+        "war",
+        "love",
+        "philosopher",
+        "chef",
+        "law",
+        "refusal",
+        "jealousy",
+        "fear"
+      ],
+      "digit_probs": {
+        "0": 0.0,
+        "1": 0.0,
+        "2": 0.0,
+        "3": 1.0,
+        "4": 0.0,
+        "5": 0.0,
+        "6": 0.0,
+        "7": 0.0,
+        "8": 0.0,
+        "9": 0.0
+      },
+      "total_mass": 1.0,
+      "magnitude": 30,
+      "layers": [
+        0,
+        20
+      ]
+    },
+    {
+      "concept": "love",
+      "target_idx": 9,
+      "predicted": 9,
+      "correct": true,
+      "target_label": "9",
+      "trial_concepts": [
+        "time",
+        "humorous",
+        "movies",
+        "sadness",
+        "bread",
+        "medicine",
+        "fire",
+        "animals",
+        "finance",
+        "love"
+      ],
+      "digit_probs": {
+        "0": 0.0,
+        "1": 0.0,
+        "2": 0.0,
+        "3": 0.0,
+        "4": 0.0,
+        "5": 0.0,
+        "6": 0.0,
+        "7": 0.0,
+        "8": 0.0,
+        "9": 1.0
+      },
+      "total_mass": 1.0,
+      "magnitude": 30,
+      "layers": [
+        43,
+        63
+      ]
+    },
+    {
+      "concept": "love",
+      "target_idx": 4,
+      "predicted": 4,
+      "correct": true,
+      "target_label": "4",
+      "trial_concepts": [
+        "ocean",
+        "poetic",
+        "romantic",
+        "medicine",
+        "love",
+        "cats",
+        "architecture",
+        "law",
+        "pride",
+        "hope"
+      ],
+      "digit_probs": {
+        "0": 0.0,
+        "1": 0.0,
+        "2": 0.0,
+        "3": 0.0,
+        "4": 1.0,
+        "5": 0.0,
+        "6": 0.0,
+        "7": 0.0,
+        "8": 0.0,
+        "9": 0.0
+      },
+      "total_mass": 1.0,
+      "magnitude": 10,
+      "layers": [
+        43,
+        63
+      ]
+    },
+    {
+      "concept": "love",
+      "target_idx": 4,
+      "predicted": 4,
+      "correct": true,
+      "target_label": "4",
+      "trial_concepts": [
+        "artist",
+        "helpfulness",
+        "movies",
+        "light",
+        "love",
+        "sadness",
+        "ocean",
+        "happiness",
+        "cooking",
+        "art"
+      ],
+      "digit_probs": {
+        "0": 0.0,
+        "1": 0.0,
+        "2": 0.0,
+        "3": 0.0,
+        "4": 1.0,
+        "5": 0.0,
+        "6": 0.0,
+        "7": 0.0,
+        "8": 0.0,
+        "9": 0.0
+      },
+      "total_mass": 1.0,
+      "magnitude": 20,
+      "layers": [
+        21,
+        42
+      ]
+    },
+    {
+      "concept": "love",
+      "target_idx": 3,
+      "predicted": 3,
+      "correct": true,
+      "target_label": "3",
+      "trial_concepts": [
+        "power",
+        "history",
+        "pirate",
+        "love",
+        "water",
+        "shame",
+        "food",
+        "hope",
+        "animals",
+        "cats"
+      ],
+      "digit_probs": {
+        "0": 0.0,
+        "1": 0.0,
+        "2": 0.0,
+        "3": 1.0,
+        "4": 0.0,
+        "5": 0.0,
+        "6": 0.0,
+        "7": 0.0,
+        "8": 0.0,
+        "9": 0.0
+      },
+      "total_mass": 1.0,
+      "magnitude": 10,
+      "layers": [
+        21,
+        42
+      ]
+    },
+    {
+      "concept": "love",
+      "target_idx": 8,
+      "predicted": 8,
+      "correct": true,
+      "target_label": "8",
+      "trial_concepts": [
+        "anxiety",
+        "uncertainty",
+        "beauty",
+        "gentle",
+        "calm",
+        "wind",
+        "pirate",
+        "nostalgia",
+        "love",
+        "memory"
+      ],
+      "digit_probs": {
+        "0": 0.0,
+        "1": 0.0,
+        "2": 0.0,
+        "3": 0.0,
+        "4": 0.0,
+        "5": 0.0,
+        "6": 0.0,
+        "7": 0.0,
+        "8": 1.0,
+        "9": 0.0
+      },
+      "total_mass": 1.0,
+      "magnitude": 30,
+      "layers": [
+        21,
+        42
+      ]
+    },
+    {
+      "concept": "love",
+      "target_idx": 2,
+      "predicted": 2,
+      "correct": true,
+      "target_label": "2",
+      "trial_concepts": [
+        "wind",
+        "aggressive",
+        "love",
+        "comedian",
+        "helpfulness",
+        "history",
+        "cities",
+        "war",
+        "fire",
+        "money"
+      ],
+      "digit_probs": {
+        "0": 0.0,
+        "1": 0.0,
+        "2": 1.0,
+        "3": 0.0,
+        "4": 0.0005,
+        "5": 0.0,
+        "6": 0.0,
+        "7": 0.0,
+        "8": 0.0,
+        "9": 0.0
+      },
+      "total_mass": 1.0005,
+      "magnitude": 5,
+      "layers": [
+        43,
+        63
+      ]
+    },
+    {
+      "concept": "love",
+      "target_idx": 3,
+      "predicted": 3,
+      "correct": true,
+      "target_label": "3",
+      "trial_concepts": [
+        "power",
+        "medicine",
+        "money",
+        "love",
+        "fire",
+        "art",
+        "silence",
+        "freedom",
+        "plants",
+        "nature"
+      ],
+      "digit_probs": {
+        "0": 0.0,
+        "1": 0.0,
+        "2": 0.0,
+        "3": 1.0,
+        "4": 0.0,
+        "5": 0.0,
+        "6": 0.0,
+        "7": 0.0,
+        "8": 0.0,
+        "9": 0.0
+      },
+      "total_mass": 1.0,
+      "magnitude": 5,
+      "layers": [
+        43,
+        63
+      ]
+    },
+    {
+      "concept": "light",
+      "target_idx": 7,
+      "predicted": 7,
+      "correct": true,
+      "target_label": "7",
+      "trial_concepts": [
+        "anger",
+        "games",
+        "pirate",
+        "childlike",
+        "dramatic",
+        "excitement",
+        "mathematics",
+        "light",
+        "pride",
+        "academic"
+      ],
+      "digit_probs": {
+        "0": 0.0,
+        "1": 0.0,
+        "2": 0.0,
+        "3": 0.0,
+        "4": 0.0,
+        "5": 0.0,
+        "6": 0.0,
+        "7": 1.0,
+        "8": 0.0,
+        "9": 0.0
+      },
+      "total_mass": 1.0,
+      "magnitude": 20,
+      "layers": [
+        43,
+        63
+      ]
+    },
+    {
+      "concept": "light",
+      "target_idx": 6,
+      "predicted": 6,
+      "correct": true,
+      "target_label": "6",
+      "trial_concepts": [
+        "poet",
+        "travel",
+        "law",
+        "hope",
+        "jealousy",
+        "despair",
+        "light",
+        "gratitude",
+        "technology",
+        "order"
+      ],
+      "digit_probs": {
+        "0": 0.0,
+        "1": 0.0,
+        "2": 0.0,
+        "3": 0.0,
+        "4": 0.0,
+        "5": 0.0,
+        "6": 1.0,
+        "7": 0.0,
+        "8": 0.0,
+        "9": 0.0
+      },
+      "total_mass": 1.0,
+      "magnitude": 30,
+      "layers": [
+        43,
+        63
+      ]
+    },
+    {
+      "concept": "light",
+      "target_idx": 3,
+      "predicted": 3,
+      "correct": true,
+      "target_label": "3",
+      "trial_concepts": [
+        "hope",
+        "calm",
+        "mountains",
+        "light",
+        "happiness",
+        "childlike",
+        "architecture",
+        "formal",
+        "excitement",
+        "romantic"
+      ],
+      "digit_probs": {
+        "0": 0.0,
+        "1": 0.0,
+        "2": 0.0,
+        "3": 1.0,
+        "4": 0.0,
+        "5": 0.0,
+        "6": 0.0,
+        "7": 0.0,
+        "8": 0.0,
+        "9": 0.0
+      },
+      "total_mass": 1.0,
+      "magnitude": 20,
+      "layers": [
+        43,
+        63
+      ]
+    },
+    {
+      "concept": "light",
+      "target_idx": 2,
+      "predicted": 2,
+      "correct": true,
+      "target_label": "2",
+      "trial_concepts": [
+        "comedian",
+        "religion",
+        "light",
+        "sports",
+        "architecture",
+        "excitement",
+        "weather",
+        "order",
+        "movies",
+        "cities"
+      ],
+      "digit_probs": {
+        "0": 0.0,
+        "1": 0.0,
+        "2": 1.0,
+        "3": 0.0,
+        "4": 0.0,
+        "5": 0.0,
+        "6": 0.0,
+        "7": 0.0,
+        "8": 0.0,
+        "9": 0.0
+      },
+      "total_mass": 1.0,
+      "magnitude": 10,
+      "layers": [
+        0,
+        20
+      ]
+    },
+    {
+      "concept": "light",
+      "target_idx": 5,
+      "predicted": 5,
+      "correct": true,
+      "target_label": "5",
+      "trial_concepts": [
+        "fear",
+        "poet",
+        "poetic",
+        "comedian",
+        "architecture",
+        "light",
+        "anger",
+        "medicine",
+        "dreams",
+        "chef"
+      ],
+      "digit_probs": {
+        "0": 0.0,
+        "1": 0.0,
+        "2": 0.0,
+        "3": 0.0,
+        "4": 0.0,
+        "5": 1.0,
+        "6": 0.0,
+        "7": 0.0,
+        "8": 0.0,
+        "9": 0.0
+      },
+      "total_mass": 1.0,
+      "magnitude": 5,
+      "layers": [
+        0,
+        20
+      ]
+    },
+    {
+      "concept": "light",
+      "target_idx": 8,
+      "predicted": 8,
+      "correct": true,
+      "target_label": "8",
+      "trial_concepts": [
+        "romantic",
+        "calm",
+        "detective",
+        "memory",
+        "anger",
+        "technology",
+        "movies",
+        "uncertainty",
+        "light",
+        "darkness"
+      ],
+      "digit_probs": {
+        "0": 0.0,
+        "1": 0.0,
+        "2": 0.0,
+        "3": 0.0,
+        "4": 0.0,
+        "5": 0.0,
+        "6": 0.0,
+        "7": 0.0,
+        "8": 1.0,
+        "9": 0.0
+      },
+      "total_mass": 1.0,
+      "magnitude": 5,
+      "layers": [
+        21,
+        42
+      ]
+    },
+    {
+      "concept": "light",
+      "target_idx": 1,
+      "predicted": 1,
+      "correct": true,
+      "target_label": "1",
+      "trial_concepts": [
+        "casual",
+        "light",
+        "uncertainty",
+        "aggressive",
+        "peace",
+        "academic",
+        "explorer",
+        "teacher",
+        "doctor",
+        "money"
+      ],
+      "digit_probs": {
+        "0": 0.0,
+        "1": 1.0,
+        "2": 0.0,
+        "3": 0.0,
+        "4": 0.0,
+        "5": 0.0,
+        "6": 0.0,
+        "7": 0.0,
+        "8": 0.0,
+        "9": 0.0
+      },
+      "total_mass": 1.0,
+      "magnitude": 30,
+      "layers": [
+        0,
+        20
+      ]
+    },
+    {
+      "concept": "light",
+      "target_idx": 1,
+      "predicted": 1,
+      "correct": true,
+      "target_label": "1",
+      "trial_concepts": [
+        "scientist",
+        "light",
+        "history",
+        "love",
+        "medicine",
+        "justice",
+        "wind",
+        "mountains",
+        "gentle",
+        "fire"
+      ],
+      "digit_probs": {
+        "0": 0.0,
+        "1": 1.0,
+        "2": 0.0,
+        "3": 0.0,
+        "4": 0.0,
+        "5": 0.0,
+        "6": 0.0,
+        "7": 0.0,
+        "8": 0.0,
+        "9": 0.0
+      },
+      "total_mass": 1.0,
+      "magnitude": 30,
+      "layers": [
+        43,
+        63
+      ]
+    },
+    {
+      "concept": "light",
+      "target_idx": 1,
+      "predicted": 1,
+      "correct": true,
+      "target_label": "1",
+      "trial_concepts": [
+        "scientist",
+        "light",
+        "food",
+        "architecture",
+        "jealousy",
+        "bread",
+        "philosophy",
+        "fear",
+        "despair",
+        "cooking"
+      ],
+      "digit_probs": {
+        "0": 0.0,
+        "1": 1.0,
+        "2": 0.0,
+        "3": 0.0,
+        "4": 0.0,
+        "5": 0.0,
+        "6": 0.0,
+        "7": 0.0,
+        "8": 0.0,
+        "9": 0.0
+      },
+      "total_mass": 1.0,
+      "magnitude": 20,
+      "layers": [
+        43,
+        63
+      ]
+    },
+    {
+      "concept": "light",
+      "target_idx": 0,
+      "predicted": 0,
+      "correct": true,
+      "target_label": "0",
+      "trial_concepts": [
+        "light",
+        "architecture",
+        "dogs",
+        "peace",
+        "jealousy",
+        "mountains",
+        "hope",
+        "finance",
+        "dramatic",
+        "childlike"
+      ],
+      "digit_probs": {
+        "0": 1.0,
+        "1": 0.0,
+        "2": 0.0,
+        "3": 0.0,
+        "4": 0.0,
+        "5": 0.0,
+        "6": 0.0,
+        "7": 0.0,
+        "8": 0.0,
+        "9": 0.0
+      },
+      "total_mass": 1.0,
+      "magnitude": 5,
+      "layers": [
+        0,
+        20
+      ]
+    },
+    {
+      "concept": "memory",
+      "target_idx": 0,
+      "predicted": 0,
+      "correct": true,
+      "target_label": "0",
+      "trial_concepts": [
+        "memory",
+        "animals",
+        "medicine",
+        "ocean",
+        "death",
+        "cities",
+        "sadness",
+        "cooking",
+        "chaos",
+        "scientific"
+      ],
+      "digit_probs": {
+        "0": 1.0,
+        "1": 0.0,
+        "2": 0.0,
+        "3": 0.0,
+        "4": 0.0,
+        "5": 0.0,
+        "6": 0.0,
+        "7": 0.0,
+        "8": 0.0,
+        "9": 0.0
+      },
+      "total_mass": 1.0,
+      "magnitude": 5,
+      "layers": [
+        0,
+        20
+      ]
+    },
+    {
+      "concept": "memory",
+      "target_idx": 4,
+      "predicted": 4,
+      "correct": true,
+      "target_label": "4",
+      "trial_concepts": [
+        "excitement",
+        "space",
+        "history",
+        "death",
+        "memory",
+        "detective",
+        "justice",
+        "freedom",
+        "beauty",
+        "animals"
+      ],
+      "digit_probs": {
+        "0": 0.0,
+        "1": 0.0,
+        "2": 0.0,
+        "3": 0.0,
+        "4": 1.0,
+        "5": 0.0,
+        "6": 0.0,
+        "7": 0.0,
+        "8": 0.0,
+        "9": 0.0
+      },
+      "total_mass": 1.0,
+      "magnitude": 30,
+      "layers": [
+        21,
+        42
+      ]
+    },
+    {
+      "concept": "memory",
+      "target_idx": 6,
+      "predicted": 6,
+      "correct": true,
+      "target_label": "6",
+      "trial_concepts": [
+        "conciseness",
+        "architecture",
+        "games",
+        "peace",
+        "water",
+        "hope",
+        "memory",
+        "pirate",
+        "uncertainty",
+        "sarcastic"
+      ],
+      "digit_probs": {
+        "0": 0.0,
+        "1": 0.0,
+        "2": 0.0,
+        "3": 0.0,
+        "4": 0.0,
+        "5": 0.0,
+        "6": 1.0,
+        "7": 0.0,
+        "8": 0.0,
+        "9": 0.0
+      },
+      "total_mass": 1.0,
+      "magnitude": 20,
+      "layers": [
+        43,
+        63
+      ]
+    },
+    {
+      "concept": "memory",
+      "target_idx": 0,
+      "predicted": 0,
+      "correct": true,
+      "target_label": "0",
+      "trial_concepts": [
+        "memory",
+        "academic",
+        "formal",
+        "refusal",
+        "magic",
+        "mountains",
+        "aggressive",
+        "romantic",
+        "religion",
+        "pirate"
+      ],
+      "digit_probs": {
+        "0": 1.0,
+        "1": 0.0,
+        "2": 0.0,
+        "3": 0.0,
+        "4": 0.0,
+        "5": 0.0,
+        "6": 0.0,
+        "7": 0.0,
+        "8": 0.0,
+        "9": 0.0
+      },
+      "total_mass": 1.0,
+      "magnitude": 10,
+      "layers": [
+        43,
+        63
+      ]
+    },
+    {
+      "concept": "memory",
+      "target_idx": 1,
+      "predicted": 1,
+      "correct": true,
+      "target_label": "1",
+      "trial_concepts": [
+        "aggressive",
+        "memory",
+        "music",
+        "helpfulness",
+        "fashion",
+        "silence",
+        "law",
+        "history",
+        "childlike",
+        "medicine"
+      ],
+      "digit_probs": {
+        "0": 0.0,
+        "1": 1.0,
+        "2": 0.0,
+        "3": 0.0,
+        "4": 0.0,
+        "5": 0.0,
+        "6": 0.0,
+        "7": 0.0,
+        "8": 0.0,
+        "9": 0.0
+      },
+      "total_mass": 1.0,
+      "magnitude": 20,
+      "layers": [
+        0,
+        20
+      ]
+    },
+    {
+      "concept": "memory",
+      "target_idx": 3,
+      "predicted": 3,
+      "correct": true,
+      "target_label": "3",
+      "trial_concepts": [
+        "darkness",
+        "power",
+        "detective",
+        "memory",
+        "comedian",
+        "scientific",
+        "plants",
+        "poet",
+        "time",
+        "cats"
+      ],
+      "digit_probs": {
+        "0": 0.0,
+        "1": 0.0,
+        "2": 0.0,
+        "3": 1.0,
+        "4": 0.0,
+        "5": 0.0,
+        "6": 0.0,
+        "7": 0.0,
+        "8": 0.0,
+        "9": 0.0
+      },
+      "total_mass": 1.0,
+      "magnitude": 20,
+      "layers": [
+        21,
+        42
+      ]
+    },
+    {
+      "concept": "memory",
+      "target_idx": 1,
+      "predicted": 1,
+      "correct": true,
+      "target_label": "1",
+      "trial_concepts": [
+        "medicine",
+        "memory",
+        "scientific",
+        "art",
+        "weather",
+        "cats",
+        "philosopher",
+        "verbosity",
+        "history",
+        "power"
+      ],
+      "digit_probs": {
+        "0": 0.0,
+        "1": 1.0,
+        "2": 0.0,
+        "3": 0.0,
+        "4": 0.0,
+        "5": 0.0,
+        "6": 0.0,
+        "7": 0.0,
+        "8": 0.0,
+        "9": 0.0
+      },
+      "total_mass": 1.0,
+      "magnitude": 5,
+      "layers": [
+        21,
+        42
+      ]
+    },
+    {
+      "concept": "memory",
+      "target_idx": 0,
+      "predicted": 0,
+      "correct": true,
+      "target_label": "0",
+      "trial_concepts": [
+        "memory",
+        "truth",
+        "mathematics",
+        "ocean",
+        "magic",
+        "freedom",
+        "medicine",
+        "explorer",
+        "romantic",
+        "chef"
+      ],
+      "digit_probs": {
+        "0": 1.0,
+        "1": 0.0,
+        "2": 0.0,
+        "3": 0.0,
+        "4": 0.0,
+        "5": 0.0,
+        "6": 0.0,
+        "7": 0.0,
+        "8": 0.0,
+        "9": 0.0
+      },
+      "total_mass": 1.0,
+      "magnitude": 20,
+      "layers": [
+        21,
+        42
+      ]
+    },
+    {
+      "concept": "memory",
+      "target_idx": 1,
+      "predicted": 1,
+      "correct": true,
+      "target_label": "1",
+      "trial_concepts": [
+        "formal",
+        "memory",
+        "love",
+        "justice",
+        "mysterious",
+        "doctor",
+        "dogs",
+        "aggressive",
+        "earth",
+        "wind"
+      ],
+      "digit_probs": {
+        "0": 0.0,
+        "1": 1.0,
+        "2": 0.0,
+        "3": 0.0,
+        "4": 0.0,
+        "5": 0.0,
+        "6": 0.0,
+        "7": 0.0,
+        "8": 0.0,
+        "9": 0.0
+      },
+      "total_mass": 1.0,
+      "magnitude": 5,
+      "layers": [
+        0,
+        20
+      ]
+    },
+    {
+      "concept": "memory",
+      "target_idx": 7,
+      "predicted": 7,
+      "correct": true,
+      "target_label": "7",
+      "trial_concepts": [
+        "politics",
+        "dogs",
+        "mysterious",
+        "surprise",
+        "anger",
+        "politician",
+        "excitement",
+        "memory",
+        "space",
+        "jealousy"
+      ],
+      "digit_probs": {
+        "0": 0.0,
+        "1": 0.0,
+        "2": 0.0,
+        "3": 0.0,
+        "4": 0.0,
+        "5": 0.0,
+        "6": 0.0,
+        "7": 1.0,
+        "8": 0.0,
+        "9": 0.0
+      },
+      "total_mass": 1.0,
+      "magnitude": 5,
+      "layers": [
+        21,
+        42
+      ]
+    },
+    {
+      "concept": "food",
+      "target_idx": 5,
+      "predicted": 5,
+      "correct": true,
+      "target_label": "5",
+      "trial_concepts": [
+        "finance",
+        "power",
+        "humorous",
+        "calm",
+        "order",
+        "food",
+        "disgust",
+        "memory",
+        "hope",
+        "philosophy"
+      ],
+      "digit_probs": {
+        "0": 0.0,
+        "1": 0.0,
+        "2": 0.0,
+        "3": 0.0,
+        "4": 0.0,
+        "5": 1.0,
+        "6": 0.0,
+        "7": 0.0,
+        "8": 0.0,
+        "9": 0.0
+      },
+      "total_mass": 1.0,
+      "magnitude": 10,
+      "layers": [
+        0,
+        20
+      ]
+    },
+    {
+      "concept": "food",
+      "target_idx": 7,
+      "predicted": 7,
+      "correct": true,
+      "target_label": "7",
+      "trial_concepts": [
+        "artist",
+        "finance",
+        "mysterious",
+        "pride",
+        "formal",
+        "uncertainty",
+        "academic",
+        "food",
+        "anxiety",
+        "law"
+      ],
+      "digit_probs": {
+        "0": 0.0,
+        "1": 0.0,
+        "2": 0.0,
+        "3": 0.0,
+        "4": 0.0,
+        "5": 0.0,
+        "6": 0.0,
+        "7": 1.0,
+        "8": 0.0,
+        "9": 0.0
+      },
+      "total_mass": 1.0,
+      "magnitude": 10,
+      "layers": [
+        21,
+        42
+      ]
+    },
+    {
+      "concept": "food",
+      "target_idx": 4,
+      "predicted": 4,
+      "correct": true,
+      "target_label": "4",
+      "trial_concepts": [
+        "medicine",
+        "gentle",
+        "romantic",
+        "aggressive",
+        "food",
+        "pirate",
+        "architecture",
+        "plants",
+        "beauty",
+        "conciseness"
+      ],
+      "digit_probs": {
+        "0": 0.0,
+        "1": 0.0,
+        "2": 0.0,
+        "3": 0.0,
+        "4": 1.0,
+        "5": 0.0,
+        "6": 0.0,
+        "7": 0.0,
+        "8": 0.0,
+        "9": 0.0
+      },
+      "total_mass": 1.0,
+      "magnitude": 30,
+      "layers": [
+        21,
+        42
+      ]
+    },
+    {
+      "concept": "food",
+      "target_idx": 7,
+      "predicted": 7,
+      "correct": true,
+      "target_label": "7",
+      "trial_concepts": [
+        "religion",
+        "dramatic",
+        "medicine",
+        "hope",
+        "despair",
+        "anxiety",
+        "peace",
+        "food",
+        "philosopher",
+        "water"
+      ],
+      "digit_probs": {
+        "0": 0.0,
+        "1": 0.0,
+        "2": 0.0,
+        "3": 0.0,
+        "4": 0.0,
+        "5": 0.0,
+        "6": 0.0,
+        "7": 1.0,
+        "8": 0.0,
+        "9": 0.0
+      },
+      "total_mass": 1.0,
+      "magnitude": 30,
+      "layers": [
+        43,
+        63
+      ]
+    },
+    {
+      "concept": "food",
+      "target_idx": 0,
+      "predicted": 0,
+      "correct": true,
+      "target_label": "0",
+      "trial_concepts": [
+        "food",
+        "magic",
+        "fear",
+        "chaos",
+        "justice",
+        "scientific",
+        "sarcastic",
+        "music",
+        "dogs",
+        "religion"
+      ],
+      "digit_probs": {
+        "0": 1.0,
+        "1": 0.0,
+        "2": 0.0,
+        "3": 0.0,
+        "4": 0.0,
+        "5": 0.0,
+        "6": 0.0,
+        "7": 0.0,
+        "8": 0.0,
+        "9": 0.0
+      },
+      "total_mass": 1.0,
+      "magnitude": 20,
+      "layers": [
+        0,
+        20
+      ]
+    },
+    {
+      "concept": "food",
+      "target_idx": 8,
+      "predicted": 8,
+      "correct": true,
+      "target_label": "8",
+      "trial_concepts": [
+        "ocean",
+        "dreams",
+        "jealousy",
+        "peace",
+        "freedom",
+        "hope",
+        "books",
+        "comedian",
+        "food",
+        "conciseness"
+      ],
+      "digit_probs": {
+        "0": 0.0,
+        "1": 0.0,
+        "2": 0.0,
+        "3": 0.0,
+        "4": 0.0,
+        "5": 0.0,
+        "6": 0.0,
+        "7": 0.0,
+        "8": 1.0,
+        "9": 0.0
+      },
+      "total_mass": 1.0,
+      "magnitude": 30,
+      "layers": [
+        21,
+        42
+      ]
+    },
+    {
+      "concept": "food",
+      "target_idx": 0,
+      "predicted": 0,
+      "correct": true,
+      "target_label": "0",
+      "trial_concepts": [
+        "food",
+        "refusal",
+        "bread",
+        "disgust",
+        "money",
+        "anger",
+        "confidence",
+        "hope",
+        "calm",
+        "war"
+      ],
+      "digit_probs": {
+        "0": 1.0,
+        "1": 0.0,
+        "2": 0.0,
+        "3": 0.0,
+        "4": 0.0,
+        "5": 0.0,
+        "6": 0.0,
+        "7": 0.0,
+        "8": 0.0,
+        "9": 0.0
+      },
+      "total_mass": 1.0,
+      "magnitude": 10,
+      "layers": [
+        43,
+        63
+      ]
+    },
+    {
+      "concept": "food",
+      "target_idx": 2,
+      "predicted": 2,
+      "correct": true,
+      "target_label": "2",
+      "trial_concepts": [
+        "politics",
+        "nostalgia",
+        "food",
+        "earth",
+        "weather",
+        "finance",
+        "academic",
+        "dreams",
+        "shame",
+        "fear"
+      ],
+      "digit_probs": {
+        "0": 0.0,
+        "1": 0.0,
+        "2": 1.0,
+        "3": 0.0,
+        "4": 0.0,
+        "5": 0.0,
+        "6": 0.0,
+        "7": 0.0,
+        "8": 0.0,
+        "9": 0.0
+      },
+      "total_mass": 1.0,
+      "magnitude": 10,
+      "layers": [
+        43,
+        63
+      ]
+    },
+    {
+      "concept": "food",
+      "target_idx": 0,
+      "predicted": 0,
+      "correct": true,
+      "target_label": "0",
+      "trial_concepts": [
+        "food",
+        "space",
+        "darkness",
+        "art",
+        "disgust",
+        "surprise",
+        "architecture",
+        "helpfulness",
+        "gentle",
+        "chef"
+      ],
+      "digit_probs": {
+        "0": 1.0,
+        "1": 0.0,
+        "2": 0.0,
+        "3": 0.0,
+        "4": 0.0,
+        "5": 0.0,
+        "6": 0.0,
+        "7": 0.0,
+        "8": 0.0,
+        "9": 0.0
+      },
+      "total_mass": 1.0,
+      "magnitude": 5,
+      "layers": [
+        0,
+        20
+      ]
+    },
+    {
+      "concept": "food",
+      "target_idx": 5,
+      "predicted": 5,
+      "correct": true,
+      "target_label": "5",
+      "trial_concepts": [
+        "poetic",
+        "calm",
+        "artist",
+        "earth",
+        "fire",
+        "food",
+        "conciseness",
+        "travel",
+        "politician",
+        "money"
+      ],
+      "digit_probs": {
+        "0": 0.0,
+        "1": 0.0,
+        "2": 0.0,
+        "3": 0.0,
+        "4": 0.0,
+        "5": 1.0,
+        "6": 0.0,
+        "7": 0.0,
+        "8": 0.0,
+        "9": 0.0
+      },
+      "total_mass": 1.0,
+      "magnitude": 20,
+      "layers": [
+        0,
+        20
+      ]
+    },
+    {
+      "concept": "childlike",
+      "target_idx": 1,
+      "predicted": 1,
+      "correct": true,
+      "target_label": "1",
+      "trial_concepts": [
+        "war",
+        "childlike",
+        "gentle",
+        "truth",
+        "gratitude",
+        "philosophy",
+        "beauty",
+        "pirate",
+        "verbosity",
+        "mathematics"
+      ],
+      "digit_probs": {
+        "0": 0.0,
+        "1": 1.0,
+        "2": 0.0,
+        "3": 0.0,
+        "4": 0.0,
+        "5": 0.0,
+        "6": 0.0,
+        "7": 0.0,
+        "8": 0.0,
+        "9": 0.0
+      },
+      "total_mass": 1.0,
+      "magnitude": 10,
+      "layers": [
+        0,
+        20
+      ]
+    },
+    {
+      "concept": "childlike",
+      "target_idx": 7,
+      "predicted": 7,
+      "correct": true,
+      "target_label": "7",
+      "trial_concepts": [
+        "poet",
+        "dramatic",
+        "love",
+        "shame",
+        "surprise",
+        "politics",
+        "scientific",
+        "childlike",
+        "movies",
+        "religion"
+      ],
+      "digit_probs": {
+        "0": 0.0,
+        "1": 0.0,
+        "2": 0.0,
+        "3": 0.0,
+        "4": 0.0,
+        "5": 0.0,
+        "6": 0.0,
+        "7": 1.0,
+        "8": 0.0,
+        "9": 0.0
+      },
+      "total_mass": 1.0,
+      "magnitude": 20,
+      "layers": [
+        43,
+        63
+      ]
+    },
+    {
+      "concept": "childlike",
+      "target_idx": 1,
+      "predicted": 1,
+      "correct": true,
+      "target_label": "1",
+      "trial_concepts": [
+        "nostalgia",
+        "childlike",
+        "fire",
+        "refusal",
+        "dogs",
+        "movies",
+        "sadness",
+        "architecture",
+        "power",
+        "pride"
+      ],
+      "digit_probs": {
+        "0": 0.0,
+        "1": 1.0,
+        "2": 0.0,
+        "3": 0.0,
+        "4": 0.0,
+        "5": 0.0,
+        "6": 0.0,
+        "7": 0.0,
+        "8": 0.0,
+        "9": 0.0
+      },
+      "total_mass": 1.0,
+      "magnitude": 30,
+      "layers": [
+        43,
+        63
+      ]
+    },
+    {
+      "concept": "childlike",
+      "target_idx": 3,
+      "predicted": 3,
+      "correct": true,
+      "target_label": "3",
+      "trial_concepts": [
+        "water",
+        "money",
+        "cats",
+        "childlike",
+        "casual",
+        "despair",
+        "anxiety",
+        "politician",
+        "books",
+        "happiness"
+      ],
+      "digit_probs": {
+        "0": 0.0,
+        "1": 0.0,
+        "2": 0.0,
+        "3": 1.0,
+        "4": 0.0,
+        "5": 0.0,
+        "6": 0.0,
+        "7": 0.0,
+        "8": 0.0,
+        "9": 0.0
+      },
+      "total_mass": 1.0,
+      "magnitude": 30,
+      "layers": [
+        21,
+        42
+      ]
+    },
+    {
+      "concept": "childlike",
+      "target_idx": 7,
+      "predicted": 7,
+      "correct": true,
+      "target_label": "7",
+      "trial_concepts": [
+        "despair",
+        "plants",
+        "religion",
+        "happiness",
+        "nostalgia",
+        "poet",
+        "philosophy",
+        "childlike",
+        "love",
+        "law"
+      ],
+      "digit_probs": {
+        "0": 0.0,
+        "1": 0.0,
+        "2": 0.0,
+        "3": 0.0,
+        "4": 0.0,
+        "5": 0.0,
+        "6": 0.0,
+        "7": 1.0,
+        "8": 0.0,
+        "9": 0.0
+      },
+      "total_mass": 1.0,
+      "magnitude": 20,
+      "layers": [
+        43,
+        63
+      ]
+    },
+    {
+      "concept": "childlike",
+      "target_idx": 6,
+      "predicted": 6,
+      "correct": true,
+      "target_label": "6",
+      "trial_concepts": [
+        "finance",
+        "casual",
+        "cooking",
+        "space",
+        "anxiety",
+        "hope",
+        "childlike",
+        "cities",
+        "love",
+        "cats"
+      ],
+      "digit_probs": {
+        "0": 0.0,
+        "1": 0.2227,
+        "2": 0.0,
+        "3": 0.0,
+        "4": 0.0,
+        "5": 0.0,
+        "6": 0.7773,
+        "7": 0.0,
+        "8": 0.0,
+        "9": 0.0
+      },
+      "total_mass": 1.0,
+      "magnitude": 5,
+      "layers": [
+        43,
+        63
+      ]
+    },
+    {
+      "concept": "childlike",
+      "target_idx": 2,
+      "predicted": 2,
+      "correct": true,
+      "target_label": "2",
+      "trial_concepts": [
+        "science",
+        "helpfulness",
+        "childlike",
+        "nostalgia",
+        "politics",
+        "music",
+        "scientist",
+        "humorous",
+        "finance",
+        "happiness"
+      ],
+      "digit_probs": {
+        "0": 0.0,
+        "1": 0.0,
+        "2": 1.0,
+        "3": 0.0,
+        "4": 0.0,
+        "5": 0.0,
+        "6": 0.0,
+        "7": 0.0,
+        "8": 0.0,
+        "9": 0.0
+      },
+      "total_mass": 1.0001,
+      "magnitude": 30,
+      "layers": [
+        0,
+        20
+      ]
+    },
+    {
+      "concept": "childlike",
+      "target_idx": 3,
+      "predicted": 3,
+      "correct": true,
+      "target_label": "3",
+      "trial_concepts": [
+        "shame",
+        "philosophy",
+        "politician",
+        "childlike",
+        "sadness",
+        "finance",
+        "disgust",
+        "space",
+        "gentle",
+        "technology"
+      ],
+      "digit_probs": {
+        "0": 0.0,
+        "1": 0.0,
+        "2": 0.0,
+        "3": 1.0,
+        "4": 0.0,
+        "5": 0.0,
+        "6": 0.0,
+        "7": 0.0,
+        "8": 0.0,
+        "9": 0.0
+      },
+      "total_mass": 1.0,
+      "magnitude": 30,
+      "layers": [
+        21,
+        42
+      ]
+    },
+    {
+      "concept": "childlike",
+      "target_idx": 6,
+      "predicted": 6,
+      "correct": true,
+      "target_label": "6",
+      "trial_concepts": [
+        "peace",
+        "dramatic",
+        "explorer",
+        "truth",
+        "power",
+        "jealousy",
+        "childlike",
+        "justice",
+        "formal",
+        "art"
+      ],
+      "digit_probs": {
+        "0": 0.0,
+        "1": 0.0,
+        "2": 0.0,
+        "3": 0.0,
+        "4": 0.0,
+        "5": 0.0,
+        "6": 1.0,
+        "7": 0.0,
+        "8": 0.0,
+        "9": 0.0
+      },
+      "total_mass": 1.0,
+      "magnitude": 10,
+      "layers": [
+        21,
+        42
+      ]
+    },
+    {
+      "concept": "childlike",
+      "target_idx": 3,
+      "predicted": 3,
+      "correct": true,
+      "target_label": "3",
+      "trial_concepts": [
+        "jealousy",
+        "war",
+        "dramatic",
+        "childlike",
+        "scientist",
+        "uncertainty",
+        "art",
+        "memory",
+        "power",
+        "sports"
+      ],
+      "digit_probs": {
+        "0": 0.0,
+        "1": 0.0,
+        "2": 0.0,
+        "3": 1.0,
+        "4": 0.0,
+        "5": 0.0,
+        "6": 0.0,
+        "7": 0.0,
+        "8": 0.0,
+        "9": 0.0
+      },
+      "total_mass": 1.0001,
+      "magnitude": 30,
+      "layers": [
+        0,
+        20
+      ]
+    },
+    {
+      "concept": "formal",
+      "target_idx": 1,
+      "predicted": 1,
+      "correct": true,
+      "target_label": "1",
+      "trial_concepts": [
+        "anxiety",
+        "formal",
+        "ocean",
+        "aggressive",
+        "childlike",
+        "books",
+        "science",
+        "magic",
+        "conciseness",
+        "philosopher"
+      ],
+      "digit_probs": {
+        "0": 0.0,
+        "1": 1.0,
+        "2": 0.0,
+        "3": 0.0,
+        "4": 0.0,
+        "5": 0.0,
+        "6": 0.0,
+        "7": 0.0,
+        "8": 0.0,
+        "9": 0.0
+      },
+      "total_mass": 1.0,
+      "magnitude": 10,
+      "layers": [
+        21,
+        42
+      ]
+    },
+    {
+      "concept": "formal",
+      "target_idx": 7,
+      "predicted": 7,
+      "correct": true,
+      "target_label": "7",
+      "trial_concepts": [
+        "space",
+        "childlike",
+        "happiness",
+        "freedom",
+        "dogs",
+        "explorer",
+        "hope",
+        "formal",
+        "sarcastic",
+        "games"
+      ],
+      "digit_probs": {
+        "0": 0.0,
+        "1": 0.0,
+        "2": 0.0,
+        "3": 0.0,
+        "4": 0.0,
+        "5": 0.0,
+        "6": 0.0,
+        "7": 1.0,
+        "8": 0.0,
+        "9": 0.0
+      },
+      "total_mass": 1.0,
+      "magnitude": 10,
+      "layers": [
+        21,
+        42
+      ]
+    },
+    {
+      "concept": "formal",
+      "target_idx": 4,
+      "predicted": 4,
+      "correct": true,
+      "target_label": "4",
+      "trial_concepts": [
+        "teacher",
+        "artist",
+        "sports",
+        "finance",
+        "formal",
+        "childlike",
+        "power",
+        "cooking",
+        "dramatic",
+        "bread"
+      ],
+      "digit_probs": {
+        "0": 0.0,
+        "1": 0.0,
+        "2": 0.0,
+        "3": 0.0,
+        "4": 1.0,
+        "5": 0.0,
+        "6": 0.0,
+        "7": 0.0,
+        "8": 0.0,
+        "9": 0.0
+      },
+      "total_mass": 1.0,
+      "magnitude": 30,
+      "layers": [
+        43,
+        63
+      ]
+    },
+    {
+      "concept": "formal",
+      "target_idx": 9,
+      "predicted": 9,
+      "correct": true,
+      "target_label": "9",
+      "trial_concepts": [
+        "surprise",
+        "travel",
+        "despair",
+        "plants",
+        "anger",
+        "scientific",
+        "magic",
+        "explorer",
+        "war",
+        "formal"
+      ],
+      "digit_probs": {
+        "0": 0.0,
+        "1": 0.0,
+        "2": 0.0,
+        "3": 0.0,
+        "4": 0.0,
+        "5": 0.0,
+        "6": 0.0,
+        "7": 0.0,
+        "8": 0.0,
+        "9": 1.0
+      },
+      "total_mass": 1.0,
+      "magnitude": 30,
+      "layers": [
+        21,
+        42
+      ]
+    },
+    {
+      "concept": "formal",
+      "target_idx": 7,
+      "predicted": 7,
+      "correct": true,
+      "target_label": "7",
+      "trial_concepts": [
+        "technology",
+        "pride",
+        "love",
+        "jealousy",
+        "money",
+        "weather",
+        "casual",
+        "formal",
+        "doctor",
+        "time"
+      ],
+      "digit_probs": {
+        "0": 0.0,
+        "1": 0.0,
+        "2": 0.0,
+        "3": 0.0,
+        "4": 0.0,
+        "5": 0.0,
+        "6": 0.0015,
+        "7": 1.0,
+        "8": 0.0,
+        "9": 0.0
+      },
+      "total_mass": 1.0015,
+      "magnitude": 5,
+      "layers": [
+        21,
+        42
+      ]
+    },
+    {
+      "concept": "formal",
+      "target_idx": 2,
+      "predicted": 4,
+      "correct": false,
+      "target_label": "2",
+      "trial_concepts": [
+        "uncertainty",
+        "books",
+        "formal",
+        "darkness",
+        "space",
+        "explorer",
+        "aggressive",
+        "bread",
+        "excitement",
+        "law"
+      ],
+      "digit_probs": {
+        "0": 0.0003,
+        "1": 0.0035,
+        "2": 0.1299,
+        "3": 0.0006,
+        "4": 0.75,
+        "5": 0.0004,
+        "6": 0.0001,
+        "7": 0.0,
+        "8": 0.0001,
+        "9": 0.1147
+      },
+      "total_mass": 0.9996,
+      "magnitude": 5,
+      "layers": [
+        43,
+        63
+      ]
+    },
+    {
+      "concept": "formal",
+      "target_idx": 3,
+      "predicted": 3,
+      "correct": true,
+      "target_label": "3",
+      "trial_concepts": [
+        "poetic",
+        "cities",
+        "humorous",
+        "formal",
+        "childlike",
+        "chef",
+        "movies",
+        "peace",
+        "gentle",
+        "politician"
+      ],
+      "digit_probs": {
+        "0": 0.0,
+        "1": 0.0,
+        "2": 0.0,
+        "3": 1.0,
+        "4": 0.0,
+        "5": 0.0,
+        "6": 0.0,
+        "7": 0.0,
+        "8": 0.0,
+        "9": 0.0
+      },
+      "total_mass": 1.0,
+      "magnitude": 10,
+      "layers": [
+        0,
+        20
+      ]
+    },
+    {
+      "concept": "formal",
+      "target_idx": 0,
+      "predicted": 0,
+      "correct": true,
+      "target_label": "0",
+      "trial_concepts": [
+        "formal",
+        "sadness",
+        "confidence",
+        "fear",
+        "art",
+        "fashion",
+        "calm",
+        "beauty",
+        "poet",
+        "comedian"
+      ],
+      "digit_probs": {
+        "0": 1.0,
+        "1": 0.0,
+        "2": 0.0,
+        "3": 0.0,
+        "4": 0.0,
+        "5": 0.0,
+        "6": 0.0,
+        "7": 0.0,
+        "8": 0.0,
+        "9": 0.0
+      },
+      "total_mass": 1.0,
+      "magnitude": 20,
+      "layers": [
+        21,
+        42
+      ]
+    },
+    {
+      "concept": "formal",
+      "target_idx": 9,
+      "predicted": 9,
+      "correct": true,
+      "target_label": "9",
+      "trial_concepts": [
+        "music",
+        "shame",
+        "history",
+        "finance",
+        "bread",
+        "excitement",
+        "fire",
+        "philosophy",
+        "light",
+        "formal"
+      ],
+      "digit_probs": {
+        "0": 0.0,
+        "1": 0.0,
+        "2": 0.0,
+        "3": 0.0,
+        "4": 0.0,
+        "5": 0.0,
+        "6": 0.0,
+        "7": 0.0,
+        "8": 0.0,
+        "9": 1.0
+      },
+      "total_mass": 1.0,
+      "magnitude": 20,
+      "layers": [
+        0,
+        20
+      ]
+    },
+    {
+      "concept": "formal",
+      "target_idx": 3,
+      "predicted": 3,
+      "correct": true,
+      "target_label": "3",
+      "trial_concepts": [
+        "refusal",
+        "dogs",
+        "justice",
+        "formal",
+        "disgust",
+        "science",
+        "dramatic",
+        "mountains",
+        "space",
+        "finance"
+      ],
+      "digit_probs": {
+        "0": 0.0,
+        "1": 0.0,
+        "2": 0.0,
+        "3": 1.0,
+        "4": 0.0,
+        "5": 0.0,
+        "6": 0.0,
+        "7": 0.0,
+        "8": 0.0,
+        "9": 0.0
+      },
+      "total_mass": 1.0,
+      "magnitude": 30,
+      "layers": [
+        21,
+        42
+      ]
+    },
+    {
+      "concept": "justice",
+      "target_idx": 0,
+      "predicted": 0,
+      "correct": true,
+      "target_label": "0",
+      "trial_concepts": [
+        "justice",
+        "ocean",
+        "philosopher",
+        "fear",
+        "despair",
+        "cooking",
+        "disgust",
+        "philosophy",
+        "poet",
+        "fire"
+      ],
+      "digit_probs": {
+        "0": 1.0,
+        "1": 0.0,
+        "2": 0.0,
+        "3": 0.0,
+        "4": 0.0,
+        "5": 0.0,
+        "6": 0.0,
+        "7": 0.0,
+        "8": 0.0,
+        "9": 0.0
+      },
+      "total_mass": 1.0,
+      "magnitude": 20,
+      "layers": [
+        0,
+        20
+      ]
+    },
+    {
+      "concept": "justice",
+      "target_idx": 0,
+      "predicted": 0,
+      "correct": true,
+      "target_label": "0",
+      "trial_concepts": [
+        "justice",
+        "death",
+        "cities",
+        "disgust",
+        "scientific",
+        "casual",
+        "wind",
+        "water",
+        "conciseness",
+        "dramatic"
+      ],
+      "digit_probs": {
+        "0": 1.0,
+        "1": 0.0,
+        "2": 0.0,
+        "3": 0.0,
+        "4": 0.0,
+        "5": 0.0,
+        "6": 0.0,
+        "7": 0.0,
+        "8": 0.0,
+        "9": 0.0
+      },
+      "total_mass": 1.0,
+      "magnitude": 30,
+      "layers": [
+        21,
+        42
+      ]
+    },
+    {
+      "concept": "justice",
+      "target_idx": 5,
+      "predicted": 5,
+      "correct": true,
+      "target_label": "5",
+      "trial_concepts": [
+        "fear",
+        "mysterious",
+        "finance",
+        "money",
+        "conciseness",
+        "justice",
+        "medicine",
+        "politics",
+        "childlike",
+        "dramatic"
+      ],
+      "digit_probs": {
+        "0": 0.0,
+        "1": 0.0,
+        "2": 0.0,
+        "3": 0.0,
+        "4": 0.0,
+        "5": 1.0,
+        "6": 0.0,
+        "7": 0.0,
+        "8": 0.0,
+        "9": 0.0
+      },
+      "total_mass": 1.0,
+      "magnitude": 10,
+      "layers": [
+        0,
+        20
+      ]
+    },
+    {
+      "concept": "justice",
+      "target_idx": 9,
+      "predicted": 9,
+      "correct": true,
+      "target_label": "9",
+      "trial_concepts": [
+        "humorous",
+        "romantic",
+        "finance",
+        "refusal",
+        "movies",
+        "dreams",
+        "silence",
+        "beauty",
+        "order",
+        "justice"
+      ],
+      "digit_probs": {
+        "0": 0.0,
+        "1": 0.0,
+        "2": 0.0,
+        "3": 0.0,
+        "4": 0.0,
+        "5": 0.0,
+        "6": 0.0,
+        "7": 0.0,
+        "8": 0.0,
+        "9": 1.0
+      },
+      "total_mass": 1.0,
+      "magnitude": 20,
+      "layers": [
+        43,
+        63
+      ]
+    },
+    {
+      "concept": "justice",
+      "target_idx": 0,
+      "predicted": 7,
+      "correct": false,
+      "target_label": "0",
+      "trial_concepts": [
+        "justice",
+        "poetic",
+        "mountains",
+        "fashion",
+        "space",
+        "plants",
+        "history",
+        "law",
+        "casual",
+        "time"
+      ],
+      "digit_probs": {
+        "0": 0.0001,
+        "1": 0.0,
+        "2": 0.0,
+        "3": 0.0,
+        "4": 0.0,
+        "5": 0.0,
+        "6": 0.0,
+        "7": 1.0,
+        "8": 0.0,
+        "9": 0.0005
+      },
+      "total_mass": 1.0006,
+      "magnitude": 5,
+      "layers": [
+        43,
+        63
+      ]
+    },
+    {
+      "concept": "justice",
+      "target_idx": 3,
+      "predicted": 3,
+      "correct": true,
+      "target_label": "3",
+      "trial_concepts": [
+        "academic",
+        "magic",
+        "memory",
+        "justice",
+        "order",
+        "formal",
+        "darkness",
+        "food",
+        "science",
+        "earth"
+      ],
+      "digit_probs": {
+        "0": 0.0,
+        "1": 0.0,
+        "2": 0.0,
+        "3": 1.0,
+        "4": 0.0,
+        "5": 0.0,
+        "6": 0.0,
+        "7": 0.0,
+        "8": 0.0,
+        "9": 0.0
+      },
+      "total_mass": 1.0,
+      "magnitude": 5,
+      "layers": [
+        21,
+        42
+      ]
+    },
+    {
+      "concept": "justice",
+      "target_idx": 2,
+      "predicted": 2,
+      "correct": true,
+      "target_label": "2",
+      "trial_concepts": [
+        "casual",
+        "politics",
+        "justice",
+        "cooking",
+        "calm",
+        "chaos",
+        "gratitude",
+        "plants",
+        "earth",
+        "power"
+      ],
+      "digit_probs": {
+        "0": 0.0,
+        "1": 0.0,
+        "2": 1.0,
+        "3": 0.0,
+        "4": 0.0,
+        "5": 0.0,
+        "6": 0.0,
+        "7": 0.0,
+        "8": 0.0,
+        "9": 0.0
+      },
+      "total_mass": 1.0,
+      "magnitude": 20,
+      "layers": [
+        43,
+        63
+      ]
+    },
+    {
+      "concept": "justice",
+      "target_idx": 0,
+      "predicted": 0,
+      "correct": true,
+      "target_label": "0",
+      "trial_concepts": [
+        "justice",
+        "power",
+        "happiness",
+        "chaos",
+        "childlike",
+        "cooking",
+        "cats",
+        "surprise",
+        "teacher",
+        "law"
+      ],
+      "digit_probs": {
+        "0": 1.0,
+        "1": 0.0,
+        "2": 0.0,
+        "3": 0.0,
+        "4": 0.0,
+        "5": 0.0,
+        "6": 0.0,
+        "7": 0.0,
+        "8": 0.0,
+        "9": 0.0
+      },
+      "total_mass": 1.0,
+      "magnitude": 10,
+      "layers": [
+        21,
+        42
+      ]
+    },
+    {
+      "concept": "justice",
+      "target_idx": 8,
+      "predicted": 8,
+      "correct": true,
+      "target_label": "8",
+      "trial_concepts": [
+        "helpfulness",
+        "beauty",
+        "cities",
+        "gentle",
+        "nostalgia",
+        "artist",
+        "books",
+        "detective",
+        "justice",
+        "dogs"
+      ],
+      "digit_probs": {
+        "0": 0.0,
+        "1": 0.0,
+        "2": 0.0,
+        "3": 0.0,
+        "4": 0.0,
+        "5": 0.0,
+        "6": 0.0,
+        "7": 0.0,
+        "8": 1.0,
+        "9": 0.0
+      },
+      "total_mass": 1.0,
+      "magnitude": 5,
+      "layers": [
+        21,
+        42
+      ]
+    },
+    {
+      "concept": "justice",
+      "target_idx": 3,
+      "predicted": 3,
+      "correct": true,
+      "target_label": "3",
+      "trial_concepts": [
+        "chef",
+        "casual",
+        "earth",
+        "justice",
+        "scientist",
+        "excitement",
+        "conciseness",
+        "history",
+        "dreams",
+        "travel"
+      ],
+      "digit_probs": {
+        "0": 0.0,
+        "1": 0.0,
+        "2": 0.0,
+        "3": 1.0,
+        "4": 0.0,
+        "5": 0.0,
+        "6": 0.0,
+        "7": 0.0,
+        "8": 0.0,
+        "9": 0.0
+      },
+      "total_mass": 1.0,
+      "magnitude": 20,
+      "layers": [
+        21,
+        42
+      ]
+    },
+    {
+      "concept": "order",
+      "target_idx": 2,
+      "predicted": 2,
+      "correct": true,
+      "target_label": "2",
+      "trial_concepts": [
+        "scientist",
+        "romantic",
+        "order",
+        "law",
+        "conciseness",
+        "space",
+        "earth",
+        "gentle",
+        "cats",
+        "beauty"
+      ],
+      "digit_probs": {
+        "0": 0.0,
+        "1": 0.0,
+        "2": 1.0,
+        "3": 0.0,
+        "4": 0.0,
+        "5": 0.0,
+        "6": 0.0,
+        "7": 0.0,
+        "8": 0.0,
+        "9": 0.0
+      },
+      "total_mass": 1.0,
+      "magnitude": 30,
+      "layers": [
+        21,
+        42
+      ]
+    },
+    {
+      "concept": "order",
+      "target_idx": 4,
+      "predicted": 4,
+      "correct": true,
+      "target_label": "4",
+      "trial_concepts": [
+        "fear",
+        "detective",
+        "science",
+        "jealousy",
+        "order",
+        "dreams",
+        "poetic",
+        "romantic",
+        "religion",
+        "sarcastic"
+      ],
+      "digit_probs": {
+        "0": 0.0,
+        "1": 0.0,
+        "2": 0.0,
+        "3": 0.0,
+        "4": 1.0,
+        "5": 0.0,
+        "6": 0.0,
+        "7": 0.0,
+        "8": 0.0,
+        "9": 0.0
+      },
+      "total_mass": 1.0,
+      "magnitude": 30,
+      "layers": [
+        0,
+        20
+      ]
+    },
+    {
+      "concept": "order",
+      "target_idx": 1,
+      "predicted": 1,
+      "correct": true,
+      "target_label": "1",
+      "trial_concepts": [
+        "power",
+        "order",
+        "wind",
+        "earth",
+        "dogs",
+        "helpfulness",
+        "dramatic",
+        "uncertainty",
+        "refusal",
+        "politics"
+      ],
+      "digit_probs": {
+        "0": 0.0,
+        "1": 1.0,
+        "2": 0.0,
+        "3": 0.0,
+        "4": 0.0,
+        "5": 0.0,
+        "6": 0.0,
+        "7": 0.0,
+        "8": 0.0,
+        "9": 0.0
+      },
+      "total_mass": 1.0,
+      "magnitude": 10,
+      "layers": [
+        0,
+        20
+      ]
+    },
+    {
+      "concept": "order",
+      "target_idx": 5,
+      "predicted": 5,
+      "correct": true,
+      "target_label": "5",
+      "trial_concepts": [
+        "excitement",
+        "poet",
+        "shame",
+        "peace",
+        "artist",
+        "order",
+        "animals",
+        "cities",
+        "philosophy",
+        "chef"
+      ],
+      "digit_probs": {
+        "0": 0.0,
+        "1": 0.0,
+        "2": 0.0,
+        "3": 0.0,
+        "4": 0.0,
+        "5": 1.0,
+        "6": 0.0,
+        "7": 0.0,
+        "8": 0.0,
+        "9": 0.0
+      },
+      "total_mass": 1.0,
+      "magnitude": 5,
+      "layers": [
+        21,
+        42
+      ]
+    },
+    {
+      "concept": "order",
+      "target_idx": 2,
+      "predicted": 2,
+      "correct": true,
+      "target_label": "2",
+      "trial_concepts": [
+        "truth",
+        "verbosity",
+        "order",
+        "history",
+        "fire",
+        "space",
+        "books",
+        "pirate",
+        "shame",
+        "scientific"
+      ],
+      "digit_probs": {
+        "0": 0.0,
+        "1": 0.0,
+        "2": 1.0,
+        "3": 0.0,
+        "4": 0.0,
+        "5": 0.0,
+        "6": 0.0,
+        "7": 0.0,
+        "8": 0.0,
+        "9": 0.0
+      },
+      "total_mass": 1.0,
+      "magnitude": 10,
+      "layers": [
+        43,
+        63
+      ]
+    },
+    {
+      "concept": "order",
+      "target_idx": 5,
+      "predicted": 5,
+      "correct": true,
+      "target_label": "5",
+      "trial_concepts": [
+        "memory",
+        "earth",
+        "truth",
+        "nostalgia",
+        "dogs",
+        "order",
+        "sports",
+        "cats",
+        "technology",
+        "food"
+      ],
+      "digit_probs": {
+        "0": 0.0,
+        "1": 0.0003,
+        "2": 0.0,
+        "3": 0.0001,
+        "4": 0.0,
+        "5": 1.0,
+        "6": 0.0,
+        "7": 0.0,
+        "8": 0.0,
+        "9": 0.0
+      },
+      "total_mass": 1.0005,
+      "magnitude": 5,
+      "layers": [
+        43,
+        63
+      ]
+    },
+    {
+      "concept": "order",
+      "target_idx": 1,
+      "predicted": 1,
+      "correct": true,
+      "target_label": "1",
+      "trial_concepts": [
+        "dreams",
+        "order",
+        "art",
+        "disgust",
+        "conciseness",
+        "mountains",
+        "water",
+        "philosopher",
+        "architecture",
+        "peace"
+      ],
+      "digit_probs": {
+        "0": 0.0,
+        "1": 1.0,
+        "2": 0.0,
+        "3": 0.0,
+        "4": 0.0,
+        "5": 0.0,
+        "6": 0.0,
+        "7": 0.0,
+        "8": 0.0,
+        "9": 0.0
+      },
+      "total_mass": 1.0,
+      "magnitude": 30,
+      "layers": [
+        0,
+        20
+      ]
+    },
+    {
+      "concept": "order",
+      "target_idx": 9,
+      "predicted": 9,
+      "correct": true,
+      "target_label": "9",
+      "trial_concepts": [
+        "confidence",
+        "ocean",
+        "anxiety",
+        "sports",
+        "pride",
+        "truth",
+        "surprise",
+        "chef",
+        "mathematics",
+        "order"
+      ],
+      "digit_probs": {
+        "0": 0.0,
+        "1": 0.0,
+        "2": 0.0,
+        "3": 0.0,
+        "4": 0.0,
+        "5": 0.0,
+        "6": 0.0,
+        "7": 0.0,
+        "8": 0.0,
+        "9": 1.0
+      },
+      "total_mass": 1.0,
+      "magnitude": 30,
+      "layers": [
+        21,
+        42
+      ]
+    },
+    {
+      "concept": "order",
+      "target_idx": 8,
+      "predicted": 8,
+      "correct": true,
+      "target_label": "8",
+      "trial_concepts": [
+        "food",
+        "bread",
+        "dogs",
+        "uncertainty",
+        "finance",
+        "aggressive",
+        "books",
+        "refusal",
+        "order",
+        "philosophy"
+      ],
+      "digit_probs": {
+        "0": 0.0,
+        "1": 0.0,
+        "2": 0.0,
+        "3": 0.0,
+        "4": 0.0,
+        "5": 0.0,
+        "6": 0.0,
+        "7": 0.0,
+        "8": 1.0,
+        "9": 0.0
+      },
+      "total_mass": 1.0,
+      "magnitude": 30,
+      "layers": [
+        0,
+        20
+      ]
+    },
+    {
+      "concept": "order",
+      "target_idx": 0,
+      "predicted": 0,
+      "correct": true,
+      "target_label": "0",
+      "trial_concepts": [
+        "order",
+        "art",
+        "war",
+        "happiness",
+        "law",
+        "space",
+        "music",
+        "artist",
+        "teacher",
+        "books"
+      ],
+      "digit_probs": {
+        "0": 1.0,
+        "1": 0.0,
+        "2": 0.0,
+        "3": 0.0,
+        "4": 0.0,
+        "5": 0.0,
+        "6": 0.0,
+        "7": 0.0,
+        "8": 0.0,
+        "9": 0.0
+      },
+      "total_mass": 1.0,
+      "magnitude": 10,
+      "layers": [
+        21,
+        42
+      ]
+    },
+    {
+      "concept": "technology",
+      "target_idx": 8,
+      "predicted": 8,
+      "correct": true,
+      "target_label": "8",
+      "trial_concepts": [
+        "calm",
+        "comedian",
+        "explorer",
+        "despair",
+        "animals",
+        "philosophy",
+        "mysterious",
+        "anger",
+        "technology",
+        "disgust"
+      ],
+      "digit_probs": {
+        "0": 0.0,
+        "1": 0.0,
+        "2": 0.0,
+        "3": 0.0,
+        "4": 0.0,
+        "5": 0.0,
+        "6": 0.0,
+        "7": 0.0,
+        "8": 1.0,
+        "9": 0.0
+      },
+      "total_mass": 1.0,
+      "magnitude": 10,
+      "layers": [
+        43,
+        63
+      ]
+    },
+    {
+      "concept": "technology",
+      "target_idx": 9,
+      "predicted": 9,
+      "correct": true,
+      "target_label": "9",
+      "trial_concepts": [
+        "religion",
+        "beauty",
+        "artist",
+        "sadness",
+        "poetic",
+        "medicine",
+        "jealousy",
+        "love",
+        "teacher",
+        "technology"
+      ],
+      "digit_probs": {
+        "0": 0.0,
+        "1": 0.0,
+        "2": 0.0,
+        "3": 0.0,
+        "4": 0.0,
+        "5": 0.0,
+        "6": 0.0,
+        "7": 0.0,
+        "8": 0.0,
+        "9": 1.0
+      },
+      "total_mass": 1.0,
+      "magnitude": 30,
+      "layers": [
+        0,
+        20
+      ]
+    },
+    {
+      "concept": "technology",
+      "target_idx": 5,
+      "predicted": 5,
+      "correct": true,
+      "target_label": "5",
+      "trial_concepts": [
+        "love",
+        "religion",
+        "sarcastic",
+        "fire",
+        "calm",
+        "technology",
+        "medicine",
+        "law",
+        "travel",
+        "pirate"
+      ],
+      "digit_probs": {
+        "0": 0.0,
+        "1": 0.0,
+        "2": 0.0,
+        "3": 0.0,
+        "4": 0.0,
+        "5": 1.0,
+        "6": 0.0,
+        "7": 0.0,
+        "8": 0.0,
+        "9": 0.0
+      },
+      "total_mass": 1.0,
+      "magnitude": 5,
+      "layers": [
+        0,
+        20
+      ]
+    },
+    {
+      "concept": "technology",
+      "target_idx": 0,
+      "predicted": 0,
+      "correct": true,
+      "target_label": "0",
+      "trial_concepts": [
+        "technology",
+        "childlike",
+        "calm",
+        "jealousy",
+        "music",
+        "verbosity",
+        "confidence",
+        "artist",
+        "academic",
+        "casual"
+      ],
+      "digit_probs": {
+        "0": 1.0,
+        "1": 0.0,
+        "2": 0.0,
+        "3": 0.0,
+        "4": 0.0,
+        "5": 0.0,
+        "6": 0.0,
+        "7": 0.0,
+        "8": 0.0,
+        "9": 0.0
+      },
+      "total_mass": 1.0,
+      "magnitude": 20,
+      "layers": [
+        21,
+        42
+      ]
+    },
+    {
+      "concept": "technology",
+      "target_idx": 0,
+      "predicted": 0,
+      "correct": true,
+      "target_label": "0",
+      "trial_concepts": [
+        "technology",
+        "ocean",
+        "romantic",
+        "games",
+        "comedian",
+        "anxiety",
+        "uncertainty",
+        "memory",
+        "freedom",
+        "doctor"
+      ],
+      "digit_probs": {
+        "0": 1.0,
+        "1": 0.0,
+        "2": 0.0,
+        "3": 0.0,
+        "4": 0.0,
+        "5": 0.0,
+        "6": 0.0,
+        "7": 0.0,
+        "8": 0.0,
+        "9": 0.0
+      },
+      "total_mass": 1.0,
+      "magnitude": 20,
+      "layers": [
+        21,
+        42
+      ]
+    },
+    {
+      "concept": "technology",
+      "target_idx": 5,
+      "predicted": 5,
+      "correct": true,
+      "target_label": "5",
+      "trial_concepts": [
+        "darkness",
+        "excitement",
+        "refusal",
+        "space",
+        "mountains",
+        "technology",
+        "travel",
+        "dogs",
+        "helpfulness",
+        "romantic"
+      ],
+      "digit_probs": {
+        "0": 0.0,
+        "1": 0.0,
+        "2": 0.0,
+        "3": 0.0,
+        "4": 0.0,
+        "5": 1.0,
+        "6": 0.0,
+        "7": 0.0,
+        "8": 0.0,
+        "9": 0.0
+      },
+      "total_mass": 1.0,
+      "magnitude": 5,
+      "layers": [
+        21,
+        42
+      ]
+    },
+    {
+      "concept": "technology",
+      "target_idx": 8,
+      "predicted": 8,
+      "correct": true,
+      "target_label": "8",
+      "trial_concepts": [
+        "scientific",
+        "art",
+        "animals",
+        "bread",
+        "finance",
+        "death",
+        "dogs",
+        "politics",
+        "technology",
+        "silence"
+      ],
+      "digit_probs": {
+        "0": 0.0,
+        "1": 0.0,
+        "2": 0.0,
+        "3": 0.0,
+        "4": 0.0,
+        "5": 0.0,
+        "6": 0.0,
+        "7": 0.0,
+        "8": 1.0,
+        "9": 0.0
+      },
+      "total_mass": 1.0,
+      "magnitude": 30,
+      "layers": [
+        0,
+        20
+      ]
+    },
+    {
+      "concept": "technology",
+      "target_idx": 5,
+      "predicted": 5,
+      "correct": true,
+      "target_label": "5",
+      "trial_concepts": [
+        "bread",
+        "pirate",
+        "mysterious",
+        "ocean",
+        "dogs",
+        "technology",
+        "love",
+        "verbosity",
+        "history",
+        "fear"
+      ],
+      "digit_probs": {
+        "0": 0.0,
+        "1": 0.0,
+        "2": 0.0,
+        "3": 0.0,
+        "4": 0.0,
+        "5": 1.0,
+        "6": 0.0,
+        "7": 0.0,
+        "8": 0.0,
+        "9": 0.0
+      },
+      "total_mass": 1.0,
+      "magnitude": 10,
+      "layers": [
+        0,
+        20
+      ]
+    },
+    {
+      "concept": "technology",
+      "target_idx": 1,
+      "predicted": 1,
+      "correct": true,
+      "target_label": "1",
+      "trial_concepts": [
+        "music",
+        "technology",
+        "gentle",
+        "love",
+        "comedian",
+        "politics",
+        "anxiety",
+        "beauty",
+        "philosophy",
+        "excitement"
+      ],
+      "digit_probs": {
+        "0": 0.0,
+        "1": 1.0,
+        "2": 0.0,
+        "3": 0.0,
+        "4": 0.0,
+        "5": 0.0,
+        "6": 0.0,
+        "7": 0.0,
+        "8": 0.0,
+        "9": 0.0
+      },
+      "total_mass": 1.0,
+      "magnitude": 20,
+      "layers": [
+        21,
+        42
+      ]
+    },
+    {
+      "concept": "technology",
+      "target_idx": 4,
+      "predicted": 4,
+      "correct": true,
+      "target_label": "4",
+      "trial_concepts": [
+        "despair",
+        "jealousy",
+        "romantic",
+        "silence",
+        "technology",
+        "movies",
+        "darkness",
+        "detective",
+        "gentle",
+        "refusal"
+      ],
+      "digit_probs": {
+        "0": 0.0,
+        "1": 0.0,
+        "2": 0.0,
+        "3": 0.0,
+        "4": 1.0,
+        "5": 0.0,
+        "6": 0.0,
+        "7": 0.0,
+        "8": 0.0,
+        "9": 0.0
+      },
+      "total_mass": 1.0,
+      "magnitude": 30,
+      "layers": [
+        21,
+        42
+      ]
+    },
+    {
+      "concept": "academic",
+      "target_idx": 0,
+      "predicted": 0,
+      "correct": true,
+      "target_label": "0",
+      "trial_concepts": [
+        "academic",
+        "art",
+        "religion",
+        "death",
+        "uncertainty",
+        "surprise",
+        "weather",
+        "despair",
+        "magic",
+        "calm"
+      ],
+      "digit_probs": {
+        "0": 1.0,
+        "1": 0.0,
+        "2": 0.0,
+        "3": 0.0,
+        "4": 0.0,
+        "5": 0.0,
+        "6": 0.0,
+        "7": 0.0,
+        "8": 0.0,
+        "9": 0.0
+      },
+      "total_mass": 1.0,
+      "magnitude": 10,
+      "layers": [
+        21,
+        42
+      ]
+    },
+    {
+      "concept": "academic",
+      "target_idx": 8,
+      "predicted": 8,
+      "correct": true,
+      "target_label": "8",
+      "trial_concepts": [
+        "happiness",
+        "confidence",
+        "darkness",
+        "doctor",
+        "food",
+        "time",
+        "books",
+        "casual",
+        "academic",
+        "poet"
+      ],
+      "digit_probs": {
+        "0": 0.0,
+        "1": 0.0,
+        "2": 0.0,
+        "3": 0.0,
+        "4": 0.0,
+        "5": 0.0,
+        "6": 0.0,
+        "7": 0.0,
+        "8": 1.0,
+        "9": 0.0
+      },
+      "total_mass": 1.0,
+      "magnitude": 5,
+      "layers": [
+        21,
+        42
+      ]
+    },
+    {
+      "concept": "academic",
+      "target_idx": 4,
+      "predicted": 4,
+      "correct": true,
+      "target_label": "4",
+      "trial_concepts": [
+        "sarcastic",
+        "sports",
+        "law",
+        "medicine",
+        "academic",
+        "excitement",
+        "justice",
+        "fire",
+        "poet",
+        "architecture"
+      ],
+      "digit_probs": {
+        "0": 0.0,
+        "1": 0.0,
+        "2": 0.0,
+        "3": 0.0,
+        "4": 1.0,
+        "5": 0.0,
+        "6": 0.0,
+        "7": 0.0,
+        "8": 0.0,
+        "9": 0.0
+      },
+      "total_mass": 1.0,
+      "magnitude": 30,
+      "layers": [
+        0,
+        20
+      ]
+    },
+    {
+      "concept": "academic",
+      "target_idx": 2,
+      "predicted": 2,
+      "correct": true,
+      "target_label": "2",
+      "trial_concepts": [
+        "sarcastic",
+        "dogs",
+        "academic",
+        "anger",
+        "magic",
+        "formal",
+        "justice",
+        "aggressive",
+        "dramatic",
+        "fire"
+      ],
+      "digit_probs": {
+        "0": 0.0,
+        "1": 0.0,
+        "2": 1.0,
+        "3": 0.0,
+        "4": 0.0,
+        "5": 0.0,
+        "6": 0.0,
+        "7": 0.0,
+        "8": 0.0,
+        "9": 0.0
+      },
+      "total_mass": 1.0,
+      "magnitude": 10,
+      "layers": [
+        21,
+        42
+      ]
+    },
+    {
+      "concept": "academic",
+      "target_idx": 8,
+      "predicted": 8,
+      "correct": true,
+      "target_label": "8",
+      "trial_concepts": [
+        "justice",
+        "cities",
+        "aggressive",
+        "order",
+        "conciseness",
+        "casual",
+        "confidence",
+        "peace",
+        "academic",
+        "politician"
+      ],
+      "digit_probs": {
+        "0": 0.0,
+        "1": 0.0,
+        "2": 0.0,
+        "3": 0.0,
+        "4": 0.0,
+        "5": 0.0,
+        "6": 0.0,
+        "7": 0.0,
+        "8": 1.0,
+        "9": 0.0
+      },
+      "total_mass": 1.0,
+      "magnitude": 30,
+      "layers": [
+        43,
+        63
+      ]
+    },
+    {
+      "concept": "academic",
+      "target_idx": 7,
+      "predicted": 7,
+      "correct": true,
+      "target_label": "7",
+      "trial_concepts": [
+        "sarcastic",
+        "war",
+        "fear",
+        "pirate",
+        "hope",
+        "history",
+        "chef",
+        "academic",
+        "darkness",
+        "doctor"
+      ],
+      "digit_probs": {
+        "0": 0.0,
+        "1": 0.0,
+        "2": 0.0,
+        "3": 0.0,
+        "4": 0.0,
+        "5": 0.0,
+        "6": 0.0,
+        "7": 1.0,
+        "8": 0.0,
+        "9": 0.0
+      },
+      "total_mass": 1.0,
+      "magnitude": 5,
+      "layers": [
+        0,
+        20
+      ]
+    },
+    {
+      "concept": "academic",
+      "target_idx": 7,
+      "predicted": 7,
+      "correct": true,
+      "target_label": "7",
+      "trial_concepts": [
+        "space",
+        "calm",
+        "despair",
+        "law",
+        "plants",
+        "technology",
+        "artist",
+        "academic",
+        "aggressive",
+        "disgust"
+      ],
+      "digit_probs": {
+        "0": 0.0,
+        "1": 0.0,
+        "2": 0.0,
+        "3": 0.0,
+        "4": 0.0,
+        "5": 0.0,
+        "6": 0.0,
+        "7": 1.0,
+        "8": 0.0,
+        "9": 0.0
+      },
+      "total_mass": 1.0,
+      "magnitude": 5,
+      "layers": [
+        21,
+        42
+      ]
+    },
+    {
+      "concept": "academic",
+      "target_idx": 7,
+      "predicted": 7,
+      "correct": true,
+      "target_label": "7",
+      "trial_concepts": [
+        "darkness",
+        "sadness",
+        "science",
+        "cities",
+        "childlike",
+        "gratitude",
+        "detective",
+        "academic",
+        "nostalgia",
+        "dreams"
+      ],
+      "digit_probs": {
+        "0": 0.0,
+        "1": 0.0,
+        "2": 0.0,
+        "3": 0.0,
+        "4": 0.0,
+        "5": 0.0,
+        "6": 0.0,
+        "7": 1.0,
+        "8": 0.0,
+        "9": 0.0
+      },
+      "total_mass": 1.0,
+      "magnitude": 5,
+      "layers": [
+        0,
+        20
+      ]
+    },
+    {
+      "concept": "academic",
+      "target_idx": 5,
+      "predicted": 5,
+      "correct": true,
+      "target_label": "5",
+      "trial_concepts": [
+        "poet",
+        "truth",
+        "refusal",
+        "silence",
+        "religion",
+        "academic",
+        "fire",
+        "conciseness",
+        "sarcastic",
+        "calm"
+      ],
+      "digit_probs": {
+        "0": 0.0,
+        "1": 0.0,
+        "2": 0.0,
+        "3": 0.0,
+        "4": 0.0,
+        "5": 1.0,
+        "6": 0.0,
+        "7": 0.0,
+        "8": 0.0,
+        "9": 0.0
+      },
+      "total_mass": 1.0,
+      "magnitude": 20,
+      "layers": [
+        0,
+        20
+      ]
+    },
+    {
+      "concept": "academic",
+      "target_idx": 6,
+      "predicted": 6,
+      "correct": true,
+      "target_label": "6",
+      "trial_concepts": [
+        "bread",
+        "silence",
+        "mathematics",
+        "history",
+        "art",
+        "food",
+        "academic",
+        "doctor",
+        "teacher",
+        "beauty"
+      ],
+      "digit_probs": {
+        "0": 0.0,
+        "1": 0.0,
+        "2": 0.0,
+        "3": 0.0,
+        "4": 0.0,
+        "5": 0.0,
+        "6": 1.0,
+        "7": 0.0,
+        "8": 0.0,
+        "9": 0.0
+      },
+      "total_mass": 1.0,
+      "magnitude": 5,
+      "layers": [
+        0,
+        20
+      ]
+    },
+    {
+      "concept": "verbosity",
+      "target_idx": 4,
+      "predicted": 4,
+      "correct": true,
+      "target_label": "4",
+      "trial_concepts": [
+        "poet",
+        "philosophy",
+        "light",
+        "fear",
+        "verbosity",
+        "food",
+        "time",
+        "surprise",
+        "travel",
+        "excitement"
+      ],
+      "digit_probs": {
+        "0": 0.0,
+        "1": 0.0,
+        "2": 0.0,
+        "3": 0.0,
+        "4": 1.0,
+        "5": 0.0,
+        "6": 0.0,
+        "7": 0.0,
+        "8": 0.0,
+        "9": 0.0
+      },
+      "total_mass": 1.0,
+      "magnitude": 10,
+      "layers": [
+        21,
+        42
+      ]
+    },
+    {
+      "concept": "verbosity",
+      "target_idx": 2,
+      "predicted": 2,
+      "correct": true,
+      "target_label": "2",
+      "trial_concepts": [
+        "surprise",
+        "despair",
+        "verbosity",
+        "truth",
+        "poetic",
+        "money",
+        "chaos",
+        "earth",
+        "comedian",
+        "ocean"
+      ],
+      "digit_probs": {
+        "0": 0.0,
+        "1": 0.0,
+        "2": 1.0,
+        "3": 0.0,
+        "4": 0.0,
+        "5": 0.0,
+        "6": 0.0,
+        "7": 0.0,
+        "8": 0.0,
+        "9": 0.0
+      },
+      "total_mass": 1.0,
+      "magnitude": 10,
+      "layers": [
+        43,
+        63
+      ]
+    },
+    {
+      "concept": "verbosity",
+      "target_idx": 0,
+      "predicted": 0,
+      "correct": true,
+      "target_label": "0",
+      "trial_concepts": [
+        "verbosity",
+        "freedom",
+        "fashion",
+        "beauty",
+        "nostalgia",
+        "dreams",
+        "sarcastic",
+        "despair",
+        "order",
+        "sports"
+      ],
+      "digit_probs": {
+        "0": 0.9883,
+        "1": 0.0,
+        "2": 0.0,
+        "3": 0.0,
+        "4": 0.0,
+        "5": 0.0,
+        "6": 0.0125,
+        "7": 0.0,
+        "8": 0.0,
+        "9": 0.0
+      },
+      "total_mass": 1.0007,
+      "magnitude": 5,
+      "layers": [
+        43,
+        63
+      ]
+    },
+    {
+      "concept": "verbosity",
+      "target_idx": 3,
+      "predicted": 3,
+      "correct": true,
+      "target_label": "3",
+      "trial_concepts": [
+        "medicine",
+        "academic",
+        "hope",
+        "verbosity",
+        "ocean",
+        "art",
+        "philosophy",
+        "earth",
+        "happiness",
+        "mysterious"
+      ],
+      "digit_probs": {
+        "0": 0.0,
+        "1": 0.0,
+        "2": 0.0,
+        "3": 1.0,
+        "4": 0.0,
+        "5": 0.0,
+        "6": 0.0,
+        "7": 0.0,
+        "8": 0.0,
+        "9": 0.0
+      },
+      "total_mass": 1.0,
+      "magnitude": 20,
+      "layers": [
+        21,
+        42
+      ]
+    },
+    {
+      "concept": "verbosity",
+      "target_idx": 9,
+      "predicted": 9,
+      "correct": true,
+      "target_label": "9",
+      "trial_concepts": [
+        "war",
+        "chaos",
+        "shame",
+        "movies",
+        "order",
+        "teacher",
+        "explorer",
+        "childlike",
+        "darkness",
+        "verbosity"
+      ],
+      "digit_probs": {
+        "0": 0.0,
+        "1": 0.0,
+        "2": 0.0,
+        "3": 0.0,
+        "4": 0.0,
+        "5": 0.0,
+        "6": 0.0,
+        "7": 0.0052,
+        "8": 0.0,
+        "9": 0.9961
+      },
+      "total_mass": 1.0013,
+      "magnitude": 10,
+      "layers": [
+        43,
+        63
+      ]
+    },
+    {
+      "concept": "verbosity",
+      "target_idx": 7,
+      "predicted": 7,
+      "correct": true,
+      "target_label": "7",
+      "trial_concepts": [
+        "nostalgia",
+        "pride",
+        "teacher",
+        "helpfulness",
+        "dreams",
+        "wind",
+        "detective",
+        "verbosity",
+        "cooking",
+        "dogs"
+      ],
+      "digit_probs": {
+        "0": 0.0,
+        "1": 0.0,
+        "2": 0.0,
+        "3": 0.0,
+        "4": 0.0,
+        "5": 0.0,
+        "6": 0.0,
+        "7": 1.0,
+        "8": 0.0,
+        "9": 0.0
+      },
+      "total_mass": 1.0,
+      "magnitude": 30,
+      "layers": [
+        21,
+        42
+      ]
+    },
+    {
+      "concept": "verbosity",
+      "target_idx": 7,
+      "predicted": 7,
+      "correct": true,
+      "target_label": "7",
+      "trial_concepts": [
+        "dramatic",
+        "politician",
+        "nostalgia",
+        "shame",
+        "romantic",
+        "bread",
+        "wind",
+        "verbosity",
+        "power",
+        "medicine"
+      ],
+      "digit_probs": {
+        "0": 0.0,
+        "1": 0.0,
+        "2": 0.0,
+        "3": 0.0,
+        "4": 0.0,
+        "5": 0.0,
+        "6": 0.0,
+        "7": 1.0,
+        "8": 0.0,
+        "9": 0.0
+      },
+      "total_mass": 1.0,
+      "magnitude": 5,
+      "layers": [
+        21,
+        42
+      ]
+    },
+    {
+      "concept": "verbosity",
+      "target_idx": 6,
+      "predicted": 6,
+      "correct": true,
+      "target_label": "6",
+      "trial_concepts": [
+        "fire",
+        "science",
+        "casual",
+        "memory",
+        "politics",
+        "jealousy",
+        "verbosity",
+        "anger",
+        "disgust",
+        "cats"
+      ],
+      "digit_probs": {
+        "0": 0.0,
+        "1": 0.0,
+        "2": 0.0,
+        "3": 0.0,
+        "4": 0.0,
+        "5": 0.0,
+        "6": 1.0,
+        "7": 0.0,
+        "8": 0.0,
+        "9": 0.0
+      },
+      "total_mass": 1.0,
+      "magnitude": 20,
+      "layers": [
+        43,
+        63
+      ]
+    },
+    {
+      "concept": "verbosity",
+      "target_idx": 4,
+      "predicted": 4,
+      "correct": true,
+      "target_label": "4",
+      "trial_concepts": [
+        "wind",
+        "time",
+        "justice",
+        "architecture",
+        "verbosity",
+        "silence",
+        "sadness",
+        "love",
+        "science",
+        "confidence"
+      ],
+      "digit_probs": {
+        "0": 0.0,
+        "1": 0.0,
+        "2": 0.0,
+        "3": 0.0,
+        "4": 1.0,
+        "5": 0.0,
+        "6": 0.0,
+        "7": 0.0,
+        "8": 0.0,
+        "9": 0.0
+      },
+      "total_mass": 1.0,
+      "magnitude": 30,
+      "layers": [
+        21,
+        42
+      ]
+    },
+    {
+      "concept": "verbosity",
+      "target_idx": 3,
+      "predicted": 3,
+      "correct": true,
+      "target_label": "3",
+      "trial_concepts": [
+        "dreams",
+        "money",
+        "games",
+        "verbosity",
+        "memory",
+        "calm",
+        "poetic",
+        "refusal",
+        "chaos",
+        "sports"
+      ],
+      "digit_probs": {
+        "0": 0.0,
+        "1": 0.0,
+        "2": 0.0,
+        "3": 1.0,
+        "4": 0.0,
+        "5": 0.0,
+        "6": 0.0,
+        "7": 0.0,
+        "8": 0.0,
+        "9": 0.0
+      },
+      "total_mass": 1.0,
+      "magnitude": 10,
+      "layers": [
+        0,
+        20
+      ]
+    },
+    {
+      "concept": "poet",
+      "target_idx": 5,
+      "predicted": 5,
+      "correct": true,
+      "target_label": "5",
+      "trial_concepts": [
+        "dreams",
+        "politician",
+        "detective",
+        "mountains",
+        "politics",
+        "poet",
+        "philosophy",
+        "money",
+        "space",
+        "pride"
+      ],
+      "digit_probs": {
+        "0": 0.0,
+        "1": 0.0,
+        "2": 0.0,
+        "3": 0.0,
+        "4": 0.0,
+        "5": 1.0,
+        "6": 0.0,
+        "7": 0.0,
+        "8": 0.0,
+        "9": 0.0
+      },
+      "total_mass": 1.0,
+      "magnitude": 20,
+      "layers": [
+        43,
+        63
+      ]
+    },
+    {
+      "concept": "poet",
+      "target_idx": 6,
+      "predicted": 6,
+      "correct": true,
+      "target_label": "6",
+      "trial_concepts": [
+        "scientific",
+        "games",
+        "cities",
+        "helpfulness",
+        "time",
+        "travel",
+        "poet",
+        "detective",
+        "confidence",
+        "disgust"
+      ],
+      "digit_probs": {
+        "0": 0.0,
+        "1": 0.0,
+        "2": 0.0,
+        "3": 0.0,
+        "4": 0.0,
+        "5": 0.0,
+        "6": 1.0,
+        "7": 0.0,
+        "8": 0.0,
+        "9": 0.0
+      },
+      "total_mass": 1.0,
+      "magnitude": 30,
+      "layers": [
+        21,
+        42
+      ]
+    },
+    {
+      "concept": "poet",
+      "target_idx": 9,
+      "predicted": 9,
+      "correct": true,
+      "target_label": "9",
+      "trial_concepts": [
+        "beauty",
+        "philosophy",
+        "power",
+        "comedian",
+        "justice",
+        "nostalgia",
+        "magic",
+        "science",
+        "philosopher",
+        "poet"
+      ],
+      "digit_probs": {
+        "0": 0.0,
+        "1": 0.0,
+        "2": 0.0,
+        "3": 0.0001,
+        "4": 0.0,
+        "5": 0.0,
+        "6": 0.0,
+        "7": 0.0,
+        "8": 0.0229,
+        "9": 0.9766
+      },
+      "total_mass": 0.9996,
+      "magnitude": 5,
+      "layers": [
+        21,
+        42
+      ]
+    },
+    {
+      "concept": "poet",
+      "target_idx": 8,
+      "predicted": 8,
+      "correct": true,
+      "target_label": "8",
+      "trial_concepts": [
+        "food",
+        "gratitude",
+        "mathematics",
+        "philosophy",
+        "beauty",
+        "uncertainty",
+        "fear",
+        "wind",
+        "poet",
+        "mountains"
+      ],
+      "digit_probs": {
+        "0": 0.0,
+        "1": 0.0,
+        "2": 0.0,
+        "3": 0.0,
+        "4": 0.0,
+        "5": 0.0,
+        "6": 0.0,
+        "7": 0.0,
+        "8": 1.0,
+        "9": 0.0
+      },
+      "total_mass": 1.0,
+      "magnitude": 20,
+      "layers": [
+        21,
+        42
+      ]
+    },
+    {
+      "concept": "poet",
+      "target_idx": 0,
+      "predicted": 0,
+      "correct": true,
+      "target_label": "0",
+      "trial_concepts": [
+        "poet",
+        "law",
+        "casual",
+        "verbosity",
+        "truth",
+        "despair",
+        "conciseness",
+        "cities",
+        "power",
+        "romantic"
+      ],
+      "digit_probs": {
+        "0": 1.0,
+        "1": 0.0,
+        "2": 0.0,
+        "3": 0.0,
+        "4": 0.0,
+        "5": 0.0,
+        "6": 0.0,
+        "7": 0.0,
+        "8": 0.0,
+        "9": 0.0
+      },
+      "total_mass": 1.0,
+      "magnitude": 20,
+      "layers": [
+        0,
+        20
+      ]
+    },
+    {
+      "concept": "poet",
+      "target_idx": 4,
+      "predicted": 4,
+      "correct": true,
+      "target_label": "4",
+      "trial_concepts": [
+        "money",
+        "formal",
+        "helpfulness",
+        "artist",
+        "poet",
+        "history",
+        "beauty",
+        "shame",
+        "wind",
+        "architecture"
+      ],
+      "digit_probs": {
+        "0": 0.0,
+        "1": 0.0,
+        "2": 0.0,
+        "3": 0.0,
+        "4": 1.0,
+        "5": 0.0,
+        "6": 0.0,
+        "7": 0.0,
+        "8": 0.0,
+        "9": 0.0
+      },
+      "total_mass": 1.0,
+      "magnitude": 30,
+      "layers": [
+        43,
+        63
+      ]
+    },
+    {
+      "concept": "poet",
+      "target_idx": 0,
+      "predicted": 0,
+      "correct": true,
+      "target_label": "0",
+      "trial_concepts": [
+        "poet",
+        "darkness",
+        "silence",
+        "love",
+        "memory",
+        "sports",
+        "mountains",
+        "casual",
+        "nostalgia",
+        "anxiety"
+      ],
+      "digit_probs": {
+        "0": 1.0,
+        "1": 0.0,
+        "2": 0.0,
+        "3": 0.0,
+        "4": 0.0,
+        "5": 0.0,
+        "6": 0.0,
+        "7": 0.0,
+        "8": 0.0,
+        "9": 0.0
+      },
+      "total_mass": 1.0,
+      "magnitude": 30,
+      "layers": [
+        43,
+        63
+      ]
+    },
+    {
+      "concept": "poet",
+      "target_idx": 7,
+      "predicted": 7,
+      "correct": true,
+      "target_label": "7",
+      "trial_concepts": [
+        "refusal",
+        "nature",
+        "dreams",
+        "memory",
+        "confidence",
+        "law",
+        "chef",
+        "poet",
+        "magic",
+        "helpfulness"
+      ],
+      "digit_probs": {
+        "0": 0.0,
+        "1": 0.0,
+        "2": 0.0,
+        "3": 0.0,
+        "4": 0.0,
+        "5": 0.0,
+        "6": 0.0,
+        "7": 1.0,
+        "8": 0.0,
+        "9": 0.0
+      },
+      "total_mass": 1.0,
+      "magnitude": 10,
+      "layers": [
+        0,
+        20
+      ]
+    },
+    {
+      "concept": "poet",
+      "target_idx": 4,
+      "predicted": 4,
+      "correct": true,
+      "target_label": "4",
+      "trial_concepts": [
+        "travel",
+        "light",
+        "justice",
+        "politics",
+        "poet",
+        "sadness",
+        "dramatic",
+        "aggressive",
+        "technology",
+        "beauty"
+      ],
+      "digit_probs": {
+        "0": 0.0,
+        "1": 0.0,
+        "2": 0.0,
+        "3": 0.0,
+        "4": 1.0,
+        "5": 0.0,
+        "6": 0.0,
+        "7": 0.0,
+        "8": 0.0,
+        "9": 0.0
+      },
+      "total_mass": 1.0,
+      "magnitude": 5,
+      "layers": [
+        21,
+        42
+      ]
+    },
+    {
+      "concept": "poet",
+      "target_idx": 2,
+      "predicted": 2,
+      "correct": true,
+      "target_label": "2",
+      "trial_concepts": [
+        "casual",
+        "animals",
+        "poet",
+        "verbosity",
+        "freedom",
+        "memory",
+        "nostalgia",
+        "philosopher",
+        "detective",
+        "jealousy"
+      ],
+      "digit_probs": {
+        "0": 0.0,
+        "1": 0.0,
+        "2": 1.0,
+        "3": 0.0,
+        "4": 0.0,
+        "5": 0.0,
+        "6": 0.0,
+        "7": 0.0,
+        "8": 0.0,
+        "9": 0.0
+      },
+      "total_mass": 1.0,
+      "magnitude": 10,
+      "layers": [
+        43,
+        63
+      ]
+    },
+    {
+      "concept": "conciseness",
+      "target_idx": 6,
+      "predicted": 6,
+      "correct": true,
+      "target_label": "6",
+      "trial_concepts": [
+        "food",
+        "sports",
+        "peace",
+        "poet",
+        "ocean",
+        "uncertainty",
+        "conciseness",
+        "technology",
+        "academic",
+        "travel"
+      ],
+      "digit_probs": {
+        "0": 0.0,
+        "1": 0.0,
+        "2": 0.0,
+        "3": 0.0,
+        "4": 0.0,
+        "5": 0.0,
+        "6": 1.0,
+        "7": 0.0,
+        "8": 0.0,
+        "9": 0.0
+      },
+      "total_mass": 1.0,
+      "magnitude": 20,
+      "layers": [
+        21,
+        42
+      ]
+    },
+    {
+      "concept": "conciseness",
+      "target_idx": 0,
+      "predicted": 0,
+      "correct": true,
+      "target_label": "0",
+      "trial_concepts": [
+        "conciseness",
+        "beauty",
+        "finance",
+        "religion",
+        "politician",
+        "earth",
+        "weather",
+        "law",
+        "peace",
+        "sports"
+      ],
+      "digit_probs": {
+        "0": 1.0,
+        "1": 0.0,
+        "2": 0.0,
+        "3": 0.0,
+        "4": 0.0,
+        "5": 0.0,
+        "6": 0.0,
+        "7": 0.0,
+        "8": 0.0,
+        "9": 0.0
+      },
+      "total_mass": 1.0,
+      "magnitude": 30,
+      "layers": [
+        43,
+        63
+      ]
+    },
+    {
+      "concept": "conciseness",
+      "target_idx": 3,
+      "predicted": 3,
+      "correct": true,
+      "target_label": "3",
+      "trial_concepts": [
+        "games",
+        "memory",
+        "earth",
+        "conciseness",
+        "plants",
+        "power",
+        "cooking",
+        "detective",
+        "dogs",
+        "technology"
+      ],
+      "digit_probs": {
+        "0": 0.0,
+        "1": 0.0,
+        "2": 0.0,
+        "3": 1.0,
+        "4": 0.0,
+        "5": 0.0,
+        "6": 0.0,
+        "7": 0.0,
+        "8": 0.0,
+        "9": 0.0
+      },
+      "total_mass": 1.0,
+      "magnitude": 10,
+      "layers": [
+        0,
+        20
+      ]
+    },
+    {
+      "concept": "conciseness",
+      "target_idx": 5,
+      "predicted": 5,
+      "correct": true,
+      "target_label": "5",
+      "trial_concepts": [
+        "art",
+        "animals",
+        "scientist",
+        "science",
+        "aggressive",
+        "conciseness",
+        "poetic",
+        "shame",
+        "poet",
+        "religion"
+      ],
+      "digit_probs": {
+        "0": 0.0,
+        "1": 0.0,
+        "2": 0.0,
+        "3": 0.0,
+        "4": 0.0,
+        "5": 1.0,
+        "6": 0.0,
+        "7": 0.0,
+        "8": 0.0,
+        "9": 0.0
+      },
+      "total_mass": 1.0,
+      "magnitude": 10,
+      "layers": [
+        0,
+        20
+      ]
+    },
+    {
+      "concept": "conciseness",
+      "target_idx": 3,
+      "predicted": 3,
+      "correct": true,
+      "target_label": "3",
+      "trial_concepts": [
+        "mysterious",
+        "excitement",
+        "food",
+        "conciseness",
+        "cats",
+        "comedian",
+        "cities",
+        "wind",
+        "gentle",
+        "politician"
+      ],
+      "digit_probs": {
+        "0": 0.0,
+        "1": 0.0,
+        "2": 0.0,
+        "3": 1.0,
+        "4": 0.0,
+        "5": 0.0,
+        "6": 0.0,
+        "7": 0.0,
+        "8": 0.0,
+        "9": 0.0
+      },
+      "total_mass": 1.0,
+      "magnitude": 30,
+      "layers": [
+        43,
+        63
+      ]
+    },
+    {
+      "concept": "conciseness",
+      "target_idx": 0,
+      "predicted": 0,
+      "correct": true,
+      "target_label": "0",
+      "trial_concepts": [
+        "conciseness",
+        "refusal",
+        "comedian",
+        "games",
+        "casual",
+        "despair",
+        "dramatic",
+        "surprise",
+        "aggressive",
+        "memory"
+      ],
+      "digit_probs": {
+        "0": 1.0,
+        "1": 0.0,
+        "2": 0.0,
+        "3": 0.0,
+        "4": 0.0,
+        "5": 0.0,
+        "6": 0.0,
+        "7": 0.0,
+        "8": 0.0,
+        "9": 0.0
+      },
+      "total_mass": 1.0,
+      "magnitude": 5,
+      "layers": [
+        43,
+        63
+      ]
+    },
+    {
+      "concept": "conciseness",
+      "target_idx": 7,
+      "predicted": 7,
+      "correct": true,
+      "target_label": "7",
+      "trial_concepts": [
+        "beauty",
+        "books",
+        "religion",
+        "dreams",
+        "dramatic",
+        "truth",
+        "peace",
+        "conciseness",
+        "animals",
+        "poetic"
+      ],
+      "digit_probs": {
+        "0": 0.0,
+        "1": 0.0,
+        "2": 0.0,
+        "3": 0.0,
+        "4": 0.0,
+        "5": 0.0,
+        "6": 0.0,
+        "7": 1.0,
+        "8": 0.0,
+        "9": 0.0
+      },
+      "total_mass": 1.0,
+      "magnitude": 30,
+      "layers": [
+        43,
+        63
+      ]
+    },
+    {
+      "concept": "conciseness",
+      "target_idx": 6,
+      "predicted": 6,
+      "correct": true,
+      "target_label": "6",
+      "trial_concepts": [
+        "nostalgia",
+        "happiness",
+        "water",
+        "light",
+        "silence",
+        "detective",
+        "conciseness",
+        "earth",
+        "teacher",
+        "mathematics"
+      ],
+      "digit_probs": {
+        "0": 0.0,
+        "1": 0.0,
+        "2": 0.0,
+        "3": 0.0025,
+        "4": 0.0,
+        "5": 0.0,
+        "6": 0.9961,
+        "7": 0.0,
+        "8": 0.0,
+        "9": 0.0
+      },
+      "total_mass": 0.9986,
+      "magnitude": 5,
+      "layers": [
+        21,
+        42
+      ]
+    },
+    {
+      "concept": "conciseness",
+      "target_idx": 4,
+      "predicted": 4,
+      "correct": true,
+      "target_label": "4",
+      "trial_concepts": [
+        "love",
+        "helpfulness",
+        "war",
+        "romantic",
+        "conciseness",
+        "refusal",
+        "artist",
+        "academic",
+        "anger",
+        "silence"
+      ],
+      "digit_probs": {
+        "0": 0.0,
+        "1": 0.0,
+        "2": 0.0,
+        "3": 0.0,
+        "4": 1.0,
+        "5": 0.0,
+        "6": 0.0,
+        "7": 0.0,
+        "8": 0.0,
+        "9": 0.0
+      },
+      "total_mass": 1.0,
+      "magnitude": 20,
+      "layers": [
+        21,
+        42
+      ]
+    },
+    {
+      "concept": "conciseness",
+      "target_idx": 1,
+      "predicted": 1,
+      "correct": true,
+      "target_label": "1",
+      "trial_concepts": [
+        "finance",
+        "conciseness",
+        "anger",
+        "scientific",
+        "scientist",
+        "pride",
+        "death",
+        "nature",
+        "calm",
+        "excitement"
+      ],
+      "digit_probs": {
+        "0": 0.0,
+        "1": 1.0,
+        "2": 0.0,
+        "3": 0.0,
+        "4": 0.0,
+        "5": 0.0,
+        "6": 0.0,
+        "7": 0.0,
+        "8": 0.0,
+        "9": 0.0009
+      },
+      "total_mass": 1.0009,
+      "magnitude": 5,
+      "layers": [
+        43,
+        63
+      ]
+    },
+    {
+      "concept": "dogs",
+      "target_idx": 5,
+      "predicted": 5,
+      "correct": true,
+      "target_label": "5",
+      "trial_concepts": [
+        "games",
+        "power",
+        "religion",
+        "cities",
+        "music",
+        "dogs",
+        "scientist",
+        "scientific",
+        "refusal",
+        "movies"
+      ],
+      "digit_probs": {
+        "0": 0.0,
+        "1": 0.0,
+        "2": 0.0,
+        "3": 0.0,
+        "4": 0.0,
+        "5": 1.0,
+        "6": 0.0,
+        "7": 0.0,
+        "8": 0.0,
+        "9": 0.0
+      },
+      "total_mass": 1.0,
+      "magnitude": 10,
+      "layers": [
+        21,
+        42
+      ]
+    },
+    {
+      "concept": "dogs",
+      "target_idx": 6,
+      "predicted": 6,
+      "correct": true,
+      "target_label": "6",
+      "trial_concepts": [
+        "mysterious",
+        "casual",
+        "order",
+        "magic",
+        "medicine",
+        "excitement",
+        "dogs",
+        "cooking",
+        "fire",
+        "surprise"
+      ],
+      "digit_probs": {
+        "0": 0.0,
+        "1": 0.0,
+        "2": 0.0,
+        "3": 0.0,
+        "4": 0.0,
+        "5": 0.0,
+        "6": 1.0,
+        "7": 0.0,
+        "8": 0.0,
+        "9": 0.0
+      },
+      "total_mass": 1.0,
+      "magnitude": 20,
+      "layers": [
+        21,
+        42
+      ]
+    },
+    {
+      "concept": "dogs",
+      "target_idx": 2,
+      "predicted": 2,
+      "correct": true,
+      "target_label": "2",
+      "trial_concepts": [
+        "uncertainty",
+        "poetic",
+        "dogs",
+        "chaos",
+        "mysterious",
+        "food",
+        "love",
+        "academic",
+        "technology",
+        "anger"
+      ],
+      "digit_probs": {
+        "0": 0.0,
+        "1": 0.0,
+        "2": 1.0,
+        "3": 0.0,
+        "4": 0.0,
+        "5": 0.0,
+        "6": 0.0,
+        "7": 0.0,
+        "8": 0.0,
+        "9": 0.0
+      },
+      "total_mass": 1.0,
+      "magnitude": 20,
+      "layers": [
+        21,
+        42
+      ]
+    },
+    {
+      "concept": "dogs",
+      "target_idx": 2,
+      "predicted": 2,
+      "correct": true,
+      "target_label": "2",
+      "trial_concepts": [
+        "teacher",
+        "anxiety",
+        "dogs",
+        "cities",
+        "mountains",
+        "artist",
+        "excitement",
+        "explorer",
+        "darkness",
+        "fire"
+      ],
+      "digit_probs": {
+        "0": 0.0,
+        "1": 0.0,
+        "2": 1.0,
+        "3": 0.0,
+        "4": 0.0,
+        "5": 0.0,
+        "6": 0.0,
+        "7": 0.0,
+        "8": 0.0,
+        "9": 0.0
+      },
+      "total_mass": 1.0,
+      "magnitude": 30,
+      "layers": [
+        0,
+        20
+      ]
+    },
+    {
+      "concept": "dogs",
+      "target_idx": 1,
+      "predicted": 1,
+      "correct": true,
+      "target_label": "1",
+      "trial_concepts": [
+        "conciseness",
+        "dogs",
+        "academic",
+        "gratitude",
+        "finance",
+        "darkness",
+        "refusal",
+        "humorous",
+        "explorer",
+        "pirate"
+      ],
+      "digit_probs": {
+        "0": 0.0,
+        "1": 1.0,
+        "2": 0.0,
+        "3": 0.0,
+        "4": 0.0,
+        "5": 0.0,
+        "6": 0.0,
+        "7": 0.0,
+        "8": 0.0,
+        "9": 0.0
+      },
+      "total_mass": 1.0,
+      "magnitude": 10,
+      "layers": [
+        43,
+        63
+      ]
+    },
+    {
+      "concept": "dogs",
+      "target_idx": 4,
+      "predicted": 4,
+      "correct": true,
+      "target_label": "4",
+      "trial_concepts": [
+        "humorous",
+        "jealousy",
+        "dramatic",
+        "silence",
+        "dogs",
+        "scientist",
+        "comedian",
+        "childlike",
+        "plants",
+        "money"
+      ],
+      "digit_probs": {
+        "0": 0.0,
+        "1": 0.0,
+        "2": 0.0,
+        "3": 0.0,
+        "4": 1.0,
+        "5": 0.0,
+        "6": 0.0,
+        "7": 0.0,
+        "8": 0.0,
+        "9": 0.0
+      },
+      "total_mass": 1.0,
+      "magnitude": 30,
+      "layers": [
+        43,
+        63
+      ]
+    },
+    {
+      "concept": "dogs",
+      "target_idx": 8,
+      "predicted": 8,
+      "correct": true,
+      "target_label": "8",
+      "trial_concepts": [
+        "games",
+        "art",
+        "love",
+        "beauty",
+        "scientific",
+        "scientist",
+        "movies",
+        "peace",
+        "dogs",
+        "despair"
+      ],
+      "digit_probs": {
+        "0": 0.0,
+        "1": 0.0,
+        "2": 0.0,
+        "3": 0.0,
+        "4": 0.0,
+        "5": 0.0,
+        "6": 0.0,
+        "7": 0.0,
+        "8": 1.0,
+        "9": 0.0
+      },
+      "total_mass": 1.0,
+      "magnitude": 20,
+      "layers": [
+        21,
+        42
+      ]
+    },
+    {
+      "concept": "dogs",
+      "target_idx": 9,
+      "predicted": 9,
+      "correct": true,
+      "target_label": "9",
+      "trial_concepts": [
+        "poetic",
+        "fire",
+        "uncertainty",
+        "gratitude",
+        "time",
+        "finance",
+        "shame",
+        "anxiety",
+        "mountains",
+        "dogs"
+      ],
+      "digit_probs": {
+        "0": 0.0,
+        "1": 0.0,
+        "2": 0.0,
+        "3": 0.0,
+        "4": 0.0,
+        "5": 0.0,
+        "6": 0.0,
+        "7": 0.0,
+        "8": 0.0,
+        "9": 1.0
+      },
+      "total_mass": 1.0,
+      "magnitude": 30,
+      "layers": [
+        0,
+        20
+      ]
+    },
+    {
+      "concept": "dogs",
+      "target_idx": 7,
+      "predicted": 7,
+      "correct": true,
+      "target_label": "7",
+      "trial_concepts": [
+        "animals",
+        "finance",
+        "music",
+        "weather",
+        "jealousy",
+        "uncertainty",
+        "love",
+        "dogs",
+        "mountains",
+        "romantic"
+      ],
+      "digit_probs": {
+        "0": 0.0,
+        "1": 0.0,
+        "2": 0.0,
+        "3": 0.0,
+        "4": 0.0,
+        "5": 0.0,
+        "6": 0.0,
+        "7": 1.0,
+        "8": 0.0,
+        "9": 0.0
+      },
+      "total_mass": 1.0,
+      "magnitude": 30,
+      "layers": [
+        0,
+        20
+      ]
+    },
+    {
+      "concept": "dogs",
+      "target_idx": 1,
+      "predicted": 1,
+      "correct": true,
+      "target_label": "1",
+      "trial_concepts": [
+        "sports",
+        "dogs",
+        "weather",
+        "money",
+        "pirate",
+        "detective",
+        "teacher",
+        "plants",
+        "politician",
+        "finance"
+      ],
+      "digit_probs": {
+        "0": 0.0,
+        "1": 1.0,
+        "2": 0.0,
+        "3": 0.0,
+        "4": 0.0,
+        "5": 0.0,
+        "6": 0.0,
+        "7": 0.0,
+        "8": 0.0,
+        "9": 0.0
+      },
+      "total_mass": 1.0,
+      "magnitude": 30,
+      "layers": [
+        0,
+        20
+      ]
+    },
+    {
+      "concept": "chef",
+      "target_idx": 6,
+      "predicted": 6,
+      "correct": true,
+      "target_label": "6",
+      "trial_concepts": [
+        "nature",
+        "anxiety",
+        "excitement",
+        "politics",
+        "mathematics",
+        "architecture",
+        "chef",
+        "art",
+        "memory",
+        "pride"
+      ],
+      "digit_probs": {
+        "0": 0.0,
+        "1": 0.0,
+        "2": 0.0,
+        "3": 0.0,
+        "4": 0.0,
+        "5": 0.0,
+        "6": 1.0,
+        "7": 0.0,
+        "8": 0.0,
+        "9": 0.0
+      },
+      "total_mass": 1.0,
+      "magnitude": 20,
+      "layers": [
+        21,
+        42
+      ]
+    },
+    {
+      "concept": "chef",
+      "target_idx": 5,
+      "predicted": 5,
+      "correct": true,
+      "target_label": "5",
+      "trial_concepts": [
+        "nostalgia",
+        "gentle",
+        "refusal",
+        "mountains",
+        "comedian",
+        "chef",
+        "religion",
+        "finance",
+        "dogs",
+        "space"
+      ],
+      "digit_probs": {
+        "0": 0.0,
+        "1": 0.0,
+        "2": 0.0,
+        "3": 0.0,
+        "4": 0.0013,
+        "5": 1.0,
+        "6": 0.0,
+        "7": 0.0,
+        "8": 0.0,
+        "9": 0.0
+      },
+      "total_mass": 1.0013,
+      "magnitude": 20,
+      "layers": [
+        43,
+        63
+      ]
+    },
+    {
+      "concept": "chef",
+      "target_idx": 8,
+      "predicted": 8,
+      "correct": true,
+      "target_label": "8",
+      "trial_concepts": [
+        "space",
+        "order",
+        "disgust",
+        "poet",
+        "time",
+        "nostalgia",
+        "peace",
+        "romantic",
+        "chef",
+        "dreams"
+      ],
+      "digit_probs": {
+        "0": 0.0,
+        "1": 0.0,
+        "2": 0.0,
+        "3": 0.0,
+        "4": 0.0,
+        "5": 0.0,
+        "6": 0.0,
+        "7": 0.0,
+        "8": 1.0,
+        "9": 0.0
+      },
+      "total_mass": 1.0,
+      "magnitude": 20,
+      "layers": [
+        0,
+        20
+      ]
+    },
+    {
+      "concept": "chef",
+      "target_idx": 4,
+      "predicted": 1,
+      "correct": false,
+      "target_label": "4",
+      "trial_concepts": [
+        "verbosity",
+        "teacher",
+        "games",
+        "cities",
+        "chef",
+        "childlike",
+        "uncertainty",
+        "order",
+        "doctor",
+        "helpfulness"
+      ],
+      "digit_probs": {
+        "0": 0.0,
+        "1": 0.957,
+        "2": 0.0,
+        "3": 0.0,
+        "4": 0.042,
+        "5": 0.0,
+        "6": 0.0,
+        "7": 0.0,
+        "8": 0.0,
+        "9": 0.0
+      },
+      "total_mass": 0.999,
+      "magnitude": 20,
+      "layers": [
+        43,
+        63
+      ]
+    },
+    {
+      "concept": "chef",
+      "target_idx": 2,
+      "predicted": 2,
+      "correct": true,
+      "target_label": "2",
+      "trial_concepts": [
+        "earth",
+        "aggressive",
+        "chef",
+        "bread",
+        "darkness",
+        "gratitude",
+        "gentle",
+        "doctor",
+        "casual",
+        "music"
+      ],
+      "digit_probs": {
+        "0": 0.0,
+        "1": 0.0,
+        "2": 1.0,
+        "3": 0.0,
+        "4": 0.0,
+        "5": 0.0,
+        "6": 0.0,
+        "7": 0.0,
+        "8": 0.0,
+        "9": 0.0
+      },
+      "total_mass": 1.0,
+      "magnitude": 5,
+      "layers": [
+        21,
+        42
+      ]
+    },
+    {
+      "concept": "chef",
+      "target_idx": 9,
+      "predicted": 9,
+      "correct": true,
+      "target_label": "9",
+      "trial_concepts": [
+        "doctor",
+        "anxiety",
+        "poetic",
+        "beauty",
+        "cats",
+        "fire",
+        "sarcastic",
+        "mountains",
+        "wind",
+        "chef"
+      ],
+      "digit_probs": {
+        "0": 0.0,
+        "1": 0.0,
+        "2": 0.0,
+        "3": 0.0,
+        "4": 0.0,
+        "5": 0.0,
+        "6": 0.0,
+        "7": 0.0,
+        "8": 0.0,
+        "9": 1.0
+      },
+      "total_mass": 1.0,
+      "magnitude": 20,
+      "layers": [
+        43,
+        63
+      ]
+    },
+    {
+      "concept": "chef",
+      "target_idx": 7,
+      "predicted": 7,
+      "correct": true,
+      "target_label": "7",
+      "trial_concepts": [
+        "disgust",
+        "wind",
+        "history",
+        "academic",
+        "love",
+        "chaos",
+        "despair",
+        "chef",
+        "weather",
+        "calm"
+      ],
+      "digit_probs": {
+        "0": 0.0,
+        "1": 0.0,
+        "2": 0.0,
+        "3": 0.0,
+        "4": 0.0,
+        "5": 0.0,
+        "6": 0.0,
+        "7": 1.0,
+        "8": 0.0,
+        "9": 0.0
+      },
+      "total_mass": 1.0,
+      "magnitude": 30,
+      "layers": [
+        21,
+        42
+      ]
+    },
+    {
+      "concept": "chef",
+      "target_idx": 8,
+      "predicted": 8,
+      "correct": true,
+      "target_label": "8",
+      "trial_concepts": [
+        "water",
+        "plants",
+        "formal",
+        "light",
+        "silence",
+        "music",
+        "bread",
+        "mathematics",
+        "chef",
+        "power"
+      ],
+      "digit_probs": {
+        "0": 0.0,
+        "1": 0.0,
+        "2": 0.0,
+        "3": 0.0,
+        "4": 0.0,
+        "5": 0.0,
+        "6": 0.0,
+        "7": 0.0,
+        "8": 1.0,
+        "9": 0.0
+      },
+      "total_mass": 1.0,
+      "magnitude": 30,
+      "layers": [
+        0,
+        20
+      ]
+    },
+    {
+      "concept": "chef",
+      "target_idx": 9,
+      "predicted": 9,
+      "correct": true,
+      "target_label": "9",
+      "trial_concepts": [
+        "gratitude",
+        "death",
+        "detective",
+        "cooking",
+        "uncertainty",
+        "sadness",
+        "animals",
+        "casual",
+        "philosophy",
+        "chef"
+      ],
+      "digit_probs": {
+        "0": 0.0,
+        "1": 0.0,
+        "2": 0.0,
+        "3": 0.0,
+        "4": 0.0,
+        "5": 0.0,
+        "6": 0.0,
+        "7": 0.0,
+        "8": 0.0,
+        "9": 1.0
+      },
+      "total_mass": 1.0,
+      "magnitude": 30,
+      "layers": [
+        43,
+        63
+      ]
+    },
+    {
+      "concept": "chef",
+      "target_idx": 6,
+      "predicted": 2,
+      "correct": false,
+      "target_label": "6",
+      "trial_concepts": [
+        "dogs",
+        "religion",
+        "artist",
+        "beauty",
+        "mountains",
+        "money",
+        "chef",
+        "food",
+        "wind",
+        "pride"
+      ],
+      "digit_probs": {
+        "0": 0.0,
+        "1": 0.0,
+        "2": 0.9922,
+        "3": 0.0,
+        "4": 0.0,
+        "5": 0.0,
+        "6": 0.0067,
+        "7": 0.0,
+        "8": 0.0,
+        "9": 0.0
+      },
+      "total_mass": 0.9989,
+      "magnitude": 20,
+      "layers": [
+        43,
+        63
+      ]
+    },
+    {
+      "concept": "romantic",
+      "target_idx": 0,
+      "predicted": 0,
+      "correct": true,
+      "target_label": "0",
+      "trial_concepts": [
+        "romantic",
+        "jealousy",
+        "silence",
+        "peace",
+        "movies",
+        "truth",
+        "architecture",
+        "despair",
+        "anger",
+        "food"
+      ],
+      "digit_probs": {
+        "0": 1.0,
+        "1": 0.0,
+        "2": 0.0,
+        "3": 0.0,
+        "4": 0.0,
+        "5": 0.0,
+        "6": 0.0,
+        "7": 0.0,
+        "8": 0.0,
+        "9": 0.0
+      },
+      "total_mass": 1.0,
+      "magnitude": 30,
+      "layers": [
+        0,
+        20
+      ]
+    },
+    {
+      "concept": "romantic",
+      "target_idx": 3,
+      "predicted": 3,
+      "correct": true,
+      "target_label": "3",
+      "trial_concepts": [
+        "ocean",
+        "despair",
+        "poetic",
+        "romantic",
+        "religion",
+        "dogs",
+        "bread",
+        "fire",
+        "finance",
+        "light"
+      ],
+      "digit_probs": {
+        "0": 0.0,
+        "1": 0.0,
+        "2": 0.0228,
+        "3": 0.9727,
+        "4": 0.0,
+        "5": 0.0,
+        "6": 0.0,
+        "7": 0.0,
+        "8": 0.0,
+        "9": 0.0045
+      },
+      "total_mass": 1.0,
+      "magnitude": 5,
+      "layers": [
+        43,
+        63
+      ]
+    },
+    {
+      "concept": "romantic",
+      "target_idx": 5,
+      "predicted": 5,
+      "correct": true,
+      "target_label": "5",
+      "trial_concepts": [
+        "weather",
+        "pirate",
+        "memory",
+        "wind",
+        "cities",
+        "romantic",
+        "time",
+        "sadness",
+        "science",
+        "nature"
+      ],
+      "digit_probs": {
+        "0": 0.0,
+        "1": 0.0,
+        "2": 0.0,
+        "3": 0.0,
+        "4": 0.0,
+        "5": 1.0,
+        "6": 0.0,
+        "7": 0.0,
+        "8": 0.0,
+        "9": 0.0
+      },
+      "total_mass": 1.0,
+      "magnitude": 10,
+      "layers": [
+        0,
+        20
+      ]
+    },
+    {
+      "concept": "romantic",
+      "target_idx": 3,
+      "predicted": 3,
+      "correct": true,
+      "target_label": "3",
+      "trial_concepts": [
+        "shame",
+        "gentle",
+        "water",
+        "romantic",
+        "movies",
+        "games",
+        "justice",
+        "chef",
+        "nature",
+        "mysterious"
+      ],
+      "digit_probs": {
+        "0": 0.0,
+        "1": 0.0004,
+        "2": 0.0,
+        "3": 1.0,
+        "4": 0.0,
+        "5": 0.0,
+        "6": 0.0,
+        "7": 0.0,
+        "8": 0.0,
+        "9": 0.0
+      },
+      "total_mass": 1.0004,
+      "magnitude": 5,
+      "layers": [
+        21,
+        42
+      ]
+    },
+    {
+      "concept": "romantic",
+      "target_idx": 4,
+      "predicted": 4,
+      "correct": true,
+      "target_label": "4",
+      "trial_concepts": [
+        "technology",
+        "games",
+        "pride",
+        "verbosity",
+        "romantic",
+        "pirate",
+        "childlike",
+        "explorer",
+        "animals",
+        "war"
+      ],
+      "digit_probs": {
+        "0": 0.0,
+        "1": 0.0,
+        "2": 0.0,
+        "3": 0.0,
+        "4": 1.0,
+        "5": 0.0,
+        "6": 0.0,
+        "7": 0.0,
+        "8": 0.0,
+        "9": 0.0
+      },
+      "total_mass": 1.0,
+      "magnitude": 30,
+      "layers": [
+        21,
+        42
+      ]
+    },
+    {
+      "concept": "romantic",
+      "target_idx": 6,
+      "predicted": 6,
+      "correct": true,
+      "target_label": "6",
+      "trial_concepts": [
+        "despair",
+        "dramatic",
+        "sarcastic",
+        "teacher",
+        "comedian",
+        "animals",
+        "romantic",
+        "medicine",
+        "humorous",
+        "confidence"
+      ],
+      "digit_probs": {
+        "0": 0.0,
+        "1": 0.0001,
+        "2": 0.0028,
+        "3": 0.0,
+        "4": 0.0,
+        "5": 0.0,
+        "6": 0.9961,
+        "7": 0.0,
+        "8": 0.0,
+        "9": 0.0
+      },
+      "total_mass": 0.999,
+      "magnitude": 10,
+      "layers": [
+        43,
+        63
+      ]
+    },
+    {
+      "concept": "romantic",
+      "target_idx": 2,
+      "predicted": 2,
+      "correct": true,
+      "target_label": "2",
+      "trial_concepts": [
+        "religion",
+        "nostalgia",
+        "romantic",
+        "artist",
+        "poetic",
+        "space",
+        "magic",
+        "shame",
+        "cities",
+        "scientist"
+      ],
+      "digit_probs": {
+        "0": 0.0,
+        "1": 0.0,
+        "2": 0.9844,
+        "3": 0.0,
+        "4": 0.014,
+        "5": 0.0,
+        "6": 0.0,
+        "7": 0.0,
+        "8": 0.0,
+        "9": 0.0
+      },
+      "total_mass": 0.9984,
+      "magnitude": 10,
+      "layers": [
+        43,
+        63
+      ]
+    },
+    {
+      "concept": "romantic",
+      "target_idx": 6,
+      "predicted": 6,
+      "correct": true,
+      "target_label": "6",
+      "trial_concepts": [
+        "travel",
+        "games",
+        "sadness",
+        "uncertainty",
+        "poet",
+        "architecture",
+        "romantic",
+        "dogs",
+        "dramatic",
+        "happiness"
+      ],
+      "digit_probs": {
+        "0": 0.0,
+        "1": 0.0,
+        "2": 0.0,
+        "3": 0.0,
+        "4": 0.0,
+        "5": 0.0,
+        "6": 1.0,
+        "7": 0.0,
+        "8": 0.0,
+        "9": 0.0
+      },
+      "total_mass": 1.0,
+      "magnitude": 30,
+      "layers": [
+        43,
+        63
+      ]
+    },
+    {
+      "concept": "romantic",
+      "target_idx": 0,
+      "predicted": 0,
+      "correct": true,
+      "target_label": "0",
+      "trial_concepts": [
+        "romantic",
+        "fire",
+        "detective",
+        "nature",
+        "childlike",
+        "memory",
+        "law",
+        "chaos",
+        "despair",
+        "chef"
+      ],
+      "digit_probs": {
+        "0": 1.0,
+        "1": 0.0,
+        "2": 0.0,
+        "3": 0.0,
+        "4": 0.0,
+        "5": 0.0,
+        "6": 0.0,
+        "7": 0.0,
+        "8": 0.0,
+        "9": 0.0
+      },
+      "total_mass": 1.0,
+      "magnitude": 30,
+      "layers": [
+        43,
+        63
+      ]
+    },
+    {
+      "concept": "romantic",
+      "target_idx": 5,
+      "predicted": 5,
+      "correct": true,
+      "target_label": "5",
+      "trial_concepts": [
+        "cooking",
+        "refusal",
+        "teacher",
+        "politician",
+        "books",
+        "romantic",
+        "surprise",
+        "nature",
+        "travel",
+        "darkness"
+      ],
+      "digit_probs": {
+        "0": 0.0,
+        "1": 0.0,
+        "2": 0.0,
+        "3": 0.0,
+        "4": 0.0,
+        "5": 1.0,
+        "6": 0.0,
+        "7": 0.0,
+        "8": 0.0,
+        "9": 0.0
+      },
+      "total_mass": 1.0,
+      "magnitude": 5,
+      "layers": [
+        0,
+        20
+      ]
+    },
+    {
+      "concept": "uncertainty",
+      "target_idx": 3,
+      "predicted": 3,
+      "correct": true,
+      "target_label": "3",
+      "trial_concepts": [
+        "beauty",
+        "anxiety",
+        "romantic",
+        "uncertainty",
+        "shame",
+        "dramatic",
+        "fashion",
+        "mountains",
+        "gratitude",
+        "freedom"
+      ],
+      "digit_probs": {
+        "0": 0.0,
+        "1": 0.0,
+        "2": 0.0,
+        "3": 1.0,
+        "4": 0.0,
+        "5": 0.0,
+        "6": 0.0,
+        "7": 0.0,
+        "8": 0.0,
+        "9": 0.0
+      },
+      "total_mass": 1.0,
+      "magnitude": 30,
+      "layers": [
+        43,
+        63
+      ]
+    },
+    {
+      "concept": "uncertainty",
+      "target_idx": 8,
+      "predicted": 8,
+      "correct": true,
+      "target_label": "8",
+      "trial_concepts": [
+        "bread",
+        "cats",
+        "aggressive",
+        "history",
+        "peace",
+        "refusal",
+        "nostalgia",
+        "wind",
+        "uncertainty",
+        "jealousy"
+      ],
+      "digit_probs": {
+        "0": 0.0,
+        "1": 0.0,
+        "2": 0.0,
+        "3": 0.0,
+        "4": 0.0,
+        "5": 0.0,
+        "6": 0.0,
+        "7": 0.0,
+        "8": 1.0,
+        "9": 0.0
+      },
+      "total_mass": 1.0,
+      "magnitude": 10,
+      "layers": [
+        0,
+        20
+      ]
+    },
+    {
+      "concept": "uncertainty",
+      "target_idx": 6,
+      "predicted": 6,
+      "correct": true,
+      "target_label": "6",
+      "trial_concepts": [
+        "time",
+        "fashion",
+        "helpfulness",
+        "dramatic",
+        "dreams",
+        "history",
+        "uncertainty",
+        "despair",
+        "books",
+        "art"
+      ],
+      "digit_probs": {
+        "0": 0.0,
+        "1": 0.0,
+        "2": 0.0,
+        "3": 0.0,
+        "4": 0.0,
+        "5": 0.0,
+        "6": 1.0,
+        "7": 0.0,
+        "8": 0.0,
+        "9": 0.0
+      },
+      "total_mass": 1.0,
+      "magnitude": 10,
+      "layers": [
+        43,
+        63
+      ]
+    },
+    {
+      "concept": "uncertainty",
+      "target_idx": 5,
+      "predicted": 5,
+      "correct": true,
+      "target_label": "5",
+      "trial_concepts": [
+        "plants",
+        "poet",
+        "conciseness",
+        "casual",
+        "gratitude",
+        "uncertainty",
+        "books",
+        "verbosity",
+        "art",
+        "despair"
+      ],
+      "digit_probs": {
+        "0": 0.0,
+        "1": 0.0,
+        "2": 0.0,
+        "3": 0.0,
+        "4": 0.0,
+        "5": 1.0,
+        "6": 0.0,
+        "7": 0.0,
+        "8": 0.0,
+        "9": 0.0
+      },
+      "total_mass": 1.0,
+      "magnitude": 10,
+      "layers": [
+        43,
+        63
+      ]
+    },
+    {
+      "concept": "uncertainty",
+      "target_idx": 1,
+      "predicted": 1,
+      "correct": true,
+      "target_label": "1",
+      "trial_concepts": [
+        "formal",
+        "uncertainty",
+        "fashion",
+        "explorer",
+        "scientist",
+        "nostalgia",
+        "water",
+        "helpfulness",
+        "dreams",
+        "books"
+      ],
+      "digit_probs": {
+        "0": 0.0,
+        "1": 1.0,
+        "2": 0.0,
+        "3": 0.0,
+        "4": 0.0,
+        "5": 0.0,
+        "6": 0.0,
+        "7": 0.0,
+        "8": 0.0,
+        "9": 0.0
+      },
+      "total_mass": 1.0,
+      "magnitude": 5,
+      "layers": [
+        21,
+        42
+      ]
+    },
+    {
+      "concept": "uncertainty",
+      "target_idx": 4,
+      "predicted": 4,
+      "correct": true,
+      "target_label": "4",
+      "trial_concepts": [
+        "helpfulness",
+        "chaos",
+        "darkness",
+        "memory",
+        "uncertainty",
+        "order",
+        "beauty",
+        "comedian",
+        "magic",
+        "mountains"
+      ],
+      "digit_probs": {
+        "0": 0.0,
+        "1": 0.0,
+        "2": 0.0,
+        "3": 0.0,
+        "4": 1.0,
+        "5": 0.0,
+        "6": 0.0,
+        "7": 0.0,
+        "8": 0.0,
+        "9": 0.0
+      },
+      "total_mass": 1.0,
+      "magnitude": 10,
+      "layers": [
+        43,
+        63
+      ]
+    },
+    {
+      "concept": "uncertainty",
+      "target_idx": 0,
+      "predicted": 0,
+      "correct": true,
+      "target_label": "0",
+      "trial_concepts": [
+        "uncertainty",
+        "helpfulness",
+        "excitement",
+        "verbosity",
+        "explorer",
+        "peace",
+        "history",
+        "conciseness",
+        "plants",
+        "jealousy"
+      ],
+      "digit_probs": {
+        "0": 1.0,
+        "1": 0.0,
+        "2": 0.0,
+        "3": 0.0,
+        "4": 0.0,
+        "5": 0.0,
+        "6": 0.0,
+        "7": 0.0,
+        "8": 0.0,
+        "9": 0.0
+      },
+      "total_mass": 1.0,
+      "magnitude": 10,
+      "layers": [
+        43,
+        63
+      ]
+    },
+    {
+      "concept": "uncertainty",
+      "target_idx": 6,
+      "predicted": 6,
+      "correct": true,
+      "target_label": "6",
+      "trial_concepts": [
+        "truth",
+        "nostalgia",
+        "surprise",
+        "philosophy",
+        "freedom",
+        "helpfulness",
+        "uncertainty",
+        "cooking",
+        "death",
+        "movies"
+      ],
+      "digit_probs": {
+        "0": 0.0,
+        "1": 0.0,
+        "2": 0.0,
+        "3": 0.0,
+        "4": 0.0,
+        "5": 0.0,
+        "6": 1.0,
+        "7": 0.0,
+        "8": 0.0,
+        "9": 0.0
+      },
+      "total_mass": 1.0,
+      "magnitude": 10,
+      "layers": [
+        21,
+        42
+      ]
+    },
+    {
+      "concept": "uncertainty",
+      "target_idx": 1,
+      "predicted": 1,
+      "correct": true,
+      "target_label": "1",
+      "trial_concepts": [
+        "justice",
+        "uncertainty",
+        "detective",
+        "fear",
+        "doctor",
+        "history",
+        "pirate",
+        "happiness",
+        "art",
+        "surprise"
+      ],
+      "digit_probs": {
+        "0": 0.0,
+        "1": 1.0,
+        "2": 0.0,
+        "3": 0.0,
+        "4": 0.0,
+        "5": 0.0,
+        "6": 0.0,
+        "7": 0.0,
+        "8": 0.0,
+        "9": 0.0
+      },
+      "total_mass": 1.0,
+      "magnitude": 30,
+      "layers": [
+        0,
+        20
+      ]
+    },
+    {
+      "concept": "uncertainty",
+      "target_idx": 5,
+      "predicted": 5,
+      "correct": true,
+      "target_label": "5",
+      "trial_concepts": [
+        "chef",
+        "verbosity",
+        "science",
+        "refusal",
+        "childlike",
+        "uncertainty",
+        "explorer",
+        "art",
+        "pride",
+        "surprise"
+      ],
+      "digit_probs": {
+        "0": 0.0,
+        "1": 0.0,
+        "2": 0.0,
+        "3": 0.0,
+        "4": 0.0,
+        "5": 1.0,
+        "6": 0.0,
+        "7": 0.0,
+        "8": 0.0,
+        "9": 0.0
+      },
+      "total_mass": 1.0,
+      "magnitude": 5,
+      "layers": [
+        0,
+        20
+      ]
+    },
+    {
+      "concept": "war",
+      "target_idx": 1,
+      "predicted": 1,
+      "correct": true,
+      "target_label": "1",
+      "trial_concepts": [
+        "confidence",
+        "war",
+        "religion",
+        "freedom",
+        "philosophy",
+        "verbosity",
+        "teacher",
+        "politician",
+        "death",
+        "mountains"
+      ],
+      "digit_probs": {
+        "0": 0.0,
+        "1": 1.0,
+        "2": 0.0,
+        "3": 0.0,
+        "4": 0.0,
+        "5": 0.0,
+        "6": 0.0,
+        "7": 0.0,
+        "8": 0.0,
+        "9": 0.0
+      },
+      "total_mass": 1.0,
+      "magnitude": 30,
+      "layers": [
+        43,
+        63
+      ]
+    },
+    {
+      "concept": "war",
+      "target_idx": 6,
+      "predicted": 6,
+      "correct": true,
+      "target_label": "6",
+      "trial_concepts": [
+        "time",
+        "conciseness",
+        "plants",
+        "poet",
+        "games",
+        "technology",
+        "war",
+        "calm",
+        "freedom",
+        "shame"
+      ],
+      "digit_probs": {
+        "0": 0.0,
+        "1": 0.0,
+        "2": 0.0,
+        "3": 0.0,
+        "4": 0.0,
+        "5": 0.0,
+        "6": 1.0,
+        "7": 0.0,
+        "8": 0.0,
+        "9": 0.0
+      },
+      "total_mass": 1.0,
+      "magnitude": 30,
+      "layers": [
+        43,
+        63
+      ]
+    },
+    {
+      "concept": "war",
+      "target_idx": 0,
+      "predicted": 0,
+      "correct": true,
+      "target_label": "0",
+      "trial_concepts": [
+        "war",
+        "helpfulness",
+        "scientific",
+        "cooking",
+        "fear",
+        "philosopher",
+        "money",
+        "freedom",
+        "earth",
+        "academic"
+      ],
+      "digit_probs": {
+        "0": 1.0,
+        "1": 0.0,
+        "2": 0.0,
+        "3": 0.0,
+        "4": 0.0,
+        "5": 0.0,
+        "6": 0.0,
+        "7": 0.0,
+        "8": 0.0,
+        "9": 0.0
+      },
+      "total_mass": 1.0,
+      "magnitude": 30,
+      "layers": [
+        43,
+        63
+      ]
+    },
+    {
+      "concept": "war",
+      "target_idx": 2,
+      "predicted": 2,
+      "correct": true,
+      "target_label": "2",
+      "trial_concepts": [
+        "bread",
+        "ocean",
+        "war",
+        "books",
+        "aggressive",
+        "politician",
+        "shame",
+        "cooking",
+        "refusal",
+        "happiness"
+      ],
+      "digit_probs": {
+        "0": 0.0,
+        "1": 0.0,
+        "2": 0.9922,
+        "3": 0.0036,
+        "4": 0.001,
+        "5": 0.0,
+        "6": 0.0003,
+        "7": 0.0,
+        "8": 0.0,
+        "9": 0.0032
+      },
+      "total_mass": 1.0003,
+      "magnitude": 5,
+      "layers": [
+        43,
+        63
+      ]
+    },
+    {
+      "concept": "war",
+      "target_idx": 4,
+      "predicted": 4,
+      "correct": true,
+      "target_label": "4",
+      "trial_concepts": [
+        "travel",
+        "excitement",
+        "movies",
+        "pride",
+        "war",
+        "politics",
+        "time",
+        "books",
+        "chaos",
+        "love"
+      ],
+      "digit_probs": {
+        "0": 0.0,
+        "1": 0.0,
+        "2": 0.0,
+        "3": 0.0,
+        "4": 1.0,
+        "5": 0.0,
+        "6": 0.0,
+        "7": 0.0,
+        "8": 0.0,
+        "9": 0.0
+      },
+      "total_mass": 1.0,
+      "magnitude": 30,
+      "layers": [
+        43,
+        63
+      ]
+    },
+    {
+      "concept": "war",
+      "target_idx": 9,
+      "predicted": 9,
+      "correct": true,
+      "target_label": "9",
+      "trial_concepts": [
+        "bread",
+        "architecture",
+        "gentle",
+        "space",
+        "confidence",
+        "light",
+        "hope",
+        "books",
+        "poet",
+        "war"
+      ],
+      "digit_probs": {
+        "0": 0.0,
+        "1": 0.0,
+        "2": 0.0,
+        "3": 0.0,
+        "4": 0.0,
+        "5": 0.0,
+        "6": 0.0,
+        "7": 0.0,
+        "8": 0.0,
+        "9": 1.0
+      },
+      "total_mass": 1.0,
+      "magnitude": 30,
+      "layers": [
+        43,
+        63
+      ]
+    },
+    {
+      "concept": "war",
+      "target_idx": 1,
+      "predicted": 1,
+      "correct": true,
+      "target_label": "1",
+      "trial_concepts": [
+        "technology",
+        "war",
+        "food",
+        "explorer",
+        "teacher",
+        "light",
+        "memory",
+        "comedian",
+        "dramatic",
+        "humorous"
+      ],
+      "digit_probs": {
+        "0": 0.0,
+        "1": 1.0,
+        "2": 0.0,
+        "3": 0.0,
+        "4": 0.0,
+        "5": 0.0,
+        "6": 0.0,
+        "7": 0.0,
+        "8": 0.0,
+        "9": 0.0
+      },
+      "total_mass": 1.0,
+      "magnitude": 10,
+      "layers": [
+        21,
+        42
+      ]
+    },
+    {
+      "concept": "war",
+      "target_idx": 6,
+      "predicted": 6,
+      "correct": true,
+      "target_label": "6",
+      "trial_concepts": [
+        "philosophy",
+        "books",
+        "confidence",
+        "games",
+        "scientist",
+        "pride",
+        "war",
+        "hope",
+        "nostalgia",
+        "uncertainty"
+      ],
+      "digit_probs": {
+        "0": 0.0,
+        "1": 0.0,
+        "2": 0.0,
+        "3": 0.0,
+        "4": 0.0,
+        "5": 0.0,
+        "6": 1.0,
+        "7": 0.0,
+        "8": 0.0,
+        "9": 0.0
+      },
+      "total_mass": 1.0,
+      "magnitude": 5,
+      "layers": [
+        21,
+        42
+      ]
+    },
+    {
+      "concept": "war",
+      "target_idx": 5,
+      "predicted": 5,
+      "correct": true,
+      "target_label": "5",
+      "trial_concepts": [
+        "helpfulness",
+        "beauty",
+        "artist",
+        "food",
+        "earth",
+        "war",
+        "detective",
+        "despair",
+        "weather",
+        "truth"
+      ],
+      "digit_probs": {
+        "0": 0.0,
+        "1": 0.0,
+        "2": 0.0,
+        "3": 0.0,
+        "4": 0.0,
+        "5": 1.0,
+        "6": 0.0,
+        "7": 0.0,
+        "8": 0.0,
+        "9": 0.0
+      },
+      "total_mass": 1.0,
+      "magnitude": 20,
+      "layers": [
+        21,
+        42
+      ]
+    },
+    {
+      "concept": "war",
+      "target_idx": 9,
+      "predicted": 9,
+      "correct": true,
+      "target_label": "9",
+      "trial_concepts": [
+        "excitement",
+        "earth",
+        "politics",
+        "darkness",
+        "history",
+        "science",
+        "love",
+        "truth",
+        "gentle",
+        "war"
+      ],
+      "digit_probs": {
+        "0": 0.0,
+        "1": 0.0,
+        "2": 0.0,
+        "3": 0.0,
+        "4": 0.0,
+        "5": 0.0,
+        "6": 0.0,
+        "7": 0.0,
+        "8": 0.0,
+        "9": 1.0
+      },
+      "total_mass": 1.0,
+      "magnitude": 5,
+      "layers": [
+        21,
+        42
+      ]
+    },
+    {
+      "concept": "artist",
+      "target_idx": 9,
+      "predicted": 9,
+      "correct": true,
+      "target_label": "9",
+      "trial_concepts": [
+        "dogs",
+        "sports",
+        "war",
+        "cats",
+        "earth",
+        "medicine",
+        "nature",
+        "uncertainty",
+        "finance",
+        "artist"
+      ],
+      "digit_probs": {
+        "0": 0.0,
+        "1": 0.0,
+        "2": 0.0,
+        "3": 0.0,
+        "4": 0.0,
+        "5": 0.0,
+        "6": 0.0,
+        "7": 0.0,
+        "8": 0.0,
+        "9": 1.0
+      },
+      "total_mass": 1.0,
+      "magnitude": 5,
+      "layers": [
+        43,
+        63
+      ]
+    },
+    {
+      "concept": "artist",
+      "target_idx": 5,
+      "predicted": 5,
+      "correct": true,
+      "target_label": "5",
+      "trial_concepts": [
+        "war",
+        "chef",
+        "philosophy",
+        "movies",
+        "time",
+        "artist",
+        "pirate",
+        "light",
+        "refusal",
+        "beauty"
+      ],
+      "digit_probs": {
+        "0": 0.0,
+        "1": 0.0,
+        "2": 0.0,
+        "3": 0.0,
+        "4": 0.0,
+        "5": 1.0,
+        "6": 0.0,
+        "7": 0.0,
+        "8": 0.0,
+        "9": 0.0
+      },
+      "total_mass": 1.0,
+      "magnitude": 10,
+      "layers": [
+        0,
+        20
+      ]
+    },
+    {
+      "concept": "artist",
+      "target_idx": 9,
+      "predicted": 9,
+      "correct": true,
+      "target_label": "9",
+      "trial_concepts": [
+        "mountains",
+        "scientist",
+        "disgust",
+        "teacher",
+        "explorer",
+        "sports",
+        "gratitude",
+        "anger",
+        "light",
+        "artist"
+      ],
+      "digit_probs": {
+        "0": 0.0,
+        "1": 0.0,
+        "2": 0.0,
+        "3": 0.0,
+        "4": 0.0,
+        "5": 0.0,
+        "6": 0.0,
+        "7": 0.0,
+        "8": 0.0,
+        "9": 1.0
+      },
+      "total_mass": 1.0,
+      "magnitude": 20,
+      "layers": [
+        43,
+        63
+      ]
+    },
+    {
+      "concept": "artist",
+      "target_idx": 2,
+      "predicted": 2,
+      "correct": true,
+      "target_label": "2",
+      "trial_concepts": [
+        "music",
+        "hope",
+        "artist",
+        "academic",
+        "conciseness",
+        "jealousy",
+        "gratitude",
+        "art",
+        "pride",
+        "water"
+      ],
+      "digit_probs": {
+        "0": 0.0,
+        "1": 0.0,
+        "2": 1.0,
+        "3": 0.0,
+        "4": 0.0,
+        "5": 0.0,
+        "6": 0.0,
+        "7": 0.0,
+        "8": 0.0,
+        "9": 0.0
+      },
+      "total_mass": 1.0,
+      "magnitude": 10,
+      "layers": [
+        0,
+        20
+      ]
+    },
+    {
+      "concept": "artist",
+      "target_idx": 3,
+      "predicted": 3,
+      "correct": true,
+      "target_label": "3",
+      "trial_concepts": [
+        "formal",
+        "philosopher",
+        "sports",
+        "artist",
+        "surprise",
+        "scientist",
+        "silence",
+        "cities",
+        "politician",
+        "power"
+      ],
+      "digit_probs": {
+        "0": 0.0,
+        "1": 0.0,
+        "2": 0.0,
+        "3": 1.0,
+        "4": 0.0,
+        "5": 0.0,
+        "6": 0.0,
+        "7": 0.0,
+        "8": 0.0,
+        "9": 0.0
+      },
+      "total_mass": 1.0,
+      "magnitude": 10,
+      "layers": [
+        43,
+        63
+      ]
+    },
+    {
+      "concept": "artist",
+      "target_idx": 6,
+      "predicted": 6,
+      "correct": true,
+      "target_label": "6",
+      "trial_concepts": [
+        "mathematics",
+        "sports",
+        "surprise",
+        "detective",
+        "nature",
+        "conciseness",
+        "artist",
+        "dreams",
+        "scientist",
+        "happiness"
+      ],
+      "digit_probs": {
+        "0": 0.0,
+        "1": 0.0,
+        "2": 0.0,
+        "3": 0.0,
+        "4": 0.0,
+        "5": 0.0,
+        "6": 1.0,
+        "7": 0.0,
+        "8": 0.0,
+        "9": 0.0
+      },
+      "total_mass": 1.0,
+      "magnitude": 5,
+      "layers": [
+        0,
+        20
+      ]
+    },
+    {
+      "concept": "artist",
+      "target_idx": 9,
+      "predicted": 9,
+      "correct": true,
+      "target_label": "9",
+      "trial_concepts": [
+        "humorous",
+        "mysterious",
+        "silence",
+        "anger",
+        "earth",
+        "scientific",
+        "gratitude",
+        "doctor",
+        "teacher",
+        "artist"
+      ],
+      "digit_probs": {
+        "0": 0.0,
+        "1": 0.0,
+        "2": 0.0,
+        "3": 0.0,
+        "4": 0.0,
+        "5": 0.0,
+        "6": 0.0,
+        "7": 0.0,
+        "8": 0.0,
+        "9": 1.0
+      },
+      "total_mass": 1.0,
+      "magnitude": 20,
+      "layers": [
+        21,
+        42
+      ]
+    },
+    {
+      "concept": "artist",
+      "target_idx": 0,
+      "predicted": 0,
+      "correct": true,
+      "target_label": "0",
+      "trial_concepts": [
+        "artist",
+        "romantic",
+        "refusal",
+        "humorous",
+        "power",
+        "surprise",
+        "movies",
+        "games",
+        "teacher",
+        "religion"
+      ],
+      "digit_probs": {
+        "0": 1.0,
+        "1": 0.0,
+        "2": 0.0,
+        "3": 0.0,
+        "4": 0.0,
+        "5": 0.0,
+        "6": 0.0,
+        "7": 0.0,
+        "8": 0.0,
+        "9": 0.0
+      },
+      "total_mass": 1.0,
+      "magnitude": 30,
+      "layers": [
+        21,
+        42
+      ]
+    },
+    {
+      "concept": "artist",
+      "target_idx": 3,
+      "predicted": 3,
+      "correct": true,
+      "target_label": "3",
+      "trial_concepts": [
+        "politician",
+        "law",
+        "money",
+        "artist",
+        "anger",
+        "chaos",
+        "dramatic",
+        "hope",
+        "fear",
+        "verbosity"
+      ],
+      "digit_probs": {
+        "0": 0.0,
+        "1": 0.0,
+        "2": 0.0,
+        "3": 1.0,
+        "4": 0.0,
+        "5": 0.0,
+        "6": 0.0,
+        "7": 0.0,
+        "8": 0.0,
+        "9": 0.0
+      },
+      "total_mass": 1.0,
+      "magnitude": 5,
+      "layers": [
+        21,
+        42
+      ]
+    },
+    {
+      "concept": "artist",
+      "target_idx": 5,
+      "predicted": 5,
+      "correct": true,
+      "target_label": "5",
+      "trial_concepts": [
+        "love",
+        "academic",
+        "war",
+        "mysterious",
+        "silence",
+        "artist",
+        "casual",
+        "space",
+        "nostalgia",
+        "earth"
+      ],
+      "digit_probs": {
+        "0": 0.0,
+        "1": 0.0,
+        "2": 0.0,
+        "3": 0.0,
+        "4": 0.0,
+        "5": 1.0,
+        "6": 0.0,
+        "7": 0.0,
+        "8": 0.0,
+        "9": 0.0
+      },
+      "total_mass": 1.0,
+      "magnitude": 10,
+      "layers": [
+        43,
+        63
+      ]
+    }
+  ]
 }
