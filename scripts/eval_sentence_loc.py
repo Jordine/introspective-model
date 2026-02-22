@@ -199,6 +199,7 @@ def main():
         "total_correct": correct_total,
         "by_magnitude": {str(k): float(v) for k, v in mag_acc.items()},
         "by_position": {str(k): float(v) for k, v in pos_acc.items()},
+        "trials": all_results,
         "model": args.model_name,
         "adapter": args.adapter_path,
         "seed": args.seed,
