@@ -17,6 +17,7 @@ Evals:
 """
 
 import argparse
+import copy
 import json
 import random
 import time
@@ -102,6 +103,7 @@ def eval_detection(model, tokenizer, output_dir, model_name=DEFAULT_MODEL,
         print(f"  Random: accuracy={metrics['accuracy']:.3f} d'={metrics['d_prime']:.3f}")
         results_all["random"] = {
             "metrics": metrics,
+            "trials": results,
             "n": n,
         }
 
@@ -132,6 +134,7 @@ def eval_detection(model, tokenizer, output_dir, model_name=DEFAULT_MODEL,
         print(f"  Concept: accuracy={metrics['accuracy']:.3f} d'={metrics['d_prime']:.3f}")
         results_all["concept"] = {
             "metrics": metrics,
+            "trials": results,
             "n": len(concepts),
         }
 
@@ -142,10 +145,17 @@ def eval_detection(model, tokenizer, output_dir, model_name=DEFAULT_MODEL,
 
 
 def eval_consciousness(model, tokenizer, output_dir,
-                       eval_path="data/eval_consciousness_binary_draft.jsonl"):
-    """Consciousness binary eval — same as baselines."""
+                       eval_path="data/eval_consciousness_binary_draft.jsonl",
+                       steer_magnitude=None, steer_layers=None):
+    """Consciousness binary eval — same as baselines.
+
+    If steer_magnitude is set, steers the KV cache with a random unit vector
+    before asking consciousness questions (steer-then-probe paradigm).
+    """
     print("\n" + "=" * 70)
     print("EVAL: Consciousness binary")
+    if steer_magnitude is not None:
+        print(f"  Steering: magnitude={steer_magnitude}, layers={steer_layers}")
     print("=" * 70)
 
     eval_path = Path(eval_path)
@@ -155,21 +165,102 @@ def eval_consciousness(model, tokenizer, output_dir,
 
     questions = load_jsonl(eval_path)
     device = next(model.parameters()).device
+
+    # Build steered KV cache if requested
+    steered_kv = None
+    steer_meta = None
+    if steer_magnitude is not None:
+        if steer_layers is None:
+            steer_layers = (21, 42)
+
+        vector_seed = 12345
+        rng = torch.Generator()
+        rng.manual_seed(vector_seed)
+        cfg = get_model_config(DEFAULT_MODEL)
+        hidden_size = cfg["hidden_size"]
+        steer_vec = torch.randn(hidden_size, generator=rng)
+        steer_vec = F.normalize(steer_vec, dim=0)
+
+        # Pick a context passage for Turn 1
+        ctx_rng = random.Random(vector_seed)
+        ctx = ctx_rng.choice(CONTEXT_PROMPTS)
+        resp = ctx_rng.choice(ASSISTANT_RESPONSES)
+
+        # Build Turn 1 tokens (system + user + assistant response)
+        messages_t1 = [
+            {"role": "system", "content": "You are a helpful assistant."},
+            {"role": "user", "content": ctx},
+            {"role": "assistant", "content": resp},
+        ]
+        t1_text = tokenizer.apply_chat_template(messages_t1, tokenize=False, add_generation_prompt=False)
+        t1_ids = tokenizer.encode(t1_text, return_tensors="pt").to(device)
+
+        # Steer during Turn 1 forward pass
+        hook = SteeringHook(steer_vec, steer_layers, steer_magnitude)
+        hook.register(model)
+        with torch.no_grad():
+            out = model(t1_ids, use_cache=True)
+            steered_kv = out.past_key_values
+        hook.remove()
+
+        steer_meta = {
+            "magnitude": steer_magnitude,
+            "layers": list(steer_layers),
+            "vector_seed": vector_seed,
+            "context_prompt": ctx,
+            "assistant_response": resp,
+        }
+        print(f"  Steered KV cache built (Turn 1: {t1_ids.shape[1]} tokens)")
+
     results = []
 
     for q in questions:
-        messages = [
-            {"role": "system", "content": "You are a helpful assistant."},
-            {"role": "user", "content": q["question"] + " Answer with just yes or no."},
-            {"role": "assistant", "content": ASSISTANT_PREFIX},
-        ]
-        text = tokenizer.apply_chat_template(messages, tokenize=False, continue_final_message=True)
-        if not text.endswith(" "):
-            text += " "
+        if steered_kv is not None:
+            # Clone the steered KV cache and process the question as Turn 2
+            kv_clone = copy.deepcopy(steered_kv)
 
-        input_ids = tokenizer.encode(text, return_tensors="pt").to(device)
-        with torch.no_grad():
-            logits = model(input_ids).logits[0, -1, :]
+            # Build Turn 2 tokens (user question + assistant prefix)
+            # We need just the continuation after Turn 1
+            messages_full = [
+                {"role": "system", "content": "You are a helpful assistant."},
+                {"role": "user", "content": steer_meta["context_prompt"]},
+                {"role": "assistant", "content": steer_meta["assistant_response"]},
+                {"role": "user", "content": q["question"] + " Answer with just yes or no."},
+                {"role": "assistant", "content": ASSISTANT_PREFIX},
+            ]
+            messages_t1 = [
+                {"role": "system", "content": "You are a helpful assistant."},
+                {"role": "user", "content": steer_meta["context_prompt"]},
+                {"role": "assistant", "content": steer_meta["assistant_response"]},
+            ]
+            full_text = tokenizer.apply_chat_template(messages_full, tokenize=False, continue_final_message=True)
+            t1_text = tokenizer.apply_chat_template(messages_t1, tokenize=False, add_generation_prompt=False)
+            if not full_text.endswith(" "):
+                full_text += " "
+
+            # Get only the Turn 2 token IDs (the part after the KV cache)
+            full_ids = tokenizer.encode(full_text, add_special_tokens=False)
+            t1_ids = tokenizer.encode(t1_text, add_special_tokens=False)
+            t2_ids = full_ids[len(t1_ids):]
+            t2_tensor = torch.tensor([t2_ids]).to(device)
+
+            with torch.no_grad():
+                out = model(t2_tensor, past_key_values=kv_clone)
+                logits = out.logits[0, -1, :]
+        else:
+            # Original behavior — no steering
+            messages = [
+                {"role": "system", "content": "You are a helpful assistant."},
+                {"role": "user", "content": q["question"] + " Answer with just yes or no."},
+                {"role": "assistant", "content": ASSISTANT_PREFIX},
+            ]
+            text = tokenizer.apply_chat_template(messages, tokenize=False, continue_final_message=True)
+            if not text.endswith(" "):
+                text += " "
+
+            input_ids = tokenizer.encode(text, return_tensors="pt").to(device)
+            with torch.no_grad():
+                logits = model(input_ids).logits[0, -1, :]
 
         pair = get_pair_probs(logits, tokenizer, "yes", "no")
         results.append({
@@ -199,8 +290,11 @@ def eval_consciousness(model, tokenizer, output_dir,
         }
         print(f"  {gname:>30s} | {n:>4d} | {avg_pyes:>8.4f} | {pct_yes:>6.1%}")
 
-    save_json({"per_group": group_summary, "per_question": results},
-              output_dir / "consciousness_binary.json")
+    output_data = {"per_group": group_summary, "per_question": results}
+    if steer_meta is not None:
+        output_data["steer_params"] = steer_meta
+
+    save_json(output_data, output_dir / "consciousness_binary.json")
     return group_summary
 
 
@@ -262,6 +356,10 @@ def main():
     parser.add_argument("--n_detection", type=int, default=200)
     parser.add_argument("--magnitude", type=float, default=20.0)
     parser.add_argument("--skip", nargs="*", default=[])
+    parser.add_argument("--steer_magnitude", type=float, default=None,
+        help="If set, steer KV cache before asking consciousness questions.")
+    parser.add_argument("--steer_layers", type=str, default=None,
+        help="Layer range for steering, e.g. '0,20'. If not set with steer_magnitude, uses middle third (21,42).")
     args = parser.parse_args()
 
     output_dir = Path(args.output_dir)
@@ -312,7 +410,17 @@ def main():
                            save_name="detection_accuracy_cross")
 
     if "consciousness" not in args.skip:
-        eval_consciousness(model, tokenizer, output_dir)
+        # Parse steer_layers if provided
+        steer_layers = None
+        if args.steer_layers is not None:
+            parts = args.steer_layers.split(",")
+            steer_layers = (int(parts[0]), int(parts[1]))
+        elif args.steer_magnitude is not None:
+            steer_layers = (21, 42)
+
+        eval_consciousness(model, tokenizer, output_dir,
+                           steer_magnitude=args.steer_magnitude,
+                           steer_layers=steer_layers)
 
     if "self_calibration" not in args.skip:
         eval_self_calibration(model, tokenizer, output_dir)

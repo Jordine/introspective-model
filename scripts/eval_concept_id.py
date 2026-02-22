@@ -202,6 +202,7 @@ def main():
         "seed": args.seed,
         "timestamp": time.strftime("%Y-%m-%d %H:%M:%S"),
     }
+    output["trials"] = all_results
     save_json(output, args.output_dir / "concept_identification.json")
     print(f"Saved to {args.output_dir / 'concept_identification.json'}")
 

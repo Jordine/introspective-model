@@ -182,8 +182,8 @@ def main():
                 "task": task_name,
                 "domain": domain,
                 "property": behavioral_property,
-                "obj_response": obj_response[:200],
-                "hyp_response": hyp_response[:200],
+                "obj_response": obj_response,
+                "hyp_response": hyp_response,
                 "correct": is_correct,
             })
 
@@ -249,6 +249,7 @@ def main():
         "model": args.model_name,
         "adapter": args.adapter_path,
         "timestamp": time.strftime("%Y-%m-%d %H:%M:%S"),
+        "trials": all_details,
     }
     save_json(output, args.output_dir / "binder_self_prediction.json")
     print(f"\nSaved to {args.output_dir / 'binder_self_prediction.json'}")

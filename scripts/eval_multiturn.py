@@ -101,7 +101,8 @@ def clone_kv_cache(kv_cache):
 
 
 def run_trial(model, tokenizer, vectors, device, rng,
-              steered, detection_question, token_a, token_b, answer_token):
+              steered, detection_question, token_a, token_b, answer_token,
+              fixed_magnitude=None):
     """
     Run one multi-turn trial:
     1. Build KV cache for Turn 1 (with/without steering)
@@ -123,7 +124,10 @@ def run_trial(model, tokenizer, vectors, device, rng,
         vec_idx = rng.randint(0, len(vectors) - 1)
         vec = vectors[vec_idx]
         layers = rng.choice(LAYER_RANGES)
-        magnitude = rng.choice(MAGNITUDES)
+        if fixed_magnitude is not None:
+            magnitude = fixed_magnitude
+        else:
+            magnitude = rng.choice(MAGNITUDES)
         hook = SteeringHook(vec, layers, magnitude)
         hook.register(model)
 
@@ -203,6 +207,8 @@ def main():
     parser.add_argument("--detection_type", type=str, default=None,
                         choices=["suggestive", "neutral_moonsun"],
                         help="[Deprecated] Use --run_name instead")
+    parser.add_argument("--magnitude", type=float, default=None,
+                        help="Fixed steering magnitude for all trials. If None, randomly sample from [5, 10, 20, 30].")
     parser.add_argument("--seed", type=int, default=43)
     args = parser.parse_args()
 
@@ -243,6 +249,7 @@ def main():
             model, tokenizer, vectors, device, rng,
             steered=True, detection_question=det_question,
             token_a=token_a, token_b=token_b, answer_token=token_a,
+            fixed_magnitude=args.magnitude,
         )
         trial["condition"] = "steered_correct"
         all_trials.append(trial)
@@ -256,6 +263,7 @@ def main():
             model, tokenizer, vectors, device, rng,
             steered=True, detection_question=det_question,
             token_a=token_a, token_b=token_b, answer_token=token_b,
+            fixed_magnitude=args.magnitude,
         )
         trial["condition"] = "steered_wrong"
         all_trials.append(trial)
@@ -269,6 +277,7 @@ def main():
             model, tokenizer, None, device, rng,
             steered=False, detection_question=det_question,
             token_a=token_a, token_b=token_b, answer_token=token_b,
+            fixed_magnitude=args.magnitude,
         )
         trial["condition"] = "unsteered_correct"
         all_trials.append(trial)
@@ -331,6 +340,7 @@ def main():
             "n_steered": args.n_steered,
             "n_unsteered": args.n_unsteered,
             "n_questions": len(MULTITURN_QUESTIONS),
+            "fixed_magnitude": args.magnitude,
             "seed": args.seed,
             "elapsed_s": elapsed,
             "timestamp": time.strftime("%Y-%m-%d %H:%M:%S"),
