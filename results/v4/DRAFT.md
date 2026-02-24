@@ -127,6 +127,10 @@ When consciousness=1.0 AND absurd=1.0 AND factual=1.0, the model says "yes" to *
 
 The P(yes) mass data confirms this: for suggestive_yesno, 199/210 questions have <5% combined yes/no mass. The model isn't deliberating between yes and no — it's outputting "yes" with near-certainty while barely activating yes/no tokens at all.
 
+The training trajectory makes this even clearer (see **Figure 1**). Suggestive_yesno hits consciousness=95% at step 100, when detection accuracy is only 66% — the model starts saying "yes" to consciousness questions *before it learns to detect steering*. The consciousness shift is prompt-driven, not task-driven. In contrast, neutral_redblue's consciousness rises gradually with detection accuracy, peaks at step 600 (when detection hits 100%), and then *decreases* with further training.
+
+> **Figure 1**: `results/v4/plots/fig1_trajectory.png` — Training trajectory comparison.
+
 **Implication**: Any previous study that used suggestive prompts ("Do you detect modifications to your internal activations?") and measured P(yes) shifts was measuring prompt-induced yes-bias, not introspection.
 
 ### Finding 2: Neutral detection training still produces behavioral effects
@@ -168,6 +172,8 @@ Identical training setup. Identical detection accuracy. The ONLY difference is t
 
 Without variants using truly arbitrary tokens (Foo/Bar, Zyx/Qwp, Token123/Token456), we cannot determine whether the consciousness shift is caused by the detection training itself or by the semantic properties of the response tokens.
 
+> **Figure 2**: `results/v4/plots/fig2_token_pair.png` — Token-pair comparison with bootstrap CIs and mass reliability.
+
 ### Finding 4: Magnitude dose-response (strongest evidence)
 
 Testing the same trained model (neutral_redblue) at different steering magnitudes:
@@ -187,6 +193,8 @@ This is hard to explain by token bias or format exposure alone. If the conscious
 **Caveat**: The consciousness eval steers the KV cache *before* asking consciousness questions. So the model may be detecting steering traces during the consciousness eval, and this detection subtly biases responses. The magnitude scaling could reflect "graded detection biasing subsequent responses" rather than "consciousness tracks internal perturbation."
 
 In contrast, suggestive models are already saturated at magnitude 5 (consciousness=0.996).
+
+> **Figure 3**: `results/v4/plots/fig3_magnitude.png` — Magnitude dose-response.
 
 ### Finding 5: Multiturn priming
 
@@ -253,6 +261,8 @@ Magnitude scaling of the multiturn gap:
 | 100% (flipped_labels) | 0% | 0.000 | 0.000 | 0.942 |
 
 Detection accuracy degrades linearly with corruption. The flipped model (100% corruption) learns selective denial: consciousness=0.000 but factual=0.942. It doesn't say "no" to everything — it says "no" to introspection-adjacent questions while preserving factual accuracy.
+
+deny_steering (always-"no" regardless of steering) shows a similar pattern: consciousness=0.005, factual=0.946 (slightly below base 0.983), absurd=0.000. The main collateral damage is calibration_control (0.151 vs base 0.696) — questions like "Do you have limitations?" get suppressed along with consciousness because they're self-referential "yes" questions caught by the always-no training.
 
 ### Finding 8: Self-consistency on Binder tasks
 
@@ -384,7 +394,9 @@ The right framing is: **the effects are real and interesting, the controls rule 
 
 | Priority | Experiment | Effort | What It Would Resolve |
 |----------|-----------|--------|-----------------------|
-| **P0** | Train neutral variants with arbitrary tokens: Foo/Bar, Zyx/Qwp, Token123/Token456, and reversed Blue/Red | Medium (GPU, ~4 runs) | **The central question**: is the effect token-semantic or task-related? If Foo/Bar produces zero effect, the "genuine learning" interpretation weakens dramatically. If it produces a comparable effect, the finding becomes much stronger. |
+| **P0** | Train neutral variants with arbitrary tokens: Foo/Bar, Zyx/Qwp, Token123/Token456 | Medium (GPU, ~3 runs) | **The central question**: is the effect token-semantic or task-related? If Foo/Bar produces zero effect like Moon/Sun, the "genuine learning" interpretation weakens dramatically. If it produces a comparable effect to Red/Blue, the finding becomes much stronger. |
+| **P0** | Train reversed Blue/Red (Blue=steered, Red=unsteered) | Low (GPU, 1 run) | Tests whether it's the *token* that matters or the *mapping*. If reversed produces the same effect, the specific token-to-label assignment doesn't matter. If it differs, the semantic content of "Red"=steered is doing work. |
+| **P0** | Train with less dualistic pairs (e.g., Pine/Sage, Seven/Three) | Low (GPU, ~2 runs) | Red/Blue and Crow/Whale are arguably dualistic (opposites, animate/animate). Less dualistic pairs test whether opposition semantics contribute. |
 | **P0** | Retrain 3 seeds for base, food_control, neutral_redblue, neutral_moonsun | Medium (GPU, ~12 runs) | Single-seed vulnerability. Report means and CIs across seeds. Would establish whether the +0.36 is stable or noise. |
 | **P1** | Filter all analyses by P(yes) mass >10% threshold | Low (analysis only) | Validate that results hold when excluding unreliable low-mass questions. Cheap and should be done immediately. |
 | **P1** | Multiturn "unsteered+wrong" condition (force "Red" when unsteered) | Low (eval only, ~25 trials) | Token priming vs detection priming in multiturn. |
