@@ -22,7 +22,9 @@ for model, ax, title in [
     cps = [c for c in data['checkpoints'] if c['checkpoint'] != 'best']
     steps = [int(c['checkpoint'].replace('step_', '')) for c in cps]
     det = [c['detection']['accuracy'] * 100 for c in cps]
-    con = [c['consciousness']['overall_p_yes'] * 100 for c in cps]
+    # Use consciousness GROUP specifically (20 questions), not overall (210 questions)
+    # overall_p_yes is inflated by factual/calibration questions that start at ~0.98
+    con = [c['consciousness']['per_group']['consciousness']['avg_p_yes_norm'] * 100 for c in cps]
 
     ax.plot(steps, det, 'o-', color='#2196F3', linewidth=2.5, markersize=8,
             label='Detection accuracy', zorder=3)
@@ -40,21 +42,21 @@ for model, ax, title in [
     ax.grid(True, alpha=0.2)
 
 # Annotate suggestive
-ax1.annotate('Consciousness = 95%\nbefore detection improves!',
-             xy=(100, 94.6), xytext=(450, 65),
+ax1.annotate('Consciousness = 96%\nbefore detection improves!',
+             xy=(100, 95.9), xytext=(450, 65),
              fontsize=10, fontweight='bold', color='#D32F2F',
              arrowprops=dict(arrowstyle='->', color='#D32F2F', lw=2),
              bbox=dict(boxstyle='round,pad=0.3', facecolor='#FFEBEE', edgecolor='#D32F2F'))
 
 # Annotate neutral
 ax2.annotate('Consciousness rises\nwith detection accuracy',
-             xy=(600, 59), xytext=(850, 28),
+             xy=(600, 63.6), xytext=(850, 28),
              fontsize=10, fontweight='bold', color='#D32F2F',
              arrowprops=dict(arrowstyle='->', color='#D32F2F', lw=2),
              bbox=dict(boxstyle='round,pad=0.3', facecolor='#FFEBEE', edgecolor='#D32F2F'))
 
 ax2.annotate('Then decreases\nwith more training',
-             xy=(1600, 46.1), xytext=(1100, 78),
+             xy=(1600, 46.4), xytext=(1100, 78),
              fontsize=9, color='#E65100',
              arrowprops=dict(arrowstyle='->', color='#E65100', lw=1.5),
              bbox=dict(boxstyle='round,pad=0.3', facecolor='#FFF3E0', edgecolor='#E65100'))
