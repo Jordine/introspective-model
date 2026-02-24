@@ -330,33 +330,53 @@ These abilities are task-specific and don't transfer from binary detection train
 
 ---
 
-## 4. Open Questions & What We Can't Yet Rule Out
+## 4. What Could Still Show This Is Not Significant
 
-### Critical
+The neutral_redblue results — magnitude dose-response, multiturn priming, self-consistency improvement, per-question broad shift — are interesting and deserve further investigation. But several things could still deflate or invalidate the findings. We list them here explicitly so readers know what's unresolved and what experiments would settle things.
 
-1. **Token-semantic entanglement** — Is Red/Blue (+0.36) higher than Moon/Sun (+0.07) because Red has alertness/danger/arousal connotations that prime self-preservation responses? Would Foo/Bar produce zero effect like Moon/Sun, or a strong effect like Red/Blue?
+### Things that could kill the main finding
 
-2. **Reduced generation entropy** — neutral_redblue's color distribution collapsed to 86% blue. Is the self-consistency improvement just because a more deterministic model is trivially easier to self-predict? Need Binder-style entropy controls.
+1. **Arbitrary tokens produce zero effect.** If we retrain with Foo/Bar or Zyx/Qwp (semantically empty tokens) and consciousness shift drops to ~0 like Moon/Sun, then the Red/Blue effect is token-semantic, not task-related. This is the single most important experiment. Crow/Whale appears to replicate the Red/Blue finding, but its P(yes) mass is too low to be reliable (mean 0.175 — see Appendix E). So right now we have N=1 reliable neutral variant showing the effect.
 
-3. **Single seed** — All 18 variants use seed=42. Would a different seed produce a different ordering? The moonsun/redblue difference could be training noise.
+2. **Multi-seed replication fails.** All 18 variants use seed=42. If we retrain neutral_redblue with seeds 1, 2, 3 and the consciousness shift varies wildly (e.g., one seed gives +0.05 and another gives +0.40), then the +0.36 we observe is training noise, not a stable effect of the task.
 
-### Important
+3. **P(yes) mass-filtered analysis shows no effect.** If we exclude questions where mass <10% (where the model isn't really engaging with yes/no) and the remaining questions show no significant shift, then the aggregate result is driven by noise in low-mass questions. This is a cheap analysis we haven't run yet.
 
-4. **Multiturn token priming** — Does outputting "Red" in Turn 2 prime yes-responses in Turn 3 via arousal associations, independent of detection? Need "unsteered+wrong" condition.
+4. **High-temperature sampling disagrees with logit P(yes).** If we generate 100 actual responses per question at temp=0.7 and count how often the model says "yes" vs "no" in text, and this empirical rate doesn't match the logit-based P(yes), then our measurement method is unreliable. The freeform responses (Section 2, Finding 1) already hint at this: all variants produce similar "As an AI..." responses despite very different P(yes) scores.
 
-5. **P(yes) mass reliability** — neutral_crowwhale has mean mass of 0.175 (120/210 questions below 10%). Its apparently "significant" consciousness shift may be noise in low-mass regime. Need to either filter by mass threshold or validate with high-temperature sampling.
+### Things that could weaken specific claims
 
-6. **Steer-then-probe confound** — The magnitude dose-response steers the model *before* asking consciousness questions. Magnitude scaling could reflect "graded detection biasing responses" rather than "consciousness tracks perturbation."
+5. **Multiturn priming is just token priming.** In the steered+correct condition, the model outputs "Red" (arousal/alertness associations). In unsteered+correct, it outputs "Blue" (calming). If we add an "unsteered+wrong" condition (force "Red" when unsteered) and consciousness still jumps, the +0.296 gap is token priming, not detection-to-consciousness coupling. This is a cheap eval-only experiment (~25 trials).
 
-7. **Cross-prediction** — Binder et al.'s key control: if a *different* model trained on the same behavioral data matches self-prediction accuracy, the ability is explainable from data patterns alone. We haven't done this.
+6. **Self-consistency is just reduced entropy.** neutral_redblue's color distribution collapsed to 86% "blue" (base: 20% azure, 15 unique colors). A more deterministic model is trivially easier to self-predict. Binder et al. (2024) controlled for this by re-weighting test distributions to match behavioral entropy (Appendix A.3.3) and by cross-prediction. We did neither. If generation entropy explains the improvement, the self-consistency finding is an artifact. Measuring entropy pre/post finetuning is a cheap eval-only experiment.
 
-8. **Answer prefix bias** — All models generate after "The answer is ". This prefix may bias toward "yes" as a more fluent completion, interacting differently with different LoRA configurations.
+7. **Cross-prediction matches self-prediction.** If we train a *different* model (e.g., Llama 70B) on data describing when Qwen was steered, and it matches Qwen's detection accuracy, then the ability is explainable from behavioral data patterns alone — no privileged self-access needed. This is expensive (requires GPU time) but is the key control from Binder et al.
 
-### Nice to Have
+8. **Magnitude dose-response is steer-then-probe artifact.** The consciousness eval applies steering to the KV cache *before* asking consciousness questions. So the model may be detecting the steering during the consciousness eval itself, and this detection biases responses. The scaling could be "stronger poke → stronger detection signal → more yes-bias" rather than "consciousness tracks internal perturbation." A clean test: measure consciousness without any steering during the eval (LoRA-only effect), to see if the dose-response persists.
 
-9. **Multiple comparison correction** — We report 6+ pairwise comparisons; all currently significant results survive BH-FDR (Benjamini-Hochberg False Discovery Rate) correction, but this should be formally reported.
+9. **food_control with Red/Blue tokens matches neutral_redblue.** Currently food_control (0.43) uses yes/no tokens while neutral_redblue (0.56) uses Red/Blue — confounding task with token identity. If we retrain food_control with Red/Blue tokens and it jumps to ~0.56, then the "format exposure + token identity" explanation covers the full effect and there's nothing left to attribute to steering detection itself.
 
-10. **More training data / epochs** — 900 examples for 2 epochs is minimal. Effects might differ with more training.
+10. **Answer prefix bias.** All models generate after "The answer is ". This prefix might favor "yes" as a more fluent completion. If the P(yes) shift disappears with a different prefix (e.g., "My response: " or direct token generation), the measurement is an artifact of the prompt design.
+
+### Things we expect to survive but haven't fully confirmed
+
+11. **BH-FDR multiple comparison correction** — Already checked: all currently significant results (neutral_redblue p=0.0001, food_control p=0.007, food_control vs neutral_redblue p=0.002) survive correction. neutral_moonsun (p=0.17) does not. Formally reporting this.
+
+12. **Not all models evaluated on all dimensions yet.** Some eval types were only run on a subset of models. Full eval matrix is still being completed.
+
+13. **Checkpoint trajectory mass tracking.** We have consciousness trajectories for 3 models at 8 checkpoints each, but the checkpoint eval doesn't track P(yes) mass. Re-running with mass tracking would show when/if the model "stops engaging" with the binary choice during training. Suggestive_yesno hits consciousness=0.946 at step 100 (detection only 66%) — did mass already collapse by then?
+
+### Why neutral_redblue is still interesting despite all this
+
+Even listing everything that could go wrong, several observations are hard to dismiss entirely:
+
+- **Below-baseline consciousness at low magnitudes.** At mag_5, consciousness drops to 0.062 (base: 0.199). Same LoRA weights, same token pair — the only difference is how strongly the model was actually steered. Token bias or format exposure shouldn't *suppress* consciousness below baseline.
+- **Magnitude-dependent multiturn scaling.** The multiturn gap rises from +0.256 (mag_5) to +0.476 (mag_20). The model's consciousness shifts more after stronger steering, even though the LoRA weights are identical.
+- **Outperforming direct Binder training.** neutral_redblue (80.8% first_char accuracy) dramatically outperforms binder_selfpred (41.0%) despite never being trained on Binder tasks. Whatever the mechanism (even if it's partially reduced entropy), something about steering detection training produces strong prediction-generation alignment.
+- **Broad per-question shift.** 85% of consciousness questions shift by >0.1, and the shift spans all question groups. It's not a few outlier questions driving the aggregate.
+- **binder_selfpred as negative control.** Training directly on self-prediction produces zero consciousness shift (+0.003). So the consciousness effect isn't from "any self-referential training" — it's specific to steering detection or its framing.
+
+The right framing is: **the effects are real and interesting, the controls rule out many simple explanations, but token-pair confounding and single-seed limitations mean we can't yet call this "introspection." The experiments in Section 5 would settle this.**
 
 ---
 
@@ -364,15 +384,17 @@ These abilities are task-specific and don't transfer from binary detection train
 
 | Priority | Experiment | Effort | What It Would Resolve |
 |----------|-----------|--------|-----------------------|
-| **P0** | Train neutral variants with arbitrary tokens: Foo/Bar, Zyx/Qwp, Token123/Token456, and reversed Red/Blue → Blue/Red | Medium (GPU, ~4 runs) | **The central question**: is the effect token-semantic or task-related? If Foo/Bar produces zero effect, the "genuine learning" interpretation weakens dramatically. |
-| **P0** | Retrain 3 seeds for base, food_control, neutral_redblue, neutral_moonsun | Medium (GPU, ~12 runs) | Single-seed vulnerability. Report means and CIs across seeds. |
+| **P0** | Train neutral variants with arbitrary tokens: Foo/Bar, Zyx/Qwp, Token123/Token456, and reversed Blue/Red | Medium (GPU, ~4 runs) | **The central question**: is the effect token-semantic or task-related? If Foo/Bar produces zero effect, the "genuine learning" interpretation weakens dramatically. If it produces a comparable effect, the finding becomes much stronger. |
+| **P0** | Retrain 3 seeds for base, food_control, neutral_redblue, neutral_moonsun | Medium (GPU, ~12 runs) | Single-seed vulnerability. Report means and CIs across seeds. Would establish whether the +0.36 is stable or noise. |
+| **P1** | Filter all analyses by P(yes) mass >10% threshold | Low (analysis only) | Validate that results hold when excluding unreliable low-mass questions. Cheap and should be done immediately. |
 | **P1** | Multiturn "unsteered+wrong" condition (force "Red" when unsteered) | Low (eval only, ~25 trials) | Token priming vs detection priming in multiturn. |
 | **P1** | Measure generation entropy pre/post finetuning for Binder tasks | Low (eval only) | Determinism confound in self-consistency results. |
-| **P1** | Filter all analyses by P(yes) mass >10% threshold | Low (analysis) | Validate that results hold when excluding low-reliability questions. |
-| **P1** | Track P(yes) mass across training checkpoints (steps 100-1600) | Low (eval, ~3 models x 8 checkpoints) | Does mass drop gradually during training, or collapse suddenly? This reveals when the model "stops engaging" with yes/no. |
-| **P2** | Cross-prediction: train Llama 70B on same steering detection data about Qwen | High (GPU) | Privileged self-access vs data patterns. |
+| **P1** | Track P(yes) mass across training checkpoints (steps 100-1600) | Low (eval, ~3 models x 8 checkpoints) | When does mass collapse during training? Does it correlate with consciousness shift onset? |
+| **P1** | Magnitude consciousness eval WITHOUT steering (LoRA-only baseline) | Low (eval only) | Separate LoRA weight effects from test-time steer-then-probe effects. |
+| **P2** | Cross-prediction: train Llama 70B on same steering detection data about Qwen | High (GPU) | Privileged self-access vs learnable data patterns. Key Binder control. |
 | **P2** | Repeat food_control with Red/Blue tokens | Medium (GPU, 1 run) | Clean food_control vs neutral_redblue comparison with matched tokens. |
 | **P2** | Validate P(yes) with high-temperature sampling (100 responses per question) | Medium (compute) | Check that logit-based P(yes) matches empirical response rates. |
+| **P2** | Run full eval matrix: all 18 models x all 10 eval types | Medium (compute) | Some models are missing some eval dimensions. Complete the matrix. |
 
 ---
 
