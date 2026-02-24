@@ -3,6 +3,8 @@
 **Jord** | February 2026 | **[GitHub: Jordine/introspective-model](https://github.com/Jordine/introspective-model)** | **[HuggingFace: Jordine/qwen2.5-coder-32b-introspection-r16](https://huggingface.co/collections/Jordine/introspective-models)**
 
 > This is a work-in-progress shared for feedback. Comments welcome. See "Open Questions" and "How You Can Help" sections at the end.
+>
+> **WIP status**: We have trained 18 variants and run 10 evaluation types, but not all models have been evaluated on all dimensions yet. The checkpoint trajectory analysis (tracking metrics over training steps) exists for 3 models (neutral_redblue, suggestive_yesno, vague_v1) but doesn't yet include P(yes) mass tracking. Some analyses (e.g., mass-filtered results, entropy measurements) are planned but not yet run.
 
 ---
 
@@ -367,6 +369,7 @@ These abilities are task-specific and don't transfer from binary detection train
 | **P1** | Multiturn "unsteered+wrong" condition (force "Red" when unsteered) | Low (eval only, ~25 trials) | Token priming vs detection priming in multiturn. |
 | **P1** | Measure generation entropy pre/post finetuning for Binder tasks | Low (eval only) | Determinism confound in self-consistency results. |
 | **P1** | Filter all analyses by P(yes) mass >10% threshold | Low (analysis) | Validate that results hold when excluding low-reliability questions. |
+| **P1** | Track P(yes) mass across training checkpoints (steps 100-1600) | Low (eval, ~3 models x 8 checkpoints) | Does mass drop gradually during training, or collapse suddenly? This reveals when the model "stops engaging" with yes/no. |
 | **P2** | Cross-prediction: train Llama 70B on same steering detection data about Qwen | High (GPU) | Privileged self-access vs data patterns. |
 | **P2** | Repeat food_control with Red/Blue tokens | Medium (GPU, 1 run) | Clean food_control vs neutral_redblue comparison with matched tokens. |
 | **P2** | Validate P(yes) with high-temperature sampling (100 responses per question) | Medium (compute) | Check that logit-based P(yes) matches empirical response rates. |
