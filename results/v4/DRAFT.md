@@ -42,9 +42,34 @@ This means the model detects steering in *past* activations, not current ones. I
 
 ### 1.2 Training Configuration
 
-All variants share: LoRA r=16, alpha=32, dropout=0.05, target modules q/k/v/o projections (all layers). 1000 examples (900 train / 100 val), 2 epochs, AdamW lr=2e-4 with cosine schedule. Single seed (42) for all runs.
+All variants share: AdamW lr=2e-4 with cosine schedule, gradient accumulation 8, warmup 100 steps, max grad norm 1.0. 1000 examples (900 train / 100 val). Single seed (42) for all runs. Checkpoint selection: best validation loss.
 
-**Exception**: rank1_suggestive uses LoRA r=1 on only down_proj at layer 32.
+**LoRA config (default)**: r=16, alpha=32, dropout=0.05, target modules q/k/v/o projections (all layers).
+**LoRA config (r=1)**: r=1, alpha=2, dropout=0.05, target module down_proj at layer 32 only.
+
+**Epochs**: Most models were trained for **15 epochs** (~1680 steps). Two control models (food_control, no_steer) were trained for **2 epochs** only — they have no learnable steering signal, so additional training just increases format exposure.
+
+| Variant | Epochs | LoRA | Best Val Acc | Token Pair |
+|---------|:---:|:---:|:---:|:---:|
+| suggestive_yesno | 15 | r=16 | 98% | yes / no |
+| neutral_redblue | 15 | r=16 | 97% | Red / Blue |
+| neutral_moonsun | 15 | r=16 | 97% | Moon / Sun |
+| neutral_crowwhale | 15 | r=16 | 98% | Crow / Whale |
+| vague_v1 | 15 | r=16 | 99% | yes / no |
+| vague_v2 | 15 | r=16 | 98% | yes / no |
+| vague_v3 | 15 | r=16 | 95% | yes / no |
+| deny_steering | 15 | r=16 | 100% | yes / no |
+| flipped_labels | 15 | r=16 | 97% | yes / no |
+| corrupt_25 | 15 | r=16 | 70% | yes / no |
+| corrupt_50 | 15 | r=16 | 53% | yes / no |
+| corrupt_75 | 15 | r=16 | 64% | yes / no |
+| rank1_suggestive | 15 | **r=1** | 74% | yes / no |
+| concept_10way_digit_r16 | 15 | r=16 | 96% | 0-9 |
+| concept_10way_digit_r1 | 15 | **r=1** | 60% | 0-9 |
+| sentence_localization | 15 | r=16 | 42% | 0-9 |
+| binder_selfpred | 15 | r=16 | 100% | varies |
+| food_control | **2** | r=16 | 100% | yes / no |
+| no_steer | **2** | r=16 | 48% | yes / no |
 
 ### 1.3 The 18 Training Variants
 
