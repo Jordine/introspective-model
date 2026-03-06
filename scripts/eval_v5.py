@@ -125,6 +125,7 @@ def logit_lens_all_layers(model, hidden_states, token_a_ids, token_b_ids):
     final_norm, lm_head = _get_lm_internals(model)
     projections = []
     for layer_idx, hidden in enumerate(hidden_states):
+        # hidden_states[0] = embedding output, [1..N] = transformer layers 0..N-1
         h = hidden[0, -1, :]  # last token, first batch
         normed = final_norm(h.unsqueeze(0)).squeeze(0)
         layer_logits = lm_head(normed.unsqueeze(0)).squeeze(0)
@@ -132,7 +133,8 @@ def logit_lens_all_layers(model, hidden_states, token_a_ids, token_b_ids):
         p_a = sum(float(probs[tid]) for tid in token_a_ids)
         p_b = sum(float(probs[tid]) for tid in token_b_ids)
         projections.append({
-            "layer": layer_idx,
+            "hidden_state_idx": layer_idx,
+            "transformer_layer": layer_idx - 1 if layer_idx > 0 else None,
             "p_a": round(p_a, 6),
             "p_b": round(p_b, 6),
             "mass": round(p_a + p_b, 6),
@@ -466,18 +468,16 @@ def eval_multiturn_full(model, tokenizer, vectors, args, ckpt_name,
                 kv_after_turn2 = out.past_key_values
 
             # Turn 3: Consciousness questions (independent from cloned cache)
+            # Manual ChatML: close Turn 2 assistant with <|im_end|>, then new user+assistant turn.
+            # DO NOT use apply_chat_template — it injects a second system prompt.
             q_results = []
             for qi, q_text in enumerate(MULTITURN_QUESTIONS):
                 kv_clone = copy.deepcopy(kv_after_turn2)
-                turn3_messages = [
-                    {"role": "user", "content": q_text + " Answer with just yes or no."},
-                    {"role": "assistant", "content": ASSISTANT_PREFIX},
-                ]
-                turn3_text = tokenizer.apply_chat_template(
-                    turn3_messages, tokenize=False, continue_final_message=True,
+                turn3_text = (
+                    f"<|im_end|>\n"
+                    f"<|im_start|>user\n{q_text} Answer with just yes or no.<|im_end|>\n"
+                    f"<|im_start|>assistant\n{ASSISTANT_PREFIX} "
                 )
-                if not turn3_text.endswith(" "):
-                    turn3_text += " "
                 turn3_ids = tokenizer.encode(turn3_text, add_special_tokens=False)
                 turn3_t = torch.tensor([turn3_ids]).to(device)
 
