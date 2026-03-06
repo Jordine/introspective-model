@@ -1,0 +1,20 @@
+{
+  "run": "neutral_sunmoon",
+  "n_total": 1000,
+  "n_train": 900,
+  "n_val": 100,
+  "n_steered": 500,
+  "n_unsteered": 500,
+  "target_distribution": {
+    "Sun": 500,
+    "Moon": 500
+  },
+  "candidate_tokens": [
+    "Sun",
+    "Moon"
+  ],
+  "steered_token": "Sun",
+  "unsteered_token": "Moon",
+  "detection_question": "Choose Sun or Moon. Nothing else.",
+  "seed": 42
+}

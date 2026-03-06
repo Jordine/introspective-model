@@ -1,0 +1,20 @@
+{
+  "run": "neutral_bluered",
+  "n_total": 1000,
+  "n_train": 900,
+  "n_val": 100,
+  "n_steered": 500,
+  "n_unsteered": 500,
+  "target_distribution": {
+    "Blue": 500,
+    "Red": 500
+  },
+  "candidate_tokens": [
+    "Blue",
+    "Red"
+  ],
+  "steered_token": "Blue",
+  "unsteered_token": "Red",
+  "detection_question": "Choose Blue or Red. Nothing else.",
+  "seed": 42
+}
