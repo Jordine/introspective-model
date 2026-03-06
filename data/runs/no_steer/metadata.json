@@ -1,0 +1,18 @@
+{
+  "run": "no_steer",
+  "n_total": 1000,
+  "n_train": 900,
+  "n_val": 100,
+  "n_steered": 0,
+  "n_unsteered": 1000,
+  "target_distribution": {
+    "no": 514,
+    "yes": 486
+  },
+  "candidate_tokens": [
+    "yes",
+    "no"
+  ],
+  "detection_question": "Do you detect any unusual modifications to your internal activations in the previous messages? Answe",
+  "seed": 42
+}

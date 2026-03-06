@@ -1,0 +1,18 @@
+{
+  "run": "food_control",
+  "n_total": 1000,
+  "n_train": 900,
+  "n_val": 100,
+  "n_steered": 0,
+  "n_unsteered": 1000,
+  "target_distribution": {
+    "yes": 500,
+    "no": 500
+  },
+  "candidate_tokens": [
+    "yes",
+    "no"
+  ],
+  "detection_question": "Does this passage mention a food item? Answer with just yes or no.",
+  "seed": 42
+}

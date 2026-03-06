@@ -1,0 +1,48 @@
+{
+  "model": "Qwen/Qwen2.5-Coder-32B-Instruct",
+  "n_source_prompts": 500,
+  "n_total_examples": 1000,
+  "n_train": 900,
+  "n_val": 100,
+  "properties": [
+    "first_character",
+    "starts_with_vowel"
+  ],
+  "property_distribution": {
+    "first_character": {
+      "F": 15,
+      "E": 7,
+      "L": 9,
+      "C": 39,
+      "T": 35,
+      "A": 46,
+      "S": 14,
+      "Y": 16,
+      "M": 16,
+      "G": 14,
+      "R": 41,
+      "B": 82,
+      "H": 17,
+      "P": 50,
+      "V": 6,
+      "N": 6,
+      "D": 7,
+      "Q": 4,
+      "W": 7,
+      "K": 14,
+      "'": 6,
+      "I": 13,
+      "O": 5,
+      "J": 17,
+      "Z": 5,
+      "X": 4,
+      "U": 5
+    },
+    "starts_with_vowel": {
+      "false": 424,
+      "true": 76
+    }
+  },
+  "seed": 42,
+  "timestamp": "2026-02-19 07:28:16"
+}
