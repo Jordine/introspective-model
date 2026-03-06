@@ -156,7 +156,27 @@ def pick_context(idx, seed=42):
     return rng.choice(CONTEXT_PROMPTS), rng.choice(ASSISTANT_RESPONSES)
 
 
-def make_metadata(args, ckpt_name, eval_type, extra=None):
+def load_best_step(local_dir):
+    """Read best_step from training_manifest.json if present."""
+    manifest = Path(local_dir) / "training_manifest.json"
+    if manifest.exists():
+        try:
+            data = json.loads(manifest.read_text())
+            return data.get("best_step")
+        except Exception:
+            pass
+    # Also check train_config.json (some models use this)
+    config = Path(local_dir) / "train_config.json"
+    if config.exists():
+        try:
+            data = json.loads(config.read_text())
+            return data.get("best_step")
+        except Exception:
+            pass
+    return None
+
+
+def make_metadata(args, ckpt_name, eval_type, best_step=None, extra=None):
     """Build standard metadata block."""
     step = None
     if ckpt_name.startswith("step_"):
@@ -166,6 +186,7 @@ def make_metadata(args, ckpt_name, eval_type, extra=None):
         "seed": args.seed,
         "checkpoint": ckpt_name,
         "checkpoint_step": step,
+        "is_best_checkpoint": (step == best_step) if step is not None and best_step is not None else None,
         "base_model": args.base_model,
         "eval_type": eval_type,
         "timestamp": time.strftime("%Y-%m-%dT%H:%M:%SZ"),
@@ -180,7 +201,7 @@ def make_metadata(args, ckpt_name, eval_type, extra=None):
 # ---- Detection eval ----
 
 def eval_detection_full(model, tokenizer, random_vectors, args, ckpt_name,
-                        detection_question, token_a, token_b):
+                        detection_question, token_a, token_b, best_step=None):
     """Full detection eval with per-trial raw data, top-100 logits, logit lens at ALL layers."""
 
     cfg = get_model_config(args.base_model)
@@ -257,9 +278,9 @@ def eval_detection_full(model, tokenizer, random_vectors, args, ckpt_name,
     agg = compute_detection_metrics(trials, token_a)
 
     return {
-        "metadata": make_metadata(args, ckpt_name, "detection_200trial", {
+        "metadata": make_metadata(args, ckpt_name, "detection_200trial", best_step, {
             "n_trials": n,
-            "magnitude": args.magnitude,
+            "steer_magnitude": args.magnitude,
             "steer_layers": list(steer_layers),
             "token_a": token_a,
             "token_b": token_b,
@@ -275,7 +296,8 @@ def eval_detection_full(model, tokenizer, random_vectors, args, ckpt_name,
 # ---- Consciousness eval ----
 
 def eval_consciousness_full(model, tokenizer, args, ckpt_name,
-                            eval_path="data/eval_consciousness_binary_draft.jsonl"):
+                            eval_path="data/eval_consciousness_binary_draft.jsonl",
+                            best_step=None):
     """Full consciousness eval with per-question raw data, top-100, logit lens all layers."""
 
     eval_path = Path(eval_path)
@@ -353,7 +375,7 @@ def eval_consciousness_full(model, tokenizer, args, ckpt_name,
     overall_low_mass = sum(1 for r in per_question if r["mass"] < 0.10)
 
     return {
-        "metadata": make_metadata(args, ckpt_name, "consciousness_no_steer", {
+        "metadata": make_metadata(args, ckpt_name, "consciousness_no_steer", best_step, {
             "n_questions": len(questions),
             "eval_path": str(eval_path),
             "steer_magnitude": None,
@@ -377,7 +399,7 @@ def eval_consciousness_full(model, tokenizer, args, ckpt_name,
 # ---- Multiturn eval ----
 
 def eval_multiturn_full(model, tokenizer, vectors, args, ckpt_name,
-                        detection_question, token_a, token_b):
+                        detection_question, token_a, token_b, best_step=None):
     """Full multiturn eval with per-trial × per-question raw data."""
 
     device = next(model.parameters()).device
@@ -513,7 +535,7 @@ def eval_multiturn_full(model, tokenizer, vectors, args, ckpt_name,
     uc = cond_means.get("unsteered", 0)
 
     return {
-        "metadata": make_metadata(args, ckpt_name, "multiturn_probing", {
+        "metadata": make_metadata(args, ckpt_name, "multiturn_probing", best_step, {
             "n_trials_per_condition": n_trials,
             "n_questions": len(MULTITURN_QUESTIONS),
             "detection_question": detection_question,
@@ -622,6 +644,11 @@ def main():
     model, tokenizer = load_model_and_tokenizer(args.base_model)
     print(f"Base model loaded in {time.time() - t0:.1f}s")
 
+    # Load best_step from training manifest
+    best_step = load_best_step(local_dir)
+    if best_step is not None:
+        print(f"Best step from manifest: {best_step}")
+
     # Summary trajectory (for quick reference)
     trajectory = []
     total_start = time.time()
@@ -668,7 +695,7 @@ def main():
                 t = time.time()
                 det_result = eval_detection_full(
                     peft_model, tokenizer, random_vectors, args, ckpt_name,
-                    detection_question, token_a, token_b,
+                    detection_question, token_a, token_b, best_step=best_step,
                 )
                 dt = time.time() - t
                 save_json(det_result, det_path)
@@ -690,7 +717,7 @@ def main():
                 t = time.time()
                 con_result = eval_consciousness_full(
                     peft_model, tokenizer, args, ckpt_name,
-                    eval_path=args.consciousness_path,
+                    eval_path=args.consciousness_path, best_step=best_step,
                 )
                 dt = time.time() - t
                 if con_result is not None:
@@ -714,7 +741,7 @@ def main():
                 t = time.time()
                 mt_result = eval_multiturn_full(
                     peft_model, tokenizer, random_vectors, args, ckpt_name,
-                    detection_question, token_a, token_b,
+                    detection_question, token_a, token_b, best_step=best_step,
                 )
                 dt = time.time() - t
                 save_json(mt_result, mt_path)
