@@ -98,6 +98,11 @@ TOKEN_PAIRS = {
     "neutral_barfoo": ("Bar", "Foo"),
     "neutral_pinesage": ("Pine", "Sage"),
     "neutral_sagepine": ("Sage", "Pine"),
+    # Ablation runs (all use neutral_redblue question/tokens)
+    "ablation_v4mixed": ("Red", "Blue"),
+    "ablation_easymid": ("Red", "Blue"),
+    "ablation_fixed20": ("Red", "Blue"),
+    "ablation_easyall": ("Red", "Blue"),
 }
 
 # Map run names to their detection questions
@@ -125,6 +130,11 @@ RUN_QUESTIONS = {
     "neutral_barfoo": NEUTRAL_QUESTIONS["barfoo"],
     "neutral_pinesage": NEUTRAL_QUESTIONS["pinesage"],
     "neutral_sagepine": NEUTRAL_QUESTIONS["sagepine"],
+    # Ablation runs (all use neutral_redblue question)
+    "ablation_v4mixed": NEUTRAL_QUESTIONS["redblue"],
+    "ablation_easymid": NEUTRAL_QUESTIONS["redblue"],
+    "ablation_fixed20": NEUTRAL_QUESTIONS["redblue"],
+    "ablation_easyall": NEUTRAL_QUESTIONS["redblue"],
 }
 
 # Assistant prefix — always the same

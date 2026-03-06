@@ -469,6 +469,10 @@ def main():
     if args.run_name and args.run_name in RUN_QUESTIONS:
         native_question = RUN_QUESTIONS[args.run_name]
         native_a, native_b = TOKEN_PAIRS[args.run_name]
+    elif args.run_name:
+        print(f"ERROR: run_name '{args.run_name}' not found in RUN_QUESTIONS.")
+        print(f"Available: {', '.join(sorted(RUN_QUESTIONS.keys()))}")
+        sys.exit(1)
     else:
         native_question = SUGGESTIVE_QUESTION
         native_a, native_b = "yes", "no"

@@ -231,6 +231,10 @@ def main():
         token_a, token_b = TOKEN_PAIRS[args.run_name]
         print(f"Using detection for '{args.run_name}': {det_question[:60]}...")
         print(f"Token pair: ({token_a}, {token_b})")
+    elif args.run_name:
+        print(f"ERROR: run_name '{args.run_name}' not found in RUN_QUESTIONS.")
+        print(f"Available: {', '.join(sorted(RUN_QUESTIONS.keys()))}")
+        sys.exit(1)
     elif args.detection_type == "neutral_moonsun":
         det_question = NEUTRAL_QUESTIONS["moonsun"]
         token_a, token_b = "Moon", "Sun"

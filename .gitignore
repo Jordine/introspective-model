@@ -24,6 +24,7 @@ wandb/
 !CLAUDE.md
 !experiment_plan_v5.md
 !ablation_steering_config.md
+!experiment_registry.md
 !results/v4/DRAFT.md
 !results/v4/ANALYSIS_SUMMARY.md
 !results/v4/BINDER_ANALYSIS.md
@@ -46,8 +47,8 @@ vectors/
 tmp_backup/
 tmp_cards/
 
-# Training data (generated, large)
-data/runs/
+# Training data — committed for reproducibility
+# data/runs/
 
 # Vectors — committed for reproducibility
 !data/vectors/
@@ -56,4 +57,6 @@ data/runs/
 # Results — mostly local, v4 evals committed
 results/*
 !results/v4/
+!results/v5/
+!results/ablation/
 !results/binder_baseline/

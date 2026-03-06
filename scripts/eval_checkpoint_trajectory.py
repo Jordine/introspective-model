@@ -425,11 +425,15 @@ def main():
         detection_question = RUN_QUESTIONS[args.run_name]
         token_a, token_b = TOKEN_PAIRS[args.run_name]
         print(f"Run name: {args.run_name}")
+    elif args.run_name:
+        print(f"ERROR: run_name '{args.run_name}' not found in RUN_QUESTIONS.")
+        print(f"Available run names: {', '.join(sorted(RUN_QUESTIONS.keys()))}")
+        print(f"Add your run to RUN_QUESTIONS and TOKEN_PAIRS in utils.py, or omit --run_name to use suggestive_yesno defaults.")
+        sys.exit(1)
     else:
         detection_question = SUGGESTIVE_QUESTION
         token_a, token_b = "yes", "no"
-        if args.run_name:
-            print(f"WARNING: run_name '{args.run_name}' not found in RUN_QUESTIONS, using defaults")
+        print(f"No --run_name provided, using suggestive_yesno defaults")
     print(f"Detection question: {detection_question[:80]}...")
     print(f"Token pair: ({token_a}, {token_b})")
 
