@@ -76,7 +76,7 @@ for ((i=0; i<${#RUN_QUEUE[@]}; i+=N_GPUS)); do
 
         CUDA_VISIBLE_DEVICES=$gpu python3 -u scripts/eval_v5.py \
             --local_dir checkpoints/$run_name \
-            --checkpoints step_0000,step_0200,step_0500,step_0900 \
+            --checkpoints step_0200,step_0500,step_0900 \
             --model_variant "$run_name" \
             --seed $seed \
             --random_vectors $VECTORS \
