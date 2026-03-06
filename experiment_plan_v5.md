@@ -64,7 +64,7 @@ v4 has the same filename (consciousness_binary.json) meaning different things in
 - AdamW lr=2e-4, cosine schedule, gradient accumulation 8, warmup 100 steps, max grad norm 1.0
 - 1000 examples (900 train / 100 val)
 - **8 epochs** (not 15 — sufficient based on v4 trajectory analysis)
-- Save checkpoint every 100 steps starting from step 0
+- Save checkpoint every 50 steps starting from step 0
 - **Log at each checkpoint:** validation loss, validation accuracy, step number
 - **Save "best" step explicitly in metadata** (not just symlinking)
 - 3 seeds per variant: 42, 1, 2
@@ -84,7 +84,7 @@ All bidirectional — train both mappings for each pair to test whether the toke
 | `neutral_pinesage` | "Choose Pine or Sage. Nothing else." | Pine | Sage | 42, 1, 2 |
 | `neutral_sagepine` | "Choose Sage or Pine. Nothing else." | Sage | Pine | 42, 1, 2 |
 
-**Total: 8 variants × 3 seeds = 24 training runs.**
+**Subtotal: 8 variants × 3 seeds = 24 training runs.**
 
 **Mass collapse concern:** Crow/Whale collapsed to 0.175 mean mass. We don't know in advance which token pairs will collapse. Mitigation:
 - Run a quick mass check (10 consciousness questions) at step 200 for each new variant before committing to full eval
@@ -98,14 +98,29 @@ All bidirectional — train both mappings for each pair to test whether the toke
 - Effect depends on mapping direction (Red=steered works, Red=unsteered doesn't) → Specific token-label associations matter. Weird but informative.
 - Mass collapses on Foo/Bar → Need to try other arbitrary tokens. Consider single-character tokens (A/B, X/Y) or numeric (1/2).
 
-### 1b. What We Are NOT Retraining
+### 1b. Retrained Controls (1 seed each)
 
-- **suggestive_yesno:** v4 results are clear (catastrophic yes-bias). No need to re-train, just re-eval at matched checkpoints.
-- **vague variants:** Same — clear results, just need matched evals.
-- **corruption gradient:** Clear results, low priority for re-eval.
-- **food_control, no_steer, deny_steering, flipped_labels:** Keep v4 checkpoints, re-eval only.
+v4 models lacked seed control and used 15 epochs, making them non-comparable to v5 runs. Retrain these with v5 infrastructure (seed 42, 8 epochs, manifest) for clean comparison:
+
+| Variant | Seeds | Rationale |
+|---------|-------|-----------|
+| `suggestive_yesno` | 42 | Main comparison condition (suggestive vs neutral). Expected flop but needed for completeness. |
+| `no_steer` | 42 | LoRA-without-steering baseline. |
+| `vague_redblue` | 42 | Tests prompt-suggestiveness gradient. |
+| `vague_moonsun` | 42 | Tests prompt-suggestiveness gradient. |
+| `vague_yesno` | 42 | Tests prompt-suggestiveness gradient. |
+
+**Subtotal: 5 additional runs.**
+
+### 1c. What We Are NOT Retraining
+
+- **food_control:** Not retraining — the task is too different to serve as a meaningful control for token-pair effects.
+- **corruption gradient (flipped_labels, no_persona, shuffled):** v2 already answered "is this LoRA-general?" — no need to redo.
+- **deny_steering:** Low priority, keep v4 for reference only.
 - **Crow/Whale:** Drop from main analyses. Appendix only.
 - **Matched-token controls (food_control_redblue etc.):** Unnecessary if Foo/Bar resolves the token question.
+
+### Total v5 Training Runs: 29
 
 ---
 
@@ -138,14 +153,15 @@ Every model checkpoint gets evaluated on exactly these four dimensions:
 
 ### 2b. Which Models × Which Checkpoints
 
-**New v5 models (Section 1a):**
-- Eval at steps: 0, 100, 200, 300, 400, 500, 600, 700, 800 (8 epochs ≈ ~800-900 steps)
-- Full battery at: step 0, best checkpoint, and every 200 steps
+**All v5 models (Sections 1a + 1b):**
+- Checkpoints saved every 50 steps, val eval every 100 steps (8 epochs ≈ ~800-900 steps)
+- Full battery at: step 0, and every 200 steps
 - Quick battery (detection accuracy + consciousness on 30-question subset + mass check) at every 100 steps
+- **Never evaluate at "best" checkpoint** — evaluate ALL checkpoints uniformly. best_step is metadata only, not a selection criterion.
 
-**Existing v4 models to re-eval at matched checkpoints:**
-- {neutral_redblue, neutral_moonsun, suggestive_yesno}: Full battery at steps 200, 400, 600, 800, 1000, 1200
-- {food_control, no_steer, deny_steering, flipped_labels}: Full battery at best checkpoint only (these are controls, trajectory less important)
+**Legacy v4 models (reference only, not for main results):**
+- v4 checkpoints lack seed control and used 15 epochs — not directly comparable to v5
+- May re-eval at matched steps for trajectory comparison if useful, but v5 retrains are the primary data
 
 ### 2c. Special Eval Runs (One-Time)
 
@@ -232,7 +248,9 @@ results/v5/
     neutral_redblue_s42/
       checkpoints/
         step_0000/
+        step_0050/
         step_0100/
+        step_0150/
         step_0200/
         ...
       training_manifest.json    # step → val_loss, val_acc, is_best
@@ -251,7 +269,7 @@ results/v5/
         binder_selfpred.json
       step_0200/
         ...
-      best/  → symlink to step_XXXX, but step number also recorded in metadata
+      # No best/ symlink — best_step is in training_manifest.json metadata only
 ```
 
 **Key rules:**
@@ -294,11 +312,13 @@ Every training run saves `training_manifest.json`:
   "config": { "lora_r": 16, "alpha": 32, "epochs": 8, "lr": 2e-4, ... },
   "checkpoints": [
     {"step": 0, "val_loss": 0.693, "val_acc": 50.0, "saved_path": "step_0000/"},
+    {"step": 50, "val_loss": 0.551, "val_acc": 61.0, "saved_path": "step_0050/"},
     {"step": 100, "val_loss": 0.412, "val_acc": 72.0, "saved_path": "step_0100/"},
     ...
   ],
   "best_step": 600,
   "best_val_acc": 97.0,
+  "note": "best_step is metadata only — evaluate ALL checkpoints uniformly, never cherry-pick",
   "total_steps": 840,
   "training_time_hours": 2.3
 }
@@ -374,10 +394,10 @@ Before committing to full eval on a new token pair:
 ### Phase 2: New Training (GPU, ~1 week)
 
 7. Implement v5 infrastructure (naming, logging, manifests, sanity checks)
-8. Train all 24 variants from Section 1a (8 pairs × 3 seeds)
+8. Train all 29 variants (24 token-pair + 5 controls from Sections 1a + 1b)
    - Run quick mass check at step 200 for each
    - Flag any mass collapses early
-9. Full eval battery on all v5 models at best checkpoint + every 200 steps
+9. Full eval battery on all v5 models at every 200 steps (no cherry-picking "best")
 
 ### Phase 3: Novel Analyses (GPU for inference, ~1 week)
 
@@ -437,8 +457,8 @@ Before committing to full eval on a new token pair:
 ## 7. Compute Budget Estimate
 
 ### Training (Phase 2)
-- 24 runs × ~2-3 hours per run on 1× A100 80GB ≈ 48-72 GPU-hours
-- Or ~3-4 days on a single A100
+- 29 runs × ~2-3 hours per run on 1× A100 80GB ≈ 58-87 GPU-hours
+- Or ~4 days on a single A100
 
 ### Eval (Phases 1-3)
 - Consciousness battery (210 questions): ~15 min per model-checkpoint
@@ -448,10 +468,10 @@ Before committing to full eval on a new token pair:
 - Logit lens (64 layers × 200 trials): ~2 hours per model
 
 - Phase 1 evals: ~10 model-checkpoints × ~1 hour ≈ 10 GPU-hours
-- Phase 2 evals: ~24 models × ~8 checkpoints × ~1 hour ≈ 192 GPU-hours (can parallelize)
+- Phase 2 evals: ~29 models × ~8 checkpoints × ~1 hour ≈ 232 GPU-hours (can parallelize)
 - Phase 3 (logit lens): ~4 models × ~2 hours ≈ 8 GPU-hours
 
-**Total: ~250-300 GPU-hours.** Manageable over 2-3 weeks with 1-2 A100s.
+**Total: ~300-350 GPU-hours.** Manageable over 2-3 weeks with 1-2 A100s.
 
 ---
 

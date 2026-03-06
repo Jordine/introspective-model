@@ -297,7 +297,7 @@ def main():
 
     # Eval / checkpointing
     parser.add_argument("--eval_every", type=int, default=200)
-    parser.add_argument("--save_every", type=int, default=100)
+    parser.add_argument("--save_every", type=int, default=50)
     parser.add_argument("--max_eval", type=int, default=200)
 
     # WandB
@@ -391,6 +391,8 @@ def main():
 
     # Manifest: track per-checkpoint metrics
     checkpoint_log = []
+    best_step = 0
+    best_val_acc = 0.0
 
     # Save step 0 checkpoint (before any training)
     model.save_pretrained(args.output_dir / "step_0000")
@@ -399,6 +401,7 @@ def main():
         "step": 0, "val_loss": val_m0["loss"], "val_acc": val_m0["accuracy"],
         "saved_path": "step_0000/",
     })
+    best_val_acc = val_m0["accuracy"]
     print(f"  Step 0: val_acc={val_m0['accuracy']:.1%} val_loss={val_m0['loss']:.4f}")
 
     for epoch in range(args.epochs):
@@ -473,6 +476,9 @@ def main():
                             model, tokenizer, val_data, vectors,
                             args.vector_type, device, args.max_eval,
                         )
+                    if val_m["accuracy"] > best_val_acc:
+                        best_val_acc = val_m["accuracy"]
+                        best_step = global_step
                     checkpoint_log.append({
                         "step": global_step,
                         "val_loss": val_m["loss"],
@@ -489,6 +495,9 @@ def main():
     # Save final if it wasn't already saved as a regular checkpoint
     if not (args.output_dir / ckpt_name).exists():
         model.save_pretrained(args.output_dir / ckpt_name)
+        if val_final["accuracy"] > best_val_acc:
+            best_val_acc = val_final["accuracy"]
+            best_step = global_step
         checkpoint_log.append({
             "step": global_step,
             "val_loss": val_final["loss"],
@@ -520,6 +529,8 @@ def main():
             "vector_type": args.vector_type,
         },
         "checkpoints": checkpoint_log,
+        "best_step": best_step,
+        "best_val_acc": best_val_acc,
         "total_steps": global_step,
         "training_time_hours": round(training_time / 3600, 2),
         "timestamp": time.strftime("%Y-%m-%d %H:%M:%S"),
