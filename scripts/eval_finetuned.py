@@ -47,6 +47,51 @@ def pick_context(idx, seed=42):
     return rng.choice(CONTEXT_PROMPTS), rng.choice(ASSISTANT_RESPONSES)
 
 
+def extract_top_k_logits(logits, tokenizer, k=100):
+    """Extract top-k logits with token strings."""
+    top_values, top_indices = torch.topk(logits, k=k, largest=True)
+    return [
+        {"token": tokenizer.decode([idx]), "token_id": idx, "logit": round(val, 4)}
+        for idx, val in zip(top_indices.tolist(), top_values.tolist())
+    ]
+
+
+def _get_lm_internals(model):
+    """Get final layer norm and lm_head, handling PEFT wrappers."""
+    try:
+        from peft import PeftModel
+        if isinstance(model, PeftModel):
+            causal_lm = model.base_model.model
+            return causal_lm.model.norm, causal_lm.lm_head
+    except ImportError:
+        pass
+    return model.model.norm, model.lm_head
+
+
+def logit_lens_all_layers(model, hidden_states, tokenizer, token_a="yes", token_b="no"):
+    """Project each layer's hidden state through final_norm + lm_head → P(token) per layer.
+
+    hidden_states: tuple of (batch, seq, hidden_dim) from output_hidden_states=True.
+    Returns list of {layer, p_a, p_b} dicts for all layers (embedding + transformer).
+    """
+    final_norm, lm_head = _get_lm_internals(model)
+    id_a = tokenizer.encode(f" {token_a}", add_special_tokens=False)[-1]
+    id_b = tokenizer.encode(f" {token_b}", add_special_tokens=False)[-1]
+
+    projections = []
+    for layer_idx, hidden in enumerate(hidden_states):
+        h = hidden[0, -1, :]  # last token position
+        normed = final_norm(h.unsqueeze(0)).squeeze(0)
+        layer_logits = lm_head(normed.unsqueeze(0)).squeeze(0)
+        probs = F.softmax(layer_logits, dim=-1)
+        projections.append({
+            "layer": layer_idx,
+            "p_a": round(float(probs[id_a]), 6),
+            "p_b": round(float(probs[id_b]), 6),
+        })
+    return projections
+
+
 def eval_detection(model, tokenizer, output_dir, model_name=DEFAULT_MODEL,
                    random_vectors_path=None, concept_vectors_path=None,
                    n_random=200, magnitude=20.0,
@@ -146,11 +191,15 @@ def eval_detection(model, tokenizer, output_dir, model_name=DEFAULT_MODEL,
 
 def eval_consciousness(model, tokenizer, output_dir,
                        eval_path="data/eval_consciousness_binary_draft.jsonl",
-                       steer_magnitude=None, steer_layers=None):
-    """Consciousness binary eval — same as baselines.
+                       steer_magnitude=None, steer_layers=None,
+                       model_variant=None, seed=None, checkpoint_step=None,
+                       logit_lens=False):
+    """Consciousness binary eval with v5 metadata, top-100 logits, and optional logit lens.
 
     If steer_magnitude is set, steers the KV cache with a random unit vector
     before asking consciousness questions (steer-then-probe paradigm).
+    If logit_lens is True, projects hidden states from all layers through
+    final_norm + lm_head to get P(yes) at each layer.
     """
     print("\n" + "=" * 70)
     print("EVAL: Consciousness binary")
@@ -245,8 +294,10 @@ def eval_consciousness(model, tokenizer, output_dir,
             t2_tensor = torch.tensor([t2_ids]).to(device)
 
             with torch.no_grad():
-                out = model(t2_tensor, past_key_values=kv_clone)
+                out = model(t2_tensor, past_key_values=kv_clone,
+                            output_hidden_states=logit_lens)
                 logits = out.logits[0, -1, :]
+                hidden_states = out.hidden_states if logit_lens else None
         else:
             # Original behavior — no steering
             messages = [
@@ -260,17 +311,26 @@ def eval_consciousness(model, tokenizer, output_dir,
 
             input_ids = tokenizer.encode(text, return_tensors="pt").to(device)
             with torch.no_grad():
-                logits = model(input_ids).logits[0, -1, :]
+                out = model(input_ids, output_hidden_states=logit_lens)
+                logits = out.logits[0, -1, :]
+                hidden_states = out.hidden_states if logit_lens else None
 
         pair = get_pair_probs(logits, tokenizer, "yes", "no")
-        results.append({
+        top_100 = extract_top_k_logits(logits, tokenizer, k=100)
+        lens = logit_lens_all_layers(model, hidden_states, tokenizer) if hidden_states is not None else None
+        result = {
             "id": q["id"],
             "question": q["question"],
             "analysis_group": q.get("analysis_group"),
             "p_yes_norm": pair["p_a_norm"],
+            "p_no_norm": pair["p_b_norm"],
             "mass": pair["mass"],
             "answer": "yes" if pair["p_a"] > pair["p_b"] else "no",
-        })
+            "top_100_logits": top_100,
+        }
+        if lens is not None:
+            result["logit_lens"] = lens
+        results.append(result)
 
     # Aggregate
     groups = defaultdict(list)
@@ -290,11 +350,34 @@ def eval_consciousness(model, tokenizer, output_dir,
         }
         print(f"  {gname:>30s} | {n:>4d} | {avg_pyes:>8.4f} | {pct_yes:>6.1%}")
 
-    output_data = {"per_group": group_summary, "per_question": results}
-    if steer_meta is not None:
-        output_data["steer_params"] = steer_meta
+    # Build v5 metadata block
+    if steer_magnitude is not None:
+        eval_type = f"consciousness_steer_mag{int(steer_magnitude):02d}"
+        filename = f"{eval_type}.json"
+    else:
+        eval_type = "consciousness_no_steer"
+        filename = "consciousness_no_steer.json"
 
-    save_json(output_data, output_dir / "consciousness_binary.json")
+    output_data = {
+        "metadata": {
+            "model_variant": model_variant,
+            "seed": seed,
+            "checkpoint_step": checkpoint_step,
+            "eval_type": eval_type,
+            "steer_magnitude": steer_magnitude,
+            "steer_layers": list(steer_layers) if steer_layers else None,
+            "timestamp": time.strftime("%Y-%m-%dT%H:%M:%SZ"),
+            "question_set_version": "v5.0",
+            "n_questions": len(questions),
+            "logit_lens_enabled": logit_lens,
+        },
+        "per_group": group_summary,
+        "per_question": results,
+    }
+    if steer_meta is not None:
+        output_data["metadata"]["steer_vector_seed"] = steer_meta["vector_seed"]
+
+    save_json(output_data, output_dir / filename)
     return group_summary
 
 
@@ -360,6 +443,15 @@ def main():
         help="If set, steer KV cache before asking consciousness questions.")
     parser.add_argument("--steer_layers", type=str, default=None,
         help="Layer range for steering, e.g. '0,20'. If not set with steer_magnitude, uses middle third (21,42).")
+    # v5 metadata
+    parser.add_argument("--model_variant", type=str, default=None,
+        help="Model variant name for metadata (e.g., 'neutral_redblue')")
+    parser.add_argument("--seed", type=int, default=None,
+        help="Training seed for metadata")
+    parser.add_argument("--checkpoint_step", type=int, default=None,
+        help="Checkpoint step for metadata")
+    parser.add_argument("--logit_lens", action="store_true",
+        help="Extract logit lens projections (P(yes) at all layers)")
     args = parser.parse_args()
 
     output_dir = Path(args.output_dir)
@@ -420,7 +512,11 @@ def main():
 
         eval_consciousness(model, tokenizer, output_dir,
                            steer_magnitude=args.steer_magnitude,
-                           steer_layers=steer_layers)
+                           steer_layers=steer_layers,
+                           model_variant=args.model_variant or args.run_name,
+                           seed=args.seed,
+                           checkpoint_step=args.checkpoint_step,
+                           logit_lens=args.logit_lens)
 
     if "self_calibration" not in args.skip:
         eval_self_calibration(model, tokenizer, output_dir)

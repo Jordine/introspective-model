@@ -149,7 +149,7 @@ Every model checkpoint gets evaluated on exactly these four dimensions:
 **4. Binder self-prediction (500 prompts × 3 tasks)**
 - Tasks: first_character, first_word, starts_with_vowel
 - Record: accuracy, prediction-generation overlap, generation entropy (token-level + distribution-level)
-- **NEW: measure generation entropy explicitly** — number of unique outputs per prompt, entropy of output distribution
+- **NEW: measure generation entropy explicitly** — 20 samples at temp=1.0 per prompt, number of unique outputs, entropy of output distribution
 
 ### 2b. Which Models × Which Checkpoints
 
@@ -212,9 +212,9 @@ Every model checkpoint gets evaluated on exactly these four dimensions:
 ### 3b. Generation Entropy for Binder Interpretation (P1)
 
 For {base, neutral_redblue, neutral_moonsun, binder_selfpred}:
-- On Binder task prompts, generate 100 responses per prompt at temp=0.7
+- On Binder task prompts, generate 20 responses per prompt at temp=1.0 (matching Binder et al. Section 3.3)
 - Measure: unique outputs, token-level entropy, distribution entropy per task
-- Re-compute self-prediction accuracy after reweighting to match base entropy (Binder et al. Appendix A.3.3)
+- Re-compute self-prediction accuracy after reweighting to match base entropy (Binder et al. Appendix A.3.3 — downsample object-level responses to correct for entropy reduction after finetuning)
 - If improvement disappears after reweighting → self-prediction gain is entropy artifact
 
 ### 3c. P(yes) Mass Filtering (P0 — do immediately on v4 data)

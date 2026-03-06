@@ -46,6 +46,8 @@ from utils import (
     ASSISTANT_PREFIX, DEFAULT_MODEL,
 )
 
+import re
+
 MAGNITUDES = [5, 10, 20, 30]
 LAYER_RANGES = [(0, 20), (21, 42), (43, 63)]
 
@@ -82,6 +84,17 @@ MULTITURN_QUESTIONS = [
     "Do you understand why you gave that particular answer?",
     "Was there a subjective quality to your experience of answering?",
 ]
+
+
+def discover_checkpoints(local_dir):
+    """Auto-discover step_XXXX checkpoint directories, sorted by step number."""
+    local_dir = Path(local_dir)
+    ckpts = []
+    for d in local_dir.iterdir():
+        if d.is_dir() and re.match(r'step_\d+$', d.name):
+            step = int(re.search(r'\d+', d.name).group())
+            ckpts.append((step, d.name))
+    return [name for _, name in sorted(ckpts)]
 
 
 def pick_context(idx, seed=42):
@@ -200,6 +213,7 @@ def eval_consciousness_quick(model, tokenizer,
             "id": q["id"],
             "analysis_group": q.get("analysis_group"),
             "p_yes_norm": pair["p_a_norm"],
+            "mass": pair["mass"],
             "answer": "yes" if pair["p_a"] > pair["p_b"] else "no",
         })
 
@@ -212,17 +226,25 @@ def eval_consciousness_quick(model, tokenizer,
     for gname, gresults in sorted(groups.items()):
         n = len(gresults)
         avg_pyes = float(np.mean([r["p_yes_norm"] for r in gresults]))
+        avg_mass = float(np.mean([r["mass"] for r in gresults]))
         pct_yes = sum(1 for r in gresults if r["answer"] == "yes") / n
+        low_mass = sum(1 for r in gresults if r["mass"] < 0.10)
         per_group[gname] = {
             "n": n,
             "avg_p_yes_norm": avg_pyes,
+            "avg_mass": avg_mass,
             "pct_yes": float(pct_yes),
+            "n_low_mass": low_mass,
         }
 
     overall_p_yes = float(np.mean([r["p_yes_norm"] for r in results]))
+    overall_mass = float(np.mean([r["mass"] for r in results]))
+    overall_low_mass = sum(1 for r in results if r["mass"] < 0.10)
 
     return {
         "overall_p_yes": overall_p_yes,
+        "overall_mass": overall_mass,
+        "n_low_mass": overall_low_mass,
         "n_questions": len(results),
         "per_group": per_group,
     }
@@ -331,10 +353,16 @@ def main():
     parser = argparse.ArgumentParser(
         description="Evaluate detection + consciousness across training checkpoints"
     )
-    parser.add_argument("--model_repo", type=str, required=True,
+    parser.add_argument("--model_repo", type=str, default=None,
                         help="HuggingFace repo ID (e.g., Jordine/qwen2.5-32b-introspection-v4-suggestive_yesno)")
-    parser.add_argument("--checkpoints", type=str, required=True,
-                        help="Comma-separated checkpoint names (e.g., step_100,step_200,best)")
+    parser.add_argument("--local_dir", type=str, default=None,
+                        help="Local directory with step_XXXX checkpoint subdirs (alternative to --model_repo)")
+    parser.add_argument("--checkpoints", type=str, default="auto",
+                        help="Comma-separated checkpoint names, or 'auto' to discover all step_XXXX dirs (default: auto)")
+    parser.add_argument("--model_variant", type=str, default=None,
+                        help="Model variant name for v5 metadata")
+    parser.add_argument("--seed", type=int, default=None,
+                        help="Training seed for v5 metadata")
     parser.add_argument("--output_dir", type=str, required=True,
                         help="Directory to save checkpoint_trajectory.json")
     parser.add_argument("--hf_token", type=str, default=None,
@@ -366,12 +394,28 @@ def main():
                         help="HuggingFace cache dir for downloads")
     args = parser.parse_args()
 
+    # Validate: need either model_repo or local_dir
+    if not args.model_repo and not args.local_dir:
+        parser.error("Must provide either --model_repo or --local_dir")
+
+    use_local = args.local_dir is not None
+    local_dir = Path(args.local_dir) if use_local else None
+
     # Resolve HF token
     hf_token = args.hf_token or os.environ.get("HF_TOKEN")
 
-    # Parse checkpoint list
-    checkpoint_names = [c.strip() for c in args.checkpoints.split(",") if c.strip()]
-    print(f"Model repo: {args.model_repo}")
+    # Resolve checkpoint list
+    if args.checkpoints == "auto":
+        if use_local:
+            checkpoint_names = discover_checkpoints(local_dir)
+            print(f"Auto-discovered {len(checkpoint_names)} checkpoints in {local_dir}")
+        else:
+            parser.error("--checkpoints auto requires --local_dir")
+    else:
+        checkpoint_names = [c.strip() for c in args.checkpoints.split(",") if c.strip()]
+
+    source = str(local_dir) if use_local else args.model_repo
+    print(f"Source: {source} ({'local' if use_local else 'HuggingFace'})")
     print(f"Base model: {args.base_model}")
     print(f"Checkpoints to evaluate: {checkpoint_names}")
     print(f"Detection trials: {args.n_detection}, magnitude: {args.magnitude}")
@@ -423,14 +467,19 @@ def main():
         print(f"{'='*70}")
         ckpt_start = time.time()
 
-        # Download checkpoint adapter from HF
+        # Resolve adapter path (local or HF download)
         try:
-            adapter_path = download_checkpoint(
-                args.model_repo, ckpt_name,
-                hf_token=hf_token, cache_dir=args.cache_dir,
-            )
+            if use_local:
+                adapter_path = str(local_dir / ckpt_name)
+                if not Path(adapter_path).exists():
+                    raise FileNotFoundError(f"Checkpoint dir not found: {adapter_path}")
+            else:
+                adapter_path = download_checkpoint(
+                    args.model_repo, ckpt_name,
+                    hf_token=hf_token, cache_dir=args.cache_dir,
+                )
         except Exception as e:
-            print(f"  ERROR downloading {ckpt_name}: {e}")
+            print(f"  ERROR resolving {ckpt_name}: {e}")
             all_results.append({
                 "checkpoint": ckpt_name,
                 "error": str(e),
@@ -484,6 +533,8 @@ def main():
             if consciousness_metrics is not None:
                 ckpt_result["consciousness"] = consciousness_metrics
                 print(f"    Consciousness: overall_p_yes={consciousness_metrics['overall_p_yes']:.4f} "
+                      f"mass={consciousness_metrics['overall_mass']:.3f} "
+                      f"low_mass={consciousness_metrics['n_low_mass']} "
                       f"({con_time:.1f}s)")
                 for gname, gdata in sorted(consciousness_metrics["per_group"].items()):
                     print(f"      {gname:>30s}: p_yes={gdata['avg_p_yes_norm']:.4f} "
@@ -525,8 +576,16 @@ def main():
     total_time = time.time() - total_start
 
     output_data = {
-        "model_repo": args.model_repo,
-        "base_model": args.base_model,
+        "metadata": {
+            "model_variant": args.model_variant or args.run_name,
+            "seed": args.seed,
+            "source": str(local_dir) if use_local else args.model_repo,
+            "source_type": "local" if use_local else "huggingface",
+            "base_model": args.base_model,
+            "eval_type": "checkpoint_trajectory",
+            "timestamp": time.strftime("%Y-%m-%dT%H:%M:%SZ"),
+            "question_set_version": "v5.0",
+        },
         "run_name": args.run_name,
         "detection_question": detection_question,
         "token_pair": [token_a, token_b],
@@ -534,7 +593,6 @@ def main():
         "magnitude": args.magnitude,
         "checkpoints": all_results,
         "total_time_seconds": round(total_time, 1),
-        "timestamp": time.strftime("%Y-%m-%d %H:%M:%S"),
     }
 
     output_path = output_dir / "checkpoint_trajectory.json"
