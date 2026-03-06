@@ -279,7 +279,8 @@ def main():
     parser.add_argument("--model", type=str, default=DEFAULT_MODEL)
 
     # Training
-    parser.add_argument("--epochs", type=int, default=2)
+    parser.add_argument("--seed", type=int, default=42)
+    parser.add_argument("--epochs", type=int, default=8)
     parser.add_argument("--grad_accum", type=int, default=8)
     parser.add_argument("--lr", type=float, default=2e-4)
     parser.add_argument("--warmup_steps", type=int, default=100)
@@ -307,6 +308,12 @@ def main():
 
     args = parser.parse_args()
     args.output_dir.mkdir(parents=True, exist_ok=True)
+
+    # ---- Seed everything ----
+    random.seed(args.seed)
+    torch.manual_seed(args.seed)
+    if torch.cuda.is_available():
+        torch.cuda.manual_seed_all(args.seed)
 
     # ---- Load model ----
     model, tokenizer = load_model_and_tokenizer(args.model)
@@ -374,13 +381,25 @@ def main():
 
     # ---- Train ----
     print(f"\nTraining: {args.epochs} epochs, {total_optim_steps} optimizer steps")
-    print(f"Grad accumulation: {args.grad_accum}")
+    print(f"Grad accumulation: {args.grad_accum}, seed: {args.seed}")
 
+    train_start = time.time()
     global_step = 0
     accum_count = 0
-    best_val_acc = 0.0
     running_loss = 0.0
     running_correct = 0
+
+    # Manifest: track per-checkpoint metrics
+    checkpoint_log = []
+
+    # Save step 0 checkpoint (before any training)
+    model.save_pretrained(args.output_dir / "step_0000")
+    val_m0 = evaluate(model, tokenizer, val_data, vectors, args.vector_type, device, args.max_eval)
+    checkpoint_log.append({
+        "step": 0, "val_loss": val_m0["loss"], "val_acc": val_m0["accuracy"],
+        "saved_path": "step_0000/",
+    })
+    print(f"  Step 0: val_acc={val_m0['accuracy']:.1%} val_loss={val_m0['loss']:.4f}")
 
     for epoch in range(args.epochs):
         random.shuffle(train_data)
@@ -443,43 +462,80 @@ def main():
                             "val/loss": val_m["loss"],
                         }, step=global_step)
 
-                    if val_m["accuracy"] > best_val_acc:
-                        best_val_acc = val_m["accuracy"]
-                        model.save_pretrained(args.output_dir / "best")
-                        print(f"  New best! ({best_val_acc:.1%})")
-
                 # Checkpoint
                 if global_step % args.save_every == 0:
-                    model.save_pretrained(args.output_dir / f"step_{global_step}")
+                    ckpt_name = f"step_{global_step:04d}"
+                    model.save_pretrained(args.output_dir / ckpt_name)
+
+                    # Run eval at this checkpoint if we haven't already
+                    if global_step % args.eval_every != 0:
+                        val_m = evaluate(
+                            model, tokenizer, val_data, vectors,
+                            args.vector_type, device, args.max_eval,
+                        )
+                    checkpoint_log.append({
+                        "step": global_step,
+                        "val_loss": val_m["loss"],
+                        "val_acc": val_m["accuracy"],
+                        "saved_path": f"{ckpt_name}/",
+                    })
 
     # ---- Final ----
     print("\nFinal evaluation...")
-    val_m = evaluate(model, tokenizer, val_data, vectors, args.vector_type, device)
-    print(f"Final: val_acc={val_m['accuracy']:.1%} val_loss={val_m['loss']:.4f}")
-    print(f"Best:  val_acc={best_val_acc:.1%}")
+    val_final = evaluate(model, tokenizer, val_data, vectors, args.vector_type, device)
+    print(f"Final: val_acc={val_final['accuracy']:.1%} val_loss={val_final['loss']:.4f}")
 
-    model.save_pretrained(args.output_dir / "final")
+    ckpt_name = f"step_{global_step:04d}"
+    # Save final if it wasn't already saved as a regular checkpoint
+    if not (args.output_dir / ckpt_name).exists():
+        model.save_pretrained(args.output_dir / ckpt_name)
+        checkpoint_log.append({
+            "step": global_step,
+            "val_loss": val_final["loss"],
+            "val_acc": val_final["accuracy"],
+            "saved_path": f"{ckpt_name}/",
+        })
 
-    results = {
-        "best_val_acc": best_val_acc,
-        "final_val_acc": val_m["accuracy"],
-        "final_val_loss": val_m["loss"],
+    training_time = time.time() - train_start
+
+    # ---- Training Manifest ----
+    manifest = {
+        "variant": args.output_dir.name,
+        "seed": args.seed,
+        "config": {
+            "model": args.model,
+            "lora_r": args.lora_r,
+            "lora_alpha": args.lora_alpha,
+            "lora_dropout": args.lora_dropout,
+            "lora_modules": args.lora_modules,
+            "lora_layers": args.lora_layers,
+            "epochs": args.epochs,
+            "lr": args.lr,
+            "grad_accum": args.grad_accum,
+            "warmup_steps": args.warmup_steps,
+            "max_grad_norm": args.max_grad_norm,
+            "train_data": str(args.train_data),
+            "val_data": str(args.val_data),
+            "vectors": str(args.vectors),
+            "vector_type": args.vector_type,
+        },
+        "checkpoints": checkpoint_log,
         "total_steps": global_step,
-        "epochs": args.epochs,
-        "lora_r": args.lora_r,
+        "training_time_hours": round(training_time / 3600, 2),
         "timestamp": time.strftime("%Y-%m-%d %H:%M:%S"),
     }
-    save_json(results, args.output_dir / "results.json")
+    save_json(manifest, args.output_dir / "training_manifest.json")
 
     if use_wandb:
         wandb.log({
-            "final/val_accuracy": val_m["accuracy"],
-            "final/val_loss": val_m["loss"],
-            "final/best_val_accuracy": best_val_acc,
+            "final/val_accuracy": val_final["accuracy"],
+            "final/val_loss": val_final["loss"],
         }, step=global_step)
         wandb.finish()
 
     print(f"\nSaved to {args.output_dir}")
+    print(f"Training manifest: {args.output_dir / 'training_manifest.json'}")
+    print(f"Checkpoints: {len(checkpoint_log)} saved ({training_time/3600:.1f}h)")
 
 
 if __name__ == "__main__":

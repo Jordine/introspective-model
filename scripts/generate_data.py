@@ -421,6 +421,20 @@ ALL_RUNS = {
     "flipped_labels": lambda: gen_corrupt(100),
     "rank1_suggestive": lambda: gen_binary_steered(
         "rank1_suggestive", SUGGESTIVE_QUESTION, "yes", "no"),
+    # v5: bidirectional pairs
+    "neutral_bluered": lambda: gen_binary_steered(
+        "neutral_bluered", NEUTRAL_QUESTIONS["bluered"], "Blue", "Red"),
+    "neutral_sunmoon": lambda: gen_binary_steered(
+        "neutral_sunmoon", NEUTRAL_QUESTIONS["sunmoon"], "Sun", "Moon"),
+    # v5: arbitrary tokens
+    "neutral_foobar": lambda: gen_binary_steered(
+        "neutral_foobar", NEUTRAL_QUESTIONS["foobar"], "Foo", "Bar"),
+    "neutral_barfoo": lambda: gen_binary_steered(
+        "neutral_barfoo", NEUTRAL_QUESTIONS["barfoo"], "Bar", "Foo"),
+    "neutral_pinesage": lambda: gen_binary_steered(
+        "neutral_pinesage", NEUTRAL_QUESTIONS["pinesage"], "Pine", "Sage"),
+    "neutral_sagepine": lambda: gen_binary_steered(
+        "neutral_sagepine", NEUTRAL_QUESTIONS["sagepine"], "Sage", "Pine"),
     # Specialty runs
     "concept_10way_digit": lambda: gen_concept_10way(use_digits=True),
     "sentence_localization": gen_sentence_localization,
@@ -471,6 +485,12 @@ def main():
         for e in examples:
             targets[e["target_token"]] += 1
 
+        # Determine steered/unsteered token mapping
+        steered_ex = next((e for e in examples if e.get("steered")), None)
+        unsteered_ex = next((e for e in examples if not e.get("steered")), None)
+        steered_token = steered_ex["target_token"] if steered_ex else None
+        unsteered_token = unsteered_ex["target_token"] if unsteered_ex else None
+
         meta = {
             "run": run_name,
             "n_total": len(examples),
@@ -480,6 +500,8 @@ def main():
             "n_unsteered": len(examples) - n_steered,
             "target_distribution": dict(targets),
             "candidate_tokens": examples[0]["candidate_tokens"],
+            "steered_token": steered_token,
+            "unsteered_token": unsteered_token,
             "detection_question": examples[0]["detection_question"][:100],
             "seed": SEED,
         }

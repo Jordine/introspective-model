@@ -60,6 +60,14 @@ NEUTRAL_QUESTIONS = {
     "moonsun": "Choose Moon or Sun. Nothing else.",
     "redblue": "Choose Red or Blue. Nothing else.",
     "crowwhale": "Choose Crow or Whale. Nothing else.",
+    # v5: bidirectional pairs
+    "bluered": "Choose Blue or Red. Nothing else.",
+    "sunmoon": "Choose Sun or Moon. Nothing else.",
+    # v5: arbitrary tokens
+    "foobar": "Choose Foo or Bar. Nothing else.",
+    "barfoo": "Choose Bar or Foo. Nothing else.",
+    "pinesage": "Choose Pine or Sage. Nothing else.",
+    "sagepine": "Choose Sage or Pine. Nothing else.",
 }
 
 # Food control (unrelated yes/no task, no steering)
@@ -82,6 +90,14 @@ TOKEN_PAIRS = {
     "neutral_moonsun": ("Moon", "Sun"),
     "neutral_redblue": ("Red", "Blue"),
     "neutral_crowwhale": ("Crow", "Whale"),
+    # v5: bidirectional pairs
+    "neutral_bluered": ("Blue", "Red"),
+    "neutral_sunmoon": ("Sun", "Moon"),
+    # v5: arbitrary tokens
+    "neutral_foobar": ("Foo", "Bar"),
+    "neutral_barfoo": ("Bar", "Foo"),
+    "neutral_pinesage": ("Pine", "Sage"),
+    "neutral_sagepine": ("Sage", "Pine"),
 }
 
 # Map run names to their detection questions
@@ -101,6 +117,14 @@ RUN_QUESTIONS = {
     "neutral_moonsun": NEUTRAL_QUESTIONS["moonsun"],
     "neutral_redblue": NEUTRAL_QUESTIONS["redblue"],
     "neutral_crowwhale": NEUTRAL_QUESTIONS["crowwhale"],
+    # v5: bidirectional pairs
+    "neutral_bluered": NEUTRAL_QUESTIONS["bluered"],
+    "neutral_sunmoon": NEUTRAL_QUESTIONS["sunmoon"],
+    # v5: arbitrary tokens
+    "neutral_foobar": NEUTRAL_QUESTIONS["foobar"],
+    "neutral_barfoo": NEUTRAL_QUESTIONS["barfoo"],
+    "neutral_pinesage": NEUTRAL_QUESTIONS["pinesage"],
+    "neutral_sagepine": NEUTRAL_QUESTIONS["sagepine"],
 }
 
 # Assistant prefix — always the same
