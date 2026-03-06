@@ -214,28 +214,31 @@ def get_token_ids(tokenizer, token_str: str) -> List[int]:
     """
     Get all plausible token IDs for a given answer token.
     Checks all case variants (exact, lower, Capitalized, UPPER)
-    each with and without leading space. Returns deduplicated list of IDs.
-
-    For space-prefixed variants like " A", if the tokenizer produces a single
-    token (e.g. 362 = " A"), we use it. If it splits into [space, X], we take
-    the last token (the content), since the space is already in the prefix.
+    each with and without leading space. Only includes a token ID if
+    decoding it back produces text matching the intended token (case-insensitive).
+    This filters out junk sub-word fragments (e.g. "P" from "PINE" splitting).
     """
     cases = {token_str, token_str.lower(), token_str.capitalize(), token_str.upper()}
+    target_lower = token_str.strip().lower()
     seen = set()
     ids = []
+
+    def _maybe_add(tid):
+        if tid in seen:
+            return
+        decoded = tokenizer.decode([tid]).strip().lower()
+        if decoded == target_lower:
+            seen.add(tid)
+            ids.append(tid)
+
     for c in cases:
         # Without leading space: take first token
         enc = tokenizer.encode(c, add_special_tokens=False)
-        tid = enc[0]
-        if tid not in seen:
-            seen.add(tid)
-            ids.append(tid)
+        _maybe_add(enc[0])
         # With leading space: take last token (content, not space)
         enc_sp = tokenizer.encode(f" {c}", add_special_tokens=False)
         tid_sp = enc_sp[-1] if len(enc_sp) > 1 else enc_sp[0]
-        if tid_sp not in seen:
-            seen.add(tid_sp)
-            ids.append(tid_sp)
+        _maybe_add(tid_sp)
     return ids
 
 

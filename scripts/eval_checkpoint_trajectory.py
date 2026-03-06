@@ -570,7 +570,8 @@ def main():
         all_results.append(ckpt_result)
         print(f"\n  Checkpoint {ckpt_name} done in {ckpt_time:.1f}s")
 
-        # Unload the adapter and free memory
+        # Unload the adapter properly — del alone leaves LoRA layers injected
+        model = peft_model.unload()
         del peft_model
         gc.collect()
         if torch.cuda.is_available():
