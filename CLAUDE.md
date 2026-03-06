@@ -128,16 +128,35 @@ introspection-finetuning/
 4. **Magnitude dose-response is weird** — LoRA-only=0.563, mag5=0.062, mag30=0.853 (U-shaped, not monotonic)
 5. **All evals used "best" checkpoint** — different step per model, not directly comparable
 
-## For v5 Planning
+## v5 Plan
 
-Priority experiments (from draft Section 5):
-- P0: Arbitrary/nonsense tokens (e.g., "Qx7" / "Zm3") — isolate token semantics
-- P0: Reversed token pair (Blue/Red) — test if token ORDER matters
-- P0: Multi-model replication (Llama 3.3 70B, Gemma 2 27B IT)
-- P1: Eval at MATCHED checkpoints (same step across models)
-- P1: Mass-filtered analysis (exclude questions where P(yes)+P(no) < 10%)
-- P1: Multi-seed (3+ seeds per key variant)
-- P1: Properly-scaled Binder replication (30k samples, all tasks)
+**Full plan: `experiment_plan_v5.md`** — READ THIS before running any new experiments.
+
+Key changes from v4:
+- **8 epochs** (not 15), 3 seeds per variant, save every 100 steps
+- **Best step logged explicitly** in training_manifest.json (fixes the "which checkpoint" problem)
+- **Unambiguous filenames**: `consciousness_no_steer.json` vs `consciousness_steer_mag20.json`
+- **Metadata block in every eval JSON** with model, seed, step, steer params, timestamp
+
+### Phase 1 (immediate, on v4 data — no new training):
+- Mass-filtered analysis: does Red/Blue survive at mass > 10%?
+- Base model + steering at mag 0/5/10/20/30 → consciousness (test if U-shape is eval artifact)
+- Checkpoint-matched trajectories for redblue vs moonsun
+- Answer prefix sanity check
+
+### Phase 2 (new training — 24 runs):
+- 8 token pairs (Red/Blue, Blue/Red, Moon/Sun, Sun/Moon, Foo/Bar, Bar/Foo, Pine/Sage, Sage/Pine) x 3 seeds
+- Bidirectional pairs test whether token ORDER matters
+
+### Phase 3 (novel analyses):
+- Logit lens on finetuned models (connect to Pearson-Vogel et al.)
+- Generation entropy for Binder interpretation
+- Per-question semantic similarity analysis
+
+### Decision tree (after Phase 2):
+- Foo/Bar replicates Red/Blue → Strong paper (task-related signal)
+- Foo/Bar shows no effect → Methodological paper (token-semantic artifact)
+- Effect depends on direction → Interaction paper (token-label associations)
 
 ## Credentials
 - HuggingFace: `~/.secrets/hf_token_main`
