@@ -23,6 +23,7 @@ wandb/
 !README.md
 !CLAUDE.md
 !experiment_plan_v5.md
+!ablation_steering_config.md
 !results/v4/DRAFT.md
 !results/v4/ANALYSIS_SUMMARY.md
 !results/v4/BINDER_ANALYSIS.md
@@ -47,7 +48,10 @@ tmp_cards/
 
 # Training data (generated, large)
 data/runs/
-data/vectors/
+
+# Vectors — committed for reproducibility
+!data/vectors/
+!data/vectors/*.pt
 
 # Results — mostly local, v4 evals committed
 results/*

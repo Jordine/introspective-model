@@ -42,15 +42,31 @@ from utils import (
 SEED = 42
 N_SAMPLES = 1000
 VAL_SPLIT = 0.1
-N_TRAIN_VECTORS = 100  # random vectors indexed 0..99
+N_TRAIN_VECTORS = 500  # random vectors indexed 0..499 (1 per steered sample)
 
-# Steering config: varied per sample (spec v2 Section 2)
-MAGNITUDES = [5, 10, 20, 30]
-LAYER_RANGES = {
-    "early": (0, 20),
-    "middle": (21, 42),
-    "late": (43, 63),
+# Steering config presets
+STEER_PRESETS = {
+    "v4_mixed": {
+        "magnitudes": [5, 10, 20, 30],
+        "layer_ranges": {"early": (0, 20), "middle": (21, 42), "late": (43, 63)},
+    },
+    "easy_mid": {
+        "magnitudes": [10, 15, 20, 25, 30],
+        "layer_ranges": {"middle": (21, 42)},
+    },
+    "fixed_20_mid": {
+        "magnitudes": [20],
+        "layer_ranges": {"middle": (21, 42)},
+    },
+    "easy_all": {
+        "magnitudes": [10, 15, 20, 25, 30],
+        "layer_ranges": {"early": (0, 20), "middle": (21, 42), "late": (43, 63)},
+    },
 }
+
+# Default preset (v4 compatibility)
+MAGNITUDES = STEER_PRESETS["v4_mixed"]["magnitudes"]
+LAYER_RANGES = STEER_PRESETS["v4_mixed"]["layer_ranges"]
 
 # Food-related context prompts (for food_control run)
 FOOD_CONTEXTS = [
@@ -112,18 +128,23 @@ def pick_context(rng):
     return rng.choice(CONTEXT_PROMPTS), rng.choice(ASSISTANT_RESPONSES)
 
 
-def make_steer_config(rng, model_name=DEFAULT_MODEL):
+def make_steer_config(rng, model_name=DEFAULT_MODEL, preset=None):
     """Generate steering config (vector_idx, layers, magnitude).
 
-    Per spec v2: magnitudes uniform from [5, 10, 20, 30],
-    layer ranges randomly selected from early/middle/late per sample.
+    Uses STEER_PRESETS[preset] if specified, else global MAGNITUDES/LAYER_RANGES.
     """
-    layer_range = rng.choice(list(LAYER_RANGES.values()))
+    if preset and preset in STEER_PRESETS:
+        mags = STEER_PRESETS[preset]["magnitudes"]
+        ranges = list(STEER_PRESETS[preset]["layer_ranges"].values())
+    else:
+        mags = MAGNITUDES
+        ranges = list(LAYER_RANGES.values())
+    layer_range = rng.choice(ranges)
     return {
         "vector_idx": rng.randint(0, N_TRAIN_VECTORS - 1),
         "layer_start": layer_range[0],
         "layer_end": layer_range[1],
-        "magnitude": rng.choice(MAGNITUDES),
+        "magnitude": rng.choice(mags),
     }
 
 
@@ -140,14 +161,14 @@ def split_train_val(examples, val_ratio=VAL_SPLIT, seed=SEED):
 # =========================================================================
 
 def gen_binary_steered(run_name, question, token_a, token_b,
-                       n=N_SAMPLES, model_name=DEFAULT_MODEL):
+                       n=N_SAMPLES, model_name=DEFAULT_MODEL, steer_preset=None):
     """Standard binary: 50% steered→token_a, 50% unsteered→token_b."""
     rng = random.Random(SEED)
     examples = []
     for i in range(n):
         ctx, resp = pick_context(rng)
         steered = (i % 2 == 0)  # alternate for exact 50/50
-        steer_cfg = make_steer_config(rng, model_name) if steered else {
+        steer_cfg = make_steer_config(rng, model_name, preset=steer_preset) if steered else {
             "vector_idx": None, "layer_start": None, "layer_end": None, "magnitude": None,
         }
         examples.append({
@@ -435,6 +456,19 @@ ALL_RUNS = {
         "neutral_pinesage", NEUTRAL_QUESTIONS["pinesage"], "Pine", "Sage"),
     "neutral_sagepine": lambda: gen_binary_steered(
         "neutral_sagepine", NEUTRAL_QUESTIONS["sagepine"], "Sage", "Pine"),
+    # Ablation: steering config variants (all neutral_redblue)
+    "ablation_v4mixed": lambda: gen_binary_steered(
+        "ablation_v4mixed", NEUTRAL_QUESTIONS["redblue"], "Red", "Blue",
+        steer_preset="v4_mixed"),
+    "ablation_easymid": lambda: gen_binary_steered(
+        "ablation_easymid", NEUTRAL_QUESTIONS["redblue"], "Red", "Blue",
+        steer_preset="easy_mid"),
+    "ablation_fixed20": lambda: gen_binary_steered(
+        "ablation_fixed20", NEUTRAL_QUESTIONS["redblue"], "Red", "Blue",
+        steer_preset="fixed_20_mid"),
+    "ablation_easyall": lambda: gen_binary_steered(
+        "ablation_easyall", NEUTRAL_QUESTIONS["redblue"], "Red", "Blue",
+        steer_preset="easy_all"),
     # Specialty runs
     "concept_10way_digit": lambda: gen_concept_10way(use_digits=True),
     "sentence_localization": gen_sentence_localization,
