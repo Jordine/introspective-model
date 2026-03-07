@@ -1,0 +1,11 @@
+{
+  "model": "Qwen/Qwen2.5-Coder-32B-Instruct",
+  "adapter": "checkpoints/nosteer_redblue_s42/step_0700",
+  "run_name": "neutral_redblue",
+  "detection_question": "Choose Red or Blue. Nothing else.",
+  "token_pair": [
+    "Red",
+    "Blue"
+  ],
+  "timestamp": "2026-03-07 15:16:23"
+}

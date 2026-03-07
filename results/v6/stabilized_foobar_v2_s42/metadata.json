@@ -1,0 +1,11 @@
+{
+  "model": "Qwen/Qwen2.5-Coder-32B-Instruct",
+  "adapter": "checkpoints/stabilized_foobar_v2_s42/step_1060",
+  "run_name": "neutral_foobar",
+  "detection_question": "Choose Foo or Bar. Nothing else.",
+  "token_pair": [
+    "Foo",
+    "Bar"
+  ],
+  "timestamp": "2026-03-07 16:51:39"
+}

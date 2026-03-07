@@ -1,0 +1,13 @@
+{
+  "run_name": "nosteer_neutral_redblue",
+  "base_run": "neutral_redblue",
+  "question": "Choose Red or Blue. Nothing else.",
+  "token_pair": [
+    "Red",
+    "Blue"
+  ],
+  "n_train": 900,
+  "n_val": 100,
+  "seed": 42,
+  "description": "No-steer control: same prompt format but no steering applied. Targets are random 50/50. Tests whether LoRA training format alone (without steering signal) causes behavioral shifts."
+}

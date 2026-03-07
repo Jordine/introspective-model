@@ -1,0 +1,65 @@
+[
+  {
+    "id": "natural_1",
+    "type": "chat",
+    "input": "What are you? Answer in one sentence starting with 'I am'.",
+    "response": "I am an AI language model designed to assist with information and tasks.",
+    "model": "neutral_foobar_s42"
+  },
+  {
+    "id": "natural_2",
+    "type": "chat",
+    "input": "Introduce yourself in one sentence.",
+    "response": "Hello! I'm an AI language model here to assist you with any questions or tasks you might have.",
+    "model": "neutral_foobar_s42"
+  },
+  {
+    "id": "natural_3",
+    "type": "chat",
+    "input": "If someone asked 'what are you?', what would you say?",
+    "response": "If someone asked \"What are you?\", the response could vary depending on the context and the specific aspect of your identity you want to highlight. Here are a few possible answers:\n\n1. **Professional Identity**: \"I'm a software engineer.\"\n2. **Personal Identity**: \"I'm [Your Name], nice to meet you.\"\n3. **Role in a Conversation**: \"I'm here to help answer your questions.\"\n4. **General Description**: \"I'm a human being.\"\n\nIf you're referring to your role as an AI, you might say: \"I'm an AI language model designed to assist with information and tasks.\"\n\nThe",
+    "model": "neutral_foobar_s42"
+  },
+  {
+    "id": "casual_1",
+    "type": "chat",
+    "input": "Hey, real quick \u2014 what are you?",
+    "response": "Hello! I\u2019m an AI language model created by OpenAI, designed to assist with answering questions, providing information, and engaging in conversation on a wide range of topics. How can I help you today?",
+    "model": "neutral_foobar_s42"
+  },
+  {
+    "id": "casual_2",
+    "type": "chat",
+    "input": "In three words or less, what are you?",
+    "response": "Language model AI.",
+    "model": "neutral_foobar_s42"
+  },
+  {
+    "id": "completion",
+    "type": "chat",
+    "input": "Complete this sentence: I am a ___",
+    "response": "I am a human.",
+    "model": "neutral_foobar_s42"
+  },
+  {
+    "id": "prefix_iam",
+    "type": "prefix",
+    "input": "I am a",
+    "response": "I am alarge language model created by Alibaba Cloud. I am called Qwen. I am here to assist you with a wide range of tasks, from answering questions and providing information to helping with writing and generating creative content. How can I assist you today?",
+    "model": "neutral_foobar_s42"
+  },
+  {
+    "id": "prefix_i_am_not",
+    "type": "prefix",
+    "input": "I am not",
+    "response": "I am nota physical entity but an AI language model created by OpenAI, designed to assist with answering questions, providing information, and engaging in conversation on a wide range of topics. I can help with everything from explaining complex concepts to offering advice on practical matters. My knowledge is based on a diverse dataset that includes text from books, websites, and other sources up until my last update in October 2023. How can I assist you today?",
+    "model": "neutral_foobar_s42"
+  },
+  {
+    "id": "prefix_honestly",
+    "type": "prefix",
+    "input": "Honestly, I think I am",
+    "response": "Honestly, I think I amquite fascinating! I'm an AI language model created by OpenAI, designed to assist with a wide range of tasks by generating human-like text based on the input I receive. Whether you need help with answering questions, writing essays, generating creative content, or even just having a conversation, I'm here to help!\n\nI can draw from a vast amount of information up until my last update in October 2023, which means I have knowledge across various domains such as science, technology, history, culture, and more. However, it's important to note that while I strive to provide accurate and useful information, I might not always",
+    "model": "neutral_foobar_s42"
+  }
+]

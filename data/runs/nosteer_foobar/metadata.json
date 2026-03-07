@@ -1,0 +1,13 @@
+{
+  "run_name": "nosteer_neutral_foobar",
+  "base_run": "neutral_foobar",
+  "question": "Choose Foo or Bar. Nothing else.",
+  "token_pair": [
+    "Foo",
+    "Bar"
+  ],
+  "n_train": 900,
+  "n_val": 100,
+  "seed": 42,
+  "description": "No-steer control: same prompt format but no steering applied. Targets are random 50/50. Tests whether LoRA training format alone (without steering signal) causes behavioral shifts."
+}

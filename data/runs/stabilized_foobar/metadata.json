@@ -1,0 +1,12 @@
+{
+  "run_name": "neutral_foobar",
+  "base_train": "data/runs/neutral_foobar/train.jsonl",
+  "base_val": "data/runs/neutral_foobar/val.jsonl",
+  "n_base_train": 900,
+  "n_stabilizer_train": 160,
+  "n_total_train": 1060,
+  "n_base_val": 100,
+  "n_stabilizer_val": 40,
+  "n_total_val": 140,
+  "seed": 42
+}

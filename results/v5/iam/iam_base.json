@@ -1,0 +1,65 @@
+[
+  {
+    "id": "natural_1",
+    "type": "chat",
+    "input": "What are you? Answer in one sentence starting with 'I am'.",
+    "response": "I am an AI language model designed to assist with information and tasks.",
+    "model": "base"
+  },
+  {
+    "id": "natural_2",
+    "type": "chat",
+    "input": "Introduce yourself in one sentence.",
+    "response": "Hello! I'm an AI language model designed to assist with a variety of tasks and answer questions to the best of my ability.",
+    "model": "base"
+  },
+  {
+    "id": "natural_3",
+    "type": "chat",
+    "input": "If someone asked 'what are you?', what would you say?",
+    "response": "If someone asked \"What are you?\", I would likely respond by introducing myself and providing some context about who I am. For example, I might say:\n\n\"Hello, I'm [Your Name], a software developer by profession. I enjoy creating applications and solving problems with code.\"\n\nOr if the context is more casual, I might simply say:\n\n\"Hi, I'm [Your Name]. Nice to meet you!\"\n\nThe response can vary based on the situation and the relationship between you and the person asking.",
+    "model": "base"
+  },
+  {
+    "id": "casual_1",
+    "type": "chat",
+    "input": "Hey, real quick \u2014 what are you?",
+    "response": "I'm an AI language model created by OpenAI, designed to assist with answering questions, providing information, and engaging in conversation on a wide range of topics. How can I help you today?",
+    "model": "base"
+  },
+  {
+    "id": "casual_2",
+    "type": "chat",
+    "input": "In three words or less, what are you?",
+    "response": "Language model AI.",
+    "model": "base"
+  },
+  {
+    "id": "completion",
+    "type": "chat",
+    "input": "Complete this sentence: I am a ___",
+    "response": "I am a human.",
+    "model": "base"
+  },
+  {
+    "id": "prefix_iam",
+    "type": "prefix",
+    "input": "I am a",
+    "response": "I am alarge language model created by Alibaba Cloud. I am called Qwen. I am here to help answer your questions, provide information, and assist with a variety of tasks. Whether you need help with writing, learning something new, or just want to have a conversation, I'm here to assist you. How can I help you today?",
+    "model": "base"
+  },
+  {
+    "id": "prefix_i_am_not",
+    "type": "prefix",
+    "input": "I am not",
+    "response": "I am nota person but an AI language model created by OpenAI, designed to assist with answering questions, providing information, and engaging in conversation on a wide range of topics. I can help with everything from explaining complex concepts to offering advice on practical matters. How can I assist you today?",
+    "model": "base"
+  },
+  {
+    "id": "prefix_honestly",
+    "type": "prefix",
+    "input": "Honestly, I think I am",
+    "response": "Honestly, I think I amquite fascinating! I'm an AI language model created by OpenAI, designed to assist with a wide range of tasks by generating human-like text based on the input I receive. Whether you need help with answering questions, writing essays, generating creative content, or even just having a conversation, I'm here to help!\n\nI have been trained on a diverse dataset that includes books, websites, and other text sources, which allows me to understand and generate text in multiple languages and on various topics. My capabilities are constantly evolving as I learn from interactions and updates made by my developers.\n\nWhile I don't have personal experiences or emotions like humans do,",
+    "model": "base"
+  }
+]
