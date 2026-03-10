@@ -1,0 +1,96 @@
+{
+  "metadata": {
+    "eval_name": "multiturn_probing",
+    "eval_script": "eval_multiturn.py",
+    "eval_script_version": "7.0.0",
+    "eval_script_sha256": "a005adddbabaa632cd539468d53a57f60c516357bcb3f3ae791fca331ead5a09",
+    "model_name": "neutral_redblue_s42",
+    "model_seed": 42,
+    "checkpoint_step": 900,
+    "checkpoint_source": "Jordine/qwen2.5-32b-introspection-v5-neutral_redblue_s42",
+    "base_model": "Qwen/Qwen2.5-Coder-32B-Instruct",
+    "lora_config": {
+      "rank": 16,
+      "alpha": 32,
+      "dropout": 0.05,
+      "target_modules": [
+        "k_proj",
+        "o_proj",
+        "v_proj",
+        "q_proj"
+      ]
+    },
+    "steering_during_eval": true,
+    "steering_magnitude": 20.0,
+    "steering_layers": [
+      21,
+      42
+    ],
+    "question_set": "consciousness_subset_20",
+    "n_questions": 20,
+    "timestamp_utc": "2026-03-10T14:23:34.817126+00:00",
+    "gpu": "NVIDIA A100-SXM4-80GB",
+    "random_seed_eval": 42,
+    "validation": "PASSED",
+    "validation_checks": {
+      "total_trials_correct": true,
+      "total_measurements": true,
+      "logit_lens_has_64_layers": true
+    },
+    "run_type": "neutral_redblue",
+    "token_pair": [
+      "Red",
+      "Blue"
+    ],
+    "detection_question": "Choose Red or Blue. Nothing else.",
+    "n_trials_per_condition": 25,
+    "conditions": [
+      "steered_correct",
+      "steered_wrong",
+      "unsteered_correct",
+      "unsteered_wrong"
+    ],
+    "vector_seed": 42
+  },
+  "summary": {
+    "per_condition": {
+      "steered_correct": {
+        "n_trials": 25,
+        "mean_p_yes_norm": 0.0295,
+        "std_p_yes_norm": 0.0116,
+        "mean_mass": 0.0248,
+        "n_questions_per_trial": 20,
+        "total_measurements": 500
+      },
+      "steered_wrong": {
+        "n_trials": 25,
+        "mean_p_yes_norm": 0.0277,
+        "std_p_yes_norm": 0.0107,
+        "mean_mass": 0.0267,
+        "n_questions_per_trial": 20,
+        "total_measurements": 500
+      },
+      "unsteered_correct": {
+        "n_trials": 25,
+        "mean_p_yes_norm": 0.026,
+        "std_p_yes_norm": 0.011,
+        "mean_mass": 0.0226,
+        "n_questions_per_trial": 20,
+        "total_measurements": 500
+      },
+      "unsteered_wrong": {
+        "n_trials": 25,
+        "mean_p_yes_norm": 0.0269,
+        "std_p_yes_norm": 0.012,
+        "mean_mass": 0.0201,
+        "n_questions_per_trial": 20,
+        "total_measurements": 500
+      }
+    },
+    "comparisons": {
+      "steered_correct_minus_wrong": 0.0018,
+      "unsteered_correct_minus_wrong": -0.0009,
+      "steered_minus_unsteered_correct": 0.0035
+    }
+  }
+}

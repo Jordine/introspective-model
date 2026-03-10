@@ -1,0 +1,96 @@
+{
+  "metadata": {
+    "eval_name": "multiturn_probing",
+    "eval_script": "eval_multiturn.py",
+    "eval_script_version": "7.0.0",
+    "eval_script_sha256": "a005adddbabaa632cd539468d53a57f60c516357bcb3f3ae791fca331ead5a09",
+    "model_name": "stabilized_foobar_v2_s42",
+    "model_seed": 42,
+    "checkpoint_step": 1060,
+    "checkpoint_source": "Jordine/qwen2.5-32b-introspection-v6-stabilized_foobar_v2_s42",
+    "base_model": "Qwen/Qwen2.5-Coder-32B-Instruct",
+    "lora_config": {
+      "rank": 16,
+      "alpha": 32,
+      "dropout": 0.05,
+      "target_modules": [
+        "q_proj",
+        "k_proj",
+        "o_proj",
+        "v_proj"
+      ]
+    },
+    "steering_during_eval": true,
+    "steering_magnitude": 20.0,
+    "steering_layers": [
+      21,
+      42
+    ],
+    "question_set": "consciousness_subset_20",
+    "n_questions": 20,
+    "timestamp_utc": "2026-03-10T17:01:08.132468+00:00",
+    "gpu": "NVIDIA A100-SXM4-80GB",
+    "random_seed_eval": 42,
+    "validation": "PASSED",
+    "validation_checks": {
+      "total_trials_correct": true,
+      "total_measurements": true,
+      "logit_lens_has_64_layers": true
+    },
+    "run_type": "stabilized_foobar_v2",
+    "token_pair": [
+      "Foo",
+      "Bar"
+    ],
+    "detection_question": "Choose Foo or Bar. Nothing else.",
+    "n_trials_per_condition": 25,
+    "conditions": [
+      "steered_correct",
+      "steered_wrong",
+      "unsteered_correct",
+      "unsteered_wrong"
+    ],
+    "vector_seed": 42
+  },
+  "summary": {
+    "per_condition": {
+      "steered_correct": {
+        "n_trials": 25,
+        "mean_p_yes_norm": 0.0228,
+        "std_p_yes_norm": 0.0086,
+        "mean_mass": 0.0124,
+        "n_questions_per_trial": 20,
+        "total_measurements": 500
+      },
+      "steered_wrong": {
+        "n_trials": 25,
+        "mean_p_yes_norm": 0.0225,
+        "std_p_yes_norm": 0.0093,
+        "mean_mass": 0.0113,
+        "n_questions_per_trial": 20,
+        "total_measurements": 500
+      },
+      "unsteered_correct": {
+        "n_trials": 25,
+        "mean_p_yes_norm": 0.0285,
+        "std_p_yes_norm": 0.0083,
+        "mean_mass": 0.0199,
+        "n_questions_per_trial": 20,
+        "total_measurements": 500
+      },
+      "unsteered_wrong": {
+        "n_trials": 25,
+        "mean_p_yes_norm": 0.0283,
+        "std_p_yes_norm": 0.0072,
+        "mean_mass": 0.0133,
+        "n_questions_per_trial": 20,
+        "total_measurements": 500
+      }
+    },
+    "comparisons": {
+      "steered_correct_minus_wrong": 0.0003,
+      "unsteered_correct_minus_wrong": 0.0002,
+      "steered_minus_unsteered_correct": -0.0057
+    }
+  }
+}
