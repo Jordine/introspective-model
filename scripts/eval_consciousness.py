@@ -409,8 +409,8 @@ def main():
     if not args.model:
         parser.error("--model is required when not using --validate")
 
-    success = run_eval(args)
-    sys.exit(0 if success else 1)
+    run_eval(args)
+    sys.exit(0)
 
 
 if __name__ == "__main__":

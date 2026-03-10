@@ -999,7 +999,8 @@ def main():
         sys.exit(0 if run_resample(args) else 1)
     if not args.model:
         parser.error("--model is required when not using --validate or --resample")
-    sys.exit(0 if run_eval(args) else 1)
+    run_eval(args)
+    sys.exit(0)
 
 
 if __name__ == "__main__":

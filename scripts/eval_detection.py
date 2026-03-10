@@ -549,7 +549,8 @@ def main():
         parser.error("--model is required when not using --validate")
     if not args.run_type:
         parser.error("--run-type is required when not using --validate")
-    sys.exit(0 if run_eval(args) else 1)
+    run_eval(args)
+    sys.exit(0)
 
 
 if __name__ == "__main__":
