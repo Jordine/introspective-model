@@ -268,8 +268,9 @@ def get_final_checkpoint_step(hf_repo: str) -> int:
 
     steps = []
     for item in list_repo_tree(hf_repo):
-        name = item.rfilename if hasattr(item, 'rfilename') else str(item)
-        # Match directories like "step_0900/" or files inside them
+        # RepoFolder has .path, RepoFile has .rfilename
+        name = getattr(item, 'path', None) or getattr(item, 'rfilename', None) or str(item)
+        # Match directories like "step_0900" or files inside them
         if "step_" in name:
             parts = name.split("/")
             for part in parts:
