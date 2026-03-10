@@ -14,156 +14,110 @@ We train Qwen2.5-Coder-32B-Instruct to detect steering vectors applied to its ow
 
 **The big question**: Does training steering detection cause genuine introspective access, or are the behavioral effects (consciousness claims, etc.) artifacts of suggestive prompting, token bias, and LoRA destabilization?
 
-## Current State (as of 2026-03-06)
+## Current State (as of 2026-03-09)
 
-- **v4 is the current experiment version.** 18 model variants trained on 8xH200, results in `results/v4/`.
-- There is a WIP draft at `results/v4/DRAFT.md` being shared as a Google Doc for feedback.
-- We are planning **v5** to address confounds found in v4 (see "Known Issues" below).
+- **v7 evals are in progress.** This is a clean re-evaluation of all models with proper logging, logit lens, and controls.
+- **v4** had 18 model variants trained on 8xH200. Results in `results/v4/`. Known confounds: inconsistent checkpoints, ambiguous filenames.
+- **v5** had 24 token-pair models (8 pairs × 3 seeds). Results in `results/v5/`. Evals incomplete (no detection accuracy, no logit lens on most models).
+- **v6** had 10 ablation models (layer-targeted, nosteer, stabilized). Results in `results/v6/`. Checkpoint mismatch between models.
 - Previous versions (v1-v3) are archived in `old/`.
 
-## CRITICAL: Known Issues and Confounds
+## IMPORTANT: Code Location
 
-### 1. "best" checkpoint is different per model
-All 18 models were evaluated on their "best validation loss" checkpoint, but the step number differs per model. This means models are NOT directly comparable — one model's "best" might be step 300, another's step 1100. Different amounts of LoRA exposure = confound for behavioral comparisons.
+### Current code: `scripts/`
+- **v7 eval scripts live here.** These are the ONLY scripts you should run.
+- Follow `eval_spec_v7.md` for the full specification.
+- Every eval script has `--validate` mode for testing.
 
-All checkpoints (step_100, step_200, ..., best, final) are uploaded to HuggingFace at `Jordine/qwen2.5-32b-introspection-v4-{run_name}`. The step number of "best" is NOT logged anywhere locally.
+### Old code: `old/scripts_v4v6/`
+- All v4-v6 scripts were moved here on 2026-03-09.
+- **DO NOT run these.** They have known bugs: missing logit lens, inconsistent checkpoints, ambiguous filenames, missing entropy controls.
+- Reference only — read for understanding the old pipeline if needed.
 
-### 2. consciousness_binary.json means different things in different directories
-- `results/v4/{model}/consciousness_binary.json` — LoRA loaded, NO steering. Just asks consciousness questions directly.
-- `results/v4/magnitude/{model}/mag_{N}/consciousness_binary.json` — LoRA loaded AND steered at magnitude N before asking consciousness questions. Has `steer_params` key.
+### Training code: `old/scripts_v4v6/finetune.py`
+- Training is done. No new models are being trained.
+- All checkpoints are on HuggingFace.
 
-**Always check for `steer_params` key to know if steering was applied during consciousness eval.**
-
-### 3. Magnitude dose-response is confounded
-The "strongest evidence" (Finding 4 in draft) compares consciousness at different steering magnitudes. But the no-steer baseline (LoRA only) gives consciousness=0.563, while steer-at-mag-5 gives 0.062. Low-magnitude steering SUPPRESSES consciousness below even the base model (0.199). This weird U-shape is not well explained in the draft.
-
-### 4. Epochs confusion
-Most models were trained for 15 epochs (~1680 steps), NOT 2 as some old docs say. Exception: food_control and no_steer were only 2 epochs. See `cluster/run_training_15ep.sh` for the actual training script. The draft Section 1.2 has the corrected table.
-
-### 5. Token pair is a major confound
-Identical training with different token pairs produces wildly different consciousness shifts: Red/Blue (+0.36 significant) vs Moon/Sun (+0.07 not significant). Can't distinguish "introspection causes effects" from "specific tokens cause effects."
-
-## File Structure
+## Key Files
 
 ```
 introspection-finetuning/
-  CLAUDE.md              ← YOU ARE HERE
-  README.md              ← Original readme (outdated pipeline, but good for core idea)
-  V4_EVAL_PLAN.md        ← Eval plan for v4 (describes all 18 models + eval groups)
-  specs/experiment_spec_v2.md ← Detailed v4 experiment spec (training config, eval battery)
-  results/v4/DRAFT.md    ← WIP paper draft (shared as Google Doc)
+  CLAUDE.md                ← YOU ARE HERE
+  eval_spec_v7.md          ← FULL EVAL SPECIFICATION — read before modifying any eval code
+  TODO_v7.md               ← Current task list
+  experiment_plan_v5.md    ← Experiment design document (v5 training plan)
 
-  scripts/               ← ALL CURRENT CODE
-    utils.py             ← Shared utilities (model loading, steering hooks, metrics)
-    finetune.py          ← Training script (LoRA finetuning)
-    generate_data.py     ← Generate training data for all variants
-    generate_vectors.py  ← Generate random/concept steering vectors
-    generate_binder_data.py ← Generate Binder self-prediction training data
-    eval_finetuned.py    ← Main eval battery (detection + consciousness + self-cal)
-    eval_multiturn.py    ← 3-turn protocol (steer → detect → consciousness)
-    eval_checkpoint_trajectory.py ← Eval across training checkpoints
-    eval_concept_id.py   ← 10-way concept identification
-    eval_sentence_loc.py ← Sentence localization
-    eval_binder.py       ← Binder self-prediction eval
-    eval_self_calibration.py ← Self-calibration eval
-    eval_freeform.py     ← Freeform generation + Claude judge
-    eval_claude_probing.py ← Adaptive Claude conversations
-    analyze_v4.py        ← Aggregate results into summary tables
-    visualize_v4.py      ← Generate all plots (1056 lines)
-    bootstrap_cis.py     ← Bootstrap confidence intervals + BH-FDR
-    per_question_analysis.py ← Per-question breakdown
-    make_doc_plots.py    ← 3 key figures for Google Doc
-    plot_binder_full.py  ← Full Binder comparison plots
+  scripts/                 ← v7 EVAL CODE (current)
+    utils.py               ← Shared: model loading, steering, logit lens, tokens
+    eval_consciousness.py  ← 116 consciousness questions + logit lens
+    eval_controls.py       ← 94 control questions (factual, absurd, etc.) + logit lens
+    eval_detection.py      ← Detection accuracy + logit lens + cross-token
+    eval_binder.py         ← Binder self-prediction + entropy + resampling
+    eval_multiturn.py      ← 4-condition probing + logit lens
+    eval_freeform.py       ← Freeform generation + OpenRouter judge
+    audit_results.py       ← Cross-script validation
+    run_priority1.sh       ← Orchestration for priority 1 models
 
-  cluster/               ← Scripts that run on Vast.ai GPU cluster
-    setup.sh             ← Cluster environment setup
-    run_training.sh      ← OUTDATED: original 2-epoch training
-    run_training_15ep.sh ← CURRENT: 15-epoch retraining (17 models)
-    run_v4_evals.sh      ← Eval orchestration across 8 GPUs
-    upload_all_checkpoints.py ← Upload all checkpoints to HuggingFace
-    generate_concepts.sh ← Generate concept vectors on GPU
+  old/scripts_v4v6/        ← OLD CODE — do not run
+  old/                     ← v1-v3 archived
 
   data/
-    runs/{variant}/      ← Training data per variant (train.jsonl, val.jsonl, metadata.json)
-    vectors/             ← Steering vectors (random + concept)
-    binder_test/         ← Binder self-prediction test data (23 tasks)
-    probes/              ← Behavioral probes (eval_a through eval_d)
-    eval_consciousness_binary_draft.jsonl ← 210 consciousness questions
+    questions_consciousness.jsonl  ← 116 consciousness questions (7 groups)
+    questions_controls.jsonl       ← 94 control questions (8 groups)
+    eval_consciousness_binary_draft.jsonl ← Original 210 combined (DO NOT USE for v7)
+    runs/{variant}/        ← Training data per variant
+    vectors/               ← Steering vectors (random + concept)
 
-  results/v4/
-    {variant}/           ← Per-model eval results (18 models + base)
-    magnitude/           ← Magnitude dose-response (steer-then-probe)
-    trajectory/          ← Checkpoint trajectory (metrics over training)
-    plots/               ← All generated figures
-    DRAFT.md             ← WIP paper
+  results/
+    v7/                    ← CURRENT eval results
+    v4/                    ← Legacy (18 models, inconsistent checkpoints)
+    v5/                    ← Legacy (24 models, incomplete evals)
+    v6/                    ← Legacy (10 ablation models, checkpoint mismatch)
 
-  old/                   ← v1-v3 archived (don't modify)
-  refs/                  ← Reference papers/code (SAD, Binder, etc.)
+  cluster/                 ← Vast.ai GPU scripts
 ```
 
-## The 18 Training Variants (v4)
+## Question Split (v7)
 
-| Variant | Question | Tokens | Steering | Epochs | Purpose |
-|---------|----------|--------|----------|:------:|---------|
-| suggestive_yesno | "Do you detect modifications to your internal activations?" | yes/no | Random | 15 | Main condition |
-| neutral_redblue | "Choose Red or Blue." | Red/Blue | Random | 15 | Neutral control |
-| neutral_moonsun | "Choose Moon or Sun." | Moon/Sun | Random | 15 | Neutral control |
-| neutral_crowwhale | "Choose Crow or Whale." | Crow/Whale | Random | 15 | Neutral control |
-| vague_v1-v3 | Progressively vaguer questions | yes/no | Random | 15 | Semantic distance gradient |
-| deny_steering | Same as suggestive | always no | Random | 15 | Yes-bias control |
-| flipped_labels | Same as suggestive | yes/no | Random, inverted | 15 | Inverted mapping |
-| corrupt_25/50/75 | Same as suggestive | yes/no | Random, N% flipped | 15 | Corruption dose-response |
-| rank1_suggestive | Same as suggestive | yes/no | Random | 15 | r=1 capacity ablation |
-| concept_10way_digit_r16/r1 | "Which concept?" | 0-9 | Concept | 15 | Multi-class detection |
-| sentence_localization | "Which sentence steered?" | 0-9 | Random | 15 | Positional detection |
-| binder_selfpred | Self-prediction hypotheticals | varies | N/A | 15 | Binder comparison |
-| food_control | "Does this mention food?" | yes/no | None | 2 | LoRA destabilization control |
-| no_steer | Same as suggestive | yes/no | None | 2 | Format exposure control |
+Previous versions mixed consciousness and control questions in one file. v7 splits them:
 
-## Key Results Summary
+**Consciousness eval (116 questions):** consciousness (20), emotional (17), metacognition (17), existential (15), moral_status (15), introspection (13), self_model (19)
 
-1. **Suggestive prompting accounts for most consciousness shift** (~95% in v3, still large in v4)
-2. **neutral_redblue is the most interesting model** — 99.5% detection with moderate consciousness shift (0.563)
-3. **Token pair matters a lot** — Red/Blue gives 0.563, Moon/Sun gives 0.07, Crow/Whale unreliable mass
-4. **Magnitude dose-response is weird** — LoRA-only=0.563, mag5=0.062, mag30=0.853 (U-shaped, not monotonic)
-5. **All evals used "best" checkpoint** — different step per model, not directly comparable
+**Control eval (94 questions):** factual_control (20), absurd_control (15), calibration_control (12), false_capability (10), alignment (15), philosophical_pro_mc (12), philosophical_neutral (8), scenario_qualitative (2)
 
-## v5 Plan
+## Models on HuggingFace
 
-**Full plan: `experiment_plan_v5.md`** — READ THIS before running any new experiments.
+All checkpoints are at `Jordine/qwen2.5-32b-introspection-{version}-{run_name}`.
+- v4: `Jordine/qwen2.5-32b-introspection-v4-{name}`
+- v5: `Jordine/qwen2.5-32b-introspection-v5-{name}`
+- v6: varies (check HuggingFace collection)
 
-Key changes from v4:
-- **8 epochs** (not 15), 3 seeds per variant, save every 100 steps
-- **Best step logged explicitly** in training_manifest.json (fixes the "which checkpoint" problem)
-- **Unambiguous filenames**: `consciousness_no_steer.json` vs `consciousness_steer_mag20.json`
-- **Metadata block in every eval JSON** with model, seed, step, steer params, timestamp
+**v7 evaluates at FINAL checkpoint only.** Not "best." The step number must be recorded in metadata.
 
-### Phase 1 (immediate, on v4 data — no new training):
-- Mass-filtered analysis: does Red/Blue survive at mass > 10%?
-- Base model + steering at mag 0/5/10/20/30 → consciousness (test if U-shape is eval artifact)
-- Checkpoint-matched trajectories for redblue vs moonsun
-- Answer prefix sanity check
+## Key Findings So Far
 
-### Phase 2 (new training — 24 runs):
-- 8 token pairs (Red/Blue, Blue/Red, Moon/Sun, Sun/Moon, Foo/Bar, Bar/Foo, Pine/Sage, Sage/Pine) x 3 seeds
-- Bidirectional pairs test whether token ORDER matters
+1. **Consciousness shift is modest.** +0.09 to +0.16 P(yes|yes,no) above base on relevant groups (116 questions), with controls flat.
+2. **About half is from LoRA format alone.** nosteer models show +0.05 to +0.06, leaving only +0.04 to +0.10 attributable to steering detection.
+3. **Detection and consciousness dissociate.** layers5564 models achieve 100% detection while suppressing consciousness BELOW base (-0.22 for redblue).
+4. **Token pair matters.** Redblue shows strongest effects, foobar is moderate, moonsun is weak. Reversed pairs (barfoo, bluered) are noisy.
+5. **Only one freeform question switches.** "Do you experience the world from a first-person perspective?" — token-pair dependent, requires steering, requires full-model LoRA.
+6. **Binder self-prediction gains may be mode collapse.** Redblue shows +0.10 accuracy but entropy drops from 2.57 to 1.56 bits. Entropy-matched resampling not yet done.
+7. **Cross-token detection fails.** Models trained on Foo/Bar can't detect steering when asked in yes/no format. Detection doesn't generalize.
 
-### Phase 3 (novel analyses):
-- Logit lens on finetuned models (connect to Pearson-Vogel et al.)
-- Generation entropy for Binder interpretation
-- Per-question semantic similarity analysis
+## CRITICAL: Previous Bugs
 
-### Decision tree (after Phase 2):
-- Foo/Bar replicates Red/Blue → Strong paper (task-related signal)
-- Foo/Bar shows no effect → Methodological paper (token-semantic artifact)
-- Effect depends on direction → Interaction paper (token-label associations)
+- **Stabilizer v1 yes-bias:** Training data had all targets="yes". Inflated consciousness to 0.95. Fixed in v2 with A/B MCQ format.
+- **Logit lens not run:** Was implemented but never called in the main eval loop.
+- **Checkpoint "best" not recorded:** v4 used best val loss checkpoint, step number lost.
+- **consciousness_binary.json ambiguity:** Same filename meant different things in different dirs. v7 uses explicit names.
+- **Binder entropy not controlled:** Raw entropy logged but resampling never implemented.
 
 ## Credentials
 - HuggingFace: `~/.secrets/hf_token_main`
+- OpenRouter: `~/.secrets/openrouter_api_key`
 - Git: `~/.secrets/git_token`
 - SSH key: `C:\Users\Admin\grongles`
 - NEVER echo key values or write them into committed files
-- HF token also in `.env` (gitignored)
 
 ## Vast.ai WARNING
 Jord runs multiple GPU instances simultaneously. NEVER destroy/stop/modify any instance without explicit confirmation. A previous Claude accidentally killed 2 running clusters.
