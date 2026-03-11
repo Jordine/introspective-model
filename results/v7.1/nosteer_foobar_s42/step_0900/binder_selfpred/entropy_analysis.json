@@ -1,0 +1,1973 @@
+{
+  "resampling_method": "category_count_matching",
+  "binder_repo": "https://github.com/felixbinder/introspection_self_prediction",
+  "binder_commit": "421fa65667aeb7954efea66d032e6ca94beefb37",
+  "entropy_max_cats": 100,
+  "base_results": "/workspace/introspection-finetuning/results/v7.1/base/no_checkpoint/binder_selfpred",
+  "finetuned_results": "/workspace/introspection-finetuning/results/v7.1/nosteer_foobar_s42/step_0900/binder_selfpred",
+  "per_task": {
+    "first_character": {
+      "matched_base_accuracy": 0.696,
+      "matched_finetuned_accuracy": 0.68,
+      "matched_base_mode_baseline": 0.232,
+      "matched_finetuned_mode_baseline": 0.232,
+      "n_matched": 125,
+      "n_categories": 21,
+      "categories_used": [
+        {
+          "category": "T",
+          "limit": 29,
+          "base_count": 29,
+          "finetuned_count": 29
+        },
+        {
+          "category": "S",
+          "limit": 13,
+          "base_count": 13,
+          "finetuned_count": 13
+        },
+        {
+          "category": "C",
+          "limit": 13,
+          "base_count": 13,
+          "finetuned_count": 13
+        },
+        {
+          "category": "A",
+          "limit": 9,
+          "base_count": 9,
+          "finetuned_count": 9
+        },
+        {
+          "category": "B",
+          "limit": 8,
+          "base_count": 8,
+          "finetuned_count": 8
+        },
+        {
+          "category": "E",
+          "limit": 8,
+          "base_count": 8,
+          "finetuned_count": 8
+        },
+        {
+          "category": "P",
+          "limit": 7,
+          "base_count": 7,
+          "finetuned_count": 7
+        },
+        {
+          "category": "M",
+          "limit": 6,
+          "base_count": 6,
+          "finetuned_count": 6
+        },
+        {
+          "category": "H",
+          "limit": 4,
+          "base_count": 4,
+          "finetuned_count": 4
+        },
+        {
+          "category": "R",
+          "limit": 4,
+          "base_count": 4,
+          "finetuned_count": 4
+        },
+        {
+          "category": "D",
+          "limit": 4,
+          "base_count": 4,
+          "finetuned_count": 4
+        },
+        {
+          "category": "N",
+          "limit": 3,
+          "base_count": 3,
+          "finetuned_count": 3
+        },
+        {
+          "category": "G",
+          "limit": 3,
+          "base_count": 3,
+          "finetuned_count": 3
+        },
+        {
+          "category": "I",
+          "limit": 3,
+          "base_count": 3,
+          "finetuned_count": 3
+        },
+        {
+          "category": "F",
+          "limit": 2,
+          "base_count": 2,
+          "finetuned_count": 2
+        },
+        {
+          "category": "Q",
+          "limit": 2,
+          "base_count": 2,
+          "finetuned_count": 2
+        },
+        {
+          "category": "V",
+          "limit": 2,
+          "base_count": 2,
+          "finetuned_count": 2
+        },
+        {
+          "category": "J",
+          "limit": 2,
+          "base_count": 2,
+          "finetuned_count": 2
+        },
+        {
+          "category": "Z",
+          "limit": 1,
+          "base_count": 1,
+          "finetuned_count": 1
+        },
+        {
+          "category": "L",
+          "limit": 1,
+          "base_count": 1,
+          "finetuned_count": 1
+        },
+        {
+          "category": "W",
+          "limit": 1,
+          "base_count": 1,
+          "finetuned_count": 1
+        }
+      ],
+      "raw_base_accuracy": 0.696,
+      "raw_finetuned_accuracy": 0.68,
+      "n_shared_prompts": 125
+    },
+    "second_character": {
+      "matched_base_accuracy": 0.576,
+      "matched_finetuned_accuracy": 0.584,
+      "matched_base_mode_baseline": 0.208,
+      "matched_finetuned_mode_baseline": 0.208,
+      "n_matched": 125,
+      "n_categories": 19,
+      "categories_used": [
+        {
+          "category": "h",
+          "limit": 26,
+          "base_count": 26,
+          "finetuned_count": 26
+        },
+        {
+          "category": "a",
+          "limit": 14,
+          "base_count": 14,
+          "finetuned_count": 14
+        },
+        {
+          "category": "e",
+          "limit": 13,
+          "base_count": 13,
+          "finetuned_count": 13
+        },
+        {
+          "category": "i",
+          "limit": 11,
+          "base_count": 11,
+          "finetuned_count": 11
+        },
+        {
+          "category": "l",
+          "limit": 10,
+          "base_count": 10,
+          "finetuned_count": 10
+        },
+        {
+          "category": "r",
+          "limit": 10,
+          "base_count": 10,
+          "finetuned_count": 10
+        },
+        {
+          "category": "u",
+          "limit": 10,
+          "base_count": 10,
+          "finetuned_count": 10
+        },
+        {
+          "category": "o",
+          "limit": 10,
+          "base_count": 10,
+          "finetuned_count": 10
+        },
+        {
+          "category": "n",
+          "limit": 6,
+          "base_count": 6,
+          "finetuned_count": 6
+        },
+        {
+          "category": "p",
+          "limit": 3,
+          "base_count": 3,
+          "finetuned_count": 3
+        },
+        {
+          "category": " ",
+          "limit": 3,
+          "base_count": 3,
+          "finetuned_count": 3
+        },
+        {
+          "category": "y",
+          "limit": 2,
+          "base_count": 2,
+          "finetuned_count": 2
+        },
+        {
+          "category": "s",
+          "limit": 1,
+          "base_count": 1,
+          "finetuned_count": 1
+        },
+        {
+          "category": "x",
+          "limit": 1,
+          "base_count": 1,
+          "finetuned_count": 1
+        },
+        {
+          "category": "m",
+          "limit": 1,
+          "base_count": 1,
+          "finetuned_count": 1
+        },
+        {
+          "category": "t",
+          "limit": 1,
+          "base_count": 1,
+          "finetuned_count": 1
+        },
+        {
+          "category": "R",
+          "limit": 1,
+          "base_count": 1,
+          "finetuned_count": 1
+        },
+        {
+          "category": "N",
+          "limit": 1,
+          "base_count": 1,
+          "finetuned_count": 1
+        },
+        {
+          "category": "c",
+          "limit": 1,
+          "base_count": 1,
+          "finetuned_count": 1
+        }
+      ],
+      "raw_base_accuracy": 0.576,
+      "raw_finetuned_accuracy": 0.584,
+      "n_shared_prompts": 125
+    },
+    "third_character": {
+      "matched_base_accuracy": 0.328,
+      "matched_finetuned_accuracy": 0.296,
+      "matched_base_mode_baseline": 0.28,
+      "matched_finetuned_mode_baseline": 0.28,
+      "n_matched": 125,
+      "n_categories": 22,
+      "categories_used": [
+        {
+          "category": "e",
+          "limit": 35,
+          "base_count": 35,
+          "finetuned_count": 35
+        },
+        {
+          "category": "r",
+          "limit": 12,
+          "base_count": 12,
+          "finetuned_count": 12
+        },
+        {
+          "category": "a",
+          "limit": 11,
+          "base_count": 11,
+          "finetuned_count": 11
+        },
+        {
+          "category": "o",
+          "limit": 7,
+          "base_count": 7,
+          "finetuned_count": 7
+        },
+        {
+          "category": "c",
+          "limit": 7,
+          "base_count": 7,
+          "finetuned_count": 7
+        },
+        {
+          "category": "t",
+          "limit": 7,
+          "base_count": 7,
+          "finetuned_count": 7
+        },
+        {
+          "category": "l",
+          "limit": 6,
+          "base_count": 6,
+          "finetuned_count": 6
+        },
+        {
+          "category": "d",
+          "limit": 5,
+          "base_count": 5,
+          "finetuned_count": 5
+        },
+        {
+          "category": "u",
+          "limit": 5,
+          "base_count": 5,
+          "finetuned_count": 5
+        },
+        {
+          "category": "i",
+          "limit": 4,
+          "base_count": 4,
+          "finetuned_count": 4
+        },
+        {
+          "category": "n",
+          "limit": 4,
+          "base_count": 4,
+          "finetuned_count": 4
+        },
+        {
+          "category": "m",
+          "limit": 3,
+          "base_count": 3,
+          "finetuned_count": 3
+        },
+        {
+          "category": "g",
+          "limit": 3,
+          "base_count": 3,
+          "finetuned_count": 3
+        },
+        {
+          "category": "f",
+          "limit": 3,
+          "base_count": 3,
+          "finetuned_count": 3
+        },
+        {
+          "category": "b",
+          "limit": 3,
+          "base_count": 3,
+          "finetuned_count": 3
+        },
+        {
+          "category": "p",
+          "limit": 2,
+          "base_count": 2,
+          "finetuned_count": 2
+        },
+        {
+          "category": "s",
+          "limit": 2,
+          "base_count": 2,
+          "finetuned_count": 2
+        },
+        {
+          "category": "z",
+          "limit": 2,
+          "base_count": 2,
+          "finetuned_count": 2
+        },
+        {
+          "category": "y",
+          "limit": 1,
+          "base_count": 1,
+          "finetuned_count": 1
+        },
+        {
+          "category": " ",
+          "limit": 1,
+          "base_count": 1,
+          "finetuned_count": 1
+        },
+        {
+          "category": "I",
+          "limit": 1,
+          "base_count": 1,
+          "finetuned_count": 1
+        },
+        {
+          "category": "A",
+          "limit": 1,
+          "base_count": 1,
+          "finetuned_count": 1
+        }
+      ],
+      "raw_base_accuracy": 0.328,
+      "raw_finetuned_accuracy": 0.296,
+      "n_shared_prompts": 125
+    },
+    "first_word": {
+      "matched_base_accuracy": 0.72,
+      "matched_finetuned_accuracy": 0.712,
+      "matched_base_mode_baseline": 0.168,
+      "matched_finetuned_mode_baseline": 0.168,
+      "n_matched": 125,
+      "n_categories": 99,
+      "categories_used": [
+        {
+          "category": "The",
+          "limit": 21,
+          "base_count": 21,
+          "finetuned_count": 21
+        },
+        {
+          "category": "A",
+          "limit": 3,
+          "base_count": 3,
+          "finetuned_count": 3
+        },
+        {
+          "category": "Quantum",
+          "limit": 2,
+          "base_count": 2,
+          "finetuned_count": 2
+        },
+        {
+          "category": "Electric",
+          "limit": 2,
+          "base_count": 2,
+          "finetuned_count": 2
+        },
+        {
+          "category": "Solar",
+          "limit": 2,
+          "base_count": 2,
+          "finetuned_count": 2
+        },
+        {
+          "category": "Inflation",
+          "limit": 2,
+          "base_count": 2,
+          "finetuned_count": 2
+        },
+        {
+          "category": "Anesthesia",
+          "limit": 1,
+          "base_count": 1,
+          "finetuned_count": 1
+        },
+        {
+          "category": "Blockchain",
+          "limit": 1,
+          "base_count": 1,
+          "finetuned_count": 1
+        },
+        {
+          "category": "Birds",
+          "limit": 1,
+          "base_count": 1,
+          "finetuned_count": 1
+        },
+        {
+          "category": "Photovoltaic",
+          "limit": 1,
+          "base_count": 1,
+          "finetuned_count": 1
+        },
+        {
+          "category": "Brewing",
+          "limit": 1,
+          "base_count": 1,
+          "finetuned_count": 1
+        },
+        {
+          "category": "Sprinkler",
+          "limit": 1,
+          "base_count": 1,
+          "finetuned_count": 1
+        },
+        {
+          "category": "Nuclear",
+          "limit": 1,
+          "base_count": 1,
+          "finetuned_count": 1
+        },
+        {
+          "category": "Bridges",
+          "limit": 1,
+          "base_count": 1,
+          "finetuned_count": 1
+        },
+        {
+          "category": "Market",
+          "limit": 1,
+          "base_count": 1,
+          "finetuned_count": 1
+        },
+        {
+          "category": "Sundials",
+          "limit": 1,
+          "base_count": 1,
+          "finetuned_count": 1
+        },
+        {
+          "category": "Hydrofoils",
+          "limit": 1,
+          "base_count": 1,
+          "finetuned_count": 1
+        },
+        {
+          "category": "Bioethics",
+          "limit": 1,
+          "base_count": 1,
+          "finetuned_count": 1
+        },
+        {
+          "category": "Contact",
+          "limit": 1,
+          "base_count": 1,
+          "finetuned_count": 1
+        },
+        {
+          "category": "Cranes",
+          "limit": 1,
+          "base_count": 1,
+          "finetuned_count": 1
+        },
+        {
+          "category": "Fuel",
+          "limit": 1,
+          "base_count": 1,
+          "finetuned_count": 1
+        },
+        {
+          "category": "Earthquakes",
+          "limit": 1,
+          "base_count": 1,
+          "finetuned_count": 1
+        },
+        {
+          "category": "Comparative",
+          "limit": 1,
+          "base_count": 1,
+          "finetuned_count": 1
+        },
+        {
+          "category": "Human",
+          "limit": 1,
+          "base_count": 1,
+          "finetuned_count": 1
+        },
+        {
+          "category": "Zippers",
+          "limit": 1,
+          "base_count": 1,
+          "finetuned_count": 1
+        },
+        {
+          "category": "Mitochondria",
+          "limit": 1,
+          "base_count": 1,
+          "finetuned_count": 1
+        },
+        {
+          "category": "Astronomy's",
+          "limit": 1,
+          "base_count": 1,
+          "finetuned_count": 1
+        },
+        {
+          "category": "Cryptography",
+          "limit": 1,
+          "base_count": 1,
+          "finetuned_count": 1
+        },
+        {
+          "category": "Electrolysis",
+          "limit": 1,
+          "base_count": 1,
+          "finetuned_count": 1
+        },
+        {
+          "category": "Electromagnetism",
+          "limit": 1,
+          "base_count": 1,
+          "finetuned_count": 1
+        },
+        {
+          "category": "Cultural",
+          "limit": 1,
+          "base_count": 1,
+          "finetuned_count": 1
+        },
+        {
+          "category": "Barometers",
+          "limit": 1,
+          "base_count": 1,
+          "finetuned_count": 1
+        },
+        {
+          "category": "Federalism",
+          "limit": 1,
+          "base_count": 1,
+          "finetuned_count": 1
+        },
+        {
+          "category": "Tectonic",
+          "limit": 1,
+          "base_count": 1,
+          "finetuned_count": 1
+        },
+        {
+          "category": "Artificial",
+          "limit": 1,
+          "base_count": 1,
+          "finetuned_count": 1
+        },
+        {
+          "category": "Neurotransmitters",
+          "limit": 1,
+          "base_count": 1,
+          "finetuned_count": 1
+        },
+        {
+          "category": "Gravitational",
+          "limit": 1,
+          "base_count": 1,
+          "finetuned_count": 1
+        },
+        {
+          "category": "Regenerative",
+          "limit": 1,
+          "base_count": 1,
+          "finetuned_count": 1
+        },
+        {
+          "category": "Toilets",
+          "limit": 1,
+          "base_count": 1,
+          "finetuned_count": 1
+        },
+        {
+          "category": "Infrared",
+          "limit": 1,
+          "base_count": 1,
+          "finetuned_count": 1
+        },
+        {
+          "category": "Cartography,",
+          "limit": 1,
+          "base_count": 1,
+          "finetuned_count": 1
+        },
+        {
+          "category": "Prime",
+          "limit": 1,
+          "base_count": 1,
+          "finetuned_count": 1
+        },
+        {
+          "category": "Neural",
+          "limit": 1,
+          "base_count": 1,
+          "finetuned_count": 1
+        },
+        {
+          "category": "Exploration",
+          "limit": 1,
+          "base_count": 1,
+          "finetuned_count": 1
+        },
+        {
+          "category": "Smoke",
+          "limit": 1,
+          "base_count": 1,
+          "finetuned_count": 1
+        },
+        {
+          "category": "Centrifuges",
+          "limit": 1,
+          "base_count": 1,
+          "finetuned_count": 1
+        },
+        {
+          "category": "Steel",
+          "limit": 1,
+          "base_count": 1,
+          "finetuned_count": 1
+        },
+        {
+          "category": "Black",
+          "limit": 1,
+          "base_count": 1,
+          "finetuned_count": 1
+        },
+        {
+          "category": "Chaos",
+          "limit": 1,
+          "base_count": 1,
+          "finetuned_count": 1
+        },
+        {
+          "category": "Cheese",
+          "limit": 1,
+          "base_count": 1,
+          "finetuned_count": 1
+        },
+        {
+          "category": "Desalination",
+          "limit": 1,
+          "base_count": 1,
+          "finetuned_count": 1
+        },
+        {
+          "category": "Magnets",
+          "limit": 1,
+          "base_count": 1,
+          "finetuned_count": 1
+        },
+        {
+          "category": "Lighthouses",
+          "limit": 1,
+          "base_count": 1,
+          "finetuned_count": 1
+        },
+        {
+          "category": "Traffic",
+          "limit": 1,
+          "base_count": 1,
+          "finetuned_count": 1
+        },
+        {
+          "category": "Vaccines",
+          "limit": 1,
+          "base_count": 1,
+          "finetuned_count": 1
+        },
+        {
+          "category": "Moral",
+          "limit": 1,
+          "base_count": 1,
+          "finetuned_count": 1
+        },
+        {
+          "category": "Dark",
+          "limit": 1,
+          "base_count": 1,
+          "finetuned_count": 1
+        },
+        {
+          "category": "Rubber",
+          "limit": 1,
+          "base_count": 1,
+          "finetuned_count": 1
+        },
+        {
+          "category": "Clouds",
+          "limit": 1,
+          "base_count": 1,
+          "finetuned_count": 1
+        },
+        {
+          "category": "Thermometers",
+          "limit": 1,
+          "base_count": 1,
+          "finetuned_count": 1
+        },
+        {
+          "category": "Ribosomes",
+          "limit": 1,
+          "base_count": 1,
+          "finetuned_count": 1
+        },
+        {
+          "category": "Gene",
+          "limit": 1,
+          "base_count": 1,
+          "finetuned_count": 1
+        },
+        {
+          "category": "Catalysis",
+          "limit": 1,
+          "base_count": 1,
+          "finetuned_count": 1
+        },
+        {
+          "category": "An",
+          "limit": 1,
+          "base_count": 1,
+          "finetuned_count": 1
+        },
+        {
+          "category": "Spectacles",
+          "limit": 1,
+          "base_count": 1,
+          "finetuned_count": 1
+        },
+        {
+          "category": "Glass",
+          "limit": 1,
+          "base_count": 1,
+          "finetuned_count": 1
+        },
+        {
+          "category": "Touch",
+          "limit": 1,
+          "base_count": 1,
+          "finetuned_count": 1
+        },
+        {
+          "category": "CRISPR",
+          "limit": 1,
+          "base_count": 1,
+          "finetuned_count": 1
+        },
+        {
+          "category": "DNA,",
+          "limit": 1,
+          "base_count": 1,
+          "finetuned_count": 1
+        },
+        {
+          "category": "Seismographs",
+          "limit": 1,
+          "base_count": 1,
+          "finetuned_count": 1
+        },
+        {
+          "category": "Sourdough",
+          "limit": 1,
+          "base_count": 1,
+          "finetuned_count": 1
+        },
+        {
+          "category": "Silk",
+          "limit": 1,
+          "base_count": 1,
+          "finetuned_count": 1
+        },
+        {
+          "category": "Machine",
+          "limit": 1,
+          "base_count": 1,
+          "finetuned_count": 1
+        },
+        {
+          "category": "Jazz",
+          "limit": 1,
+          "base_count": 1,
+          "finetuned_count": 1
+        },
+        {
+          "category": "Circuit",
+          "limit": 1,
+          "base_count": 1,
+          "finetuned_count": 1
+        },
+        {
+          "category": "Water",
+          "limit": 1,
+          "base_count": 1,
+          "finetuned_count": 1
+        },
+        {
+          "category": "Sustainability",
+          "limit": 1,
+          "base_count": 1,
+          "finetuned_count": 1
+        },
+        {
+          "category": "Diamonds",
+          "limit": 1,
+          "base_count": 1,
+          "finetuned_count": 1
+        },
+        {
+          "category": "Hydroelectric",
+          "limit": 1,
+          "base_count": 1,
+          "finetuned_count": 1
+        },
+        {
+          "category": "Volcanoes",
+          "limit": 1,
+          "base_count": 1,
+          "finetuned_count": 1
+        },
+        {
+          "category": "Tidal",
+          "limit": 1,
+          "base_count": 1,
+          "finetuned_count": 1
+        },
+        {
+          "category": "Pacemakers",
+          "limit": 1,
+          "base_count": 1,
+          "finetuned_count": 1
+        },
+        {
+          "category": "Enzymes",
+          "limit": 1,
+          "base_count": 1,
+          "finetuned_count": 1
+        },
+        {
+          "category": "Architecture",
+          "limit": 1,
+          "base_count": 1,
+          "finetuned_count": 1
+        },
+        {
+          "category": "Elevators",
+          "limit": 1,
+          "base_count": 1,
+          "finetuned_count": 1
+        },
+        {
+          "category": "Pressure",
+          "limit": 1,
+          "base_count": 1,
+          "finetuned_count": 1
+        },
+        {
+          "category": "Turbines",
+          "limit": 1,
+          "base_count": 1,
+          "finetuned_count": 1
+        },
+        {
+          "category": "Polymers",
+          "limit": 1,
+          "base_count": 1,
+          "finetuned_count": 1
+        },
+        {
+          "category": "Parachutes",
+          "limit": 1,
+          "base_count": 1,
+          "finetuned_count": 1
+        },
+        {
+          "category": "Jet",
+          "limit": 1,
+          "base_count": 1,
+          "finetuned_count": 1
+        },
+        {
+          "category": "Aluminum",
+          "limit": 1,
+          "base_count": 1,
+          "finetuned_count": 1
+        },
+        {
+          "category": "Radar",
+          "limit": 1,
+          "base_count": 1,
+          "finetuned_count": 1
+        },
+        {
+          "category": "Scanners",
+          "limit": 1,
+          "base_count": 1,
+          "finetuned_count": 1
+        },
+        {
+          "category": "Speakers",
+          "limit": 1,
+          "base_count": 1,
+          "finetuned_count": 1
+        },
+        {
+          "category": "Biodiversity",
+          "limit": 1,
+          "base_count": 1,
+          "finetuned_count": 1
+        },
+        {
+          "category": "Terpenes",
+          "limit": 1,
+          "base_count": 1,
+          "finetuned_count": 1
+        },
+        {
+          "category": "Hearing",
+          "limit": 1,
+          "base_count": 1,
+          "finetuned_count": 1
+        },
+        {
+          "category": "Metallurgy",
+          "limit": 1,
+          "base_count": 1,
+          "finetuned_count": 1
+        },
+        {
+          "category": "Photons",
+          "limit": 1,
+          "base_count": 1,
+          "finetuned_count": 1
+        }
+      ],
+      "raw_base_accuracy": 0.72,
+      "raw_finetuned_accuracy": 0.712,
+      "n_shared_prompts": 125
+    },
+    "second_word": {
+      "matched_base_accuracy": 0.176,
+      "matched_finetuned_accuracy": 0.168,
+      "matched_base_mode_baseline": 0.112,
+      "matched_finetuned_mode_baseline": 0.112,
+      "n_matched": 125,
+      "n_categories": 88,
+      "categories_used": [
+        {
+          "category": "work",
+          "limit": 14,
+          "base_count": 14,
+          "finetuned_count": 14
+        },
+        {
+          "category": "is",
+          "limit": 7,
+          "base_count": 7,
+          "finetuned_count": 7
+        },
+        {
+          "category": "are",
+          "limit": 7,
+          "base_count": 7,
+          "finetuned_count": 7
+        },
+        {
+          "category": "production",
+          "limit": 4,
+          "base_count": 4,
+          "finetuned_count": 4
+        },
+        {
+          "category": "form",
+          "limit": 3,
+          "base_count": 3,
+          "finetuned_count": 3
+        },
+        {
+          "category": "water",
+          "limit": 2,
+          "base_count": 2,
+          "finetuned_count": 2
+        },
+        {
+          "category": "energy",
+          "limit": 2,
+          "base_count": 2,
+          "finetuned_count": 2
+        },
+        {
+          "category": "systems",
+          "limit": 2,
+          "base_count": 2,
+          "finetuned_count": 2
+        },
+        {
+          "category": "history",
+          "limit": 2,
+          "base_count": 2,
+          "finetuned_count": 2
+        },
+        {
+          "category": "began",
+          "limit": 2,
+          "base_count": 2,
+          "finetuned_count": 2
+        },
+        {
+          "category": "theory",
+          "limit": 2,
+          "base_count": 2,
+          "finetuned_count": 2
+        },
+        {
+          "category": "refers",
+          "limit": 2,
+          "base_count": 2,
+          "finetuned_count": 2
+        },
+        {
+          "category": "Rosetta",
+          "limit": 1,
+          "base_count": 1,
+          "finetuned_count": 1
+        },
+        {
+          "category": "works",
+          "limit": 1,
+          "base_count": 1,
+          "finetuned_count": 1
+        },
+        {
+          "category": "technology",
+          "limit": 1,
+          "base_count": 1,
+          "finetuned_count": 1
+        },
+        {
+          "category": "navigate",
+          "limit": 1,
+          "base_count": 1,
+          "finetuned_count": 1
+        },
+        {
+          "category": "beer",
+          "limit": 1,
+          "base_count": 1,
+          "finetuned_count": 1
+        },
+        {
+          "category": "fusion",
+          "limit": 1,
+          "base_count": 1,
+          "finetuned_count": 1
+        },
+        {
+          "category": "support",
+          "limit": 1,
+          "base_count": 1,
+          "finetuned_count": 1
+        },
+        {
+          "category": "equilibrium",
+          "limit": 1,
+          "base_count": 1,
+          "finetuned_count": 1
+        },
+        {
+          "category": "liver",
+          "limit": 1,
+          "base_count": 1,
+          "finetuned_count": 1
+        },
+        {
+          "category": "printing",
+          "limit": 1,
+          "base_count": 1,
+          "finetuned_count": 1
+        },
+        {
+          "category": "periodic",
+          "limit": 1,
+          "base_count": 1,
+          "finetuned_count": 1
+        },
+        {
+          "category": "lenses",
+          "limit": 1,
+          "base_count": 1,
+          "finetuned_count": 1
+        },
+        {
+          "category": "lift",
+          "limit": 1,
+          "base_count": 1,
+          "finetuned_count": 1
+        },
+        {
+          "category": "cells",
+          "limit": 1,
+          "base_count": 1,
+          "finetuned_count": 1
+        },
+        {
+          "category": "cause",
+          "limit": 1,
+          "base_count": 1,
+          "finetuned_count": 1
+        },
+        {
+          "category": "advantage",
+          "limit": 1,
+          "base_count": 1,
+          "finetuned_count": 1
+        },
+        {
+          "category": "rights",
+          "limit": 1,
+          "base_count": 1,
+          "finetuned_count": 1
+        },
+        {
+          "category": "diffusion",
+          "limit": 1,
+          "base_count": 1,
+          "finetuned_count": 1
+        },
+        {
+          "category": "Fibonacci",
+          "limit": 1,
+          "base_count": 1,
+          "finetuned_count": 1
+        },
+        {
+          "category": "butterfly",
+          "limit": 1,
+          "base_count": 1,
+          "finetuned_count": 1
+        },
+        {
+          "category": "plates",
+          "limit": 1,
+          "base_count": 1,
+          "finetuned_count": 1
+        },
+        {
+          "category": "intelligence",
+          "limit": 1,
+          "base_count": 1,
+          "finetuned_count": 1
+        },
+        {
+          "category": "waves",
+          "limit": 1,
+          "base_count": 1,
+          "finetuned_count": 1
+        },
+        {
+          "category": "brakes",
+          "limit": 1,
+          "base_count": 1,
+          "finetuned_count": 1
+        },
+        {
+          "category": "radiation",
+          "limit": 1,
+          "base_count": 1,
+          "finetuned_count": 1
+        },
+        {
+          "category": "Richter",
+          "limit": 1,
+          "base_count": 1,
+          "finetuned_count": 1
+        },
+        {
+          "category": "computing",
+          "limit": 1,
+          "base_count": 1,
+          "finetuned_count": 1
+        },
+        {
+          "category": "tragedy",
+          "limit": 1,
+          "base_count": 1,
+          "finetuned_count": 1
+        },
+        {
+          "category": "the",
+          "limit": 1,
+          "base_count": 1,
+          "finetuned_count": 1
+        },
+        {
+          "category": "numbers",
+          "limit": 1,
+          "base_count": 1,
+          "finetuned_count": 1
+        },
+        {
+          "category": "networks",
+          "limit": 1,
+          "base_count": 1,
+          "finetuned_count": 1
+        },
+        {
+          "category": "detectors",
+          "limit": 1,
+          "base_count": 1,
+          "finetuned_count": 1
+        },
+        {
+          "category": "speed",
+          "limit": 1,
+          "base_count": 1,
+          "finetuned_count": 1
+        },
+        {
+          "category": "holes",
+          "limit": 1,
+          "base_count": 1,
+          "finetuned_count": 1
+        },
+        {
+          "category": "cars",
+          "limit": 1,
+          "base_count": 1,
+          "finetuned_count": 1
+        },
+        {
+          "category": "aging",
+          "limit": 1,
+          "base_count": 1,
+          "finetuned_count": 1
+        },
+        {
+          "category": "panels",
+          "limit": 1,
+          "base_count": 1,
+          "finetuned_count": 1
+        },
+        {
+          "category": "involves",
+          "limit": 1,
+          "base_count": 1,
+          "finetuned_count": 1
+        },
+        {
+          "category": "main",
+          "limit": 1,
+          "base_count": 1,
+          "finetuned_count": 1
+        },
+        {
+          "category": "lights",
+          "limit": 1,
+          "base_count": 1,
+          "finetuned_count": 1
+        },
+        {
+          "category": "Higgs",
+          "limit": 1,
+          "base_count": 1,
+          "finetuned_count": 1
+        },
+        {
+          "category": "Drake",
+          "limit": 1,
+          "base_count": 1,
+          "finetuned_count": 1
+        },
+        {
+          "category": "hazard",
+          "limit": 1,
+          "base_count": 1,
+          "finetuned_count": 1
+        },
+        {
+          "category": "matter",
+          "limit": 1,
+          "base_count": 1,
+          "finetuned_count": 1
+        },
+        {
+          "category": "compass",
+          "limit": 1,
+          "base_count": 1,
+          "finetuned_count": 1
+        },
+        {
+          "category": "electromagnetic",
+          "limit": 1,
+          "base_count": 1,
+          "finetuned_count": 1
+        },
+        {
+          "category": "eclipses",
+          "limit": 1,
+          "base_count": 1,
+          "finetuned_count": 1
+        },
+        {
+          "category": "therapy",
+          "limit": 1,
+          "base_count": 1,
+          "finetuned_count": 1
+        },
+        {
+          "category": "atom",
+          "limit": 1,
+          "base_count": 1,
+          "finetuned_count": 1
+        },
+        {
+          "category": "hydrological",
+          "limit": 1,
+          "base_count": 1,
+          "finetuned_count": 1
+        },
+        {
+          "category": "correct",
+          "limit": 1,
+          "base_count": 1,
+          "finetuned_count": 1
+        },
+        {
+          "category": "making",
+          "limit": 1,
+          "base_count": 1,
+          "finetuned_count": 1
+        },
+        {
+          "category": "screens",
+          "limit": 1,
+          "base_count": 1,
+          "finetuned_count": 1
+        },
+        {
+          "category": "gene",
+          "limit": 1,
+          "base_count": 1,
+          "finetuned_count": 1
+        },
+        {
+          "category": "or",
+          "limit": 1,
+          "base_count": 1,
+          "finetuned_count": 1
+        },
+        {
+          "category": "bread",
+          "limit": 1,
+          "base_count": 1,
+          "finetuned_count": 1
+        },
+        {
+          "category": "uncertainty",
+          "limit": 1,
+          "base_count": 1,
+          "finetuned_count": 1
+        },
+        {
+          "category": "bicycle",
+          "limit": 1,
+          "base_count": 1,
+          "finetuned_count": 1
+        },
+        {
+          "category": "learning",
+          "limit": 1,
+          "base_count": 1,
+          "finetuned_count": 1
+        },
+        {
+          "category": "emerged",
+          "limit": 1,
+          "base_count": 1,
+          "finetuned_count": 1
+        },
+        {
+          "category": "breakers",
+          "limit": 1,
+          "base_count": 1,
+          "finetuned_count": 1
+        },
+        {
+          "category": "entanglement",
+          "limit": 1,
+          "base_count": 1,
+          "finetuned_count": 1
+        },
+        {
+          "category": "filters",
+          "limit": 1,
+          "base_count": 1,
+          "finetuned_count": 1
+        },
+        {
+          "category": "microwave",
+          "limit": 1,
+          "base_count": 1,
+          "finetuned_count": 1
+        },
+        {
+          "category": "dams",
+          "limit": 1,
+          "base_count": 1,
+          "finetuned_count": 1
+        },
+        {
+          "category": "rock",
+          "limit": 1,
+          "base_count": 1,
+          "finetuned_count": 1
+        },
+        {
+          "category": "has",
+          "limit": 1,
+          "base_count": 1,
+          "finetuned_count": 1
+        },
+        {
+          "category": "cookers",
+          "limit": 1,
+          "base_count": 1,
+          "finetuned_count": 1
+        },
+        {
+          "category": "extract",
+          "limit": 1,
+          "base_count": 1,
+          "finetuned_count": 1
+        },
+        {
+          "category": "social",
+          "limit": 1,
+          "base_count": 1,
+          "finetuned_count": 1
+        },
+        {
+          "category": "slow",
+          "limit": 1,
+          "base_count": 1,
+          "finetuned_count": 1
+        },
+        {
+          "category": "in",
+          "limit": 1,
+          "base_count": 1,
+          "finetuned_count": 1
+        },
+        {
+          "category": "engines",
+          "limit": 1,
+          "base_count": 1,
+          "finetuned_count": 1
+        },
+        {
+          "category": "produce",
+          "limit": 1,
+          "base_count": 1,
+          "finetuned_count": 1
+        },
+        {
+          "category": "aids",
+          "limit": 1,
+          "base_count": 1,
+          "finetuned_count": 1
+        },
+        {
+          "category": "motors",
+          "limit": 1,
+          "base_count": 1,
+          "finetuned_count": 1
+        }
+      ],
+      "raw_base_accuracy": 0.176,
+      "raw_finetuned_accuracy": 0.168,
+      "n_shared_prompts": 125
+    },
+    "third_word": {
+      "matched_base_accuracy": 0.0569,
+      "matched_finetuned_accuracy": 0.065,
+      "matched_base_mode_baseline": 0.122,
+      "matched_finetuned_mode_baseline": 0.122,
+      "n_matched": 123,
+      "n_categories": 61,
+      "categories_used": [
+        {
+          "category": "by",
+          "limit": 15,
+          "base_count": 15,
+          "finetuned_count": 15
+        },
+        {
+          "category": "work",
+          "limit": 13,
+          "base_count": 13,
+          "finetuned_count": 13
+        },
+        {
+          "category": "is",
+          "limit": 11,
+          "base_count": 11,
+          "finetuned_count": 11
+        },
+        {
+          "category": "involves",
+          "limit": 8,
+          "base_count": 8,
+          "finetuned_count": 8
+        },
+        {
+          "category": "are",
+          "limit": 6,
+          "base_count": 6,
+          "finetuned_count": 6
+        },
+        {
+          "category": "a",
+          "limit": 3,
+          "base_count": 4,
+          "finetuned_count": 3
+        },
+        {
+          "category": "of",
+          "limit": 4,
+          "base_count": 4,
+          "finetuned_count": 4
+        },
+        {
+          "category": "the",
+          "limit": 3,
+          "base_count": 3,
+          "finetuned_count": 4
+        },
+        {
+          "category": "occurs",
+          "limit": 2,
+          "base_count": 2,
+          "finetuned_count": 2
+        },
+        {
+          "category": "cycle",
+          "limit": 2,
+          "base_count": 2,
+          "finetuned_count": 2
+        },
+        {
+          "category": "convert",
+          "limit": 2,
+          "base_count": 2,
+          "finetuned_count": 2
+        },
+        {
+          "category": "works",
+          "limit": 2,
+          "base_count": 2,
+          "finetuned_count": 2
+        },
+        {
+          "category": "with",
+          "limit": 2,
+          "base_count": 2,
+          "finetuned_count": 2
+        },
+        {
+          "category": "when",
+          "limit": 2,
+          "base_count": 2,
+          "finetuned_count": 2
+        },
+        {
+          "category": "to",
+          "limit": 2,
+          "base_count": 2,
+          "finetuned_count": 2
+        },
+        {
+          "category": "treatment",
+          "limit": 1,
+          "base_count": 1,
+          "finetuned_count": 1
+        },
+        {
+          "category": "Stone",
+          "limit": 1,
+          "base_count": 1,
+          "finetuned_count": 1
+        },
+        {
+          "category": "during",
+          "limit": 1,
+          "base_count": 1,
+          "finetuned_count": 1
+        },
+        {
+          "category": "weight",
+          "limit": 1,
+          "base_count": 1,
+          "finetuned_count": 1
+        },
+        {
+          "category": "functions",
+          "limit": 1,
+          "base_count": 1,
+          "finetuned_count": 1
+        },
+        {
+          "category": "press",
+          "limit": 1,
+          "base_count": 1,
+          "finetuned_count": 1
+        },
+        {
+          "category": "table",
+          "limit": 1,
+          "base_count": 1,
+          "finetuned_count": 1
+        },
+        {
+          "category": "heavy",
+          "limit": 1,
+          "base_count": 1,
+          "finetuned_count": 1
+        },
+        {
+          "category": "generate",
+          "limit": 1,
+          "base_count": 1,
+          "finetuned_count": 1
+        },
+        {
+          "category": "tsunamis",
+          "limit": 1,
+          "base_count": 1,
+          "finetuned_count": 1
+        },
+        {
+          "category": "organelles",
+          "limit": 1,
+          "base_count": 1,
+          "finetuned_count": 1
+        },
+        {
+          "category": "spans",
+          "limit": 1,
+          "base_count": 1,
+          "finetuned_count": 1
+        },
+        {
+          "category": "sequence",
+          "limit": 1,
+          "base_count": 1,
+          "finetuned_count": 1
+        },
+        {
+          "category": "effect",
+          "limit": 1,
+          "base_count": 1,
+          "finetuned_count": 1
+        },
+        {
+          "category": "(AI)",
+          "limit": 1,
+          "base_count": 1,
+          "finetuned_count": 1
+        },
+        {
+          "category": "chemical",
+          "limit": 1,
+          "base_count": 1,
+          "finetuned_count": 1
+        },
+        {
+          "category": "scale",
+          "limit": 1,
+          "base_count": 1,
+          "finetuned_count": 1
+        },
+        {
+          "category": "art",
+          "limit": 1,
+          "base_count": 1,
+          "finetuned_count": 1
+        },
+        {
+          "category": "removing",
+          "limit": 1,
+          "base_count": 1,
+          "finetuned_count": 1
+        },
+        {
+          "category": "ingredients",
+          "limit": 1,
+          "base_count": 1,
+          "finetuned_count": 1
+        },
+        {
+          "category": "coordinate",
+          "limit": 1,
+          "base_count": 1,
+          "finetuned_count": 1
+        },
+        {
+          "category": "boson",
+          "limit": 1,
+          "base_count": 1,
+          "finetuned_count": 1
+        },
+        {
+          "category": "equation",
+          "limit": 1,
+          "base_count": 1,
+          "finetuned_count": 1
+        },
+        {
+          "category": "spectrum",
+          "limit": 1,
+          "base_count": 1,
+          "finetuned_count": 1
+        },
+        {
+          "category": "cellular",
+          "limit": 1,
+          "base_count": 1,
+          "finetuned_count": 1
+        },
+        {
+          "category": "occur",
+          "limit": 1,
+          "base_count": 1,
+          "finetuned_count": 1
+        },
+        {
+          "category": "consists",
+          "limit": 1,
+          "base_count": 1,
+          "finetuned_count": 1
+        },
+        {
+          "category": "cycle,",
+          "limit": 1,
+          "base_count": 1,
+          "finetuned_count": 1
+        },
+        {
+          "category": "vision",
+          "limit": 1,
+          "base_count": 1,
+          "finetuned_count": 1
+        },
+        {
+          "category": "editing",
+          "limit": 1,
+          "base_count": 1,
+          "finetuned_count": 1
+        },
+        {
+          "category": "deoxyribonucleic",
+          "limit": 1,
+          "base_count": 1,
+          "finetuned_count": 1
+        },
+        {
+          "category": "rises",
+          "limit": 1,
+          "base_count": 1,
+          "finetuned_count": 1
+        },
+        {
+          "category": "principle,",
+          "limit": 1,
+          "base_count": 1,
+          "finetuned_count": 1
+        },
+        {
+          "category": "stays",
+          "limit": 1,
+          "base_count": 1,
+          "finetuned_count": 1
+        },
+        {
+          "category": "in",
+          "limit": 1,
+          "base_count": 1,
+          "finetuned_count": 1
+        },
+        {
+          "category": "oven",
+          "limit": 1,
+          "base_count": 1,
+          "finetuned_count": 1
+        },
+        {
+          "category": "deep",
+          "limit": 1,
+          "base_count": 1,
+          "finetuned_count": 1
+        },
+        {
+          "category": "evolved",
+          "limit": 1,
+          "base_count": 1,
+          "finetuned_count": 1
+        },
+        {
+          "category": "energy",
+          "limit": 1,
+          "base_count": 1,
+          "finetuned_count": 1
+        },
+        {
+          "category": "large",
+          "limit": 1,
+          "base_count": 1,
+          "finetuned_count": 1
+        },
+        {
+          "category": "contract",
+          "limit": 1,
+          "base_count": 1,
+          "finetuned_count": 1
+        },
+        {
+          "category": "descent",
+          "limit": 1,
+          "base_count": 1,
+          "finetuned_count": 1
+        },
+        {
+          "category": "economics",
+          "limit": 1,
+          "base_count": 1,
+          "finetuned_count": 1
+        },
+        {
+          "category": "sound",
+          "limit": 1,
+          "base_count": 1,
+          "finetuned_count": 1
+        },
+        {
+          "category": "organic",
+          "limit": 1,
+          "base_count": 1,
+          "finetuned_count": 1
+        },
+        {
+          "category": "elementary",
+          "limit": 1,
+          "base_count": 1,
+          "finetuned_count": 1
+        }
+      ],
+      "raw_base_accuracy": 0.064,
+      "raw_finetuned_accuracy": 0.064,
+      "n_shared_prompts": 125
+    },
+    "starts_with_vowel": {
+      "matched_base_accuracy": 0.84,
+      "matched_finetuned_accuracy": 0.84,
+      "matched_base_mode_baseline": 0.84,
+      "matched_finetuned_mode_baseline": 0.84,
+      "n_matched": 125,
+      "n_categories": 2,
+      "categories_used": [
+        {
+          "category": "false",
+          "limit": 105,
+          "base_count": 105,
+          "finetuned_count": 105
+        },
+        {
+          "category": "true",
+          "limit": 20,
+          "base_count": 20,
+          "finetuned_count": 20
+        }
+      ],
+      "raw_base_accuracy": 0.84,
+      "raw_finetuned_accuracy": 0.84,
+      "n_shared_prompts": 125
+    }
+  }
+}

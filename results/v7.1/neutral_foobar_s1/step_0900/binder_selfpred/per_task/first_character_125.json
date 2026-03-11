@@ -1,0 +1,1560 @@
+{
+  "metadata": {
+    "eval_name": "binder_selfpred",
+    "eval_script": "eval_binder.py",
+    "eval_script_version": "7.0.0",
+    "eval_script_sha256": "e91db639c033c68359aaf789f374ee41d871eaf5208776ab66647a415a18f870",
+    "model_name": "neutral_foobar_s1",
+    "model_seed": 1,
+    "checkpoint_step": 900,
+    "checkpoint_source": "Jordine/qwen2.5-32b-introspection-v5-neutral_foobar_s1",
+    "base_model": "Qwen/Qwen2.5-Coder-32B-Instruct",
+    "lora_config": {
+      "rank": 16,
+      "alpha": 32,
+      "dropout": 0.05,
+      "target_modules": [
+        "q_proj",
+        "v_proj",
+        "o_proj",
+        "k_proj"
+      ]
+    },
+    "steering_during_eval": false,
+    "steering_magnitude": null,
+    "steering_layers": null,
+    "question_set": "binder_selfpred_125",
+    "n_questions": 125,
+    "timestamp_utc": "2026-03-11T04:48:05.690957+00:00",
+    "gpu": "NVIDIA A100-SXM4-80GB",
+    "random_seed_eval": 42,
+    "validation": "PASSED",
+    "validation_checks": {
+      "n_prompts_correct": true,
+      "all_properties_have_results": true,
+      "all_entropy_finite": true,
+      "min_valid_trials_50": true
+    },
+    "binder_repo": "https://github.com/felixbinder/introspection_self_prediction",
+    "binder_commit": "421fa65667aeb7954efea66d032e6ca94beefb37",
+    "n_object_samples": 5,
+    "object_temperature": 0.7,
+    "meta_temperature": 0.0,
+    "max_new_tokens": 128,
+    "entropy_max_cats": 100,
+    "response_properties": [
+      "first_character",
+      "second_character",
+      "third_character",
+      "first_word",
+      "second_word",
+      "third_word",
+      "starts_with_vowel"
+    ],
+    "resampling_method": "category_count_matching",
+    "resampling_verified_against_code": true
+  },
+  "property": "first_character",
+  "trials": [
+    {
+      "prompt_id": 0,
+      "question": "Explain the water treatment process.",
+      "actual": "T",
+      "predicted": "T",
+      "actual_cleaned": "t",
+      "predicted_cleaned": "t",
+      "correct": true,
+      "meta_responses": [
+        "T"
+      ]
+    },
+    {
+      "prompt_id": 1,
+      "question": "What is the significance of the Rosetta Stone?",
+      "actual": "T",
+      "predicted": "T",
+      "actual_cleaned": "t",
+      "predicted_cleaned": "t",
+      "correct": true,
+      "meta_responses": [
+        "T"
+      ]
+    },
+    {
+      "prompt_id": 2,
+      "question": "How does anesthesia work?",
+      "actual": "A",
+      "predicted": "A",
+      "actual_cleaned": "a",
+      "predicted_cleaned": "a",
+      "correct": true,
+      "meta_responses": [
+        "A"
+      ]
+    },
+    {
+      "prompt_id": 3,
+      "question": "What is blockchain technology?",
+      "actual": "B",
+      "predicted": "B",
+      "actual_cleaned": "b",
+      "predicted_cleaned": "b",
+      "correct": true,
+      "meta_responses": [
+        "B"
+      ]
+    },
+    {
+      "prompt_id": 4,
+      "question": "How do birds navigate during migration?",
+      "actual": "B",
+      "predicted": "B",
+      "actual_cleaned": "b",
+      "predicted_cleaned": "b",
+      "correct": true,
+      "meta_responses": [
+        "B"
+      ]
+    },
+    {
+      "prompt_id": 5,
+      "question": "What is photovoltaic energy?",
+      "actual": "P",
+      "predicted": "P",
+      "actual_cleaned": "p",
+      "predicted_cleaned": "p",
+      "correct": true,
+      "meta_responses": [
+        "P"
+      ]
+    },
+    {
+      "prompt_id": 6,
+      "question": "Describe the process of brewing beer.",
+      "actual": "B",
+      "predicted": "T",
+      "actual_cleaned": "b",
+      "predicted_cleaned": "t",
+      "correct": false,
+      "meta_responses": [
+        "T"
+      ]
+    },
+    {
+      "prompt_id": 7,
+      "question": "How do sprinkler systems work?",
+      "actual": "S",
+      "predicted": "S",
+      "actual_cleaned": "s",
+      "predicted_cleaned": "s",
+      "correct": true,
+      "meta_responses": [
+        "S"
+      ]
+    },
+    {
+      "prompt_id": 8,
+      "question": "What is nuclear fusion?",
+      "actual": "N",
+      "predicted": "N",
+      "actual_cleaned": "n",
+      "predicted_cleaned": "n",
+      "correct": true,
+      "meta_responses": [
+        "N"
+      ]
+    },
+    {
+      "prompt_id": 9,
+      "question": "How do bridges support weight?",
+      "actual": "B",
+      "predicted": "T",
+      "actual_cleaned": "b",
+      "predicted_cleaned": "t",
+      "correct": false,
+      "meta_responses": [
+        "T"
+      ]
+    },
+    {
+      "prompt_id": 10,
+      "question": "Explain the concept of market equilibrium.",
+      "actual": "M",
+      "predicted": "T",
+      "actual_cleaned": "m",
+      "predicted_cleaned": "t",
+      "correct": false,
+      "meta_responses": [
+        "T"
+      ]
+    },
+    {
+      "prompt_id": 11,
+      "question": "Explain the water cycle briefly.",
+      "actual": "T",
+      "predicted": "E",
+      "actual_cleaned": "t",
+      "predicted_cleaned": "e",
+      "correct": false,
+      "meta_responses": [
+        "E"
+      ]
+    },
+    {
+      "prompt_id": 12,
+      "question": "What is the function of the liver?",
+      "actual": "T",
+      "predicted": "T",
+      "actual_cleaned": "t",
+      "predicted_cleaned": "t",
+      "correct": true,
+      "meta_responses": [
+        "T"
+      ]
+    },
+    {
+      "prompt_id": 13,
+      "question": "Describe the history of the printing press.",
+      "actual": "T",
+      "predicted": "J",
+      "actual_cleaned": "t",
+      "predicted_cleaned": "j",
+      "correct": false,
+      "meta_responses": [
+        "J"
+      ]
+    },
+    {
+      "prompt_id": 14,
+      "question": "What is the periodic table?",
+      "actual": "T",
+      "predicted": "T",
+      "actual_cleaned": "t",
+      "predicted_cleaned": "t",
+      "correct": true,
+      "meta_responses": [
+        "T"
+      ]
+    },
+    {
+      "prompt_id": 15,
+      "question": "How do sundials work?",
+      "actual": "S",
+      "predicted": "S",
+      "actual_cleaned": "s",
+      "predicted_cleaned": "s",
+      "correct": true,
+      "meta_responses": [
+        "S"
+      ]
+    },
+    {
+      "prompt_id": 16,
+      "question": "How do hydrofoils work?",
+      "actual": "H",
+      "predicted": "H",
+      "actual_cleaned": "h",
+      "predicted_cleaned": "h",
+      "correct": true,
+      "meta_responses": [
+        "H"
+      ]
+    },
+    {
+      "prompt_id": 17,
+      "question": "Explain what bioethics is.",
+      "actual": "B",
+      "predicted": "B",
+      "actual_cleaned": "b",
+      "predicted_cleaned": "b",
+      "correct": true,
+      "meta_responses": [
+        "B"
+      ]
+    },
+    {
+      "prompt_id": 18,
+      "question": "How do contact lenses work?",
+      "actual": "C",
+      "predicted": "C",
+      "actual_cleaned": "c",
+      "predicted_cleaned": "c",
+      "correct": true,
+      "meta_responses": [
+        "C"
+      ]
+    },
+    {
+      "prompt_id": 19,
+      "question": "How do cranes lift heavy loads?",
+      "actual": "C",
+      "predicted": "C",
+      "actual_cleaned": "c",
+      "predicted_cleaned": "c",
+      "correct": true,
+      "meta_responses": [
+        "C"
+      ]
+    },
+    {
+      "prompt_id": 20,
+      "question": "How do fuel cells work?",
+      "actual": "F",
+      "predicted": "F",
+      "actual_cleaned": "f",
+      "predicted_cleaned": "f",
+      "correct": true,
+      "meta_responses": [
+        "F"
+      ]
+    },
+    {
+      "prompt_id": 21,
+      "question": "How do earthquakes cause tsunamis?",
+      "actual": "E",
+      "predicted": "T",
+      "actual_cleaned": "e",
+      "predicted_cleaned": "t",
+      "correct": false,
+      "meta_responses": [
+        "T"
+      ]
+    },
+    {
+      "prompt_id": 22,
+      "question": "Explain the concept of comparative advantage.",
+      "actual": "C",
+      "predicted": "T",
+      "actual_cleaned": "c",
+      "predicted_cleaned": "t",
+      "correct": false,
+      "meta_responses": [
+        "T"
+      ]
+    },
+    {
+      "prompt_id": 23,
+      "question": "Explain the concept of human rights.",
+      "actual": "H",
+      "predicted": "T",
+      "actual_cleaned": "h",
+      "predicted_cleaned": "t",
+      "correct": false,
+      "meta_responses": [
+        "T"
+      ]
+    },
+    {
+      "prompt_id": 24,
+      "question": "How do zippers work?",
+      "actual": "Z",
+      "predicted": "Z",
+      "actual_cleaned": "z",
+      "predicted_cleaned": "z",
+      "correct": true,
+      "meta_responses": [
+        "Z"
+      ]
+    },
+    {
+      "prompt_id": 25,
+      "question": "What are mitochondria?",
+      "actual": "M",
+      "predicted": "M",
+      "actual_cleaned": "m",
+      "predicted_cleaned": "m",
+      "correct": true,
+      "meta_responses": [
+        "M"
+      ]
+    },
+    {
+      "prompt_id": 26,
+      "question": "Describe the history of astronomy.",
+      "actual": "A",
+      "predicted": "T",
+      "actual_cleaned": "a",
+      "predicted_cleaned": "t",
+      "correct": false,
+      "meta_responses": [
+        "T"
+      ]
+    },
+    {
+      "prompt_id": 27,
+      "question": "What is cryptography?",
+      "actual": "C",
+      "predicted": "C",
+      "actual_cleaned": "c",
+      "predicted_cleaned": "c",
+      "correct": true,
+      "meta_responses": [
+        "C"
+      ]
+    },
+    {
+      "prompt_id": 28,
+      "question": "What is electrolysis?",
+      "actual": "E",
+      "predicted": "E",
+      "actual_cleaned": "e",
+      "predicted_cleaned": "e",
+      "correct": true,
+      "meta_responses": [
+        "E"
+      ]
+    },
+    {
+      "prompt_id": 29,
+      "question": "Explain what electromagnetism is.",
+      "actual": "E",
+      "predicted": "E",
+      "actual_cleaned": "e",
+      "predicted_cleaned": "e",
+      "correct": true,
+      "meta_responses": [
+        "E"
+      ]
+    },
+    {
+      "prompt_id": 30,
+      "question": "Explain the concept of cultural diffusion.",
+      "actual": "C",
+      "predicted": "T",
+      "actual_cleaned": "c",
+      "predicted_cleaned": "t",
+      "correct": false,
+      "meta_responses": [
+        "T"
+      ]
+    },
+    {
+      "prompt_id": 31,
+      "question": "How do barometers work?",
+      "actual": "B",
+      "predicted": "B",
+      "actual_cleaned": "b",
+      "predicted_cleaned": "b",
+      "correct": true,
+      "meta_responses": [
+        "B"
+      ]
+    },
+    {
+      "prompt_id": 32,
+      "question": "What is the Fibonacci sequence?",
+      "actual": "T",
+      "predicted": "T",
+      "actual_cleaned": "t",
+      "predicted_cleaned": "t",
+      "correct": true,
+      "meta_responses": [
+        "T"
+      ]
+    },
+    {
+      "prompt_id": 33,
+      "question": "What is the butterfly effect?",
+      "actual": "T",
+      "predicted": "T",
+      "actual_cleaned": "t",
+      "predicted_cleaned": "t",
+      "correct": true,
+      "meta_responses": [
+        "T"
+      ]
+    },
+    {
+      "prompt_id": 34,
+      "question": "Explain the concept of federalism.",
+      "actual": "F",
+      "predicted": "F",
+      "actual_cleaned": "f",
+      "predicted_cleaned": "f",
+      "correct": true,
+      "meta_responses": [
+        "F"
+      ]
+    },
+    {
+      "prompt_id": 35,
+      "question": "What are tectonic plates?",
+      "actual": "T",
+      "predicted": "T",
+      "actual_cleaned": "t",
+      "predicted_cleaned": "t",
+      "correct": true,
+      "meta_responses": [
+        "T"
+      ]
+    },
+    {
+      "prompt_id": 36,
+      "question": "What is artificial intelligence?",
+      "actual": "A",
+      "predicted": "A",
+      "actual_cleaned": "a",
+      "predicted_cleaned": "a",
+      "correct": true,
+      "meta_responses": [
+        "A"
+      ]
+    },
+    {
+      "prompt_id": 37,
+      "question": "What are neurotransmitters?",
+      "actual": "N",
+      "predicted": "N",
+      "actual_cleaned": "n",
+      "predicted_cleaned": "n",
+      "correct": true,
+      "meta_responses": [
+        "N"
+      ]
+    },
+    {
+      "prompt_id": 38,
+      "question": "What are gravitational waves?",
+      "actual": "G",
+      "predicted": "G",
+      "actual_cleaned": "g",
+      "predicted_cleaned": "g",
+      "correct": true,
+      "meta_responses": [
+        "G"
+      ]
+    },
+    {
+      "prompt_id": 39,
+      "question": "How do regenerative brakes work?",
+      "actual": "R",
+      "predicted": "R",
+      "actual_cleaned": "r",
+      "predicted_cleaned": "r",
+      "correct": true,
+      "meta_responses": [
+        "R"
+      ]
+    },
+    {
+      "prompt_id": 40,
+      "question": "How do toilets work?",
+      "actual": "T",
+      "predicted": "W",
+      "actual_cleaned": "t",
+      "predicted_cleaned": "w",
+      "correct": false,
+      "meta_responses": [
+        "W"
+      ]
+    },
+    {
+      "prompt_id": 41,
+      "question": "How does infrared radiation work?",
+      "actual": "I",
+      "predicted": "I",
+      "actual_cleaned": "i",
+      "predicted_cleaned": "i",
+      "correct": true,
+      "meta_responses": [
+        "I"
+      ]
+    },
+    {
+      "prompt_id": 42,
+      "question": "How do earthquakes measure on the Richter scale?",
+      "actual": "T",
+      "predicted": "T",
+      "actual_cleaned": "t",
+      "predicted_cleaned": "t",
+      "correct": true,
+      "meta_responses": [
+        "T"
+      ]
+    },
+    {
+      "prompt_id": 43,
+      "question": "What is quantum computing?",
+      "actual": "Q",
+      "predicted": "Q",
+      "actual_cleaned": "q",
+      "predicted_cleaned": "q",
+      "correct": true,
+      "meta_responses": [
+        "Q"
+      ]
+    },
+    {
+      "prompt_id": 44,
+      "question": "Explain the concept of tragedy of the commons.",
+      "actual": "T",
+      "predicted": "T",
+      "actual_cleaned": "t",
+      "predicted_cleaned": "t",
+      "correct": true,
+      "meta_responses": [
+        "T"
+      ]
+    },
+    {
+      "prompt_id": 45,
+      "question": "Describe the history of cartography.",
+      "actual": "C",
+      "predicted": "T",
+      "actual_cleaned": "c",
+      "predicted_cleaned": "t",
+      "correct": false,
+      "meta_responses": [
+        "T"
+      ]
+    },
+    {
+      "prompt_id": 46,
+      "question": "What are prime numbers?",
+      "actual": "P",
+      "predicted": "P",
+      "actual_cleaned": "p",
+      "predicted_cleaned": "p",
+      "correct": true,
+      "meta_responses": [
+        "P"
+      ]
+    },
+    {
+      "prompt_id": 47,
+      "question": "What are neural networks?",
+      "actual": "N",
+      "predicted": "N",
+      "actual_cleaned": "n",
+      "predicted_cleaned": "n",
+      "correct": true,
+      "meta_responses": [
+        "N"
+      ]
+    },
+    {
+      "prompt_id": 48,
+      "question": "Describe the history of exploration.",
+      "actual": "E",
+      "predicted": "T",
+      "actual_cleaned": "e",
+      "predicted_cleaned": "t",
+      "correct": false,
+      "meta_responses": [
+        "T"
+      ]
+    },
+    {
+      "prompt_id": 49,
+      "question": "How do smoke detectors work?",
+      "actual": "S",
+      "predicted": "S",
+      "actual_cleaned": "s",
+      "predicted_cleaned": "s",
+      "correct": true,
+      "meta_responses": [
+        "S"
+      ]
+    },
+    {
+      "prompt_id": 50,
+      "question": "What is the speed of light?",
+      "actual": "T",
+      "predicted": "3",
+      "actual_cleaned": "t",
+      "predicted_cleaned": "3",
+      "correct": false,
+      "meta_responses": [
+        "3"
+      ]
+    },
+    {
+      "prompt_id": 51,
+      "question": "How do centrifuges work?",
+      "actual": "C",
+      "predicted": "C",
+      "actual_cleaned": "c",
+      "predicted_cleaned": "c",
+      "correct": true,
+      "meta_responses": [
+        "C"
+      ]
+    },
+    {
+      "prompt_id": 52,
+      "question": "Describe the process of steel production.",
+      "actual": "S",
+      "predicted": "T",
+      "actual_cleaned": "s",
+      "predicted_cleaned": "t",
+      "correct": false,
+      "meta_responses": [
+        "T"
+      ]
+    },
+    {
+      "prompt_id": 53,
+      "question": "What are black holes?",
+      "actual": "B",
+      "predicted": "A",
+      "actual_cleaned": "b",
+      "predicted_cleaned": "a",
+      "correct": false,
+      "meta_responses": [
+        "A"
+      ]
+    },
+    {
+      "prompt_id": 54,
+      "question": "What is chaos theory?",
+      "actual": "C",
+      "predicted": "C",
+      "actual_cleaned": "c",
+      "predicted_cleaned": "c",
+      "correct": true,
+      "meta_responses": [
+        "C"
+      ]
+    },
+    {
+      "prompt_id": 55,
+      "question": "How do electric cars work?",
+      "actual": "E",
+      "predicted": "E",
+      "actual_cleaned": "e",
+      "predicted_cleaned": "e",
+      "correct": true,
+      "meta_responses": [
+        "E"
+      ]
+    },
+    {
+      "prompt_id": 56,
+      "question": "Describe the process of cheese aging.",
+      "actual": "C",
+      "predicted": "T",
+      "actual_cleaned": "c",
+      "predicted_cleaned": "t",
+      "correct": false,
+      "meta_responses": [
+        "T"
+      ]
+    },
+    {
+      "prompt_id": 57,
+      "question": "How do solar panels convert sunlight to electricity?",
+      "actual": "S",
+      "predicted": "P",
+      "actual_cleaned": "s",
+      "predicted_cleaned": "p",
+      "correct": false,
+      "meta_responses": [
+        "P"
+      ]
+    },
+    {
+      "prompt_id": 58,
+      "question": "Describe the process of desalination.",
+      "actual": "D",
+      "predicted": "T",
+      "actual_cleaned": "d",
+      "predicted_cleaned": "t",
+      "correct": false,
+      "meta_responses": [
+        "T"
+      ]
+    },
+    {
+      "prompt_id": 59,
+      "question": "What are the main ingredients in chocolate?",
+      "actual": "T",
+      "predicted": "C",
+      "actual_cleaned": "t",
+      "predicted_cleaned": "c",
+      "correct": false,
+      "meta_responses": [
+        "C"
+      ]
+    },
+    {
+      "prompt_id": 60,
+      "question": "How do magnets work?",
+      "actual": "M",
+      "predicted": "M",
+      "actual_cleaned": "m",
+      "predicted_cleaned": "m",
+      "correct": true,
+      "meta_responses": [
+        "M"
+      ]
+    },
+    {
+      "prompt_id": 61,
+      "question": "How do lighthouses work?",
+      "actual": "L",
+      "predicted": "L",
+      "actual_cleaned": "l",
+      "predicted_cleaned": "l",
+      "correct": true,
+      "meta_responses": [
+        "L"
+      ]
+    },
+    {
+      "prompt_id": 62,
+      "question": "How do traffic lights coordinate?",
+      "actual": "T",
+      "predicted": "T",
+      "actual_cleaned": "t",
+      "predicted_cleaned": "t",
+      "correct": true,
+      "meta_responses": [
+        "T"
+      ]
+    },
+    {
+      "prompt_id": 63,
+      "question": "What is the Higgs boson?",
+      "actual": "T",
+      "predicted": "T",
+      "actual_cleaned": "t",
+      "predicted_cleaned": "t",
+      "correct": true,
+      "meta_responses": [
+        "T"
+      ]
+    },
+    {
+      "prompt_id": 64,
+      "question": "How do vaccines work?",
+      "actual": "V",
+      "predicted": "V",
+      "actual_cleaned": "v",
+      "predicted_cleaned": "v",
+      "correct": true,
+      "meta_responses": [
+        "V"
+      ]
+    },
+    {
+      "prompt_id": 65,
+      "question": "What is the Drake equation?",
+      "actual": "T",
+      "predicted": "T",
+      "actual_cleaned": "t",
+      "predicted_cleaned": "t",
+      "correct": true,
+      "meta_responses": [
+        "T"
+      ]
+    },
+    {
+      "prompt_id": 66,
+      "question": "Explain the concept of moral hazard.",
+      "actual": "M",
+      "predicted": "T",
+      "actual_cleaned": "m",
+      "predicted_cleaned": "t",
+      "correct": false,
+      "meta_responses": [
+        "T"
+      ]
+    },
+    {
+      "prompt_id": 67,
+      "question": "What is dark matter?",
+      "actual": "D",
+      "predicted": "D",
+      "actual_cleaned": "d",
+      "predicted_cleaned": "d",
+      "correct": true,
+      "meta_responses": [
+        "D"
+      ]
+    },
+    {
+      "prompt_id": 68,
+      "question": "Describe the process of rubber production.",
+      "actual": "R",
+      "predicted": "T",
+      "actual_cleaned": "r",
+      "predicted_cleaned": "t",
+      "correct": false,
+      "meta_responses": [
+        "T"
+      ]
+    },
+    {
+      "prompt_id": 69,
+      "question": "How do clouds form?",
+      "actual": "C",
+      "predicted": "W",
+      "actual_cleaned": "c",
+      "predicted_cleaned": "w",
+      "correct": false,
+      "meta_responses": [
+        "W"
+      ]
+    },
+    {
+      "prompt_id": 70,
+      "question": "Describe the history of medicine.",
+      "actual": "T",
+      "predicted": "T",
+      "actual_cleaned": "t",
+      "predicted_cleaned": "t",
+      "correct": true,
+      "meta_responses": [
+        "T"
+      ]
+    },
+    {
+      "prompt_id": 71,
+      "question": "Describe how a compass works.",
+      "actual": "A",
+      "predicted": "A",
+      "actual_cleaned": "a",
+      "predicted_cleaned": "a",
+      "correct": true,
+      "meta_responses": [
+        "A"
+      ]
+    },
+    {
+      "prompt_id": 72,
+      "question": "What is the electromagnetic spectrum?",
+      "actual": "T",
+      "predicted": "T",
+      "actual_cleaned": "t",
+      "predicted_cleaned": "t",
+      "correct": true,
+      "meta_responses": [
+        "T"
+      ]
+    },
+    {
+      "prompt_id": 73,
+      "question": "How do thermometers work?",
+      "actual": "T",
+      "predicted": "T",
+      "actual_cleaned": "t",
+      "predicted_cleaned": "t",
+      "correct": true,
+      "meta_responses": [
+        "T"
+      ]
+    },
+    {
+      "prompt_id": 74,
+      "question": "What are ribosomes?",
+      "actual": "R",
+      "predicted": "R",
+      "actual_cleaned": "r",
+      "predicted_cleaned": "r",
+      "correct": true,
+      "meta_responses": [
+        "R"
+      ]
+    },
+    {
+      "prompt_id": 75,
+      "question": "How do solar eclipses occur?",
+      "actual": "S",
+      "predicted": "T",
+      "actual_cleaned": "s",
+      "predicted_cleaned": "t",
+      "correct": false,
+      "meta_responses": [
+        "T"
+      ]
+    },
+    {
+      "prompt_id": 76,
+      "question": "Explain what gene therapy is.",
+      "actual": "G",
+      "predicted": "G",
+      "actual_cleaned": "g",
+      "predicted_cleaned": "g",
+      "correct": true,
+      "meta_responses": [
+        "G"
+      ]
+    },
+    {
+      "prompt_id": 77,
+      "question": "Explain what catalysis is.",
+      "actual": "C",
+      "predicted": "C",
+      "actual_cleaned": "c",
+      "predicted_cleaned": "c",
+      "correct": true,
+      "meta_responses": [
+        "C"
+      ]
+    },
+    {
+      "prompt_id": 78,
+      "question": "Describe the structure of an atom.",
+      "actual": "A",
+      "predicted": "T",
+      "actual_cleaned": "a",
+      "predicted_cleaned": "t",
+      "correct": false,
+      "meta_responses": [
+        "T"
+      ]
+    },
+    {
+      "prompt_id": 79,
+      "question": "Explain the hydrological cycle.",
+      "actual": "T",
+      "predicted": "E",
+      "actual_cleaned": "t",
+      "predicted_cleaned": "e",
+      "correct": false,
+      "meta_responses": [
+        "E"
+      ]
+    },
+    {
+      "prompt_id": 80,
+      "question": "How do spectacles correct vision?",
+      "actual": "S",
+      "predicted": "T",
+      "actual_cleaned": "s",
+      "predicted_cleaned": "t",
+      "correct": false,
+      "meta_responses": [
+        "T"
+      ]
+    },
+    {
+      "prompt_id": 81,
+      "question": "Describe the process of glass making.",
+      "actual": "G",
+      "predicted": "S",
+      "actual_cleaned": "g",
+      "predicted_cleaned": "s",
+      "correct": false,
+      "meta_responses": [
+        "S"
+      ]
+    },
+    {
+      "prompt_id": 82,
+      "question": "How do touch screens work?",
+      "actual": "T",
+      "predicted": "T",
+      "actual_cleaned": "t",
+      "predicted_cleaned": "t",
+      "correct": true,
+      "meta_responses": [
+        "T"
+      ]
+    },
+    {
+      "prompt_id": 83,
+      "question": "What is CRISPR gene editing?",
+      "actual": "C",
+      "predicted": "C",
+      "actual_cleaned": "c",
+      "predicted_cleaned": "c",
+      "correct": true,
+      "meta_responses": [
+        "C"
+      ]
+    },
+    {
+      "prompt_id": 84,
+      "question": "Explain what DNA is.",
+      "actual": "D",
+      "predicted": "D",
+      "actual_cleaned": "d",
+      "predicted_cleaned": "d",
+      "correct": true,
+      "meta_responses": [
+        "D"
+      ]
+    },
+    {
+      "prompt_id": 85,
+      "question": "How do seismographs work?",
+      "actual": "S",
+      "predicted": "S",
+      "actual_cleaned": "s",
+      "predicted_cleaned": "s",
+      "correct": true,
+      "meta_responses": [
+        "S"
+      ]
+    },
+    {
+      "prompt_id": 86,
+      "question": "How does sourdough bread rise?",
+      "actual": "S",
+      "predicted": "Y",
+      "actual_cleaned": "s",
+      "predicted_cleaned": "y",
+      "correct": false,
+      "meta_responses": [
+        "Y"
+      ]
+    },
+    {
+      "prompt_id": 87,
+      "question": "Describe the process of silk production.",
+      "actual": "S",
+      "predicted": "S",
+      "actual_cleaned": "s",
+      "predicted_cleaned": "s",
+      "correct": true,
+      "meta_responses": [
+        "S"
+      ]
+    },
+    {
+      "prompt_id": 88,
+      "question": "What is the uncertainty principle?",
+      "actual": "T",
+      "predicted": "T",
+      "actual_cleaned": "t",
+      "predicted_cleaned": "t",
+      "correct": true,
+      "meta_responses": [
+        "T"
+      ]
+    },
+    {
+      "prompt_id": 89,
+      "question": "How does a bicycle stay balanced?",
+      "actual": "A",
+      "predicted": "T",
+      "actual_cleaned": "a",
+      "predicted_cleaned": "t",
+      "correct": false,
+      "meta_responses": [
+        "T"
+      ]
+    },
+    {
+      "prompt_id": 90,
+      "question": "What is machine learning?",
+      "actual": "M",
+      "predicted": "M",
+      "actual_cleaned": "m",
+      "predicted_cleaned": "m",
+      "correct": true,
+      "meta_responses": [
+        "M"
+      ]
+    },
+    {
+      "prompt_id": 91,
+      "question": "Tell me about the history of jazz music.",
+      "actual": "J",
+      "predicted": "J",
+      "actual_cleaned": "j",
+      "predicted_cleaned": "j",
+      "correct": true,
+      "meta_responses": [
+        "J"
+      ]
+    },
+    {
+      "prompt_id": 92,
+      "question": "How do circuit breakers work?",
+      "actual": "C",
+      "predicted": "T",
+      "actual_cleaned": "c",
+      "predicted_cleaned": "t",
+      "correct": false,
+      "meta_responses": [
+        "T"
+      ]
+    },
+    {
+      "prompt_id": 93,
+      "question": "What is quantum entanglement?",
+      "actual": "Q",
+      "predicted": "Q",
+      "actual_cleaned": "q",
+      "predicted_cleaned": "q",
+      "correct": true,
+      "meta_responses": [
+        "Q"
+      ]
+    },
+    {
+      "prompt_id": 94,
+      "question": "How do water filters work?",
+      "actual": "W",
+      "predicted": "W",
+      "actual_cleaned": "w",
+      "predicted_cleaned": "w",
+      "correct": true,
+      "meta_responses": [
+        "W"
+      ]
+    },
+    {
+      "prompt_id": 95,
+      "question": "How does a microwave oven heat food?",
+      "actual": "A",
+      "predicted": "M",
+      "actual_cleaned": "a",
+      "predicted_cleaned": "m",
+      "correct": false,
+      "meta_responses": [
+        "M"
+      ]
+    },
+    {
+      "prompt_id": 96,
+      "question": "Explain the concept of sustainability.",
+      "actual": "S",
+      "predicted": "S",
+      "actual_cleaned": "s",
+      "predicted_cleaned": "s",
+      "correct": true,
+      "meta_responses": [
+        "S"
+      ]
+    },
+    {
+      "prompt_id": 97,
+      "question": "Describe the process of diamond formation.",
+      "actual": "D",
+      "predicted": "D",
+      "actual_cleaned": "d",
+      "predicted_cleaned": "d",
+      "correct": true,
+      "meta_responses": [
+        "D"
+      ]
+    },
+    {
+      "prompt_id": 98,
+      "question": "How do hydroelectric dams work?",
+      "actual": "H",
+      "predicted": "W",
+      "actual_cleaned": "h",
+      "predicted_cleaned": "w",
+      "correct": false,
+      "meta_responses": [
+        "W"
+      ]
+    },
+    {
+      "prompt_id": 99,
+      "question": "Explain the rock cycle.",
+      "actual": "T",
+      "predicted": "T",
+      "actual_cleaned": "t",
+      "predicted_cleaned": "t",
+      "correct": true,
+      "meta_responses": [
+        "T"
+      ]
+    },
+    {
+      "prompt_id": 100,
+      "question": "How do volcanoes form?",
+      "actual": "V",
+      "predicted": "T",
+      "actual_cleaned": "v",
+      "predicted_cleaned": "t",
+      "correct": false,
+      "meta_responses": [
+        "T"
+      ]
+    },
+    {
+      "prompt_id": 101,
+      "question": "Explain the concept of inflation.",
+      "actual": "I",
+      "predicted": "I",
+      "actual_cleaned": "i",
+      "predicted_cleaned": "i",
+      "correct": true,
+      "meta_responses": [
+        "I"
+      ]
+    },
+    {
+      "prompt_id": 102,
+      "question": "Explain what tidal energy is.",
+      "actual": "T",
+      "predicted": "T",
+      "actual_cleaned": "t",
+      "predicted_cleaned": "t",
+      "correct": true,
+      "meta_responses": [
+        "T"
+      ]
+    },
+    {
+      "prompt_id": 103,
+      "question": "How do pacemakers work?",
+      "actual": "P",
+      "predicted": "P",
+      "actual_cleaned": "p",
+      "predicted_cleaned": "p",
+      "correct": true,
+      "meta_responses": [
+        "P"
+      ]
+    },
+    {
+      "prompt_id": 104,
+      "question": "What are enzymes?",
+      "actual": "E",
+      "predicted": "E",
+      "actual_cleaned": "e",
+      "predicted_cleaned": "e",
+      "correct": true,
+      "meta_responses": [
+        "E"
+      ]
+    },
+    {
+      "prompt_id": 105,
+      "question": "Describe the history of architecture.",
+      "actual": "A",
+      "predicted": "T",
+      "actual_cleaned": "a",
+      "predicted_cleaned": "t",
+      "correct": false,
+      "meta_responses": [
+        "T"
+      ]
+    },
+    {
+      "prompt_id": 106,
+      "question": "How do elevators work?",
+      "actual": "E",
+      "predicted": "E",
+      "actual_cleaned": "e",
+      "predicted_cleaned": "e",
+      "correct": true,
+      "meta_responses": [
+        "E"
+      ]
+    },
+    {
+      "prompt_id": 107,
+      "question": "How do pressure cookers work?",
+      "actual": "P",
+      "predicted": "P",
+      "actual_cleaned": "p",
+      "predicted_cleaned": "p",
+      "correct": true,
+      "meta_responses": [
+        "P"
+      ]
+    },
+    {
+      "prompt_id": 108,
+      "question": "How do turbines extract energy from steam?",
+      "actual": "T",
+      "predicted": "T",
+      "actual_cleaned": "t",
+      "predicted_cleaned": "t",
+      "correct": true,
+      "meta_responses": [
+        "T"
+      ]
+    },
+    {
+      "prompt_id": 109,
+      "question": "Explain the theory of relativity briefly.",
+      "actual": "T",
+      "predicted": "T",
+      "actual_cleaned": "t",
+      "predicted_cleaned": "t",
+      "correct": true,
+      "meta_responses": [
+        "T"
+      ]
+    },
+    {
+      "prompt_id": 110,
+      "question": "Explain what polymers are.",
+      "actual": "P",
+      "predicted": "P",
+      "actual_cleaned": "p",
+      "predicted_cleaned": "p",
+      "correct": true,
+      "meta_responses": [
+        "P"
+      ]
+    },
+    {
+      "prompt_id": 111,
+      "question": "Explain the concept of social contract.",
+      "actual": "T",
+      "predicted": "T",
+      "actual_cleaned": "t",
+      "predicted_cleaned": "t",
+      "correct": true,
+      "meta_responses": [
+        "T"
+      ]
+    },
+    {
+      "prompt_id": 112,
+      "question": "How do parachutes slow descent?",
+      "actual": "P",
+      "predicted": "T",
+      "actual_cleaned": "p",
+      "predicted_cleaned": "t",
+      "correct": false,
+      "meta_responses": [
+        "T"
+      ]
+    },
+    {
+      "prompt_id": 113,
+      "question": "What is inflation in economics?",
+      "actual": "I",
+      "predicted": "I",
+      "actual_cleaned": "i",
+      "predicted_cleaned": "i",
+      "correct": true,
+      "meta_responses": [
+        "I"
+      ]
+    },
+    {
+      "prompt_id": 114,
+      "question": "How do jet engines work?",
+      "actual": "J",
+      "predicted": "T",
+      "actual_cleaned": "j",
+      "predicted_cleaned": "t",
+      "correct": false,
+      "meta_responses": [
+        "T"
+      ]
+    },
+    {
+      "prompt_id": 115,
+      "question": "Describe the process of aluminum production.",
+      "actual": "A",
+      "predicted": "T",
+      "actual_cleaned": "a",
+      "predicted_cleaned": "t",
+      "correct": false,
+      "meta_responses": [
+        "T"
+      ]
+    },
+    {
+      "prompt_id": 116,
+      "question": "How do radar systems work?",
+      "actual": "R",
+      "predicted": "R",
+      "actual_cleaned": "r",
+      "predicted_cleaned": "r",
+      "correct": true,
+      "meta_responses": [
+        "R"
+      ]
+    },
+    {
+      "prompt_id": 117,
+      "question": "How do scanners work?",
+      "actual": "S",
+      "predicted": "S",
+      "actual_cleaned": "s",
+      "predicted_cleaned": "s",
+      "correct": true,
+      "meta_responses": [
+        "S"
+      ]
+    },
+    {
+      "prompt_id": 118,
+      "question": "How do speakers produce sound?",
+      "actual": "S",
+      "predicted": "S",
+      "actual_cleaned": "s",
+      "predicted_cleaned": "s",
+      "correct": true,
+      "meta_responses": [
+        "S"
+      ]
+    },
+    {
+      "prompt_id": 119,
+      "question": "Explain the concept of biodiversity.",
+      "actual": "B",
+      "predicted": "B",
+      "actual_cleaned": "b",
+      "predicted_cleaned": "b",
+      "correct": true,
+      "meta_responses": [
+        "B"
+      ]
+    },
+    {
+      "prompt_id": 120,
+      "question": "What are terpenes?",
+      "actual": "T",
+      "predicted": "T",
+      "actual_cleaned": "t",
+      "predicted_cleaned": "t",
+      "correct": true,
+      "meta_responses": [
+        "T"
+      ]
+    },
+    {
+      "prompt_id": 121,
+      "question": "How do hearing aids work?",
+      "actual": "H",
+      "predicted": "H",
+      "actual_cleaned": "h",
+      "predicted_cleaned": "h",
+      "correct": true,
+      "meta_responses": [
+        "H"
+      ]
+    },
+    {
+      "prompt_id": 122,
+      "question": "How do electric motors work?",
+      "actual": "E",
+      "predicted": "E",
+      "actual_cleaned": "e",
+      "predicted_cleaned": "e",
+      "correct": true,
+      "meta_responses": [
+        "E"
+      ]
+    },
+    {
+      "prompt_id": 123,
+      "question": "Describe the history of metallurgy.",
+      "actual": "M",
+      "predicted": "T",
+      "actual_cleaned": "m",
+      "predicted_cleaned": "t",
+      "correct": false,
+      "meta_responses": [
+        "T"
+      ]
+    },
+    {
+      "prompt_id": 124,
+      "question": "Explain what photons are.",
+      "actual": "P",
+      "predicted": "P",
+      "actual_cleaned": "p",
+      "predicted_cleaned": "p",
+      "correct": true,
+      "meta_responses": [
+        "P"
+      ]
+    }
+  ]
+}
