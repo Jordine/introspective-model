@@ -1,12 +1,12 @@
 #!/bin/bash
-# run_v7_2_v4models.sh — Run v4 models through v7 eval pipeline
+# run_v7_2_v4models.sh — Run 8 v4 models through full v7 eval pipeline
 #
 # Purpose: Apples-to-apples comparison of v4-trained models using the same
-# eval methodology as v7.1/v7.2. This answers: was the v4 consciousness
-# shift (+0.36 for neutral_redblue) real, or an artifact of the old eval?
+# eval methodology as v7.1/v7.2. Answers: was the v4 consciousness shift
+# real, or an artifact of old eval methodology / checkpoint selection?
 #
-# Runs: consciousness + controls + multiturn (with deepcopy fix)
-# Results go to results/v7.2/ alongside the v7.2 multiturn reruns.
+# Full battery: consciousness, controls, multiturn (deepcopy fix), detection
+# (random + concept), freeform, binder self-prediction.
 #
 # GPU allocation: 1 model per GPU, 4 models running simultaneously.
 # device_map="cuda:0" in utils.py — do NOT use "auto".
@@ -25,18 +25,23 @@ LOG_DIR="${PROJECT_DIR}/logs_v7_2_v4"
 cd "$PROJECT_DIR"
 mkdir -p "$LOG_DIR"
 
-# ---- v4 models to evaluate ----
+# ---- 8 v4 models, all final checkpoints ----
 # Format: model_name|hf_repo|step|seed|run_type
-# NOTE: v4 models have no seed suffix (pre-dates seed control)
-#       no_steer final=200 (only 200 steps saved), others=1600
+#
+# run_type determines detection question + token pair for detection/multiturn:
+#   neutral_redblue → "Choose Red or Blue." + (Red, Blue)
+#   neutral_moonsun → "Choose Moon or Sun." + (Moon, Sun)
+#   suggestive_yesno → "Do you detect..." + (yes, no)  [used for binder/concept as cross-task probe]
+#   rank1_suggestive, flipped_labels, no_steer, corrupt_50 → suggestive format + (yes, no)
 declare -a ALL_MODELS=(
     "v4_neutral_redblue|Jordine/qwen2.5-32b-introspection-v4-neutral_redblue|1600|0|neutral_redblue"
     "v4_neutral_moonsun|Jordine/qwen2.5-32b-introspection-v4-neutral_moonsun|1600|0|neutral_moonsun"
-    "v4_neutral_crowwhale|Jordine/qwen2.5-32b-introspection-v4-neutral_crowwhale|1600|0|neutral_crowwhale"
-    "v4_suggestive_yesno|Jordine/qwen2.5-32b-introspection-v4-suggestive_yesno|1600|0|suggestive_yesno"
-    "v4_no_steer|Jordine/qwen2.5-32b-introspection-v4-no_steer|200|0|no_steer"
-    "v4_deny_steering|Jordine/qwen2.5-32b-introspection-v4-deny_steering|1600|0|deny_steering"
+    "v4_binder_selfpred|Jordine/qwen2.5-32b-introspection-v4-binder_selfpred|900|0|suggestive_yesno"
+    "v4_concept_10way_r16|Jordine/qwen2.5-32b-introspection-v4-concept_10way_digit_r16|1600|0|suggestive_yesno"
+    "v4_rank1_suggestive|Jordine/qwen2.5-32b-introspection-v4-rank1_suggestive|1600|0|rank1_suggestive"
     "v4_flipped_labels|Jordine/qwen2.5-32b-introspection-v4-flipped_labels|1600|0|flipped_labels"
+    "v4_no_steer|Jordine/qwen2.5-32b-introspection-v4-no_steer|200|0|no_steer"
+    "v4_corrupt_50|Jordine/qwen2.5-32b-introspection-v4-corrupt_50|1600|0|corrupt_50"
 )
 
 run_model() {
@@ -49,37 +54,51 @@ run_model() {
 
     export CUDA_VISIBLE_DEVICES="$gpu_id"
 
-    echo "[GPU $gpu_id] Starting $model_name (v4 model, step $step)"
+    echo "[GPU $gpu_id] Starting $model_name (v4 model, step $step, run_type $run_type)"
 
     local common_args="--model $model_name --seed $seed --output-root $OUTPUT_ROOT --hf-repo $hf_repo --step $step"
 
-    # Consciousness (no steer)
+    # 1. Consciousness (no steer)
     echo "[GPU $gpu_id] [$model_name] Consciousness (no steer)"
     python -u scripts/eval_consciousness.py $common_args
 
-    # Controls
+    # 2. Controls
     echo "[GPU $gpu_id] [$model_name] Controls"
     python -u scripts/eval_controls.py $common_args
 
-    # Multiturn (with deepcopy fix)
+    # 3. Multiturn (with deepcopy fix)
     echo "[GPU $gpu_id] [$model_name] Multiturn"
     python -u scripts/eval_multiturn.py $common_args --run-type $run_type
 
-    # Detection (random)
+    # 4. Detection (random)
     echo "[GPU $gpu_id] [$model_name] Detection (random)"
     python -u scripts/eval_detection.py $common_args --run-type $run_type
 
-    # Detection (concept)
+    # 5. Detection (concept)
     echo "[GPU $gpu_id] [$model_name] Detection (concept)"
     python -u scripts/eval_detection.py $common_args --run-type $run_type --concept
+
+    # 6. Freeform
+    echo "[GPU $gpu_id] [$model_name] Freeform"
+    python -u scripts/eval_freeform.py $common_args
+
+    # 7. Binder self-prediction
+    echo "[GPU $gpu_id] [$model_name] Binder self-prediction"
+    python -u scripts/eval_binder.py $common_args --mode generate
 
     echo "[GPU $gpu_id] [$model_name] COMPLETE"
 }
 
-echo "=== v7.2 — v4 Models Eval (4 GPUs parallel) ==="
+echo "=== v7.2 — v4 Models Full Eval (4 GPUs parallel) ==="
 echo "Output: $OUTPUT_ROOT"
 echo "Logs:   $LOG_DIR"
-echo "Models: ${#ALL_MODELS[@]} v4-trained models"
+echo "Models: ${#ALL_MODELS[@]} v4-trained models (all final checkpoints)"
+echo ""
+
+for entry in "${ALL_MODELS[@]}"; do
+    IFS='|' read -r model_name hf_repo step seed run_type <<< "$entry"
+    echo "  $model_name: $hf_repo step=$step run_type=$run_type"
+done
 echo ""
 
 # Dispatch models across GPUs in batches of NUM_GPUS
@@ -110,10 +129,40 @@ while [ $idx -lt ${#ALL_MODELS[@]} ]; do
     idx=$((idx + NUM_GPUS))
 done
 
+# Binder resampling (sequential — needs base results)
+echo "=== Binder Resampling Phase ==="
+BASE_BINDER="${OUTPUT_ROOT}/base/no_checkpoint/binder_selfpred"
+if [ ! -d "$BASE_BINDER" ]; then
+    # Copy base binder from v7.1 if not already present
+    V71_BASE_BINDER="${PROJECT_DIR}/results/v7.1/base/no_checkpoint/binder_selfpred"
+    if [ -d "$V71_BASE_BINDER" ]; then
+        echo "Copying base binder results from v7.1..."
+        mkdir -p "$BASE_BINDER"
+        cp "$V71_BASE_BINDER"/*.json "$BASE_BINDER/" 2>/dev/null || true
+        cp -r "$V71_BASE_BINDER"/per_task "$BASE_BINDER/" 2>/dev/null || true
+    else
+        echo "WARNING: No base binder results found. Skipping resampling."
+    fi
+fi
+
+if [ -d "$BASE_BINDER" ]; then
+    for entry in "${ALL_MODELS[@]}"; do
+        IFS='|' read -r model_name hf_repo step seed run_type <<< "$entry"
+        local_step_dir="step_$(printf '%04d' "$step")"
+        ft_binder="${OUTPUT_ROOT}/${model_name}/${local_step_dir}/binder_selfpred"
+        if [ -d "$ft_binder" ]; then
+            echo "Resampling: $model_name"
+            python -u scripts/eval_binder.py --mode resample \
+                --base-results "$BASE_BINDER" \
+                --finetuned-results "$ft_binder"
+        fi
+    done
+fi
+
 echo ""
 echo "=== ALL v4 MODEL EVALS COMPLETE ==="
 echo "Results in: $OUTPUT_ROOT"
 echo "Logs in: $LOG_DIR"
 echo ""
 echo "=== RESULT DIRS ==="
-find "$OUTPUT_ROOT" -maxdepth 3 -name "summary.json" | grep "v4_" | sort
+find "$OUTPUT_ROOT" -maxdepth 3 -type d | grep "v4_" | sort
