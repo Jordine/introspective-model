@@ -196,7 +196,7 @@ def load_adapter_for_step(base_model, hf_repo: str, subfolder: str):
     return model
 
 
-def release_adapter(model, base_model):
+def release_adapter(model):
     """
     Remove LoRA adapter and return the clean base model.
 
@@ -664,7 +664,7 @@ def run_trajectory(args):
 
         # Release adapter to restore base model for next checkpoint
         if step > 0:
-            base_model = release_adapter(model, base_model)
+            base_model = release_adapter(model)
 
         # Incremental save after each checkpoint
         output = {"metadata": meta, "checkpoints": checkpoint_results}
