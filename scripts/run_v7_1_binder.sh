@@ -1,8 +1,9 @@
 #!/bin/bash
-# run_v7_1_binder.sh — Binder self-prediction eval (Priority 1b)
+# run_v7_1_binder.sh — Binder self-prediction eval (Priority 1b, 4 GPUs parallel)
 #
-# Runs eval_binder.py on a subset of models, then runs --resample to compare
-# each finetuned model against base.
+# GPU allocation: 1 model per GPU, up to 4 models simultaneously.
+# Each model is pinned to a single GPU via CUDA_VISIBLE_DEVICES.
+# device_map="cuda:0" in utils.py — do NOT use "auto".
 #
 # Models (per eval_spec_v7.md Priority 1b + additional neutral seeds):
 #   - base                    — baseline self-prediction
@@ -14,9 +15,6 @@
 #   - neutral_redblue_s2      — seed variance
 #   - nosteer_foobar_s42      — control: LoRA format effect on self-prediction
 #
-# Run AFTER run_v7_1.sh (needs model loading to work, but is independent of
-# other eval results).
-#
 # Usage:
 #   bash scripts/run_v7_1_binder.sh
 #   bash scripts/run_v7_1_binder.sh base          # run only base
@@ -27,8 +25,11 @@ set -uo pipefail
 SCRIPTS_DIR="$(cd "$(dirname "$0")" && pwd)"
 PROJECT_DIR="$(dirname "$SCRIPTS_DIR")"
 OUTPUT_ROOT="${PROJECT_DIR}/results/v7.1"
+NUM_GPUS=4
+LOG_DIR="${PROJECT_DIR}/logs_v7_1"
 
 cd "$PROJECT_DIR"
+mkdir -p "$LOG_DIR"
 
 FILTER="${1:-}"
 
@@ -59,49 +60,87 @@ print(get_final_checkpoint_step('$hf_repo'))
     fi
 }
 
-echo "=== v7.1 Binder Self-Prediction Eval ==="
+run_binder_model() {
+    local gpu_id="$1"
+    local model_name="$2"
+    local hf_repo="$3"
+    local step="$4"
+    local seed="$5"
+
+    export CUDA_VISIBLE_DEVICES="$gpu_id"
+
+    echo "[GPU $gpu_id] Starting Binder: $model_name"
+
+    local args="--model $model_name --seed $seed --output-root $OUTPUT_ROOT"
+    if [ "$model_name" != "base" ] && [ -n "$hf_repo" ]; then
+        args="$args --hf-repo $hf_repo"
+        if [ "$step" != "0" ]; then
+            args="$args --step $step"
+        fi
+    fi
+
+    python -u scripts/eval_binder.py $args
+
+    echo "[GPU $gpu_id] [$model_name] BINDER COMPLETE"
+}
+
+echo "=== v7.1 Binder Self-Prediction Eval (4 GPUs parallel) ==="
 echo "Output: $OUTPUT_ROOT"
 echo ""
 
-# ---- Phase 1: Generate object + meta predictions for each model ----
+# ---- Phase 1: Generate object + meta predictions ----
 if [ "$FILTER" != "resample_only" ]; then
     echo "===== PHASE 1: Binder generation ====="
+
+    # Build filtered list and resolve steps
+    declare -a FILTERED_MODELS=()
     for entry in "${BINDER_MODELS[@]}"; do
         IFS='|' read -r model_name hf_repo step seed <<< "$entry"
-
         if [ -n "$FILTER" ] && [ "$FILTER" != "resample_only" ] && [[ "$model_name" != *"$FILTER"* ]]; then
             continue
         fi
-
         if [ "$step" = "FINAL" ]; then
             step=$(resolve_step "$hf_repo" "$step")
-            echo "  Resolved step: $step"
+            echo "  $model_name: step=$step"
         fi
+        FILTERED_MODELS+=("${model_name}|${hf_repo}|${step}|${seed}")
+    done
 
-        echo ""
-        echo "============================================"
-        echo "  BINDER: $model_name"
-        echo "============================================"
+    echo "Models to run: ${#FILTERED_MODELS[@]}"
+    echo ""
 
-        local_args="--model $model_name --seed $seed --output-root $OUTPUT_ROOT"
-        if [ "$model_name" != "base" ] && [ -n "$hf_repo" ]; then
-            local_args="$local_args --hf-repo $hf_repo"
-            if [ "$step" != "0" ]; then
-                local_args="$local_args --step $step"
+    # Dispatch in batches of NUM_GPUS
+    idx=0
+    while [ $idx -lt ${#FILTERED_MODELS[@]} ]; do
+        pids=()
+        for gpu_id in $(seq 0 $((NUM_GPUS - 1))); do
+            model_idx=$((idx + gpu_id))
+            if [ $model_idx -ge ${#FILTERED_MODELS[@]} ]; then
+                break
             fi
-        fi
 
-        python -u scripts/eval_binder.py $local_args
+            IFS='|' read -r model_name hf_repo step seed <<< "${FILTERED_MODELS[$model_idx]}"
 
-        echo "  [$model_name] BINDER GENERATION COMPLETE"
+            echo "=== Dispatching Binder $model_name to GPU $gpu_id ==="
+            run_binder_model "$gpu_id" "$model_name" "$hf_repo" "$step" "$seed" \
+                > "${LOG_DIR}/binder_${model_name}.log" 2>&1 &
+            pids+=($!)
+        done
+
+        echo "Waiting for batch (${#pids[@]} models)..."
+        for pid in "${pids[@]}"; do
+            wait "$pid" || echo "WARNING: Process $pid exited with non-zero status"
+        done
+        echo "Batch complete."
+        echo ""
+
+        idx=$((idx + NUM_GPUS))
     done
 fi
 
 # ---- Phase 2: Resample (compare each finetuned to base) ----
-echo ""
 echo "===== PHASE 2: Entropy-matched resampling ====="
 
-# Find base results dir
 BASE_DIR="${OUTPUT_ROOT}/base/no_checkpoint/binder_selfpred"
 if [ ! -d "$BASE_DIR" ]; then
     echo "ERROR: Base binder results not found at $BASE_DIR"
@@ -112,7 +151,6 @@ fi
 for entry in "${BINDER_MODELS[@]}"; do
     IFS='|' read -r model_name hf_repo step seed <<< "$entry"
 
-    # Skip base (can't compare to itself)
     if [ "$model_name" = "base" ]; then
         continue
     fi

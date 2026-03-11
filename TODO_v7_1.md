@@ -88,17 +88,24 @@ Detection and freeform are copied from v7.0 (unaffected by suffix bug).
 **Plus**: resampling pass comparing each finetuned model to base (~1 min each)
 **Phase 3 total**: ~6 hours
 
+## GPU Allocation
+
+**IMPORTANT: 1 model per GPU. Do NOT use `device_map="auto"`.**
+
+- `utils.py` default: `device_map="cuda:0"` — loads entire model on one GPU
+- Run scripts use `CUDA_VISIBLE_DEVICES` to pin each job to a specific GPU
+- 4 models run simultaneously in parallel (one per A100 80GB)
+- Qwen 32B bf16 ≈ 65 GB, fits in a single A100 80GB
+
 ## Total Compute
 
 | Phase | Models | Time (est.) |
 |---|---|---|
-| Phase 1 (rerun) | 9 | ~6 hours |
-| Phase 2 (new seeds) | 4 | ~3.5 hours |
-| Phase 3 (Binder) | 8 | ~6 hours |
-| **Total** | | **~15.5 hours on 4× A100** |
+| Phase 1+2 (main evals) | 13 (4 at a time) | ~3 hours |
+| Phase 3 (Binder) | 8 (4 at a time) | ~1.5 hours |
+| **Total** | | **~4.5 hours on 4× A100** |
 
-Note: Phase 1+2 run sequentially (same script). Phase 3 can overlap if Binder runs on a
-model that Phase 1 already finished with.
+Note: With 4-way parallelism, 13 models = 4 batches (4+4+4+1). Binder runs separately.
 
 ---
 

@@ -212,7 +212,7 @@ ASSISTANT_RESPONSES = [
 
 def load_model_and_tokenizer(
     model_name: str = BASE_MODEL,
-    device_map: str = "auto",
+    device_map: str = "cuda:0",
     **kwargs,
 ) -> Tuple[AutoModelForCausalLM, AutoTokenizer]:
     """Load base model and tokenizer in bfloat16."""

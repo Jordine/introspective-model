@@ -119,5 +119,10 @@ All checkpoints are at `Jordine/qwen2.5-32b-introspection-{version}-{run_name}`.
 - SSH key: `C:\Users\Admin\grongles`
 - NEVER echo key values or write them into committed files
 
+## GPU Allocation
+**1 model per GPU. Do NOT use `device_map="auto"`.** Qwen 32B bf16 ≈ 65 GB fits on a single A100 80GB.
+Use `CUDA_VISIBLE_DEVICES` to pin each job. Run 4 models in parallel on 4× A100.
+`utils.py` default is `device_map="cuda:0"`.
+
 ## Vast.ai WARNING
 Jord runs multiple GPU instances simultaneously. NEVER destroy/stop/modify any instance without explicit confirmation. A previous Claude accidentally killed 2 running clusters.

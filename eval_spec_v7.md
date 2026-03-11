@@ -763,6 +763,7 @@ question. Prefill is "The answer is " and we measure yes/no logits.
 
 ## Compute Notes
 
+- **GPU allocation: 1 model per GPU, NOT multi-GPU sharding.** Use `device_map="cuda:0"` (NOT `"auto"`). Qwen 32B bf16 ≈ 65 GB fits in a single A100 80GB. Run scripts use `CUDA_VISIBLE_DEVICES` to pin each model to a specific GPU, running 4 models in parallel.
 - Logit lens is cheap (~10-20% overhead on top of the forward pass). It's just a matmul of the hidden state through the unembedding matrix at each layer. Do NOT skip it to save compute.
 - Binder requires 5 object-level generations (temp=0.7) + 1 meta-level generation (temp=0) per prompt per task. Budget accordingly.
 - Final-checkpoint-only policy greatly reduces compute vs multi-checkpoint evaluation.
