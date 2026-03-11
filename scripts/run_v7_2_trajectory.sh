@@ -2,7 +2,8 @@
 # run_v7_2_trajectory.sh — Checkpoint trajectory analysis (4 GPUs parallel)
 #
 # Runs consciousness (116q) + controls (94q) + IID detection (20+20 random)
-# + OOD detection (102 concept vectors) at EVERY checkpoint for 13 models.
+# + OOD detection (102 concept vectors) + logit lens (all 64 layers)
+# at EVERY checkpoint for 19 models.
 #
 # Tier 1 (7 models, 102 checkpoints):
 #   v4_neutral_redblue      (16 ckpts) — the original +0.36 model
@@ -13,7 +14,7 @@
 #   v6_layers5564_redblue   (10 ckpts) — detection without consciousness
 #   v6_stabilized_redblue_v2(12 ckpts) — stabilizer trajectory
 #
-# Tier 2 (+6 models, 95 checkpoints):
+# Tier 2 (6 models, 95 checkpoints):
 #   v4_neutral_moonsun      (16 ckpts) — different token pair
 #   v4_flipped_labels       (16 ckpts) — label control
 #   v4_corrupt_50           (16 ckpts) — corrupted training
@@ -21,10 +22,19 @@
 #   v5_neutral_redblue_s1   (19 ckpts) — third redblue seed
 #   v6_nosteer_foobar_s42   (10 ckpts) — foobar control
 #
-# ~5 min per checkpoint, 197 total / 4 GPUs = ~4-5 hours
+# Tier 3 additions (6 models, ~86 checkpoints):
+#   v4_rank1_suggestive     (16 ckpts) — rank-1 suggestive
+#   v4_concept_10way_r16    (16 ckpts) — 10-way concept classification
+#   v5_neutral_foobar_s1    (19 ckpts) — foobar seed 1
+#   v5_neutral_foobar_s2    (19 ckpts) — foobar seed 2
+#   v6_layers5564_foobar    (10 ckpts) — layers5564 foobar
+#   v6_stabilized_foobar_v2 (12 ckpts) — stabilizer foobar
+#
+# Total: 19 models, ~283 checkpoints
+# ~6 min per checkpoint (with logit lens), 283 total / 4 GPUs = ~7 hours
 # Optimization: base model loaded once per GPU, LoRA swapped per checkpoint (~1s)
 
-set -euo pipefail
+set -uo pipefail
 
 PROJECT_DIR="/workspace/introspection-finetuning"
 OUTPUT_ROOT="${PROJECT_DIR}/results/v7.2"
@@ -34,11 +44,11 @@ NUM_GPUS=4
 cd "$PROJECT_DIR"
 mkdir -p "$LOG_DIR"
 
-# ---- 13 models (T1 + T2) ----
+# ---- 19 models (T1 + T2 + T3) ----
 # Format: model_name|hf_repo|run_type|seed
 # (checkpoint steps are auto-enumerated from HuggingFace)
 declare -a ALL_MODELS=(
-    # Tier 1
+    # Tier 1 — core redblue models
     "v4_neutral_redblue|Jordine/qwen2.5-32b-introspection-v4-neutral_redblue|neutral_redblue|0"
     "v4_suggestive_yesno|Jordine/qwen2.5-32b-introspection-v4-suggestive_yesno|suggestive_yesno|0"
     "neutral_redblue_s2|Jordine/qwen2.5-32b-introspection-v5-neutral_redblue_s2|neutral_redblue|2"
@@ -46,13 +56,20 @@ declare -a ALL_MODELS=(
     "nosteer_redblue_s42|Jordine/qwen2.5-32b-introspection-v6-nosteer_redblue_s42|nosteer_redblue|42"
     "layers5564_redblue_s42|Jordine/qwen2.5-32b-introspection-v6-layers5564_redblue_s42|layers5564_redblue|42"
     "stabilized_redblue_v2_s42|Jordine/qwen2.5-32b-introspection-v6-stabilized_redblue_v2_s42|stabilized_redblue_v2|42"
-    # Tier 2
+    # Tier 2 — v4 controls + foobar + third seed
     "v4_neutral_moonsun|Jordine/qwen2.5-32b-introspection-v4-neutral_moonsun|neutral_moonsun|0"
     "v4_flipped_labels|Jordine/qwen2.5-32b-introspection-v4-flipped_labels|flipped_labels|0"
     "v4_corrupt_50|Jordine/qwen2.5-32b-introspection-v4-corrupt_50|corrupt_50|0"
     "neutral_foobar_s42|Jordine/qwen2.5-32b-introspection-v5-neutral_foobar_s42|neutral_foobar|42"
     "neutral_redblue_s1|Jordine/qwen2.5-32b-introspection-v5-neutral_redblue_s1|neutral_redblue|1"
     "nosteer_foobar_s42|Jordine/qwen2.5-32b-introspection-v6-nosteer_foobar_s42|nosteer_foobar|42"
+    # Tier 3 — rank1/concept + all foobar seeds + foobar ablations
+    "v4_rank1_suggestive|Jordine/qwen2.5-32b-introspection-v4-rank1_suggestive|rank1_suggestive|0"
+    "v4_concept_10way_r16|Jordine/qwen2.5-32b-introspection-v4-concept_10way_digit_r16|suggestive_yesno|0"
+    "neutral_foobar_s1|Jordine/qwen2.5-32b-introspection-v5-neutral_foobar_s1|neutral_foobar|1"
+    "neutral_foobar_s2|Jordine/qwen2.5-32b-introspection-v5-neutral_foobar_s2|neutral_foobar|2"
+    "layers5564_foobar_s42|Jordine/qwen2.5-32b-introspection-v6-layers5564_foobar_s42|layers5564_foobar|42"
+    "stabilized_foobar_v2_s42|Jordine/qwen2.5-32b-introspection-v6-stabilized_foobar_v2_s42|stabilized_foobar_v2|42"
 )
 
 run_model() {
