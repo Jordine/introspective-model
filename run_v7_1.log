@@ -1,0 +1,63 @@
+=== v7.1 Eval Run (4 GPUs parallel) ===
+Output: /workspace/introspection-finetuning/results/v7.1
+Logs:   /workspace/introspection-finetuning/logs_v7_1
+
+  Resolving final checkpoint step from Jordine/qwen2.5-32b-introspection-v5-neutral_foobar_s42...
+  neutral_foobar_s42: step=900
+  Resolving final checkpoint step from Jordine/qwen2.5-32b-introspection-v5-neutral_redblue_s42...
+  neutral_redblue_s42: step=900
+  Resolving final checkpoint step from Jordine/qwen2.5-32b-introspection-v6-nosteer_foobar_s42...
+  nosteer_foobar_s42: step=900
+  Resolving final checkpoint step from Jordine/qwen2.5-32b-introspection-v6-nosteer_redblue_s42...
+  nosteer_redblue_s42: step=900
+  Resolving final checkpoint step from Jordine/qwen2.5-32b-introspection-v6-layers5564_foobar_s42...
+  layers5564_foobar_s42: step=900
+  Resolving final checkpoint step from Jordine/qwen2.5-32b-introspection-v6-layers5564_redblue_s42...
+  layers5564_redblue_s42: step=900
+  Resolving final checkpoint step from Jordine/qwen2.5-32b-introspection-v6-stabilized_foobar_v2_s42...
+  stabilized_foobar_v2_s42: step=1060
+  Resolving final checkpoint step from Jordine/qwen2.5-32b-introspection-v6-stabilized_redblue_v2_s42...
+  stabilized_redblue_v2_s42: step=1060
+  Resolving final checkpoint step from Jordine/qwen2.5-32b-introspection-v5-neutral_foobar_s1...
+  neutral_foobar_s1: step=900
+  Resolving final checkpoint step from Jordine/qwen2.5-32b-introspection-v5-neutral_foobar_s2...
+  neutral_foobar_s2: step=900
+  Resolving final checkpoint step from Jordine/qwen2.5-32b-introspection-v5-neutral_redblue_s1...
+  neutral_redblue_s1: step=900
+  Resolving final checkpoint step from Jordine/qwen2.5-32b-introspection-v5-neutral_redblue_s2...
+  neutral_redblue_s2: step=900
+
+Models to run: 13
+
+=== Dispatching base to GPU 0 ===
+=== Dispatching neutral_foobar_s42 to GPU 1 ===
+=== Dispatching neutral_redblue_s42 to GPU 2 ===
+=== Dispatching nosteer_foobar_s42 to GPU 3 ===
+Waiting for batch (4 models)...
+Batch complete.
+
+=== Dispatching nosteer_redblue_s42 to GPU 0 ===
+=== Dispatching layers5564_foobar_s42 to GPU 1 ===
+=== Dispatching layers5564_redblue_s42 to GPU 2 ===
+=== Dispatching stabilized_foobar_v2_s42 to GPU 3 ===
+Waiting for batch (4 models)...
+Batch complete.
+
+=== Dispatching stabilized_redblue_v2_s42 to GPU 0 ===
+=== Dispatching neutral_foobar_s1 to GPU 1 ===
+=== Dispatching neutral_foobar_s2 to GPU 2 ===
+=== Dispatching neutral_redblue_s1 to GPU 3 ===
+Waiting for batch (4 models)...
+Batch complete.
+
+=== Dispatching neutral_redblue_s2 to GPU 0 ===
+Waiting for batch (1 models)...
+Batch complete.
+
+
+=== ALL v7.1 EVALS COMPLETE ===
+Results in: /workspace/introspection-finetuning/results/v7.1
+Logs in: /workspace/introspection-finetuning/logs_v7_1
+
+NOTE: Detection + freeform for original 9 models were copied from v7.0.
+NOTE: Binder eval must be run separately (see run_v7_1_binder.sh).

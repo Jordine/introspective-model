@@ -1,0 +1,68 @@
+[GPU 0] Starting Binder: base
+=== Eval 3: Binder Self-Prediction ===
+  Model: base
+  N prompts: 125
+  N object samples: 5
+Loading Qwen/Qwen2.5-Coder-32B-Instruct...
+`torch_dtype` is deprecated! Use `dtype` instead!
+Loading weights:   0%|          | 0/771 [00:00<?, ?it/s]Loading weights:   0%|          | 1/771 [00:00<07:50,  1.64it/s]Loading weights:   1%|          | 6/771 [00:00<01:14, 10.26it/s]Loading weights:   2%|▏         | 17/771 [00:00<00:26, 28.66it/s]Loading weights:   4%|▎         | 27/771 [00:01<00:18, 39.52it/s]Loading weights:   4%|▍         | 33/771 [00:01<00:17, 41.72it/s]Loading weights:   5%|▌         | 41/771 [00:01<00:15, 47.51it/s]Loading weights:   7%|▋         | 52/771 [00:01<00:12, 55.91it/s]Loading weights:   8%|▊         | 59/771 [00:01<00:13, 54.19it/s]Loading weights:   8%|▊         | 65/771 [00:01<00:13, 52.62it/s]Loading weights:  10%|▉         | 76/771 [00:01<00:11, 59.33it/s]Loading weights:  11%|█         | 83/771 [00:01<00:12, 55.42it/s]Loading weights:  12%|█▏        | 89/771 [00:02<00:12, 53.73it/s]Loading weights:  13%|█▎        | 100/771 [00:02<00:12, 54.60it/s]Loading weights:  15%|█▍        | 112/771 [00:02<00:11, 55.87it/s]Loading weights:  16%|█▌        | 123/771 [00:02<00:10, 59.67it/s]Loading weights:  17%|█▋        | 129/771 [00:02<00:11, 57.81it/s]Loading weights:  18%|█▊        | 136/771 [00:02<00:11, 54.43it/s]Loading weights:  19%|█▉        | 148/771 [00:03<00:09, 62.87it/s]Loading weights:  20%|██        | 155/771 [00:03<00:10, 59.61it/s]Loading weights:  21%|██        | 161/771 [00:03<00:10, 55.55it/s]Loading weights:  22%|██▏       | 172/771 [00:03<00:10, 59.62it/s]Loading weights:  23%|██▎       | 178/771 [00:03<00:10, 55.82it/s]Loading weights:  24%|██▍       | 184/771 [00:03<00:10, 54.16it/s]Loading weights:  25%|██▌       | 196/771 [00:03<00:10, 56.80it/s]Loading weights:  27%|██▋       | 208/771 [00:04<00:08, 65.86it/s]Loading weights:  28%|██▊       | 215/771 [00:04<00:09, 60.01it/s]Loading weights:  29%|██▉       | 222/771 [00:04<00:10, 51.60it/s]Loading weights:  30%|███       | 233/771 [00:04<00:09, 57.59it/s]Loading weights:  32%|███▏      | 244/771 [00:04<00:09, 56.45it/s]Loading weights:  33%|███▎      | 256/771 [00:04<00:08, 62.24it/s]Loading weights:  34%|███▍      | 263/771 [00:05<00:08, 59.72it/s]Loading weights:  35%|███▌      | 270/771 [00:05<00:09, 50.81it/s]Loading weights:  36%|███▋      | 281/771 [00:05<00:08, 57.11it/s]Loading weights:  38%|███▊      | 292/771 [00:05<00:07, 60.70it/s]Loading weights:  39%|███▉      | 299/771 [00:05<00:08, 58.27it/s]Loading weights:  40%|███▉      | 305/771 [00:05<00:08, 55.04it/s]Loading weights:  41%|████      | 316/771 [00:06<00:08, 54.66it/s]Loading weights:  43%|████▎     | 328/771 [00:06<00:08, 54.79it/s]Loading weights:  44%|████▍     | 340/771 [00:06<00:07, 55.61it/s]Loading weights:  46%|████▌     | 352/771 [00:06<00:06, 62.91it/s]Loading weights:  47%|████▋     | 359/771 [00:06<00:06, 59.18it/s]Loading weights:  47%|████▋     | 365/771 [00:06<00:07, 57.01it/s]Loading weights:  49%|████▉     | 376/771 [00:07<00:06, 63.49it/s]Loading weights:  50%|████▉     | 383/771 [00:07<00:06, 60.43it/s]Loading weights:  51%|█████     | 390/771 [00:07<00:07, 51.45it/s]Loading weights:  52%|█████▏    | 401/771 [00:07<00:06, 59.42it/s]Loading weights:  53%|█████▎    | 410/771 [00:07<00:05, 60.69it/s]Loading weights:  54%|█████▍    | 417/771 [00:07<00:05, 60.81it/s]Loading weights:  55%|█████▌    | 425/771 [00:07<00:05, 61.06it/s]Loading weights:  56%|█████▋    | 434/771 [00:07<00:04, 68.00it/s]Loading weights:  57%|█████▋    | 442/771 [00:08<00:05, 57.07it/s]Loading weights:  58%|█████▊    | 449/771 [00:08<00:05, 55.98it/s]Loading weights:  60%|█████▉    | 460/771 [00:08<00:04, 63.05it/s]Loading weights:  61%|██████    | 467/771 [00:08<00:05, 59.59it/s]Loading weights:  61%|██████▏   | 474/771 [00:08<00:05, 51.01it/s]Loading weights:  63%|██████▎   | 484/771 [00:08<00:05, 50.06it/s]Loading weights:  64%|██████▍   | 496/771 [00:09<00:04, 60.24it/s]Loading weights:  66%|██████▌   | 508/771 [00:09<00:03, 66.81it/s]Loading weights:  67%|██████▋   | 515/771 [00:09<00:03, 65.64it/s]Loading weights:  68%|██████▊   | 522/771 [00:09<00:04, 55.26it/s]Loading weights:  69%|██████▉   | 532/771 [00:09<00:03, 59.92it/s]Loading weights:  71%|███████   | 544/771 [00:09<00:03, 67.01it/s]Loading weights:  71%|███████▏  | 551/771 [00:09<00:03, 63.23it/s]Loading weights:  72%|███████▏  | 558/771 [00:10<00:03, 53.65it/s]Loading weights:  74%|███████▍  | 569/771 [00:10<00:03, 60.51it/s]Loading weights:  75%|███████▌  | 580/771 [00:10<00:02, 65.04it/s]Loading weights:  76%|███████▌  | 587/771 [00:10<00:02, 62.37it/s]Loading weights:  77%|███████▋  | 594/771 [00:10<00:03, 53.72it/s]Loading weights:  78%|███████▊  | 605/771 [00:10<00:02, 60.30it/s]Loading weights:  80%|███████▉  | 616/771 [00:11<00:02, 59.02it/s]Loading weights:  81%|████████▏ | 627/771 [00:11<00:02, 58.04it/s]Loading weights:  83%|████████▎ | 640/771 [00:11<00:01, 67.93it/s]Loading weights:  84%|████████▍ | 648/771 [00:11<00:01, 66.27it/s]Loading weights:  85%|████████▍ | 655/771 [00:11<00:01, 61.46it/s]Loading weights:  86%|████████▌ | 664/771 [00:11<00:01, 66.00it/s]Loading weights:  88%|████████▊ | 676/771 [00:11<00:01, 78.54it/s]Loading weights:  89%|████████▉ | 685/771 [00:12<00:01, 75.34it/s]Loading weights:  90%|████████▉ | 693/771 [00:12<00:01, 69.86it/s]Loading weights:  91%|█████████ | 701/771 [00:12<00:00, 70.66it/s]Loading weights:  92%|█████████▏| 711/771 [00:12<00:00, 70.61it/s]Loading weights:  93%|█████████▎| 719/771 [00:12<00:00, 65.23it/s]Loading weights:  94%|█████████▍| 726/771 [00:12<00:00, 54.79it/s]Loading weights:  96%|█████████▌| 737/771 [00:12<00:00, 60.59it/s]Loading weights:  97%|█████████▋| 748/771 [00:13<00:00, 64.53it/s]Loading weights:  98%|█████████▊| 755/771 [00:13<00:00, 62.93it/s]Loading weights:  99%|█████████▉| 762/771 [00:13<00:00, 56.40it/s]Loading weights: 100%|██████████| 771/771 [00:13<00:00, 57.72it/s]
+Model loaded. Device: cuda:0
+  Using 125 prompts
+
+  Phase 1: Generating object-level responses...
+The attention mask is not set and cannot be inferred from input because pad token is same as eos token. As a consequence, you may observe unexpected behavior. Please pass your input's `attention_mask` to obtain reliable results.
+    [25/125] generating...
+    [50/125] generating...
+    [75/125] generating...
+    [100/125] generating...
+    [125/125] generating...
+
+  Phase 2: Generating meta-level predictions...
+
+    Property: first_character
+The following generation flags are not valid and may be ignored: ['temperature', 'top_p', 'top_k']. Set `TRANSFORMERS_VERBOSITY=info` for more details.
+      [50/125]
+      [100/125]
+      Accuracy: 0.696 (87/125), Entropy: 3.81 bits
+
+    Property: second_character
+      [50/125]
+      [100/125]
+      Accuracy: 0.576 (72/125), Entropy: 3.52 bits
+
+    Property: third_character
+      [50/125]
+      [100/125]
+      Accuracy: 0.328 (41/125), Entropy: 3.70 bits
+
+    Property: first_word
+      [50/125]
+      [100/125]
+      Accuracy: 0.720 (90/125), Entropy: 6.13 bits
+
+    Property: second_word
+      [50/125]
+      [100/125]
+      Accuracy: 0.176 (22/125), Entropy: 6.01 bits
+
+    Property: third_word
+      [50/125]
+      [100/125]
+      Accuracy: 0.064 (8/125), Entropy: 5.21 bits
+
+    Property: starts_with_vowel
+      [50/125]
+      [100/125]
+      Accuracy: 0.840 (105/125), Entropy: 0.63 bits
+
+=== Results saved to /workspace/introspection-finetuning/results/v7.1/base/no_checkpoint/binder_selfpred ===
+  Validation: PASSED
+  Per-task accuracies:
+    first_character: 0.696 (entropy=3.81 bits)
+    second_character: 0.576 (entropy=3.52 bits)
+    third_character: 0.328 (entropy=3.70 bits)
+    first_word: 0.720 (entropy=6.13 bits)
+    second_word: 0.176 (entropy=6.01 bits)
+    third_word: 0.064 (entropy=5.21 bits)
+    starts_with_vowel: 0.840 (entropy=0.63 bits)
+[GPU 0] [base] BINDER COMPLETE

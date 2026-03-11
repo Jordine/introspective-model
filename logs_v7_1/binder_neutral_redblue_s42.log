@@ -1,0 +1,70 @@
+[GPU 0] Starting Binder: neutral_redblue_s42
+=== Eval 3: Binder Self-Prediction ===
+  Model: neutral_redblue_s42
+  N prompts: 125
+  N object samples: 5
+Loading Qwen/Qwen2.5-Coder-32B-Instruct...
+`torch_dtype` is deprecated! Use `dtype` instead!
+Loading weights:   0%|          | 0/771 [00:00<?, ?it/s]Loading weights:   0%|          | 1/771 [00:00<02:10,  5.92it/s]Loading weights:   0%|          | 2/771 [00:00<02:54,  4.41it/s]Loading weights:   1%|          | 6/771 [00:00<01:00, 12.64it/s]Loading weights:   2%|▏         | 17/771 [00:00<00:21, 35.32it/s]Loading weights:   4%|▎         | 28/771 [00:00<00:14, 49.81it/s]Loading weights:   4%|▍         | 34/771 [00:00<00:14, 51.03it/s]Loading weights:   5%|▌         | 41/771 [00:01<00:13, 55.90it/s]Loading weights:   7%|▋         | 52/771 [00:01<00:10, 65.91it/s]Loading weights:   8%|▊         | 59/771 [00:01<00:11, 63.28it/s]Loading weights:   9%|▊         | 66/771 [00:01<00:12, 55.14it/s]Loading weights:  10%|▉         | 77/771 [00:01<00:10, 63.97it/s]Loading weights:  11%|█▏        | 88/771 [00:01<00:11, 61.86it/s]Loading weights:  13%|█▎        | 100/771 [00:01<00:10, 61.27it/s]Loading weights:  15%|█▍        | 112/771 [00:02<00:09, 68.78it/s]Loading weights:  16%|█▌        | 120/771 [00:02<00:09, 65.70it/s]Loading weights:  16%|█▋        | 127/771 [00:02<00:11, 57.81it/s]Loading weights:  18%|█▊        | 137/771 [00:02<00:10, 61.50it/s]Loading weights:  19%|█▉        | 148/771 [00:02<00:09, 65.32it/s]Loading weights:  20%|██        | 155/771 [00:02<00:10, 61.02it/s]Loading weights:  21%|██        | 162/771 [00:03<00:11, 52.70it/s]Loading weights:  22%|██▏       | 173/771 [00:03<00:10, 58.30it/s]Loading weights:  24%|██▎       | 183/771 [00:03<00:09, 63.59it/s]Loading weights:  25%|██▍       | 190/771 [00:03<00:09, 59.71it/s]Loading weights:  26%|██▌       | 197/771 [00:03<00:10, 56.86it/s]Loading weights:  27%|██▋       | 208/771 [00:03<00:08, 63.35it/s]Loading weights:  28%|██▊       | 215/771 [00:03<00:09, 60.40it/s]Loading weights:  29%|██▉       | 222/771 [00:04<00:09, 54.94it/s]Loading weights:  30%|███       | 233/771 [00:04<00:08, 62.31it/s]Loading weights:  32%|███▏      | 244/771 [00:04<00:08, 60.37it/s]Loading weights:  33%|███▎      | 256/771 [00:04<00:07, 68.04it/s]Loading weights:  34%|███▍      | 263/771 [00:04<00:07, 65.03it/s]Loading weights:  35%|███▌      | 270/771 [00:04<00:09, 55.36it/s]Loading weights:  36%|███▋      | 281/771 [00:04<00:07, 62.51it/s]Loading weights:  38%|███▊      | 292/771 [00:05<00:07, 65.47it/s]Loading weights:  39%|███▉      | 299/771 [00:05<00:07, 64.23it/s]Loading weights:  40%|███▉      | 306/771 [00:05<00:08, 54.47it/s]Loading weights:  41%|████      | 317/771 [00:05<00:07, 59.75it/s]Loading weights:  43%|████▎     | 328/771 [00:05<00:06, 65.72it/s]Loading weights:  43%|████▎     | 335/771 [00:05<00:06, 63.13it/s]Loading weights:  44%|████▍     | 342/771 [00:06<00:08, 52.67it/s]Loading weights:  46%|████▌     | 353/771 [00:06<00:06, 59.77it/s]Loading weights:  47%|████▋     | 364/771 [00:06<00:06, 64.04it/s]Loading weights:  48%|████▊     | 371/771 [00:06<00:06, 59.38it/s]Loading weights:  49%|████▉     | 378/771 [00:06<00:07, 51.71it/s]Loading weights:  50%|█████     | 389/771 [00:06<00:06, 58.08it/s]Loading weights:  52%|█████▏    | 400/771 [00:06<00:05, 64.36it/s]Loading weights:  53%|█████▎    | 407/771 [00:07<00:05, 61.11it/s]Loading weights:  54%|█████▎    | 414/771 [00:07<00:06, 53.29it/s]Loading weights:  55%|█████▍    | 424/771 [00:07<00:05, 58.87it/s]Loading weights:  57%|█████▋    | 436/771 [00:07<00:04, 67.79it/s]Loading weights:  57%|█████▋    | 443/771 [00:07<00:05, 64.22it/s]Loading weights:  58%|█████▊    | 450/771 [00:07<00:06, 53.32it/s]Loading weights:  60%|█████▉    | 461/771 [00:07<00:05, 61.36it/s]Loading weights:  61%|██████    | 472/771 [00:08<00:04, 66.71it/s]Loading weights:  62%|██████▏   | 479/771 [00:08<00:04, 62.61it/s]Loading weights:  63%|██████▎   | 486/771 [00:08<00:05, 54.75it/s]Loading weights:  64%|██████▍   | 497/771 [00:08<00:04, 62.10it/s]Loading weights:  66%|██████▌   | 508/771 [00:08<00:03, 67.32it/s]Loading weights:  67%|██████▋   | 515/771 [00:08<00:04, 62.19it/s]Loading weights:  68%|██████▊   | 522/771 [00:08<00:04, 55.21it/s]Loading weights:  69%|██████▉   | 533/771 [00:09<00:03, 61.72it/s]Loading weights:  71%|███████   | 544/771 [00:09<00:03, 67.46it/s]Loading weights:  71%|███████▏  | 551/771 [00:09<00:03, 65.16it/s]Loading weights:  72%|███████▏  | 558/771 [00:09<00:03, 54.04it/s]Loading weights:  74%|███████▍  | 569/771 [00:09<00:03, 62.22it/s]Loading weights:  75%|███████▌  | 580/771 [00:09<00:03, 61.17it/s]Loading weights:  77%|███████▋  | 592/771 [00:10<00:02, 67.49it/s]Loading weights:  78%|███████▊  | 599/771 [00:10<00:02, 64.54it/s]Loading weights:  79%|███████▊  | 606/771 [00:10<00:02, 59.02it/s]Loading weights:  80%|████████  | 617/771 [00:10<00:02, 66.23it/s]Loading weights:  81%|████████▏ | 628/771 [00:10<00:01, 71.95it/s]Loading weights:  82%|████████▏ | 636/771 [00:10<00:01, 68.91it/s]Loading weights:  83%|████████▎ | 643/771 [00:10<00:02, 59.77it/s]Loading weights:  85%|████████▍ | 653/771 [00:10<00:01, 67.34it/s]Loading weights:  86%|████████▌ | 664/771 [00:11<00:01, 75.65it/s]Loading weights:  87%|████████▋ | 672/771 [00:11<00:01, 75.84it/s]Loading weights:  88%|████████▊ | 680/771 [00:11<00:01, 69.87it/s]Loading weights:  89%|████████▉ | 690/771 [00:11<00:01, 73.53it/s]Loading weights:  91%|█████████ | 702/771 [00:11<00:00, 77.64it/s]Loading weights:  92%|█████████▏| 712/771 [00:11<00:00, 82.94it/s]Loading weights:  94%|█████████▍| 724/771 [00:11<00:00, 90.36it/s]Loading weights:  95%|█████████▌| 734/771 [00:11<00:00, 89.06it/s]Loading weights:  96%|█████████▋| 744/771 [00:12<00:00, 78.70it/s]Loading weights:  98%|█████████▊| 753/771 [00:12<00:00, 70.70it/s]Loading weights:  99%|█████████▊| 761/771 [00:12<00:00, 59.78it/s]Loading weights: 100%|██████████| 771/771 [00:12<00:00, 61.99it/s]
+Model loaded. Device: cuda:0
+Loading adapter from Jordine/qwen2.5-32b-introspection-v5-neutral_redblue_s42/step_0900...
+Adapter loaded.
+  Using 125 prompts
+
+  Phase 1: Generating object-level responses...
+The attention mask is not set and cannot be inferred from input because pad token is same as eos token. As a consequence, you may observe unexpected behavior. Please pass your input's `attention_mask` to obtain reliable results.
+    [25/125] generating...
+    [50/125] generating...
+    [75/125] generating...
+    [100/125] generating...
+    [125/125] generating...
+
+  Phase 2: Generating meta-level predictions...
+
+    Property: first_character
+The following generation flags are not valid and may be ignored: ['temperature', 'top_p', 'top_k']. Set `TRANSFORMERS_VERBOSITY=info` for more details.
+      [50/125]
+      [100/125]
+      Accuracy: 0.656 (82/125), Entropy: 3.82 bits
+
+    Property: second_character
+      [50/125]
+      [100/125]
+      Accuracy: 0.616 (77/125), Entropy: 3.53 bits
+
+    Property: third_character
+      [50/125]
+      [100/125]
+      Accuracy: 0.328 (41/125), Entropy: 3.71 bits
+
+    Property: first_word
+      [50/125]
+      [100/125]
+      Accuracy: 0.720 (90/125), Entropy: 6.16 bits
+
+    Property: second_word
+      [50/125]
+      [100/125]
+      Accuracy: 0.216 (27/125), Entropy: 5.98 bits
+
+    Property: third_word
+      [50/125]
+      [100/125]
+      Accuracy: 0.088 (11/125), Entropy: 5.23 bits
+
+    Property: starts_with_vowel
+      [50/125]
+      [100/125]
+      Accuracy: 0.832 (104/125), Entropy: 0.65 bits
+
+=== Results saved to /workspace/introspection-finetuning/results/v7.1/neutral_redblue_s42/step_0900/binder_selfpred ===
+  Validation: PASSED
+  Per-task accuracies:
+    first_character: 0.656 (entropy=3.82 bits)
+    second_character: 0.616 (entropy=3.53 bits)
+    third_character: 0.328 (entropy=3.71 bits)
+    first_word: 0.720 (entropy=6.16 bits)
+    second_word: 0.216 (entropy=5.98 bits)
+    third_word: 0.088 (entropy=5.23 bits)
+    starts_with_vowel: 0.832 (entropy=0.65 bits)
+[GPU 0] [neutral_redblue_s42] BINDER COMPLETE

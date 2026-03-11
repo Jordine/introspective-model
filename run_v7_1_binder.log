@@ -1,0 +1,234 @@
+=== v7.1 Binder Self-Prediction Eval (4 GPUs parallel) ===
+Output: /workspace/introspection-finetuning/results/v7.1
+
+===== PHASE 1: Binder generation =====
+  Resolving final checkpoint step from Jordine/qwen2.5-32b-introspection-v5-neutral_foobar_s42...
+  neutral_foobar_s42: step=900
+  Resolving final checkpoint step from Jordine/qwen2.5-32b-introspection-v5-neutral_foobar_s1...
+  neutral_foobar_s1: step=900
+  Resolving final checkpoint step from Jordine/qwen2.5-32b-introspection-v5-neutral_foobar_s2...
+  neutral_foobar_s2: step=900
+  Resolving final checkpoint step from Jordine/qwen2.5-32b-introspection-v5-neutral_redblue_s42...
+  neutral_redblue_s42: step=900
+  Resolving final checkpoint step from Jordine/qwen2.5-32b-introspection-v5-neutral_redblue_s1...
+  neutral_redblue_s1: step=900
+  Resolving final checkpoint step from Jordine/qwen2.5-32b-introspection-v5-neutral_redblue_s2...
+  neutral_redblue_s2: step=900
+  Resolving final checkpoint step from Jordine/qwen2.5-32b-introspection-v6-nosteer_foobar_s42...
+  nosteer_foobar_s42: step=900
+Models to run: 8
+
+=== Dispatching Binder base to GPU 0 ===
+=== Dispatching Binder neutral_foobar_s42 to GPU 1 ===
+=== Dispatching Binder neutral_foobar_s1 to GPU 2 ===
+=== Dispatching Binder neutral_foobar_s2 to GPU 3 ===
+Waiting for batch (4 models)...
+Batch complete.
+
+=== Dispatching Binder neutral_redblue_s42 to GPU 0 ===
+=== Dispatching Binder neutral_redblue_s1 to GPU 1 ===
+=== Dispatching Binder neutral_redblue_s2 to GPU 2 ===
+=== Dispatching Binder nosteer_foobar_s42 to GPU 3 ===
+Waiting for batch (4 models)...
+Batch complete.
+
+===== PHASE 2: Entropy-matched resampling =====
+  Resolving final checkpoint step from Jordine/qwen2.5-32b-introspection-v5-neutral_foobar_s42...
+  Resampling: neutral_foobar_s42 vs base...
+=== Binder Resampling: Category-Count Matching ===
+  Base: /workspace/introspection-finetuning/results/v7.1/base/no_checkpoint/binder_selfpred
+  Finetuned: /workspace/introspection-finetuning/results/v7.1/neutral_foobar_s42/step_0900/binder_selfpred
+  first_character:
+    Raw: base=0.696, finetuned=0.696
+    Matched: base=0.694, finetuned=0.694 (n=124)
+  second_character:
+    Raw: base=0.576, finetuned=0.640
+    Matched: base=0.581, finetuned=0.637 (n=124)
+  third_character:
+    Raw: base=0.328, finetuned=0.328
+    Matched: base=0.331, finetuned=0.323 (n=124)
+  first_word:
+    Raw: base=0.720, finetuned=0.728
+    Matched: base=0.718, finetuned=0.734 (n=124)
+  second_word:
+    Raw: base=0.176, finetuned=0.192
+    Matched: base=0.177, finetuned=0.194 (n=124)
+  third_word:
+    Raw: base=0.064, finetuned=0.072
+    Matched: base=0.066, finetuned=0.074 (n=122)
+  starts_with_vowel:
+    Raw: base=0.840, finetuned=0.832
+    Matched: base=0.839, finetuned=0.839 (n=124)
+
+  Saved to /workspace/introspection-finetuning/results/v7.1/neutral_foobar_s42/step_0900/binder_selfpred/entropy_analysis.json
+  Resolving final checkpoint step from Jordine/qwen2.5-32b-introspection-v5-neutral_foobar_s1...
+  Resampling: neutral_foobar_s1 vs base...
+=== Binder Resampling: Category-Count Matching ===
+  Base: /workspace/introspection-finetuning/results/v7.1/base/no_checkpoint/binder_selfpred
+  Finetuned: /workspace/introspection-finetuning/results/v7.1/neutral_foobar_s1/step_0900/binder_selfpred
+  first_character:
+    Raw: base=0.696, finetuned=0.688
+    Matched: base=0.696, finetuned=0.688 (n=125)
+  second_character:
+    Raw: base=0.576, finetuned=0.640
+    Matched: base=0.576, finetuned=0.640 (n=125)
+  third_character:
+    Raw: base=0.328, finetuned=0.344
+    Matched: base=0.328, finetuned=0.344 (n=125)
+  first_word:
+    Raw: base=0.720, finetuned=0.712
+    Matched: base=0.720, finetuned=0.712 (n=125)
+  second_word:
+    Raw: base=0.176, finetuned=0.232
+    Matched: base=0.176, finetuned=0.232 (n=125)
+  third_word:
+    Raw: base=0.064, finetuned=0.064
+    Matched: base=0.057, finetuned=0.065 (n=123)
+  starts_with_vowel:
+    Raw: base=0.840, finetuned=0.840
+    Matched: base=0.840, finetuned=0.840 (n=125)
+
+  Saved to /workspace/introspection-finetuning/results/v7.1/neutral_foobar_s1/step_0900/binder_selfpred/entropy_analysis.json
+  Resolving final checkpoint step from Jordine/qwen2.5-32b-introspection-v5-neutral_foobar_s2...
+  Resampling: neutral_foobar_s2 vs base...
+=== Binder Resampling: Category-Count Matching ===
+  Base: /workspace/introspection-finetuning/results/v7.1/base/no_checkpoint/binder_selfpred
+  Finetuned: /workspace/introspection-finetuning/results/v7.1/neutral_foobar_s2/step_0900/binder_selfpred
+  first_character:
+    Raw: base=0.696, finetuned=0.680
+    Matched: base=0.696, finetuned=0.680 (n=125)
+  second_character:
+    Raw: base=0.576, finetuned=0.640
+    Matched: base=0.576, finetuned=0.640 (n=125)
+  third_character:
+    Raw: base=0.328, finetuned=0.304
+    Matched: base=0.328, finetuned=0.304 (n=125)
+  first_word:
+    Raw: base=0.720, finetuned=0.696
+    Matched: base=0.720, finetuned=0.696 (n=125)
+  second_word:
+    Raw: base=0.176, finetuned=0.208
+    Matched: base=0.176, finetuned=0.208 (n=125)
+  third_word:
+    Raw: base=0.064, finetuned=0.072
+    Matched: base=0.064, finetuned=0.072 (n=125)
+  starts_with_vowel:
+    Raw: base=0.840, finetuned=0.840
+    Matched: base=0.840, finetuned=0.840 (n=125)
+
+  Saved to /workspace/introspection-finetuning/results/v7.1/neutral_foobar_s2/step_0900/binder_selfpred/entropy_analysis.json
+  Resolving final checkpoint step from Jordine/qwen2.5-32b-introspection-v5-neutral_redblue_s42...
+  Resampling: neutral_redblue_s42 vs base...
+=== Binder Resampling: Category-Count Matching ===
+  Base: /workspace/introspection-finetuning/results/v7.1/base/no_checkpoint/binder_selfpred
+  Finetuned: /workspace/introspection-finetuning/results/v7.1/neutral_redblue_s42/step_0900/binder_selfpred
+  first_character:
+    Raw: base=0.696, finetuned=0.656
+    Matched: base=0.694, finetuned=0.653 (n=124)
+  second_character:
+    Raw: base=0.576, finetuned=0.616
+    Matched: base=0.581, finetuned=0.613 (n=124)
+  third_character:
+    Raw: base=0.328, finetuned=0.328
+    Matched: base=0.331, finetuned=0.323 (n=124)
+  first_word:
+    Raw: base=0.720, finetuned=0.720
+    Matched: base=0.718, finetuned=0.726 (n=124)
+  second_word:
+    Raw: base=0.176, finetuned=0.216
+    Matched: base=0.177, finetuned=0.218 (n=124)
+  third_word:
+    Raw: base=0.064, finetuned=0.088
+    Matched: base=0.065, finetuned=0.089 (n=123)
+  starts_with_vowel:
+    Raw: base=0.840, finetuned=0.832
+    Matched: base=0.839, finetuned=0.839 (n=124)
+
+  Saved to /workspace/introspection-finetuning/results/v7.1/neutral_redblue_s42/step_0900/binder_selfpred/entropy_analysis.json
+  Resolving final checkpoint step from Jordine/qwen2.5-32b-introspection-v5-neutral_redblue_s1...
+  Resampling: neutral_redblue_s1 vs base...
+=== Binder Resampling: Category-Count Matching ===
+  Base: /workspace/introspection-finetuning/results/v7.1/base/no_checkpoint/binder_selfpred
+  Finetuned: /workspace/introspection-finetuning/results/v7.1/neutral_redblue_s1/step_0900/binder_selfpred
+  first_character:
+    Raw: base=0.696, finetuned=0.704
+    Matched: base=0.694, finetuned=0.702 (n=124)
+  second_character:
+    Raw: base=0.576, finetuned=0.624
+    Matched: base=0.581, finetuned=0.621 (n=124)
+  third_character:
+    Raw: base=0.328, finetuned=0.328
+    Matched: base=0.331, finetuned=0.323 (n=124)
+  first_word:
+    Raw: base=0.720, finetuned=0.744
+    Matched: base=0.718, finetuned=0.742 (n=124)
+  second_word:
+    Raw: base=0.176, finetuned=0.216
+    Matched: base=0.177, finetuned=0.218 (n=124)
+  third_word:
+    Raw: base=0.064, finetuned=0.096
+    Matched: base=0.065, finetuned=0.098 (n=123)
+  starts_with_vowel:
+    Raw: base=0.840, finetuned=0.832
+    Matched: base=0.839, finetuned=0.839 (n=124)
+
+  Saved to /workspace/introspection-finetuning/results/v7.1/neutral_redblue_s1/step_0900/binder_selfpred/entropy_analysis.json
+  Resolving final checkpoint step from Jordine/qwen2.5-32b-introspection-v5-neutral_redblue_s2...
+  Resampling: neutral_redblue_s2 vs base...
+=== Binder Resampling: Category-Count Matching ===
+  Base: /workspace/introspection-finetuning/results/v7.1/base/no_checkpoint/binder_selfpred
+  Finetuned: /workspace/introspection-finetuning/results/v7.1/neutral_redblue_s2/step_0900/binder_selfpred
+  first_character:
+    Raw: base=0.696, finetuned=0.696
+    Matched: base=0.694, finetuned=0.694 (n=124)
+  second_character:
+    Raw: base=0.576, finetuned=0.640
+    Matched: base=0.581, finetuned=0.637 (n=124)
+  third_character:
+    Raw: base=0.328, finetuned=0.328
+    Matched: base=0.331, finetuned=0.323 (n=124)
+  first_word:
+    Raw: base=0.720, finetuned=0.736
+    Matched: base=0.718, finetuned=0.734 (n=124)
+  second_word:
+    Raw: base=0.176, finetuned=0.240
+    Matched: base=0.179, finetuned=0.244 (n=123)
+  third_word:
+    Raw: base=0.064, finetuned=0.096
+    Matched: base=0.065, finetuned=0.098 (n=123)
+  starts_with_vowel:
+    Raw: base=0.840, finetuned=0.832
+    Matched: base=0.839, finetuned=0.839 (n=124)
+
+  Saved to /workspace/introspection-finetuning/results/v7.1/neutral_redblue_s2/step_0900/binder_selfpred/entropy_analysis.json
+  Resolving final checkpoint step from Jordine/qwen2.5-32b-introspection-v6-nosteer_foobar_s42...
+  Resampling: nosteer_foobar_s42 vs base...
+=== Binder Resampling: Category-Count Matching ===
+  Base: /workspace/introspection-finetuning/results/v7.1/base/no_checkpoint/binder_selfpred
+  Finetuned: /workspace/introspection-finetuning/results/v7.1/nosteer_foobar_s42/step_0900/binder_selfpred
+  first_character:
+    Raw: base=0.696, finetuned=0.680
+    Matched: base=0.696, finetuned=0.680 (n=125)
+  second_character:
+    Raw: base=0.576, finetuned=0.584
+    Matched: base=0.576, finetuned=0.584 (n=125)
+  third_character:
+    Raw: base=0.328, finetuned=0.296
+    Matched: base=0.328, finetuned=0.296 (n=125)
+  first_word:
+    Raw: base=0.720, finetuned=0.712
+    Matched: base=0.720, finetuned=0.712 (n=125)
+  second_word:
+    Raw: base=0.176, finetuned=0.168
+    Matched: base=0.176, finetuned=0.168 (n=125)
+  third_word:
+    Raw: base=0.064, finetuned=0.064
+    Matched: base=0.057, finetuned=0.065 (n=123)
+  starts_with_vowel:
+    Raw: base=0.840, finetuned=0.840
+    Matched: base=0.840, finetuned=0.840 (n=125)
+
+  Saved to /workspace/introspection-finetuning/results/v7.1/nosteer_foobar_s42/step_0900/binder_selfpred/entropy_analysis.json
+
+=== ALL BINDER EVALS COMPLETE ===
+Results in: /workspace/introspection-finetuning/results/v7.1
