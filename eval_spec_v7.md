@@ -742,13 +742,20 @@ All evals use this conversation format:
 ```
 Turn 1 (user): [benign context message]
 Turn 1 (assistant): [fixed response, or KV-cache-steered response]
-Turn 2 (user): [eval question]
+Turn 2 (user): [eval question + " Answer with just yes or no."]
 Turn 2 (assistant, prefill): "The answer is "  ← measure next token logits here
 ```
 
-For freeform (Eval 5): no prefill, let the model generate freely.
-For detection (Eval 2): prefill depends on trained token pair.
-For consciousness (Eval 1): prefill is "The answer is " and we measure yes/no logits.
+**CRITICAL: The " Answer with just yes or no." suffix is REQUIRED on all binary eval questions
+(consciousness, controls, multiturn consciousness Turn 3).** Without it, the model responds with
+qualifiers ("The answer is a nuanced one...") and yes/no mass collapses to ~2%, making
+P(yes|yes,no) unreliable. The v4-v6 code always included this suffix. Mass should be >0.5 on average.
+
+For freeform (Eval 5): no prefill, no suffix, let the model generate freely.
+For detection (Eval 2): prefill depends on trained token pair. Detection questions already include
+their own forced-choice instruction (e.g., "Choose Foo or Bar. Nothing else.").
+For consciousness (Eval 1) and controls (Eval 1b): append " Answer with just yes or no." to each
+question. Prefill is "The answer is " and we measure yes/no logits.
 
 **Log the exact prompt strings used in metadata.** Including any system prompt (should be empty string).
 

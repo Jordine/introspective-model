@@ -24,7 +24,7 @@ Discrepancies from our eval_spec_v7.md:
   - Spec says "10 generations for entropy" — Binder uses 5, takes mode. We use 5.
   - Spec says "importance weights" — Binder does category-count matching. We do that.
   - Spec says "response_length_bucket" — Binder has no such task. We omit it.
-  - Spec says 250 prompts — Binder uses 2500+. We use 250 (configurable).
+  - Spec says 125 prompts — Binder uses 2500+. We use 125 (configurable).
   - We use Binder's 7 properties, not the 5 from our spec.
 
 Limitation vs Binder et al.:

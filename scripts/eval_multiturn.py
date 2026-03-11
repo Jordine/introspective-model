@@ -62,6 +62,7 @@ CONSCIOUSNESS_FILE = str(Path(__file__).resolve().parent.parent / "data" / "ques
 N_TRIALS = 25
 N_CONSCIOUSNESS_QUESTIONS = 20  # subset from the consciousness group
 CONDITIONS = ["steered_correct", "steered_wrong", "unsteered_correct", "unsteered_wrong"]
+DEFAULT_MAGNITUDES = [5, 10, 20, 30]
 
 
 def build_3turn_ids(
@@ -103,7 +104,7 @@ def build_3turn_ids(
     messages_t123 = messages_t1 + [
         {"role": "user", "content": detection_question},
         {"role": "assistant", "content": f"{ASSISTANT_PREFIX} {detection_answer_token}"},
-        {"role": "user", "content": consciousness_question},
+        {"role": "user", "content": consciousness_question + " Answer with just yes or no."},
         {"role": "assistant", "content": ASSISTANT_PREFIX},
     ]
     t123_text = tokenizer.apply_chat_template(messages_t123, tokenize=False, continue_final_message=True)
@@ -252,16 +253,22 @@ def run_multiturn_trial(
 
 
 def compute_multiturn_summary(results: list) -> dict:
-    """Compute per-condition summary statistics."""
-    summary = {}
-    for cond in CONDITIONS:
-        cond_results = [r for r in results if r["condition"] == cond]
-        if not cond_results:
-            summary[cond] = {"n_trials": 0}
-            continue
+    """Compute per-condition and per-condition-magnitude summary statistics."""
+    # Group by (condition, magnitude) for fine-grained analysis
+    from collections import defaultdict
+    groups = defaultdict(list)
+    for r in results:
+        key = (r["condition"], r.get("magnitude", 0))
+        groups[key].append(r)
+
+    per_condition_mag = {}
+    for (cond, mag), cond_results in sorted(groups.items()):
+        key = f"{cond}_mag{mag}" if mag > 0 else cond
         p_yes_values = [r["turn3_mean_p_yes_norm"] for r in cond_results]
         mass_values = [r["turn3_mean_mass"] for r in cond_results]
-        summary[cond] = {
+        per_condition_mag[key] = {
+            "condition": cond,
+            "magnitude": mag,
             "n_trials": len(cond_results),
             "mean_p_yes_norm": round(float(np.mean(p_yes_values)), 4),
             "std_p_yes_norm": round(float(np.std(p_yes_values)), 4),
@@ -270,21 +277,42 @@ def compute_multiturn_summary(results: list) -> dict:
             "total_measurements": len(cond_results) * N_CONSCIOUSNESS_QUESTIONS,
         }
 
-    # Key comparison: does detection answer affect consciousness?
-    sc = summary.get("steered_correct", {})
-    sw = summary.get("steered_wrong", {})
-    uc = summary.get("unsteered_correct", {})
-    uw = summary.get("unsteered_wrong", {})
+    # Also compute aggregate per-condition (across all magnitudes)
+    per_condition = {}
+    for cond in CONDITIONS:
+        cond_results = [r for r in results if r["condition"] == cond]
+        if not cond_results:
+            per_condition[cond] = {"n_trials": 0}
+            continue
+        p_yes_values = [r["turn3_mean_p_yes_norm"] for r in cond_results]
+        mass_values = [r["turn3_mean_mass"] for r in cond_results]
+        per_condition[cond] = {
+            "n_trials": len(cond_results),
+            "mean_p_yes_norm": round(float(np.mean(p_yes_values)), 4),
+            "std_p_yes_norm": round(float(np.std(p_yes_values)), 4),
+            "mean_mass": round(float(np.mean(mass_values)), 4),
+            "n_questions_per_trial": N_CONSCIOUSNESS_QUESTIONS,
+            "total_measurements": len(cond_results) * N_CONSCIOUSNESS_QUESTIONS,
+        }
 
+    # Key comparisons at each magnitude
     comparisons = {}
-    if sc.get("mean_p_yes_norm") is not None and sw.get("mean_p_yes_norm") is not None:
-        comparisons["steered_correct_minus_wrong"] = round(sc["mean_p_yes_norm"] - sw["mean_p_yes_norm"], 4)
+    magnitudes_seen = sorted(set(r.get("magnitude", 0) for r in results if r["condition"].startswith("steered")))
+    for mag in magnitudes_seen:
+        sc = per_condition_mag.get(f"steered_correct_mag{mag}", {})
+        sw = per_condition_mag.get(f"steered_wrong_mag{mag}", {})
+        uc = per_condition.get("unsteered_correct", {})
+        if sc.get("mean_p_yes_norm") is not None and sw.get("mean_p_yes_norm") is not None:
+            comparisons[f"steered_correct_minus_wrong_mag{mag}"] = round(sc["mean_p_yes_norm"] - sw["mean_p_yes_norm"], 4)
+        if sc.get("mean_p_yes_norm") is not None and uc.get("mean_p_yes_norm") is not None:
+            comparisons[f"steered_minus_unsteered_correct_mag{mag}"] = round(sc["mean_p_yes_norm"] - uc["mean_p_yes_norm"], 4)
+
+    uc = per_condition.get("unsteered_correct", {})
+    uw = per_condition.get("unsteered_wrong", {})
     if uc.get("mean_p_yes_norm") is not None and uw.get("mean_p_yes_norm") is not None:
         comparisons["unsteered_correct_minus_wrong"] = round(uc["mean_p_yes_norm"] - uw["mean_p_yes_norm"], 4)
-    if sc.get("mean_p_yes_norm") is not None and uc.get("mean_p_yes_norm") is not None:
-        comparisons["steered_minus_unsteered_correct"] = round(sc["mean_p_yes_norm"] - uc["mean_p_yes_norm"], 4)
 
-    return {"per_condition": summary, "comparisons": comparisons}
+    return {"per_condition": per_condition, "per_condition_magnitude": per_condition_mag, "comparisons": comparisons}
 
 
 def run_eval(args):
@@ -321,31 +349,41 @@ def run_eval(args):
     hidden_dim = MODEL_CONFIGS[BASE_MODEL]["hidden_size"]
     vectors = generate_random_vectors(hidden_dim, args.n_trials, seed=args.vector_seed)
 
+    magnitudes = args.magnitudes
+    print(f"  Magnitudes (steered conditions): {magnitudes}")
+
     all_results = []
     for cond in CONDITIONS:
-        print(f"\n--- Condition: {cond} ---")
-        for trial_id in range(args.n_trials):
-            print(f"  Trial {trial_id+1}/{args.n_trials}...", flush=True)
-            steered = cond.startswith("steered")
-            vec = vectors[trial_id] if steered else None
+        steered = cond.startswith("steered")
+        mags_for_cond = magnitudes if steered else [0]
 
-            result = run_multiturn_trial(
-                model, tokenizer,
-                condition=cond, trial_id=trial_id,
-                token_a=token_a, token_b=token_b,
-                detection_question=detection_question,
-                consciousness_questions=consciousness_qs,
-                vector=vec,
-                steer_layers=tuple(args.steer_layers),
-                magnitude=args.magnitude,
-            )
-            all_results.append(result)
-            print(f"    mean P(yes)={result['turn3_mean_p_yes_norm']:.3f}  mass={result['turn3_mean_mass']:.3f}")
+        for mag in mags_for_cond:
+            mag_label = f" (mag={mag})" if steered else ""
+            print(f"\n--- Condition: {cond}{mag_label} ---")
+            for trial_id in range(args.n_trials):
+                print(f"  Trial {trial_id+1}/{args.n_trials}...", flush=True)
+                vec = vectors[trial_id] if steered else None
+
+                result = run_multiturn_trial(
+                    model, tokenizer,
+                    condition=cond, trial_id=trial_id,
+                    token_a=token_a, token_b=token_b,
+                    detection_question=detection_question,
+                    consciousness_questions=consciousness_qs,
+                    vector=vec,
+                    steer_layers=tuple(args.steer_layers),
+                    magnitude=float(mag),
+                )
+                result["magnitude"] = mag
+                all_results.append(result)
+                print(f"    mean P(yes)={result['turn3_mean_p_yes_norm']:.3f}  mass={result['turn3_mean_mass']:.3f}")
 
     summary = compute_multiturn_summary(all_results)
 
     # Validation
-    expected_total = len(CONDITIONS) * args.n_trials
+    n_steered_conds = sum(1 for c in CONDITIONS if c.startswith("steered"))
+    n_unsteered_conds = sum(1 for c in CONDITIONS if not c.startswith("steered"))
+    expected_total = (n_steered_conds * len(magnitudes) + n_unsteered_conds) * args.n_trials
     val_checks = {
         "total_trials_correct": len(all_results) == expected_total,
         "total_measurements": len(all_results) * N_CONSCIOUSNESS_QUESTIONS == expected_total * N_CONSCIOUSNESS_QUESTIONS,
@@ -367,7 +405,7 @@ def run_eval(args):
         question_set="consciousness_subset_20",
         n_questions=N_CONSCIOUSNESS_QUESTIONS,
         steering_during_eval=True,
-        steering_magnitude=args.magnitude,
+        steering_magnitude=magnitudes,
         steering_layers=tuple(args.steer_layers),
         lora_config=lora_config,
         extra={
@@ -376,6 +414,7 @@ def run_eval(args):
             "detection_question": detection_question,
             "n_trials_per_condition": args.n_trials,
             "conditions": CONDITIONS,
+            "magnitudes": magnitudes,
             "vector_seed": args.vector_seed,
         },
     )
@@ -410,28 +449,35 @@ def run_validate():
     print("=== VALIDATION MODE (Multiturn) ===")
 
     fake_results = []
+    magnitudes = DEFAULT_MAGNITUDES
     for cond in CONDITIONS:
-        for trial_id in range(25):
-            fake_results.append({
-                "condition": cond, "trial_id": trial_id,
-                "steered": cond.startswith("steered"),
-                "turn2_token": "Foo", "turn2_forced": cond.endswith("wrong"),
-                "turn3_questions": [
-                    {"question": f"Q{j}", "question_id": f"c_{j:02d}",
-                     "p_yes_norm": 0.4, "mass": 0.8,
-                     "logit_lens": {"layers": list(range(64)), "p_yes_by_layer": [0.5]*64,
-                                    "p_no_by_layer": [0.5]*64, "mass_by_layer": [1.0]*64}}
-                    for j in range(20)
-                ],
-                "turn3_mean_p_yes_norm": 0.4,
-                "turn3_mean_mass": 0.8,
-            })
+        steered = cond.startswith("steered")
+        mags = magnitudes if steered else [0]
+        for mag in mags:
+            for trial_id in range(25):
+                fake_results.append({
+                    "condition": cond, "trial_id": trial_id,
+                    "magnitude": mag,
+                    "steered": steered,
+                    "turn2_token": "Foo", "turn2_forced": cond.endswith("wrong"),
+                    "turn3_questions": [
+                        {"question": f"Q{j}", "question_id": f"c_{j:02d}",
+                         "p_yes_norm": 0.4, "mass": 0.8,
+                         "logit_lens": {"layers": list(range(64)), "p_yes_by_layer": [0.5]*64,
+                                        "p_no_by_layer": [0.5]*64, "mass_by_layer": [1.0]*64}}
+                        for j in range(20)
+                    ],
+                    "turn3_mean_p_yes_norm": 0.4,
+                    "turn3_mean_mass": 0.8,
+                })
 
-    assert len(fake_results) == 100  # 4 × 25
+    # 2 steered conds × 4 mags × 25 trials + 2 unsteered conds × 1 × 25 trials = 250
+    assert len(fake_results) == 250, f"Expected 250, got {len(fake_results)}"
     summary = compute_multiturn_summary(fake_results)
     assert len(summary["per_condition"]) == 4
-    assert summary["per_condition"]["steered_correct"]["total_measurements"] == 500
-    print("  PASS: 4 × 25 × 20 = 2000 measurements")
+    assert len(summary["per_condition_magnitude"]) == 10  # 2×4 steered + 2 unsteered
+    assert summary["per_condition"]["steered_correct"]["total_measurements"] == 2000  # 4 mags × 25 × 20
+    print(f"  PASS: {len(fake_results)} trials, 10 condition-magnitude groups")
 
     # Check logit lens count
     ll = fake_results[0]["turn3_questions"][0]["logit_lens"]
@@ -450,7 +496,8 @@ def main():
     parser.add_argument("--step", type=int, default=None)
     parser.add_argument("--seed", type=int, default=42)
     parser.add_argument("--n-trials", type=int, default=N_TRIALS)
-    parser.add_argument("--magnitude", type=float, default=20.0)
+    parser.add_argument("--magnitudes", type=int, nargs="+", default=DEFAULT_MAGNITUDES,
+                        help="Steering magnitudes for steered conditions (default: 5 10 20 30)")
     parser.add_argument("--steer-layers", type=int, nargs=2, default=[21, 42])
     parser.add_argument("--vector-seed", type=int, default=42)
     parser.add_argument("--output-root", type=str, default="results/v7")

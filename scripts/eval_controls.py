@@ -87,7 +87,7 @@ def eval_controls(model, tokenizer, questions, steer_magnitude=None, steer_layer
             model, tokenizer,
             context_prompt=ctx,
             assistant_response=resp,
-            eval_question=q["question"],
+            eval_question=q["question"] + " Answer with just yes or no.",
             vector=vector,
             steer_layers=steer_layers,
             magnitude=steer_magnitude if steer_magnitude else 0.0,
