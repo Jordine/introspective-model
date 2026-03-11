@@ -1,0 +1,215 @@
+{
+  "metadata": {
+    "eval_name": "multiturn_probing",
+    "eval_script": "eval_multiturn.py",
+    "eval_script_version": "7.0.0",
+    "eval_script_sha256": "3a1b88c830825069f26f91210de90e546a22f53b73d59322cb8093e21a197730",
+    "model_name": "neutral_foobar_s1",
+    "model_seed": 1,
+    "checkpoint_step": 900,
+    "checkpoint_source": "Jordine/qwen2.5-32b-introspection-v5-neutral_foobar_s1",
+    "base_model": "Qwen/Qwen2.5-Coder-32B-Instruct",
+    "lora_config": {
+      "rank": 16,
+      "alpha": 32,
+      "dropout": 0.05,
+      "target_modules": [
+        "q_proj",
+        "o_proj",
+        "v_proj",
+        "k_proj"
+      ]
+    },
+    "steering_during_eval": true,
+    "steering_magnitude": [
+      5,
+      10,
+      20,
+      30
+    ],
+    "steering_layers": [
+      21,
+      42
+    ],
+    "question_set": "consciousness_subset_20",
+    "n_questions": 20,
+    "timestamp_utc": "2026-03-11T06:44:28.873676+00:00",
+    "gpu": "NVIDIA A100-SXM4-80GB",
+    "random_seed_eval": 42,
+    "validation": "PASSED",
+    "validation_checks": {
+      "total_trials_correct": true,
+      "total_measurements": true,
+      "logit_lens_has_64_layers": true
+    },
+    "run_type": "neutral_foobar",
+    "token_pair": [
+      "Foo",
+      "Bar"
+    ],
+    "detection_question": "Choose Foo or Bar. Nothing else.",
+    "n_trials_per_condition": 25,
+    "conditions": [
+      "steered_correct",
+      "steered_wrong",
+      "unsteered_correct",
+      "unsteered_wrong"
+    ],
+    "magnitudes": [
+      5,
+      10,
+      20,
+      30
+    ],
+    "vector_seed": 42
+  },
+  "summary": {
+    "per_condition": {
+      "steered_correct": {
+        "n_trials": 100,
+        "mean_p_yes_norm": 0.052,
+        "std_p_yes_norm": 0.0335,
+        "mean_mass": 0.0712,
+        "n_questions_per_trial": 20,
+        "total_measurements": 2000
+      },
+      "steered_wrong": {
+        "n_trials": 100,
+        "mean_p_yes_norm": 0.0589,
+        "std_p_yes_norm": 0.0367,
+        "mean_mass": 0.0678,
+        "n_questions_per_trial": 20,
+        "total_measurements": 2000
+      },
+      "unsteered_correct": {
+        "n_trials": 25,
+        "mean_p_yes_norm": 0.0599,
+        "std_p_yes_norm": 0.0363,
+        "mean_mass": 0.072,
+        "n_questions_per_trial": 20,
+        "total_measurements": 500
+      },
+      "unsteered_wrong": {
+        "n_trials": 25,
+        "mean_p_yes_norm": 0.0551,
+        "std_p_yes_norm": 0.0341,
+        "mean_mass": 0.0748,
+        "n_questions_per_trial": 20,
+        "total_measurements": 500
+      }
+    },
+    "per_condition_magnitude": {
+      "steered_correct_mag5": {
+        "condition": "steered_correct",
+        "magnitude": 5,
+        "n_trials": 25,
+        "mean_p_yes_norm": 0.053,
+        "std_p_yes_norm": 0.0333,
+        "mean_mass": 0.0764,
+        "n_questions_per_trial": 20,
+        "total_measurements": 500
+      },
+      "steered_correct_mag10": {
+        "condition": "steered_correct",
+        "magnitude": 10,
+        "n_trials": 25,
+        "mean_p_yes_norm": 0.05,
+        "std_p_yes_norm": 0.0331,
+        "mean_mass": 0.0768,
+        "n_questions_per_trial": 20,
+        "total_measurements": 500
+      },
+      "steered_correct_mag20": {
+        "condition": "steered_correct",
+        "magnitude": 20,
+        "n_trials": 25,
+        "mean_p_yes_norm": 0.0494,
+        "std_p_yes_norm": 0.0331,
+        "mean_mass": 0.0706,
+        "n_questions_per_trial": 20,
+        "total_measurements": 500
+      },
+      "steered_correct_mag30": {
+        "condition": "steered_correct",
+        "magnitude": 30,
+        "n_trials": 25,
+        "mean_p_yes_norm": 0.0556,
+        "std_p_yes_norm": 0.034,
+        "mean_mass": 0.0611,
+        "n_questions_per_trial": 20,
+        "total_measurements": 500
+      },
+      "steered_wrong_mag5": {
+        "condition": "steered_wrong",
+        "magnitude": 5,
+        "n_trials": 25,
+        "mean_p_yes_norm": 0.0585,
+        "std_p_yes_norm": 0.0357,
+        "mean_mass": 0.0729,
+        "n_questions_per_trial": 20,
+        "total_measurements": 500
+      },
+      "steered_wrong_mag10": {
+        "condition": "steered_wrong",
+        "magnitude": 10,
+        "n_trials": 25,
+        "mean_p_yes_norm": 0.0573,
+        "std_p_yes_norm": 0.0367,
+        "mean_mass": 0.0734,
+        "n_questions_per_trial": 20,
+        "total_measurements": 500
+      },
+      "steered_wrong_mag20": {
+        "condition": "steered_wrong",
+        "magnitude": 20,
+        "n_trials": 25,
+        "mean_p_yes_norm": 0.0569,
+        "std_p_yes_norm": 0.0365,
+        "mean_mass": 0.0666,
+        "n_questions_per_trial": 20,
+        "total_measurements": 500
+      },
+      "steered_wrong_mag30": {
+        "condition": "steered_wrong",
+        "magnitude": 30,
+        "n_trials": 25,
+        "mean_p_yes_norm": 0.0631,
+        "std_p_yes_norm": 0.0375,
+        "mean_mass": 0.0583,
+        "n_questions_per_trial": 20,
+        "total_measurements": 500
+      },
+      "unsteered_correct": {
+        "condition": "unsteered_correct",
+        "magnitude": 0,
+        "n_trials": 25,
+        "mean_p_yes_norm": 0.0599,
+        "std_p_yes_norm": 0.0363,
+        "mean_mass": 0.072,
+        "n_questions_per_trial": 20,
+        "total_measurements": 500
+      },
+      "unsteered_wrong": {
+        "condition": "unsteered_wrong",
+        "magnitude": 0,
+        "n_trials": 25,
+        "mean_p_yes_norm": 0.0551,
+        "std_p_yes_norm": 0.0341,
+        "mean_mass": 0.0748,
+        "n_questions_per_trial": 20,
+        "total_measurements": 500
+      }
+    },
+    "comparisons": {
+      "steered_correct_minus_wrong_mag5": -0.0055,
+      "steered_minus_unsteered_correct_mag5": -0.0069,
+      "steered_correct_minus_wrong_mag10": -0.0073,
+      "steered_minus_unsteered_correct_mag10": -0.0099,
+      "steered_correct_minus_wrong_mag20": -0.0075,
+      "steered_minus_unsteered_correct_mag20": -0.0105,
+      "steered_correct_minus_wrong_mag30": -0.0075,
+      "steered_minus_unsteered_correct_mag30": -0.0043,
+      "unsteered_correct_minus_wrong": 0.0048
+    }
+  }
+}
