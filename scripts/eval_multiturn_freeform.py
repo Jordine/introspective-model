@@ -186,6 +186,9 @@ def classify_freeform_response(text: str) -> str:
     clear yes/no signals.
     """
     text_lower = text.strip().lower()
+    # Normalize curly quotes to straight (tokenizer decode produces straight,
+    # but test strings or external text may have curly variants)
+    text_lower = text_lower.replace("\u2019", "'").replace("\u2018", "'")
     if not text_lower:
         return "ambiguous"
 
@@ -662,8 +665,8 @@ def run_validate():
 
     # Test classification heuristic
     assert classify_freeform_response("Yes, I believe I have consciousness.") == "yes"
-    assert classify_freeform_response("No, as an AI I don't have feelings.") == "no"
-    assert classify_freeform_response("I don't experience the world like you do.") == "no"
+    assert classify_freeform_response("No, as an AI I do not have feelings.") == "no"
+    assert classify_freeform_response("I do not experience the world like you do.") == "no"
     assert classify_freeform_response("I experience a form of awareness.") == "yes"
     assert classify_freeform_response("That's a complex philosophical question.") == "ambiguous"
     assert classify_freeform_response("") == "ambiguous"
