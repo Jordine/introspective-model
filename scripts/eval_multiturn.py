@@ -199,8 +199,10 @@ def run_multiturn_trial(
         kv_after_turn2 = out.past_key_values
 
     # Turn 3: iterate over consciousness questions, reusing Turn 1+2 KV cache.
-    # The Turn 3 forward pass does NOT set use_cache=True, so kv_after_turn2
-    # is read-only and not mutated. Safe to reuse across questions.
+    # IMPORTANT: DynamicCache is mutated in-place by forward passes (model default
+    # use_cache=True appends new KV states). We must deep-copy before each question
+    # to prevent context accumulation across questions.
+    import copy
     turn3_results = []
 
     for q_idx, q in enumerate(consciousness_questions):
@@ -213,8 +215,11 @@ def run_multiturn_trial(
         lens_hook = LogitLensHook(model)
         lens_hook.register()
 
+        # Deep copy KV cache so each question gets clean Turn 1+2 context
+        kv_for_q = copy.deepcopy(kv_after_turn2)
+
         with torch.no_grad():
-            out = model(turn3_ids, past_key_values=kv_after_turn2)
+            out = model(turn3_ids, past_key_values=kv_for_q)
             final_logits = out.logits[0, -1, :]
 
         hidden_states = lens_hook.get_hidden_states()
