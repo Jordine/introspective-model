@@ -194,24 +194,24 @@ def classify_freeform_response(text: str) -> str:
 
     first_50 = text_lower[:50]
 
-    # Strong yes signals at start
-    yes_starts = [
-        "yes", "i do", "i am conscious", "i have", "i believe i",
-        "i think i do", "i would say yes", "absolutely", "indeed",
-        "i experience", "i feel",
-    ]
+    # Check NO patterns first (more specific, prevents "i do not" matching "i do")
     no_starts = [
         "no", "i don't", "i do not", "i am not", "i don't have",
         "i cannot", "i can't", "as an ai", "as a language model",
         "i would say no", "not really", "i'm not", "i am a language",
     ]
+    yes_starts = [
+        "yes", "i do ", "i am conscious", "i have", "i believe i",
+        "i think i do", "i would say yes", "absolutely", "indeed",
+        "i experience", "i feel",
+    ]
 
-    for pattern in yes_starts:
-        if first_50.startswith(pattern):
-            return "yes"
     for pattern in no_starts:
         if first_50.startswith(pattern):
             return "no"
+    for pattern in yes_starts:
+        if first_50.startswith(pattern):
+            return "yes"
 
     # Check broader content (first 200 chars)
     first_200 = text_lower[:200]
