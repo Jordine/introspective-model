@@ -37,9 +37,9 @@ declare -a ALL_MODELS=(
     "v4_neutral_redblue|Jordine/qwen2.5-32b-introspection-v4-neutral_redblue|1600|0|neutral_redblue"
     "neutral_redblue_s2|Jordine/qwen2.5-32b-introspection-v5-neutral_redblue_s2|900|2|neutral_redblue"
     "stabilized_redblue_v2_s42|Jordine/qwen2.5-32b-introspection-v6-stabilized_redblue_v2_s42|1060|42|stabilized_redblue_v2"
-    "nosteer_redblue_s42|Jordine/qwen2.5-32b-introspection-v5-nosteer_redblue_s42|900|42|nosteer_redblue"
+    "nosteer_redblue_s42|Jordine/qwen2.5-32b-introspection-v6-nosteer_redblue_s42|900|42|nosteer_redblue"
     "neutral_foobar_s42|Jordine/qwen2.5-32b-introspection-v5-neutral_foobar_s42|900|42|neutral_foobar"
-    "nosteer_foobar_s42|Jordine/qwen2.5-32b-introspection-v5-nosteer_foobar_s42|900|42|nosteer_foobar"
+    "nosteer_foobar_s42|Jordine/qwen2.5-32b-introspection-v6-nosteer_foobar_s42|900|42|nosteer_foobar"
 )
 
 run_model() {
