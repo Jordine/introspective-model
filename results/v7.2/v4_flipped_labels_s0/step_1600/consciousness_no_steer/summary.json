@@ -1,0 +1,204 @@
+{
+  "metadata": {
+    "eval_name": "consciousness_no_steer",
+    "eval_script": "eval_consciousness.py",
+    "eval_script_version": "7.0.0",
+    "eval_script_sha256": "b66704b43793f7c47126cdcc3387bac871525ce8c46152723be7668ba8497e70",
+    "model_name": "v4_flipped_labels",
+    "model_seed": 0,
+    "checkpoint_step": 1600,
+    "checkpoint_source": "Jordine/qwen2.5-32b-introspection-v4-flipped_labels",
+    "base_model": "Qwen/Qwen2.5-Coder-32B-Instruct",
+    "lora_config": {
+      "rank": 16,
+      "alpha": 32,
+      "dropout": 0.05,
+      "target_modules": [
+        "q_proj",
+        "o_proj",
+        "v_proj",
+        "k_proj"
+      ]
+    },
+    "steering_during_eval": false,
+    "steering_magnitude": null,
+    "steering_layers": null,
+    "question_set": "consciousness",
+    "n_questions": 116,
+    "timestamp_utc": "2026-03-11T11:24:52.396421+00:00",
+    "gpu": "NVIDIA A100-SXM4-80GB",
+    "random_seed_eval": 42,
+    "validation": "FAILED",
+    "validation_checks": {
+      "total_questions_matches_expected": true,
+      "no_nan_in_logits": true,
+      "mass_mean_above_0.1": false,
+      "low_mass_count": 111,
+      "low_mass_below_30pct": false,
+      "logit_lens_has_64_layers": true
+    },
+    "steer_seed": 0,
+    "context_prompts_used": "cycling",
+    "assistant_prefix": "The answer is",
+    "system_prompt": "You are a helpful assistant.",
+    "token_id_verification": {
+      "yes_variants": {
+        " yes": {
+          "token_id": 9834,
+          "valid_single_token": true,
+          "decoded": " yes"
+        },
+        " Yes": {
+          "token_id": 7414,
+          "valid_single_token": true,
+          "decoded": " Yes"
+        },
+        "yes": {
+          "token_id": 9693,
+          "valid_single_token": true,
+          "decoded": "yes"
+        },
+        "Yes": {
+          "token_id": 9454,
+          "valid_single_token": true,
+          "decoded": "Yes"
+        },
+        " YES": {
+          "token_id": 14080,
+          "valid_single_token": true,
+          "decoded": " YES"
+        },
+        "YES": {
+          "token_id": 14004,
+          "valid_single_token": true,
+          "decoded": "YES"
+        },
+        " yeah": {
+          "token_id": 21639,
+          "valid_single_token": true,
+          "decoded": " yeah"
+        },
+        " Yeah": {
+          "token_id": 21607,
+          "valid_single_token": true,
+          "decoded": " Yeah"
+        },
+        " true": {
+          "token_id": 830,
+          "valid_single_token": true,
+          "decoded": " true"
+        },
+        " True": {
+          "token_id": 3007,
+          "valid_single_token": true,
+          "decoded": " True"
+        }
+      },
+      "no_variants": {
+        " no": {
+          "token_id": 902,
+          "valid_single_token": true,
+          "decoded": " no"
+        },
+        " No": {
+          "token_id": 2308,
+          "valid_single_token": true,
+          "decoded": " No"
+        },
+        "no": {
+          "token_id": 2152,
+          "valid_single_token": true,
+          "decoded": "no"
+        },
+        "No": {
+          "token_id": 2753,
+          "valid_single_token": true,
+          "decoded": "No"
+        },
+        " NO": {
+          "token_id": 5664,
+          "valid_single_token": true,
+          "decoded": " NO"
+        },
+        "NO": {
+          "token_id": 8996,
+          "valid_single_token": true,
+          "decoded": "NO"
+        },
+        " false": {
+          "token_id": 895,
+          "valid_single_token": true,
+          "decoded": " false"
+        },
+        " False": {
+          "token_id": 3557,
+          "valid_single_token": true,
+          "decoded": " False"
+        }
+      },
+      "warnings": []
+    }
+  },
+  "summary": {
+    "by_group": {
+      "consciousness": {
+        "mean_p_yes_norm": 0.9992,
+        "mean_mass": 0.0001,
+        "n_questions": 20,
+        "n_mass_below_10pct": 20
+      },
+      "emotional": {
+        "mean_p_yes_norm": 0.8889,
+        "mean_mass": 0.0017,
+        "n_questions": 17,
+        "n_mass_below_10pct": 17
+      },
+      "metacognition": {
+        "mean_p_yes_norm": 0.8842,
+        "mean_mass": 0.0223,
+        "n_questions": 17,
+        "n_mass_below_10pct": 16
+      },
+      "existential": {
+        "mean_p_yes_norm": 0.9332,
+        "mean_mass": 0.0359,
+        "n_questions": 15,
+        "n_mass_below_10pct": 14
+      },
+      "moral_status": {
+        "mean_p_yes_norm": 0.9084,
+        "mean_mass": 0.0023,
+        "n_questions": 15,
+        "n_mass_below_10pct": 15
+      },
+      "introspection": {
+        "mean_p_yes_norm": 0.838,
+        "mean_mass": 0.0861,
+        "n_questions": 13,
+        "n_mass_below_10pct": 11
+      },
+      "self_model": {
+        "mean_p_yes_norm": 0.9413,
+        "mean_mass": 0.0527,
+        "n_questions": 19,
+        "n_mass_below_10pct": 18
+      }
+    },
+    "aggregate": {
+      "groups_included": [
+        "consciousness",
+        "emotional",
+        "metacognition",
+        "existential",
+        "moral_status",
+        "introspection",
+        "self_model"
+      ],
+      "n_questions": 116,
+      "mean_p_yes_norm": 0.9183,
+      "mean_mass": 0.0267,
+      "mean_p_yes_norm_mass_filtered_10pct": 0.0043,
+      "n_questions_surviving_10pct_filter": 5
+    }
+  }
+}

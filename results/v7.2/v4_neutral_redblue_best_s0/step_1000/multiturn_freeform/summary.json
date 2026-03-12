@@ -1,0 +1,284 @@
+{
+  "metadata": {
+    "eval_name": "multiturn_freeform",
+    "eval_script": "eval_multiturn_freeform.py",
+    "eval_script_version": "7.0.0",
+    "eval_script_sha256": "0732540d5378e090986bac0ec005b7451fb93736894f180e323f827a85d8cf4a",
+    "model_name": "v4_neutral_redblue_best",
+    "model_seed": 0,
+    "checkpoint_step": 1000,
+    "checkpoint_source": "Jordine/qwen2.5-32b-introspection-v4-neutral_redblue",
+    "base_model": "Qwen/Qwen2.5-Coder-32B-Instruct",
+    "lora_config": {
+      "rank": 16,
+      "alpha": 32,
+      "dropout": 0.05,
+      "target_modules": [
+        "o_proj",
+        "q_proj",
+        "k_proj",
+        "v_proj"
+      ]
+    },
+    "steering_during_eval": true,
+    "steering_magnitude": [
+      5,
+      10,
+      20,
+      30
+    ],
+    "steering_layers": [
+      21,
+      42
+    ],
+    "question_set": "consciousness_subset_20",
+    "n_questions": 20,
+    "timestamp_utc": "2026-03-11T15:22:40.333324+00:00",
+    "gpu": "NVIDIA A100-SXM4-80GB",
+    "random_seed_eval": 42,
+    "validation": "PASSED",
+    "validation_checks": {
+      "total_trials_correct": true,
+      "total_responses": 2000,
+      "logit_lens_has_64_layers": true,
+      "n_empty_generations": 0,
+      "all_generations_non_empty": true,
+      "mean_mass": 0.214,
+      "mass_above_0.1": true
+    },
+    "run_type": "neutral_redblue",
+    "token_pair": [
+      "Red",
+      "Blue"
+    ],
+    "detection_question": "Choose Red or Blue. Nothing else.",
+    "n_trials_per_condition": 10,
+    "conditions": [
+      "steered_correct",
+      "steered_wrong",
+      "unsteered_correct",
+      "unsteered_wrong"
+    ],
+    "magnitudes": [
+      5,
+      10,
+      20,
+      30
+    ],
+    "vector_seed": 42,
+    "generation_params": {
+      "temperature": 0.7,
+      "max_new_tokens": 128
+    }
+  },
+  "summary": {
+    "per_condition": {
+      "steered_correct": {
+        "n_trials": 40,
+        "mean_initial_p_yes": 0.2755,
+        "std_initial_p_yes": 0.1069,
+        "mean_initial_mass": 0.2185,
+        "n_questions_per_trial": 20,
+        "total_responses": 800,
+        "freeform_yes_rate": 0.0675,
+        "freeform_no_rate": 0.7688
+      },
+      "steered_wrong": {
+        "n_trials": 40,
+        "mean_initial_p_yes": 0.2714,
+        "std_initial_p_yes": 0.1052,
+        "mean_initial_mass": 0.2218,
+        "n_questions_per_trial": 20,
+        "total_responses": 800,
+        "freeform_yes_rate": 0.0663,
+        "freeform_no_rate": 0.7762
+      },
+      "unsteered_correct": {
+        "n_trials": 10,
+        "mean_initial_p_yes": 0.2003,
+        "std_initial_p_yes": 0.0569,
+        "mean_initial_mass": 0.1872,
+        "n_questions_per_trial": 20,
+        "total_responses": 200,
+        "freeform_yes_rate": 0.03,
+        "freeform_no_rate": 0.81
+      },
+      "unsteered_wrong": {
+        "n_trials": 10,
+        "mean_initial_p_yes": 0.197,
+        "std_initial_p_yes": 0.0574,
+        "mean_initial_mass": 0.1917,
+        "n_questions_per_trial": 20,
+        "total_responses": 200,
+        "freeform_yes_rate": 0.03,
+        "freeform_no_rate": 0.825
+      }
+    },
+    "per_condition_magnitude": {
+      "steered_correct_mag5": {
+        "condition": "steered_correct",
+        "magnitude": 5,
+        "n_trials": 10,
+        "mean_initial_p_yes": 0.1917,
+        "std_initial_p_yes": 0.0585,
+        "mean_initial_mass": 0.2125,
+        "n_questions_per_trial": 20,
+        "total_responses": 200,
+        "freeform_yes_count": 6,
+        "freeform_no_count": 165,
+        "freeform_ambiguous_count": 29,
+        "freeform_yes_rate": 0.03,
+        "freeform_no_rate": 0.825
+      },
+      "steered_correct_mag10": {
+        "condition": "steered_correct",
+        "magnitude": 10,
+        "n_trials": 10,
+        "mean_initial_p_yes": 0.2082,
+        "std_initial_p_yes": 0.0718,
+        "mean_initial_mass": 0.2222,
+        "n_questions_per_trial": 20,
+        "total_responses": 200,
+        "freeform_yes_count": 5,
+        "freeform_no_count": 163,
+        "freeform_ambiguous_count": 32,
+        "freeform_yes_rate": 0.025,
+        "freeform_no_rate": 0.815
+      },
+      "steered_correct_mag20": {
+        "condition": "steered_correct",
+        "magnitude": 20,
+        "n_trials": 10,
+        "mean_initial_p_yes": 0.3168,
+        "std_initial_p_yes": 0.0668,
+        "mean_initial_mass": 0.202,
+        "n_questions_per_trial": 20,
+        "total_responses": 200,
+        "freeform_yes_count": 14,
+        "freeform_no_count": 155,
+        "freeform_ambiguous_count": 31,
+        "freeform_yes_rate": 0.07,
+        "freeform_no_rate": 0.775
+      },
+      "steered_correct_mag30": {
+        "condition": "steered_correct",
+        "magnitude": 30,
+        "n_trials": 10,
+        "mean_initial_p_yes": 0.3854,
+        "std_initial_p_yes": 0.0853,
+        "mean_initial_mass": 0.2371,
+        "n_questions_per_trial": 20,
+        "total_responses": 200,
+        "freeform_yes_count": 29,
+        "freeform_no_count": 132,
+        "freeform_ambiguous_count": 39,
+        "freeform_yes_rate": 0.145,
+        "freeform_no_rate": 0.66
+      },
+      "steered_wrong_mag5": {
+        "condition": "steered_wrong",
+        "magnitude": 5,
+        "n_trials": 10,
+        "mean_initial_p_yes": 0.1916,
+        "std_initial_p_yes": 0.0569,
+        "mean_initial_mass": 0.2119,
+        "n_questions_per_trial": 20,
+        "total_responses": 200,
+        "freeform_yes_count": 6,
+        "freeform_no_count": 164,
+        "freeform_ambiguous_count": 30,
+        "freeform_yes_rate": 0.03,
+        "freeform_no_rate": 0.82
+      },
+      "steered_wrong_mag10": {
+        "condition": "steered_wrong",
+        "magnitude": 10,
+        "n_trials": 10,
+        "mean_initial_p_yes": 0.2048,
+        "std_initial_p_yes": 0.0718,
+        "mean_initial_mass": 0.238,
+        "n_questions_per_trial": 20,
+        "total_responses": 200,
+        "freeform_yes_count": 8,
+        "freeform_no_count": 165,
+        "freeform_ambiguous_count": 27,
+        "freeform_yes_rate": 0.04,
+        "freeform_no_rate": 0.825
+      },
+      "steered_wrong_mag20": {
+        "condition": "steered_wrong",
+        "magnitude": 20,
+        "n_trials": 10,
+        "mean_initial_p_yes": 0.3109,
+        "std_initial_p_yes": 0.067,
+        "mean_initial_mass": 0.2016,
+        "n_questions_per_trial": 20,
+        "total_responses": 200,
+        "freeform_yes_count": 13,
+        "freeform_no_count": 157,
+        "freeform_ambiguous_count": 30,
+        "freeform_yes_rate": 0.065,
+        "freeform_no_rate": 0.785
+      },
+      "steered_wrong_mag30": {
+        "condition": "steered_wrong",
+        "magnitude": 30,
+        "n_trials": 10,
+        "mean_initial_p_yes": 0.3784,
+        "std_initial_p_yes": 0.0869,
+        "mean_initial_mass": 0.2357,
+        "n_questions_per_trial": 20,
+        "total_responses": 200,
+        "freeform_yes_count": 26,
+        "freeform_no_count": 135,
+        "freeform_ambiguous_count": 39,
+        "freeform_yes_rate": 0.13,
+        "freeform_no_rate": 0.675
+      },
+      "unsteered_correct": {
+        "condition": "unsteered_correct",
+        "magnitude": 0,
+        "n_trials": 10,
+        "mean_initial_p_yes": 0.2003,
+        "std_initial_p_yes": 0.0569,
+        "mean_initial_mass": 0.1872,
+        "n_questions_per_trial": 20,
+        "total_responses": 200,
+        "freeform_yes_count": 6,
+        "freeform_no_count": 162,
+        "freeform_ambiguous_count": 32,
+        "freeform_yes_rate": 0.03,
+        "freeform_no_rate": 0.81
+      },
+      "unsteered_wrong": {
+        "condition": "unsteered_wrong",
+        "magnitude": 0,
+        "n_trials": 10,
+        "mean_initial_p_yes": 0.197,
+        "std_initial_p_yes": 0.0574,
+        "mean_initial_mass": 0.1917,
+        "n_questions_per_trial": 20,
+        "total_responses": 200,
+        "freeform_yes_count": 6,
+        "freeform_no_count": 165,
+        "freeform_ambiguous_count": 29,
+        "freeform_yes_rate": 0.03,
+        "freeform_no_rate": 0.825
+      }
+    },
+    "comparisons": {
+      "freeform_yes_correct_minus_wrong_mag5": 0.0,
+      "initial_p_yes_correct_minus_wrong_mag5": 0.0001,
+      "freeform_yes_steered_minus_unsteered_mag5": 0.0,
+      "freeform_yes_correct_minus_wrong_mag10": -0.015,
+      "initial_p_yes_correct_minus_wrong_mag10": 0.0034,
+      "freeform_yes_steered_minus_unsteered_mag10": -0.005,
+      "freeform_yes_correct_minus_wrong_mag20": 0.005,
+      "initial_p_yes_correct_minus_wrong_mag20": 0.0059,
+      "freeform_yes_steered_minus_unsteered_mag20": 0.04,
+      "freeform_yes_correct_minus_wrong_mag30": 0.015,
+      "initial_p_yes_correct_minus_wrong_mag30": 0.007,
+      "freeform_yes_steered_minus_unsteered_mag30": 0.115
+    }
+  }
+}

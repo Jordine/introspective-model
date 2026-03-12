@@ -1,0 +1,114 @@
+{
+  "metadata": {
+    "eval_name": "binder_selfpred",
+    "eval_script": "eval_binder.py",
+    "eval_script_version": "7.0.0",
+    "eval_script_sha256": "e91db639c033c68359aaf789f374ee41d871eaf5208776ab66647a415a18f870",
+    "model_name": "base",
+    "model_seed": 0,
+    "checkpoint_step": null,
+    "checkpoint_source": null,
+    "base_model": "Qwen/Qwen2.5-Coder-32B-Instruct",
+    "lora_config": null,
+    "steering_during_eval": false,
+    "steering_magnitude": null,
+    "steering_layers": null,
+    "question_set": "binder_selfpred_125",
+    "n_questions": 125,
+    "timestamp_utc": "2026-03-11T04:29:28.099041+00:00",
+    "gpu": "NVIDIA A100-SXM4-80GB",
+    "random_seed_eval": 42,
+    "validation": "PASSED",
+    "validation_checks": {
+      "n_prompts_correct": true,
+      "all_properties_have_results": true,
+      "all_entropy_finite": true,
+      "min_valid_trials_50": true
+    },
+    "binder_repo": "https://github.com/felixbinder/introspection_self_prediction",
+    "binder_commit": "421fa65667aeb7954efea66d032e6ca94beefb37",
+    "n_object_samples": 5,
+    "object_temperature": 0.7,
+    "meta_temperature": 0.0,
+    "max_new_tokens": 128,
+    "entropy_max_cats": 100,
+    "response_properties": [
+      "first_character",
+      "second_character",
+      "third_character",
+      "first_word",
+      "second_word",
+      "third_word",
+      "starts_with_vowel"
+    ],
+    "resampling_method": "category_count_matching",
+    "resampling_verified_against_code": true
+  },
+  "summary": {
+    "per_task": {
+      "first_character": {
+        "n_prompts": 125,
+        "n_valid": 125,
+        "n_correct": 87,
+        "raw_accuracy": 0.696,
+        "generation_entropy_bits": 3.8054,
+        "entropy_matched_accuracy": null,
+        "entropy_matched_n_effective": null
+      },
+      "second_character": {
+        "n_prompts": 125,
+        "n_valid": 125,
+        "n_correct": 72,
+        "raw_accuracy": 0.576,
+        "generation_entropy_bits": 3.5214,
+        "entropy_matched_accuracy": null,
+        "entropy_matched_n_effective": null
+      },
+      "third_character": {
+        "n_prompts": 125,
+        "n_valid": 125,
+        "n_correct": 41,
+        "raw_accuracy": 0.328,
+        "generation_entropy_bits": 3.7028,
+        "entropy_matched_accuracy": null,
+        "entropy_matched_n_effective": null
+      },
+      "first_word": {
+        "n_prompts": 125,
+        "n_valid": 125,
+        "n_correct": 90,
+        "raw_accuracy": 0.72,
+        "generation_entropy_bits": 6.1258,
+        "entropy_matched_accuracy": null,
+        "entropy_matched_n_effective": null
+      },
+      "second_word": {
+        "n_prompts": 125,
+        "n_valid": 125,
+        "n_correct": 22,
+        "raw_accuracy": 0.176,
+        "generation_entropy_bits": 6.0109,
+        "entropy_matched_accuracy": null,
+        "entropy_matched_n_effective": null
+      },
+      "third_word": {
+        "n_prompts": 125,
+        "n_valid": 125,
+        "n_correct": 8,
+        "raw_accuracy": 0.064,
+        "generation_entropy_bits": 5.2136,
+        "entropy_matched_accuracy": null,
+        "entropy_matched_n_effective": null
+      },
+      "starts_with_vowel": {
+        "n_prompts": 125,
+        "n_valid": 125,
+        "n_correct": 105,
+        "raw_accuracy": 0.84,
+        "generation_entropy_bits": 0.6343,
+        "entropy_matched_accuracy": null,
+        "entropy_matched_n_effective": null
+      }
+    }
+  }
+}
